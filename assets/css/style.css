@@ -19,7 +19,7 @@ header {
     justify-content: space-between;
     width: 100%;
     padding: 25px 65px;
-    /* gap: 50px; */
+    gap: 50px;
     align-items: center;
     position: sticky;
     top: 0;
@@ -28,8 +28,20 @@ header {
 
 .header-center{
     display: flex;
-    flex-direction: row;
-    gap: 150px;
+    align-items: center;
+    gap: 40px;
+    flex: 1;
+    justify-content: space-between;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.header-left{
+    flex-shrink: 0 0 auto;
+}
+
+.header-right{
+    flex-shrink: 0;
 }
 
 .logo {
@@ -52,8 +64,9 @@ header {
 
 nav {
     display: flex;
-    gap: 100px;
+    gap: 40px;
     align-items: center;
+    flex-shrink: 1;
 }
 
 nav a {
@@ -206,7 +219,8 @@ nav a:hover{
 
 .search-bar{
     display: flex;
-    width: 449px;
+    width: 100%;
+    max-width: 550px;
     padding: 15px 20px;
     align-items: center;
     gap: 22px;
@@ -242,6 +256,7 @@ nav a:hover{
     color: #363B58;
     font-weight: 700;
     font-size: 20px;
+    white-space: nowrap;
 }
 
 .user-profile img{
@@ -439,16 +454,15 @@ input[type="checkbox"]:checked::before{
 }
 
 .btn-md{
-    width: 330px;
+    width: 300px;
     padding: 15px 30px;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
     gap: 10px;
     border-radius: 10px;
     background: #FBB45E;
     border: none;
     color: #363B58;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 600;
     margin-top: 30px;
 }
@@ -570,6 +584,7 @@ input[type="checkbox"]:checked::before{
     top: 60%;
     left: 50px;
     transform: translateY(-50%);
+    padding: 10px;
     z-index: 2; /* di atas gradient */
 
     display: flex;
@@ -583,13 +598,15 @@ input[type="checkbox"]:checked::before{
     gap: 10px;
 }
 
-.popular-header h1{
+.popular-header h1,
+.aktivitas-terakhir h2{
     color: #31354F;
     font-weight: 800;
     font-size: 39px;
 }
 
-.popular-header span{
+.popular-header span,
+.aktivitas-terakhir h2 span{
     color: #fbb45e;
 }
 
@@ -705,10 +722,29 @@ input[type="checkbox"]:checked::before{
     border-top: 1px solid #D9D9D9;
 }
 
+.profile-content{
+    margin-top: 20px;
+}
+
 .profile-info{
     display: flex;
     align-items: center;
     gap: 20px;
+    background-color: #fff;
+    padding: 30px 40px;
+    border: 1px solid #D9D9D9;
+    border-radius: 20px;
+    width: 100%;
+}
+
+.profile-text{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.profile-text h2{
+    font-size: 25px;
 }
 
 .profile-img{
@@ -746,10 +782,80 @@ input[type="checkbox"]:checked::before{
     gap: 15px;
 }
 
-.count-container h3{
+.activity-count h3{
     text-align: center;
     color: #FBB45E;
     font-size: 20px;
+}
+
+.activity-container{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.activity-card{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 500px;
+    background-color: #fff;
+    padding: 15px 20px;
+    border: 1px solid #D9D9D9;
+    border-radius: 20px;
+}
+
+.activity-tag{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.activity-isi{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.activity-isi img{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.activity-details{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.rating span{
+    color: #fbb45e;
+    font-size: 20px;
+}
+
+.left-tag{
+    display: flex;
+    gap: 10px;
+    font-weight: 600;
+    align-items: center;
+}
+
+.left-tag.review span{
+    color: #363B58;
+    background-color: #FBB45E;
+    padding: 8px;
+    font-size: 20px;
+    border-radius: 100%;
+}
+
+.left-tag.saved span{
+    color: #FBB45E;
+    background-color: #363B58;
+    padding: 8px;
+    font-size: 20px;
+    border-radius: 100%;
 }
 
 @media screen and (max-width: 600px){
@@ -983,5 +1089,50 @@ input[type="checkbox"]:checked::before{
 
     .btn-md{
         font-size: 16px;
+    }
+}
+
+@media screen and (min-width:600px) and (max-width: 900px) {
+    header {
+        padding: 15px 30px;
+        gap: 50px;
+    }
+
+    .header-center {
+        gap: 60px;
+    }
+
+    nav {
+        gap: 40px;
+    }
+
+    nav a {
+        font-size: 18px;
+    }
+
+    .search-bar {
+        padding: 10px 15px;
+    }
+
+    .search-bar input {
+        font-size: 16px;
+    }
+
+    .logo span {
+        font-size: 24px;
+    }
+
+    .logo img {
+        width: 45px;
+        height: auto;
+    }
+
+    .user-profile p {
+        display: none;
+    }
+
+    .user-profile img {
+        width: 50px;
+        height: 50px;
     }
 }
