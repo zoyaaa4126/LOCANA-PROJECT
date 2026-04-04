@@ -23,14 +23,18 @@ masuk.addEventListener("click", () => {
     masuk.classList.add("active");
     daftar.classList.remove("active");
 
-    window.location.href = "login.html"; // pindah ke login
+    setTimeout(() => {
+        window.location.href = "login.html";
+    }, 200);
 });
 
 daftar.addEventListener("click", () => {
     daftar.classList.add("active");
     masuk.classList.remove("active");
 
-    window.location.href = "register.html"; // pindah ke register
+    setTimeout(() => {
+      window.location.href = "register.html";
+    }, 200);
 });
 
 //visibility
