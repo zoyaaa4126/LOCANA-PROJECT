@@ -61,6 +61,14 @@ links.forEach(link => {
     });
 });
 
+const buttons = document.querySelectorAll('.kategori-btn');
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        buttons.forEach( b => b.classList.remove('active'));
+        button.classList.add('active');
+    });
+});
+
 const slider = document.getElementById("rangeSlider");
 const value = document.getElementById("rangeValue");
 
