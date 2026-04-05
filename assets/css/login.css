@@ -59,6 +59,7 @@ body {
 .btn-login{
     display: flex;
     justify-content: center;
+    align-items: center;
     margin: 20px auto;
     background: #E1E2E6;
     border-radius: 5px;
@@ -68,7 +69,8 @@ body {
     margin-bottom: 20px;
 }
 
-.btn-login button{
+.btn-login button,
+.btn-login a{
     width: 100%;
     border: none;
     background: transparent;
@@ -241,7 +243,7 @@ button {
     max-height: 971px; */
     width: 50%;
     position: relative;
-    background: url('../../photo/180-Cafe-Bandung.png') center/cover no-repeat;
+    background: url('../../assets/img/180-Cafe-Bandung.png') center/cover no-repeat;
   /* padding: 40px; */
 }
 
@@ -375,6 +377,7 @@ button {
     height: 28px;
     margin: 10px auto;
     padding: 2px;
+    text-decoration: none;
   }
 
   .btn-login button{
