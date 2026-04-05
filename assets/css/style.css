@@ -475,7 +475,8 @@ input[type="checkbox"]:checked::before{
 }
 
 .btn-md:hover,
-.btn-sm:hover{
+.btn-sm:hover,
+.btn-lg:hover{
     background-color: #E2A255;
     color: #363B58;
 }
@@ -1098,7 +1099,7 @@ input[type="checkbox"]:checked::before{
     display: flex;
     flex-direction: row;
     gap: 40px;
-    overflow: hidden;
+    /* overflow: hidden; */
     padding-right: 20px;
 }
 
@@ -1213,6 +1214,107 @@ input[type="checkbox"]:checked::before{
 
 .ulasan-label span{
     font-size: 20px;
+}
+
+.lokasi-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.table-container{
+    width: 100%;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    box-sizing: border-box;
+}
+
+.location-table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.location-table thead th{
+    text-align: left;
+    font-size: 14px;
+    color: #777;
+    padding: 0px 20px 15px 20px;
+}
+
+.location-table tbody tr{
+    border-top: 1px solid #eee;
+    padding: 0px 20px 15px 20px;
+}
+
+.location-table td{
+    padding: 18px 20px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 16px;
+}
+
+.lokasi-info{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lokasi-img{
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+    display: block;
+}
+
+.kategori{
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.kategori.cafe{
+    background: #f5e6d3;
+    color: #c78332;
+}
+
+.alamat{
+    color: #555;
+}
+
+.actions{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.actions span{
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.edit{
+    color: #444;
+}
+
+.delete{
+    color: #e53935;
+}
+
+.table-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination span{
+    cursor: pointer;
+    font-size: 22px;
+    margin-left: 10px;
 }
 
 @media screen and (max-width: 900px){
@@ -1330,6 +1432,7 @@ input[type="checkbox"]:checked::before{
 
     .content-container{
         order: 1;
+        flex: 1;
         margin-top: 0;
         width: 100%;
         overflow: hidden;
@@ -1446,6 +1549,7 @@ input[type="checkbox"]:checked::before{
 
     .btn-md{
         font-size: 16px;
+        padding: 10px 20px;
     }
 
     .profile-info{
@@ -1654,6 +1758,28 @@ input[type="checkbox"]:checked::before{
 
     .tinjau-card .top .rating{
         gap: 0;
+    }
+
+    .location-table th:nth-child(4), .alamat{
+        display: none;
+    }
+
+    .location-table tbody tr{
+        padding: 0px 10px 5px 10px;
+    }
+
+    .location-table td{
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+
+    .table-img img{
+        width: 40px;
+        height: 40px;
+    }
+
+    .lokasi-header{
+        flex-direction: column;
     }
 }
 
