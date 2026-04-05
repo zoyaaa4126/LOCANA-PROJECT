@@ -96,3 +96,16 @@ function toggleFilter(){
 
   document.querySelector(".menu-icon").textContent = "menu";
 }
+
+function toggleMenu() {
+    const mobileNavbar = document.querySelector(".mobile-navbar");
+    const toggleIcon = document.getElementById("toggleMenu");
+
+    if (mobileNavbar.style.display === "flex") {
+        mobileNavbar.style.display = "none";
+        toggleIcon.innerText = "menu";
+    } else {
+        mobileNavbar.style.display = "flex";
+        toggleIcon.innerText = "close";
+    }
+}

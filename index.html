@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Locana</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/landing.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
 </head>
 
@@ -14,7 +14,7 @@
         <!-- NAVBAR DESKTOP -->
         <div class="nav-desktop">
             <div class="logo">
-                <img src="Locana_Logo 1.png" alt="logloc">
+                <img src="assets/img/Locana_Logo 1.png" alt="logloc">
                 <span>LOCANA</span>
             </div>
             <nav>
@@ -24,11 +24,11 @@
                 <a href="#ulasan">Ulasan</a>
             </nav>
             <div class="daftar">
-                <a href="#">Masuk</a>
-                <button class="btn-daftar">
+                <a href="login.html">Masuk</a>
+                <a href="register.html" class="btn-daftar">
                     <span>Daftar</span>
                     <span>→</span>
-                </button>
+                </a>
             </div>
         </div>
 
@@ -36,21 +36,21 @@
         <div class="nav-mobile">
             <div class="toggle-wrapper">
                 <div class="logo">
-                    <img src="Locana_Logo 1.png" alt="logloc">
+                    <img src="assets/img/Locana_Logo 1.png" alt="logloc">
                     <span>LOCANA</span>
                 </div>
-                <div id="toggleMenu" class="material-symbols-outlined">menu</div>
+                <div id="toggleMenu" class="material-symbols-outlined" onclick="toggleMenu()">menu</div>
             </div>
             <nav class="mobile-navbar">
                 <a href="#">Beranda</a>
                 <a href="#populer">Populer</a>
                 <a href="#mood">Mood</a>
                 <a href="#ulasan">Ulasan</a>
-                <a href="#">Masuk</a>
-                <button class="btn-daftar">
+                <a href="login.html">Masuk</a>
+                <a href="register.html" class="btn-daftar">
                     <span>Daftar</span>
                     <span>→</span>
-                </button>
+                </a>
             </nav>
         </div>
 
@@ -78,7 +78,7 @@
             </div>
 
             <div class="hero-right">
-                <img src="cafe1.png" alt="cafe">
+                <img src="assets/img/cafe1.png" alt="cafe">
 
                 <div class="overlay">
                     <p class="tag">SEDANG TRENDING</p>
@@ -140,7 +140,7 @@
             </div>
             <div class="cards">
                 <div class="card" style="font-variation-settings: 'FILL' 1;">
-                    <img src="cafe1.png" alt="fotocard">
+                    <img src="assets/img/cafe1.png" alt="fotocard">
                     <div class="cafe">
                         <h5>CAFE</h5>
                         <p><span class="material-symbols-outlined">kid_star</span>4.8 (20)</p>
@@ -166,7 +166,7 @@
                     </div>
                 </div>
                 <div class="card" style="font-variation-settings: 'FILL' 1;">
-                    <img src="cafe1.png" alt="fotocard">
+                    <img src="assets/img/cafe1.png" alt="fotocard">
                     <div class="cafe">
                         <h5>CAFE</h5>
                         <p><span class="material-symbols-outlined">kid_star</span>4.8 (20)</p>
@@ -192,7 +192,7 @@
                     </div>
                 </div>
                 <div class="card" style="font-variation-settings: 'FILL' 1;">
-                    <img src="cafe1.png" alt="fotocard">
+                    <img src="assets/img/cafe1.png" alt="fotocard">
                     <div class="cafe">
                         <h5>CAFE</h5>
                         <p><span class="material-symbols-outlined">kid_star</span>4.8 (20)</p>
@@ -218,7 +218,7 @@
                     </div>
                 </div>
                 <div class="card" style="font-variation-settings: 'FILL' 1;">
-                    <img src="cafe1.png" alt="fotocard">
+                    <img src="assets/img/cafe1.png" alt="fotocard">
                     <div class="cafe">
                         <h5>CAFE</h5>
                         <p><span class="material-symbols-outlined">kid_star</span>4.8 (20)</p>
@@ -244,7 +244,7 @@
                     </div>
                 </div>
                 <div class="card" style="font-variation-settings: 'FILL' 1;">
-                    <img src="cafe1.png" alt="fotocard">
+                    <img src="assets/img/cafe1.png" alt="fotocard">
                     <div class="cafe">
                         <h5>CAFE</h5>
                         <p><span class="material-symbols-outlined">kid_star</span>4.8 (20)</p>
@@ -280,7 +280,7 @@
             <h2 id="mood">Rekomendasi Berdasarkan <span>Mood</span> </h2>
             <div class="cards">
                 <div class="card-rec">
-                    <img src="Hot beverage.png" alt="hotbeverage">
+                    <img src="assets/img/Hot beverage.png" alt="hotbeverage">
                     <div class="text">
                         <h4>Chill</h4>
                         <p>Tempat santai dengan suasana tenang.</p>
@@ -291,7 +291,7 @@
                     </div>
                 </div>
                 <div class="card-rec">
-                    <img src="Teacup without handle.png" alt="hotbeverage">
+                    <img src="assets/img/Teacup without handle.png" alt="hotbeverage">
                     <div class="text">
                         <h4>Chill</h4>
                         <p>Tempat santai dengan suasana tenang.</p>
@@ -302,7 +302,7 @@
                     </div>
                 </div>
                 <div class="card-rec">
-                    <img src="Ferris wheel.png" alt="hotbeverage">
+                    <img src="assets/img/Ferris wheel.png" alt="hotbeverage">
                     <div class="text">
                         <h4>Chill</h4>
                         <p>Tempat santai dengan suasana tenang.</p>
@@ -313,7 +313,7 @@
                     </div>
                 </div>
                 <div class="card-rec">
-                    <img src="red heart.png" alt="hotbeverage">
+                    <img src="assets/img/red heart.png" alt="hotbeverage">
                     <div class="text">
                         <h4>Romantis</h4>
                         <p>Tempat santai dengan suasana tenang.</p>
@@ -334,7 +334,7 @@
                 <div class="user-rev">
                     <div class="top">
                         <div class="top-left">
-                            <img src="kenma.jpeg" alt="userpict">
+                            <img src="assets/img/kenma.jpeg" alt="userpict">
                             <div class="username">
                                 <h4>KenmaKozzz</h4>
                                 <p>15 Januari 2026</p>
@@ -353,7 +353,7 @@
                 <div class="user-rev">
                     <div class="top">
                         <div class="top-left">
-                            <img src="kenma.jpeg" alt="userpict">
+                            <img src="assets/img/kenma.jpeg" alt="userpict">
                             <div class="username">
                                 <h4>KenmaKozzz</h4>
                                 <p>15 Januari 2026</p>
@@ -372,7 +372,7 @@
                 <div class="user-rev">
                     <div class="top">
                         <div class="top-left">
-                            <img src="kenma.jpeg" alt="userpict">
+                            <img src="assets/img/kenma.jpeg" alt="userpict">
                             <div class="username">
                                 <h4>KenmaKozzz</h4>
                                 <p>15 Januari 2026</p>
@@ -410,7 +410,7 @@
         <div class="footer1">
 
             <div class="logo">
-                <img src="Locana_Logo 1.png" alt="logloc">
+                <img src="assets/img/Locana_Logo 1.png" alt="logloc">
                 <span>LOCANA</span>
             </div>
 
@@ -444,7 +444,7 @@
     <div class="hakcipta">
         <h2>&copy; 2026 Locana. All right reserved.</h2>
     </div>
+    <script src="assets/js/script.js"></script>
 </body>
 
-<script src="./index.js"></script>
 </html>
