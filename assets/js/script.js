@@ -1,8 +1,11 @@
-const buttons = document.querySelectorAll('.kategori-btn');
-buttons.forEach(button => {
-    button.addEventListener('click', () => {
-        buttons.forEach( b => b.classList.remove('active'));
-        button.classList.add('active');
+const links = document.querySelectorAll('.kategori-btn a');
+
+links.forEach(link => {
+    link.addEventListener('click', (e) => {
+        const buttons = document.querySelectorAll('.kategori-btn');
+
+        buttons.forEach(b => b.classList.remove('active'));
+        link.closest('.kategori-btn').classList.add('active');
     });
 });
 
@@ -18,8 +21,6 @@ function myFunction() {
   const icon = document.querySelector(".menu-icon");
 
   nav.classList.toggle("responsive");
-
-  document.body.classList.remove("filter-open");
 
   if(nav.classList.contains("responsive")){
     icon.textContent = "close";

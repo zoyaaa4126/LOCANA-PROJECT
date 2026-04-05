@@ -29,7 +29,6 @@ header {
 .header-center{
     display: flex;
     align-items: center;
-    gap: 40px;
     flex: 1;
     justify-content: space-between;
     min-width: 0;
@@ -220,8 +219,8 @@ nav a:hover{
 
 .search-bar{
     display: flex;
-    width: 100%;
-    max-width: 550px;
+    width: fit-content;
+    /* max-width: 550px; */
     padding: 15px 20px;
     align-items: center;
     gap: 22px;
@@ -267,7 +266,8 @@ nav a:hover{
 }
 
 .filter-container, 
-.setelan-akun{
+.setelan-akun,
+.admin-panel{
     background-color: white;
     border-right: 1px solid #D9D9D9;
     padding: 30px;
@@ -317,6 +317,11 @@ nav a:hover{
     height: 65px;
     border-radius: 10px;
     margin-bottom: 15px;
+}
+
+.kategori-btn a{
+    text-decoration: none;
+    color: inherit;
 }
 
 .kategori-btn.active{
@@ -602,7 +607,8 @@ input[type="checkbox"]:checked::before{
 
 .popular-header h1,
 .aktivitas-terakhir h2,
-.ulasan-saya h2{
+.ulasan-saya h2,
+.admin-header h1{
     color: #31354F;
     font-weight: 800;
     font-size: 39px;
@@ -610,7 +616,8 @@ input[type="checkbox"]:checked::before{
 
 .popular-header span,
 .aktivitas-terakhir h2 span,
-.ulasan-saya h2 span{
+.ulasan-saya h2 span,
+.admin-header h1 span{
     color: #fbb45e;
 }
 
@@ -717,7 +724,8 @@ input[type="checkbox"]:checked::before{
     display: none;
 }
 
-.setelan-akun h2{
+.setelan-akun h2,
+.admin-panel h2{
     margin-bottom: 15px;
 }
 
@@ -914,6 +922,7 @@ input[type="checkbox"]:checked::before{
 .user-revs{
     display: flex;
     gap: 15px;
+    overflow: auto;
 }
 
 
@@ -977,7 +986,236 @@ input[type="checkbox"]:checked::before{
     margin: 10px 0px;
 }
 
-@media screen and (max-width: 600px){
+.admin-nav{
+    display: none;
+}
+
+.dashboard-count{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.dashboard-action{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.count-card{
+    display: flex;
+    flex: 1 1 200px;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #fff;
+    padding: 40px;
+    border: 1px solid #D9D9D9;
+    border-radius: 20px;
+    width: 260px;
+    height: fit-content;
+    position: relative;
+    overflow: hidden;
+}
+
+.count-card p,
+.count-card h2{
+    z-index: 2;
+}
+
+.decoration-icon{
+    position: absolute;
+    bottom: -40px;
+    right: -40px;
+
+    font-size: 200px;
+    color: #F1F5F9;
+    z-index: 0;
+}
+
+.action-desc{
+    font-weight: 800;
+    color: #FBB45E;
+}
+
+.count-card h2{
+    font-size: 40px;
+    color: #363B58;
+}
+
+.action-title{
+    display: flex;
+    color: #363B58;
+    align-items: center;
+}
+
+.action-container{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.action-btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 20px;
+    /* max-width: 350px; */
+    width: 100%;
+    color: #363B58;
+    border: 1px solid #D9D9D9;
+    border-radius: 10px;
+}
+
+.action-btn:hover{
+    background-color: #FEF4E7;
+    border: 1px solid #E2A255;
+    transition: 0.2s ease;
+}
+
+.action-icon{
+    display: flex;
+    align-items: center;
+    background-color: #FBB45E;
+    color: #363B58;
+    padding: 5px;
+    border-radius: 100%;
+}
+
+.action-text{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.action-text h4{
+    font-size: 20px;
+}
+
+.admin-main{
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    overflow: hidden;
+    padding-right: 20px;
+}
+
+.button-action{
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+}
+
+.ulasan-count{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.ulasan-count-card{
+    display: flex;
+    flex-direction: column;
+    padding: 15px 20px;
+    background-color: #E2E8F0;
+    border-radius: 10px;
+    justify-content: space-between;
+    width: 162px;
+    height: 130px;
+}
+
+.ulasan-count-card p{
+    font-weight: 700;
+}
+
+.ulasan-count-card h2{
+    font-size: 32px;
+}
+
+.merah{
+    background-color: #FFE2E2;
+    color: red;
+}
+
+.simpan-btn, .hapus-btn{
+    padding: 10px 20px;
+    border: none;
+    font-weight: 700;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.simpan-btn{
+    background-color: #F1F5F9;
+    border: 1px solid #D9D9D9;
+    color: #363B58;
+}
+
+.hapus-btn{
+    background-color: red;
+    color: white;
+}
+
+.location-tanggal{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.lokasi{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.lokasi span{
+    color: #fbb45e;
+    font-size: 20px;
+}
+
+.ulasan-tinjau{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.tinjau-card{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: white;
+    padding: 20px 30px;
+    border: 1px solid red;
+    border-radius: 20px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.deskripsi-ulasan{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #FFE2E2;
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.ulasan-label{
+    display: flex;
+    color: red;
+    font-weight: 700;
+    align-items: center;
+    gap: 5px;
+    font-size: 16px;
+}
+
+.ulasan-label span{
+    font-size: 20px;
+}
+
+@media screen and (max-width: 900px){
     nav{
         display: flex;
         flex-direction: column;
@@ -1014,10 +1252,6 @@ input[type="checkbox"]:checked::before{
         display: block;
         color: #363B58;
         font-size: 30px;
-    }
-
-    .logo span{
-        font-size: 20px;
     }
 
     .logo img{
@@ -1088,10 +1322,6 @@ input[type="checkbox"]:checked::before{
         height: 35px;
     }
 
-    .user-profile p{
-        display: none;
-    }
-
     .homepage-main{
         padding: 20px;
         display: flex;
@@ -1110,7 +1340,7 @@ input[type="checkbox"]:checked::before{
     }
 
     .header-text{
-        transform: translateY(-60%) translateX(-8%);
+        transform: translateY(-60%) translateX(-5%);
     }
     
     .content-desc{
@@ -1123,13 +1353,19 @@ input[type="checkbox"]:checked::before{
         width: 230px;
     }
 
+    .popular-list{
+        overflow: auto;
+    }
+
     .popular-header h1,
     .aktivitas-terakhir h2,
-    .ulasan-saya h2{
+    .ulasan-saya h2,
+    .admin-header h1{
         font-size: 20px;
     }
 
-    .popular-header p{
+    .popular-header p,
+    .admin-header p{
         font-size: 13px;
     }
 
@@ -1327,55 +1563,115 @@ input[type="checkbox"]:checked::before{
     }
 
     .setelan-akun{
+        display: flex;
+        flex-direction: column;
         order: 2;
+        align-items: center;
     }
 
     .profile-content{
         order: 1;
     }
-}
 
-@media screen and (min-width:600px) and (max-width: 900px) {
-    header {
-        padding: 15px 30px;
-        gap: 50px;
+    .admin-main{
+        flex-direction: column;
+        padding: 20px;
     }
 
-    .header-center {
-        gap: 60px;
-    }
-
-    nav {
-        gap: 40px;
-    }
-
-    nav a {
-        font-size: 18px;
-    }
-
-    .search-bar {
-        padding: 10px 15px;
-    }
-
-    .search-bar input {
-        font-size: 16px;
-    }
-
-    .logo span {
-        font-size: 24px;
-    }
-
-    .logo img {
-        width: 45px;
-        height: auto;
-    }
-
-    .user-profile p {
+    .admin-panel{
         display: none;
     }
 
-    .user-profile img {
-        width: 50px;
-        height: 50px;
+    .count-card{
+        max-height: 220px;
+        height: 100%;
+        padding: 25px;
+    }
+
+    .count-card p{
+        font-size: 13px;
+    }
+
+    .count-card h2{
+        font-size: 26px;
+    }
+
+    .decoration-icon{
+        font-size: 150px;
+    }
+
+    .action-container{
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .action-btn{
+        gap: 20px;
+        padding: 15px;
+    }
+
+    .action-text h4{
+        font-size: 16px;
+    }
+
+    .action-text p{
+        font-size: 13px;
+    }
+
+    .ulasan-count{
+        flex-wrap: wrap;
+    }
+    
+    .ulasan-count-card{
+        padding: 10px 15px;
+    }
+
+    .ulasan-count-card p{
+        font-size: 13px;
+    }
+
+    .location-tanggal{
+        flex-direction: column;
+        gap: 0;
+        align-items: start;
+    }
+
+    .location-tanggal p{
+        font-size: 13px;
+    }
+
+    .deskripsi-ulasan p{
+        font-size: 13px;
+    }
+
+    .simpan-btn, .hapus-btn{
+        font-size: 13px;
+    }
+
+    .tinjau-card .top .rating span{
+        font-size: 12px;
+    }
+
+    .tinjau-card .top .rating{
+        gap: 0;
+    }
+}
+
+@media screen and (max-width:1300px) {
+    .logo img{
+        width: 40px;
+    }
+
+    .logo span{
+        font-size: 20px;
+    }
+
+    .nav-menu a{
+        font-size: 16px;
+        gap: 5px;
+    }
+
+    .user-profile p{
+        display: none;
     }
 }
