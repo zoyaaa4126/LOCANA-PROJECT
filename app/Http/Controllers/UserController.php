@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -25,6 +25,7 @@ class UserController extends Controller
             'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
+            'role' => $request->role,
             'password' => \Illuminate\Support\Facades\Hash::make($request->password),
         ]);
 
@@ -45,6 +46,7 @@ class UserController extends Controller
             'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
+            'role' => $request->role
         ]);
 
         return redirect('/users');
