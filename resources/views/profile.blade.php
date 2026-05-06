@@ -7,7 +7,7 @@
     <div class="flex flex-col">
         <div class="flex flex-col md:flex-row">
             <!-- SIDEBAR KIRI - MEPET KE KIRI -->
-            <aside class="w-80 shrink-0 bg-white shadow p-6 h-fill sticky border border-gray-200 transition-all duration-300 overflow-hidden max-md:w-full max-md:order-2 max-md:mt-6 max-md:rounded-2xl max-md:shadow-md">
+            <aside class="w-80 shrink-0 bg-white shadow p-6 h-fill sticky border border-gray-200 transition-all duration-300 overflow-hidden max-md:hidden">
                 <h2 class="text-2xl font-bold text-gray-800 mb-6">Setelan Akun</h2>
                 <nav class="space-y-1">
                     <a href="profile.html"><div class="flex items-center gap-3 px-4 py-3 rounded-xl bg-orange-50 text-[#FBB45E] font-semibold hover:bg-[#FEE8CD]">

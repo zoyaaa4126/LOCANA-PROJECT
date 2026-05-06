@@ -9,7 +9,7 @@
 
         <!-- TOMBOL KEMBALI (selalu muncul) -->
         <div class="flex justify-end mb-4">
-            <a href="{{ url()->previous() }}" class="fixed top-23 left-7 z-50 flex items-center gap-2 bg-white border border-slate-200 shadow-sm text-sm text-[#363B58] font-semibold px-4 py-2 rounded-full hover:bg-[#FBB45E] hover:text-white hover:border-[#FBB45E] transition">
+            <a href="{{ url()->previous() }}" class="fixed top-23 max-md:top-35 left-7 z-50 flex items-center gap-2 bg-white border border-slate-200 shadow-sm text-sm text-[#363B58] font-semibold px-4 py-2 rounded-full hover:bg-[#FBB45E] hover:text-white hover:border-[#FBB45E] transition">
                 <span class="material-symbols-outlined text-base" style="font-variation-settings:'FILL' 1;">arrow_back</span>
                 Kembali
             </a>
