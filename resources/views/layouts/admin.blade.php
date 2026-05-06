@@ -55,10 +55,34 @@
             </div>
             <div class="mb-6" style="font-variation-settings:'FILL' 1;">
                 <div class="space-y-3">
-                    <a href="/dashboard"><div class="flex items-center gap-3 px-2 py-4 rounded-lg font-bold text-[#363B58] hover:bg-gray-50 cursor-pointer"><span class="material-symbols-outlined">grid_view</span> Dashboard</div></a>
-                    <a href="/lokasi"><div class="flex items-center gap-3 px-2 py-4 rounded-lg font-bold text-[#363B58] hover:bg-gray-50 cursor-pointer"><span class="material-symbols-outlined">location_on</span> Lokasi</div></a>
-                    <a href="/ulasan"><div class="flex items-center gap-3 px-2 py-4 rounded-lg font-bold text-[#363B58] hover:bg-gray-50 cursor-pointer"><span class="material-symbols-outlined">rate_review</span> Ulasan</div></a>
-                    <a href="/pengguna"><div class="flex items-center gap-3 px-2 py-4 rounded-lg font-bold text-[#363B58] hover:bg-gray-50 cursor-pointer"><span class="material-symbols-outlined">person</span> Pengguna</div></a>
+                    <a href="/dashboard">
+                        <div class="flex items-center gap-3 px-2 py-4 rounded-lg font-bold text-[#363B58] cursor-pointer
+                        {{ request()->is('dashboard') ? 'bg-[#FEF4E7] text-[#FBB45E]' : 'text-[#363B58] hover:bg-gray-50' }}">
+                            <span class="material-symbols-outlined">grid_view</span> 
+                            Dashboard
+                        </div>
+                    </a>
+                    <a href="/lokasi">
+                        <div class="flex items-center gap-3 px-2 py-4 rounded-lg font-bold text-[#363B58] cursor-pointer
+                        {{ request()->is('lokasi') ? 'bg-[#FEF4E7] text-[#FBB45E]' : 'text-[#363B58] hover:bg-gray-50' }}">
+                            <span class="material-symbols-outlined">location_on</span> 
+                            Lokasi
+                        </div>
+                    </a>
+                    <a href="/ulasan">
+                        <div class="flex items-center gap-3 px-2 py-4 rounded-lg font-bold text-[#363B58] cursor-pointer
+                        {{ request()->is('ulasan') ? 'bg-[#FEF4E7] text-[#FBB45E]' : 'text-[#363B58] hover:bg-gray-50' }}">
+                            <span class="material-symbols-outlined">rate_review</span> 
+                            Ulasan
+                        </div>
+                    </a>
+                    <a href="/pengguna">
+                        <div class="flex items-center gap-3 px-2 py-4 rounded-lg font-bold text-[#363B58] cursor-pointer
+                        {{ request()->is('pengguna') ? 'bg-[#FEF4E7] text-[#FBB45E]' : 'text-[#363B58] hover:bg-gray-50' }}">
+                            <span class="material-symbols-outlined">person</span> 
+                            Pengguna
+                        </div>
+                    </a>
                 </div>
                 <hr class="border-t border-slate-300 my-4">
                 <div class="space-y-3">
@@ -72,5 +96,6 @@
         </main>
 
     </div>
+    @stack('scripts')
 </body>
 </html>

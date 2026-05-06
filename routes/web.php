@@ -39,5 +39,6 @@ Route::get('/chatbot/step/{key}', [ChatbotController::class, 'getStep']);
 //ADMIN
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 Route::get('/lokasi', [AdminController::class, 'lokasi'])->name('lokasi');
+Route::get('/tambah-lokasi', [AdminController::class, 'tambahLokasi'])->name('tambahLokasi');
 Route::get('/ulasan', [AdminController::class, 'ulasan'])->name('ulasan');
 Route::get('/pengguna', [AdminController::class, 'pengguna'])->name('pengguna');
