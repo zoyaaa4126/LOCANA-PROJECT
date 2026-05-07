@@ -7,7 +7,7 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
 
     <!-- Tailwind -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -52,7 +52,7 @@
     <aside class="hidden md:block w-80 bg-white shadow p-6 border border-gray-200 min-h-screen">
         <h1 class="font-bold text-xl text-[#363B58] mb-4">Admin Panel</h1>
 
-        <div class="space-y-3">
+        <div class="space-y-3 text-[#363B58]" style="font-variation-settings:'FILL' 1;">
             <a href="/dashboard" class="flex items-center gap-3 px-2 py-3 rounded-lg font-bold
                 {{ request()->is('dashboard') ? 'bg-[#FEF4E7] text-[#FBB45E]' : 'hover:bg-gray-50' }}">
                 <span class="material-symbols-outlined">grid_view</span> Dashboard
@@ -74,7 +74,7 @@
             </a>
         </div>
 
-        <hr class="my-4">
+        <hr class="my-4 border-slate-300">
 
         <div class="text-red-500 font-bold flex items-center gap-3 px-2 py-3 hover:bg-gray-50 rounded-lg cursor-pointer">
             <span class="material-symbols-outlined">logout</span> Logout
@@ -126,23 +126,7 @@
 
 </div>
 
-<!-- SCRIPT -->
-<script>
-    const menuBtn = document.getElementById('menuBtn');
-    const closeBtn = document.getElementById('closeBtn');
-    const sidebar = document.getElementById('mobileSidebar');
-    const overlay = document.getElementById('overlay');
-
-    menuBtn.onclick = () => {
-        sidebar.classList.remove('translate-x-full');
-        overlay.classList.remove('hidden');
-    }
-
-    closeBtn.onclick = overlay.onclick = () => {
-        sidebar.classList.add('translate-x-full');
-        overlay.classList.add('hidden');
-    }
-</script>
+<script src="{{ asset('js/script.js') }}"></script>
 
 </body>
 </html>
