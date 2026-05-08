@@ -11,188 +11,145 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
-<body class= "m-0 p-0 box-border font-['Poppins', _sans-serif] text-[#363b58] scroll-smooth scroll-pt-[120px] bg-[#fff8ef] h-screen flex justify-center items-center">
+<body class="m-0 p-0 box-border font-['Poppins',_sans-serif] text-[#363b58] scroll-smooth bg-[#fff8ef] min-h-screen flex justify-center items-center py-8">
 
-    <div class="w-4/5 h-[90%] max-w-[1728px] max-h-[1117px] flex rounded-[20px] overflow-hidden bg-[white] m-0 [box-shadow:0_10px_25px_rgba(0,0,0,0.2)]
-                max-md:flex-col max-md:w-full max-md:h-auto max-md:mt-[101px] max-md:mr-[40px] max-md:mb-[100px] max-md:ml-[30px]">
+    <div class="w-4/5 max-w-[1728px] flex rounded-[20px] overflow-hidden bg-white [box-shadow:0_10px_25px_rgba(0,0,0,0.2)]
+                max-lg:flex-col max-lg:w-11/12 max-lg:mx-auto">
 
         <!-- LEFT -->
-    <div class="w-1/2 relative
-                max-md:w-full max-md:h-[70%] max-md:flex max-md:justify-center">
-        <div class="h-[971px] mt-[40px] bg-[white] text-center
-                        max-md:w-[353px] max-md:h-[419px] max-md:p-[20px] max-md:m-0">
+        <div class="w-1/2 flex justify-center items-start py-10 px-6
+                    max-lg:w-full max-lg:px-8 max-lg:py-8">
 
-            <!-- LOGO -->
-            <div class="flex items-center justify-center mb-[20px]
-                        max-md:mb-[10px]">
-                <img src="assets/img/Locana_Logo 1.png" 
-                     alt="gambar" 
-                     class="w-12 h-auto
-                            max-md:m-[0] max-md:w-[35px]">
-                <h2 class="font-bold text-[#363b58] m-0 text-[1rem] leading-[1.2]
-                           max-md:text-[13px] max-md:m-[0]">LOCANA
-                </h2>
-            </div>
+            <div class="w-full max-w-sm text-center">
 
-            <!-- BUTTON LOGIN REGISTER -->
-            <div class="flex justify-center items-center mx-auto my-5 bg-[#E1E2E6] rounded-md p-[0.2rem] w-[13rem]
-                        max-md:w-[121px] max-md:h-[28px] max-md:mx-[auto] max-md:my-[10px] max-md:p-[2px] max-md:no-underline">
-            
-            <!-- Masuk (ACTIVE) -->
-                <a href="login.html" class="w-full">
-                    <div class="w-full text-center bg-white shadow-md text-black py-[0.3rem] text-sm font-medium rounded-md transition hover:bg-[#C1C2CB]
-                                max-md:text-[10px] max-md:py-[0.1rem] max-md:font-light">
+                <!-- LOGO -->
+                <div class="flex items-center justify-center gap-2 mb-5
+                            max-md:mb-3">
+                    <img src="assets/img/Locana_Logo 1.png"
+                         alt="gambar"
+                         class="w-10 h-auto max-md:w-8">
+                    <h2 class="font-bold text-[#363b58] text-base leading-tight m-0">LOCANA</h2>
+                </div>
+
+                <!-- TAB LOGIN / REGISTER -->
+                <div class="flex justify-center items-center mx-auto mb-5 bg-[#E1E2E6] rounded-md p-0.5 w-52
+                            max-md:w-36 max-md:mb-3">
+                    <!-- Masuk (ACTIVE) -->
+                    <a href="/login" class="w-full">
+                        <div class="w-full text-center bg-white shadow-md text-black py-1 text-sm font-medium rounded-md transition hover:bg-[#C1C2CB]
+                                    max-md:text-xs max-md:py-0.5">
+                            Masuk
+                        </div>
+                    </a>
+                    <!-- Daftar (NON ACTIVE) -->
+                    <a href="/register" class="w-full">
+                        <div class="w-full text-center text-[#939393] py-0.5 text-sm font-medium rounded-md transition hover:bg-[#C1C2CB]
+                                    max-md:text-xs">
+                            Daftar
+                        </div>
+                    </a>
+                </div>
+
+                <h1 class="text-2xl font-bold mx-4 my-1
+                           max-md:text-lg max-md:mb-1
+                           max-lg:text-xl">
+                    Waktunya <span class="text-[#fbb45e]">Nongkrong!</span>
+                </h1>
+                <p class="text-xs font-semibold leading-snug text-gray-500 mb-4
+                          max-md:text-[9px] max-md:mb-2">
+                    Yuk lanjutkan perjalananmu menemukan tempat yang bikin nyaman.
+                </p>
+
+                <!-- FORM -->
+                <form id="loginForm" class="text-left flex flex-col gap-3">
+
+                    <!-- Email -->
+                    <div class="flex flex-col gap-1">
+                        <label for="email" class="font-semibold text-sm max-md:text-xs">Email</label>
+                        <input type="email" name="email" id="email" required
+                               placeholder="Masukkan Email Disini"
+                               class="w-full h-9 px-3 border border-[#ccc] rounded-md bg-[#FCFCFC] text-sm placeholder:text-sm
+                                      hover:[box-shadow:0_0_10px_rgba(0,123,255,0.7)]
+                                      max-md:placeholder:text-xs max-md:text-xs">
+                    </div>
+
+                    <!-- Password -->
+                    <div class="flex flex-col gap-1 relative">
+                        <label for="password" class="font-semibold text-sm max-md:text-xs">Password</label>
+                        <input type="password" id="password" required
+                               placeholder="Masukkan Password Disini"
+                               class="w-full h-9 px-3 pr-9 border border-[#ccc] rounded-md bg-[#FCFCFC] text-sm placeholder:text-sm
+                                      hover:[box-shadow:0_0_10px_rgba(0,123,255,0.7)]
+                                      max-md:placeholder:text-xs max-md:text-xs">
+                        <span class="material-symbols-outlined absolute right-3 bottom-2 cursor-pointer text-base text-gray-400"
+                              id="togglePassword">visibility</span>
+                    </div>
+
+                    <!-- Ingat Saya & Lupa Password -->
+                    <div class="flex justify-between items-center">
+                        <label class="flex items-center gap-2 font-semibold text-sm bg-[#FCFCFC]
+                                      max-md:text-xs">
+                            <input type="checkbox"> Ingat Saya
+                        </label>
+                        <a href="/forgot-password"
+                           class="underline text-xs font-semibold max-md:text-[10px]">
+                            Lupa Password
+                        </a>
+                    </div>
+
+                    <!-- Submit -->
+                    <button type="button" onclick="window.location.href='/home'" id="submit" class="w-full h-10 bg-[#fbb45e] border-none text-sm text-[#363b58] font-semibold hover:bg-[#FEE8CD] rounded-md mt-1 max-md:h-9 max-md:text-xs">
                         Masuk
-                    </div>
-                </a>
+                    </button>
 
-                <!-- Daftar (NON ACTIVE) -->
-                <a href="register.html" class="w-full">
-                    <div class="w-full text-center text-[#939393] py-[0.1rem] text-sm font-medium rounded-md transition hover:bg-[#C1C2CB] hover:py-[0.3rem]
-                                max-md:text-[10px] max-md:py-[0.1rem] max-md:font-light">
-                        Daftar
-                    </div>
-                </a>
+                    <p id="error-msg" class="text-red-500 text-xs mt-1"></p>
 
-            </div>
+                    <p class="text-center text-sm font-semibold mb-6 mt-1
+                              max-md:text-xs max-md:mb-4">
+                        Belum punya akun?
+                        <a href="/register" class="text-orange-400 underline font-medium">Daftar</a>
+                    </p>
 
-            <h1 class="mx-4 my-[0.3rem] text-[1.7rem] font-bold
-                       max-md:text-[18px] max-md:mb-[5px]
-                       max-lg:text-[1.3rem]">Waktunya 
-                       <span class="text-[#fbb45e]">Nongkrong!
-                       </h1></span>
-            <p class="w-[70%] text-[0.7rem] font-semibold mx-16 my-[0.1rem] leading-[120%]
-                    max-md:w-[85%] max-md:text-[9px] max-md:mx-[20px] max-md:my-[0]
-                    max-lg:mx-[40px] max-lg:text-[0.6rem]">Yuk lanjutkan perjalananmu menemukan tempat yang bikin nyaman.
-            </p>
-
-            <!-- MULAI FORM -->
-            <form id="loginForm">
-                <div class="flex flex-col items-start mx-[60px] my-[auto]
-                            max-md:m-[0]
-                            max-lg:mx-[30px]">
-                    <label 
-                        for="email" 
-                        class="mt-[10px] font-semibold text-[0.8rem] mb-[5px]
-                               max-md:mt-[10px] max-md:text-[10px] max-md:font-medium">
-                        Email 
-                    </label>
-                    <input 
-                        type="email" 
-                        name="email" 
-                        id="email" 
-                        required placeholder="Masukkan Email Disini" 
-                        class="hover:[box-shadow:0_0_10px_rgba(0,_123,_255,_0.7)] w-full h-8 p-[8px] border-[1px] border-solid border-[#ccc] rounded-[6px] bg-[#FCFCFC] placeholder: text-[0.8rem]
-                               max-md:h-[32px] max-md:placeholder:text-[10px]"
-                    >
-                </div>
-
-                <div class="flex flex-col items-start mx-[60px] relative
-                            max-md:m-[0]
-                            max-lg:mx-[30px]">
-                    <label 
-                        for="password" 
-                        class="mt-[10px] font-semibold text-[0.8rem] mb-[5px]
-                               max-md:mt-[10px] max-md:text-[10px] max-md:font-medium">
-                        Password
-                    </label>
-                    <input 
-                        type="password" 
-                        id="password" 
-                        required 
-                        placeholder="Masukkan Password Disini"
-                        class="hover:[box-shadow:0_0_10px_rgba(0,_123,_255,_0.7)] w-full h-8 p-[8px] border-[1px] border-solid border-[#ccc] rounded-[6px] bg-[#FCFCFC] placeholder: text-[0.8rem]
-                               max-md:h-[32px] max-md:placeholder:text-[10px]"
-                    >
-                    <span 
-                        class= "material-symbols-outlined absolute right-[12px] top-[66%] cursor-pointer text-[15px]
-                                max-md:right-[6%] max-md:top-[63%] max-md:text-10px"
-                        id="togglePassword"
-                    >
-                        visibility
-                    </span>
-                </div>
-
-                <div class="flex justify-between mt-[10px]
-                            max-md:mt-[5px]">
-                    <label class="flex items-center gap-[8px] text-[0.8rem] ml-[60px] mt-[5px] bg-[#FCFCFC] font-semibold
-                                  max-md:text-[10px] max-md:font-medium max-md:mx-[0] max-md:my-[5px]
-                                  max-lg:mx-[30px]">
-                    <input type="checkbox">Ingat Saya</label>
-
-                    <a href="#" 
-                       class="underline text-[12px] mt-[10px] mr-[60px] mb-[6px] font-semibold
-                              max-md:text-[10px] max-md:font-medium max-md:mx-0 max-md:my-[5px]
-                              max-lg:mx-[30px]">
-                              Lupa Password
-                    </a>
-                </div>
-
-                <!-- BUTTON SUBMIT -->
-                <button type="submit" 
-                        id="submit" 
-                        class="w-[77%] h-10 p-[8px] bg-[#fbb45e] border-none ml-[60px] mr-[80px] mt-[10px] text-[0.9rem] text-[#363b58] font-semibold hover:bg-[#FEE8CD] rounded-[6px]
-                                max-md:w-full max-md:mx-0 max-md:mt-[14px] max-md:h-[35px] max-md:text-16px max-md:p-[5px]
-                                max-lg:mx-[0]">
-                                Masuk
-                </button>
-                <p id="error-msg" 
-                   class="text-[red] my-[5px] text-[14px]
-                          max-md:text-[10px] max-md:mt-[8px]"></p>
-
-                <p class="text-center mt-[10px] text-[14px] mb-[60px] font-semibold
-                            max-md:font-medium max-md:text-[10px] max-md:mt-[14px]
-                            max-lg:mt-[14px]">Belum punya akun? 
-                    <a href="register.html" class="text-[orange] no-underline font-medium underline">Daftar
-                    </a>
-                </p>
-            </form>
-
-        </div>
-    </div>
-
-    <!-- RIGHT -->
-    <div class="w-[50%] relative before:content-[''] before:absolute before:inset-0 before:bg-black/50 overflow-hidden
-                max-md:w-[353px] max-md:h-[232px]">
-        <img src="assets/img/180 Cafe - Bandung 1.png" 
-             alt="Cafe" 
-             class="absolute inset-0 w-full h-full object-cover z-0">
-
-        <!-- OVERLAYER -->
-        <div class="absolute inset-0 bg-black/30 backdrop-blur-[2px]"></div>
-        <div class="absolute bottom-[30px] left-[30px] text-[white]
-                    max-md:left-[20px] max-md:bottom-[20px]">
-            <span class="inline-flex items-center gap-[5px] px-[10px] py-[3px] rounded-full bg-white/[0.267] text-[10px] font-semibold text-white backdrop-blur-[6px]">
-                <span class="material-symbols-outlined text-[white] text-[16px] relative flex items-center">verified</span>PILIHAN TERBAIK</span>
-            <h2 class="text-[28px] mb-[10px] text-[white] font-bold
-                        max-md:text-[20px]">Jelajahi Suasana<br>Otentik Braga.
-            </h2>
-            <div class="flex items-center gap-[15px]
-                        max-md:gap-[8px]">
-                <div class="flex items-center">
-                    <img src="assets/img/nanamin.jpg" 
-                         alt="" 
-                         class="w-[50px] h-[50px] rounded-[50%] border-[2px] border-solid border-[white] object-cover -ml-[15px] first:ml-0
-                                max-md:w-[30px] max-md:h-[30px]
-                                max-lg:w-[40px] max-lg:h-[40px]">
-                    <img src="assets/img/luffy.png" 
-                         alt="" 
-                         class="w-[50px] h-[50px] rounded-[50%] border-[2px] border-solid border-[white] object-cover -ml-[15px] first:ml-0
-                                max-md:w-[30px] max-md:h-[30px]
-                                max-lg:w-[40px] max-lg:h-[40px]">
-                    <img src="assets/img/Suguru Geto.jpg" 
-                         alt="" 
-                         class="w-[50px] h-[50px] rounded-[50%] border-[2px] border-solid border-[white] object-cover -ml-[15px] first:ml-0
-                                max-md:w-[30px] max-md:h-[30px]
-                                max-lg:w-[40px] max-lg:h-[40px]">
-                </div>
-                <p class="text-[14px] text-[white]
-                          max-md:text-[9px]
-                          max-lg:text-[11px] max-lg:mx-[20px]">2.000+ Pengguna telah mereview tempat ini
-                </p>
+                </form>
             </div>
         </div>
-    </div>
+
+        <!-- RIGHT -->
+        <div class="w-1/2 relative overflow-hidden min-h-[420px]
+                    max-lg:w-full max-lg:min-h-56">
+            <img src="assets/img/180 Cafe - Bandung 1.png"
+                 alt="Cafe"
+                 class="absolute inset-0 w-full h-full object-cover z-0">
+
+            <div class="absolute inset-0 bg-black/30 backdrop-blur-[2px]"></div>
+
+            <div class="absolute bottom-8 left-8 text-white
+                        max-md:left-5 max-md:bottom-5">
+                <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white/[0.267] text-[10px] font-semibold text-white backdrop-blur-[6px] mb-2">
+                    <span class="material-symbols-outlined text-white text-base relative flex items-center">verified</span>
+                    PILIHAN TERBAIK
+                </span>
+                <h2 class="text-2xl mb-2.5 text-white font-bold max-md:text-xl">
+                    Jelajahi Suasana<br>Otentik Braga.
+                </h2>
+                <div class="flex items-center gap-4 max-md:gap-2">
+                    <div class="flex items-center">
+                        <img src="assets/img/nanamin.jpg" alt=""
+                             class="w-12 h-12 rounded-full border-2 border-white object-cover -ml-4 first:ml-0
+                                    max-md:w-8 max-md:h-8 max-lg:w-10 max-lg:h-10">
+                        <img src="assets/img/luffy.png" alt=""
+                             class="w-12 h-12 rounded-full border-2 border-white object-cover -ml-4
+                                    max-md:w-8 max-md:h-8 max-lg:w-10 max-lg:h-10">
+                        <img src="assets/img/Suguru Geto.jpg" alt=""
+                             class="w-12 h-12 rounded-full border-2 border-white object-cover -ml-4
+                                    max-md:w-8 max-md:h-8 max-lg:w-10 max-lg:h-10">
+                    </div>
+                    <p class="text-sm text-white max-md:text-[9px] max-lg:text-xs">
+                        2.000+ Pengguna telah mereview tempat ini
+                    </p>
+                </div>
+            </div>
+        </div>
 
     </div>
 

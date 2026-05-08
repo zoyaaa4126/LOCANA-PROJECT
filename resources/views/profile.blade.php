@@ -4,13 +4,13 @@
 
 @section('content')
 
-    <div class="flex flex-col">
+    <div class="flex flex-col overflow-x-hidden">
         <div class="flex flex-col md:flex-row">
             <!-- SIDEBAR KIRI - MEPET KE KIRI -->
             <aside class="w-80 shrink-0 bg-white shadow p-6 h-fill sticky border border-gray-200 transition-all duration-300 overflow-hidden max-md:hidden">
                 <h2 class="text-2xl font-bold text-gray-800 mb-6">Setelan Akun</h2>
                 <nav class="space-y-1">
-                    <a href="profile.html"><div class="flex items-center gap-3 px-4 py-3 rounded-xl bg-orange-50 text-[#FBB45E] font-semibold hover:bg-[#FEE8CD]">
+                    <a href="/profile"><div class="flex items-center gap-3 px-4 py-3 rounded-xl bg-orange-50 text-[#FBB45E] font-semibold hover:bg-[#FEE8CD]">
                         <span class="material-symbols-outlined">person</span>
                         <span>Profil</span>
                     </div></a>
@@ -28,7 +28,7 @@
                     </div></a>
                 </nav>
                 <div class="mt-8 pt-6 border-t border-gray-100">
-                    <button type="submit" class="flex items-center gap-3 px-4 py-3 rounded-xl text-red-500 hover:bg-red-50 w-full font-medium">
+                    <button type="submit" onclick="bukaModalLogout()" class="flex items-center gap-3 px-4 py-3 rounded-xl text-red-500 hover:bg-red-50 w-full font-medium">
                         <span class="material-symbols-outlined">logout</span>
                         <span>Keluar</span>
                     </button>

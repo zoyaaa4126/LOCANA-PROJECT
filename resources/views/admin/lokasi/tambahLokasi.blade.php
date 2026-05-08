@@ -14,7 +14,7 @@
             <h1 class="text-2xl font-bold text-[#363B58]">Tambah Lokasi</h1>
         </div>
         <div class="flex gap-3">
-            <a href="lokasi.html"
+            <a href="/lokasi"
                class="flex items-center gap-2 bg-white border border-[#E2E8F0] text-[#363B58] font-bold text-sm px-5 py-2.5 rounded-[10px] cursor-pointer hover:bg-[#F1F5F9] transition-colors duration-200">
                 <span class="material-symbols-outlined" style="font-size:18px;">arrow_back</span>
                 Kembali
@@ -246,11 +246,7 @@
                 </h2>
 
                 <div id="map-container" class="w-full h-[220px] rounded-xl overflow-hidden border border-[#E2E8F0] mb-4 relative bg-[#E8F4F8]">
-                    <iframe id="map-iframe"
-                            src="https://www.openstreetmap.org/export/embed.html?bbox=107.55,6.85,107.70,6.95&layer=mapnik&marker=6.9175,107.6191"
-                            class="w-full h-full border-0"
-                            loading="lazy"
-                            title="Peta Lokasi">
+                    <iframe id="map-iframe" src="https://www.openstreetmap.org/export/embed.html?bbox=107.55,6.85,107.70,6.95&layer=mapnik&marker=6.9175,107.6191" class="w-full h-full border-0" loading="lazy" title="Peta Lokasi">
                     </iframe>
                     <div id="map-click-hint"
                          class="absolute bottom-2 left-1/2 -translate-x-1/2 bg-[#363B58]/80 text-white text-xs font-medium px-3 py-1.5 rounded-full pointer-events-none backdrop-blur-sm">
@@ -258,10 +254,8 @@
                     </div>
                 </div>
                 <div class="flex gap-2 mb-4">
-                    <input type="text" id="search-alamat" placeholder="Cari alamat di peta..."
-                           class="flex-1 border border-[#E2E8F0] rounded-xl px-3 py-2.5 text-sm outline-none focus:border-[#FBB45E] focus:ring-2 focus:ring-[#FBB45E]/20 transition-all bg-[#FAFAFA] placeholder-gray-300">
-                    <button type="button" onclick="cariLokasi()"
-                            class="flex items-center gap-1 bg-[#363B58] hover:bg-[#FBB45E] text-white hover:text-[#363B58] font-bold text-xs px-4 py-2.5 rounded-xl transition-colors flex-shrink-0">
+                    <input type="text" id="search-alamat" placeholder="Cari alamat di peta..." class="flex-1 border border-[#E2E8F0] rounded-xl px-3 py-2.5 text-sm outline-none focus:border-[#FBB45E] focus:ring-2 focus:ring-[#FBB45E]/20 transition-all bg-[#FAFAFA] placeholder-gray-300">
+                    <button type="button" onclick="cariLokasi()" class="flex items-center gap-1 bg-[#363B58] hover:bg-[#FBB45E] text-white hover:text-[#363B58] font-bold text-xs px-4 py-2.5 rounded-xl transition-colors flex-shrink-0">
                         <span class="material-symbols-outlined" style="font-size:16px;">search</span>
                         Cari
                     </button>
@@ -270,13 +264,11 @@
                 <div class="grid grid-cols-2 gap-3">
                     <div class="flex flex-col gap-1.5">
                         <label class="text-xs font-bold text-gray-400 tracking-wide">Latitude</label>
-                        <input type="text" id="latitude" name="latitude" placeholder="Latitude" readonly
-                               class="border border-[#E2E8F0] rounded-xl px-3 py-2.5 text-sm outline-none bg-[#F8FAFC] text-[#363B58] font-medium cursor-not-allowed">
+                        <input type="text" id="latitude" name="latitude" placeholder="Latitude" readonly class="border border-[#E2E8F0] rounded-xl px-3 py-2.5 text-sm outline-none bg-[#F8FAFC] text-[#363B58] font-medium cursor-not-allowed">
                     </div>
                     <div class="flex flex-col gap-1.5">
                         <label class="text-xs font-bold text-gray-400 tracking-wide">Longitude</label>
-                        <input type="text" id="longitude" name="longitude" placeholder="Longitude" readonly
-                               class="border border-[#E2E8F0] rounded-xl px-3 py-2.5 text-sm outline-none bg-[#F8FAFC] text-[#363B58] font-medium cursor-not-allowed">
+                        <input type="text" id="longitude" name="longitude" placeholder="Longitude" readonly class="border border-[#E2E8F0] rounded-xl px-3 py-2.5 text-sm outline-none bg-[#F8FAFC] text-[#363B58] font-medium cursor-not-allowed">
                     </div>
                 </div>
 

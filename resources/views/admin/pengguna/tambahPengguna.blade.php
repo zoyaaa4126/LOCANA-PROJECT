@@ -6,7 +6,6 @@
 
 <div class="m-5 pb-10">
 
-    {{-- HEADER --}}
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
         <div>
             <p class="text-slate-400 text-sm font-semibold">
@@ -24,11 +23,9 @@
         </div>
     </div>
 
-    {{-- FORM GRID --}}
     <form id="form-tambah-pengguna"
           class="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-5 items-start">
 
-        {{-- ===== KOLOM KIRI: INFORMASI PENGGUNA ===== --}}
         <div class="bg-white rounded-2xl p-6 shadow-sm border border-[#F1F5F9]">
             <h2 class="flex items-center gap-2 font-bold text-[#363B58] text-base mb-5">
                 <span class="material-symbols-outlined text-[#FBB45E]"
@@ -36,7 +33,6 @@
                 Informasi Pengguna
             </h2>
 
-            {{-- Nama --}}
             <div class="flex flex-col gap-1.5 mb-4">
                 <label class="text-sm font-semibold text-[#363B58]">Nama</label>
                 <input type="text" name="nama" placeholder="Masukkan Nama Disini"
@@ -47,7 +43,6 @@
                               transition-all duration-200">
             </div>
 
-            {{-- Username --}}
             <div class="flex flex-col gap-1.5 mb-4">
                 <label class="text-sm font-semibold text-[#363B58]">Username</label>
                 <input type="text" name="username" placeholder="Masukkan Username Disini"
@@ -58,7 +53,6 @@
                               transition-all duration-200">
             </div>
 
-            {{-- Email --}}
             <div class="flex flex-col gap-1.5 mb-4">
                 <label class="text-sm font-semibold text-[#363B58]">Email</label>
                 <input type="email" name="email" placeholder="contoh@email.com"
