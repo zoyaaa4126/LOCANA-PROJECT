@@ -1,25 +1,37 @@
 document.addEventListener("DOMContentLoaded", function () {
 
   // LOGIN
-  document.getElementById("loginForm").addEventListener("submit", function(e){
-    e.preventDefault();
+  const loginForm = document.getElementById("loginForm");
 
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const errorMsg = document.getElementById("error-msg");
+  if (loginForm) {
 
-    if(email === "admin@locana.com" && password === "1234"){
-      window.location.href = "homepage.html";
-    } else {
-      errorMsg.textContent = "Username atau Password Salah!";
-    }
-  });
+    loginForm.addEventListener("submit", function(e){
+      e.preventDefault();
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const errorMsg = document.getElementById("error-msg");
+
+      if(email === "admin@locana.com" && password === "1234"){
+        window.location.href = "homepage.html";
+      } else {
+        errorMsg.textContent = "Username atau Password Salah!";
+      }
+
+    });
+
+  }
 
   // TOGGLE PASSWORD
-  const toggle = document.getElementById("togglePassword");
-  const password = document.getElementById("password");
+  const toggles = document.querySelectorAll(".toggle-password");
 
-  toggle.addEventListener("click", function () {
+toggles.forEach(function(toggle) {
+
+  toggle.addEventListener("click", function() {
+
+    const password =
+      toggle.parentElement.querySelector(".password-input");
+
     if (password.type === "password") {
       password.type = "text";
       toggle.textContent = "visibility_off";
@@ -27,6 +39,9 @@ document.addEventListener("DOMContentLoaded", function () {
       password.type = "password";
       toggle.textContent = "visibility";
     }
+
   });
+
+});
 
 });
