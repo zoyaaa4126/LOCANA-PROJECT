@@ -38,6 +38,10 @@ Route::get('/syarat', function () {
     return view('syarat');
 });
 
+Route::get('/wishlist', function () {
+    return view('wishlist');
+});
+
 
 // ROUTE CRUD USER
 Route::get('/users', [UserController::class, 'index']);
