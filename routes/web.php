@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
 
 // ROUTE VIEW PAGES
 Route::get('/', function () {
@@ -42,3 +43,6 @@ Route::get('/lokasi', [AdminController::class, 'lokasi'])->name('lokasi');
 Route::get('/tambah-lokasi', [AdminController::class, 'tambahLokasi'])->name('tambahLokasi');
 Route::get('/ulasan', [AdminController::class, 'ulasan'])->name('ulasan');
 Route::get('/pengguna', [AdminController::class, 'pengguna'])->name('pengguna');
+
+// homeController
+Route::get('/', [HomeController::class, 'index']);

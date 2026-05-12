@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -22,7 +23,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         User::create([
-            'name' => $request->name,
+            'nama' => $request->nama,
             'username' => $request->username,
             'email' => $request->email,
             'role' => $request->role,
@@ -32,13 +33,13 @@ class UserController extends Controller
         return redirect('/users');
     }
 
-    public function edit($id)
+    public function edit(int $id)
     {
         $user = User::findOrFail($id);
         return view('users.edit-user', compact('user'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         $user = \App\Models\User::findOrFail($id);
 
@@ -52,7 +53,7 @@ class UserController extends Controller
         return redirect('/users');
     }
 
-    public function destroy($id)
+    public function destroy(int $id)
     {
         User::destroy($id);
         return redirect('/users');

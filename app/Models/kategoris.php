@@ -3,8 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\places;
 
-class Category extends Model
+class kategoris extends Model
 {
     // karena migration category ga pakai timestamps
     public $timestamps = false;

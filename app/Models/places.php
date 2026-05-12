@@ -31,4 +31,9 @@ class places extends Model
     {
         return $this->belongsToMany(moods::class, 'place_moods');
     }
+
+    public function kategori()
+    {
+        return $this->belongsTo(kategoris::class, 'kategori_id');
+    }
 }
