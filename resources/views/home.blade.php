@@ -52,7 +52,7 @@
                     <span class="inline-flex items-center gap-2 px-5 py-2 bg-gray-100 rounded-full text-base cursor-pointer hover:bg-orange-100 transition flex-shrink-0"><span class="material-symbols-outlined">attractions</span> Keluarga</span>
                     <span class="inline-flex items-center gap-2 px-5 py-2 bg-gray-100 rounded-full text-base cursor-pointer hover:bg-orange-100 transition flex-shrink-0"><span class="material-symbols-outlined">dine_heart</span> Romantis</span>
                     <span class="inline-flex items-center gap-2 px-5 py-2 bg-gray-100 rounded-full text-base cursor-pointer hover:bg-orange-100 transition flex-shrink-0"><span class="material-symbols-outlined">hiking</span> Petualangan</span>
-                    <span class="inline-flex items-center gap-2 px-5 py-2 bg-gray-100 rounded-full text-base cursor-pointer hover:bg-orange-100 transition flex-shrink-0"><span class="material-symbols-outlined">laptop_chromebook</span> Produk</span>
+                    <span class="inline-flex items-center gap-2 px-5 py-2 bg-gray-100 rounded-full text-base cursor-pointer hover:bg-orange-100 transition flex-shrink-0"><span class="material-symbols-outlined">laptop_chromebook</span> Produktif</span>
                 </div>
             </div>
 
