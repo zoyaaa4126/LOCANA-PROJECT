@@ -20,7 +20,16 @@
         <div class="w-1/2 flex justify-center items-start py-10 px-6
                     max-lg:w-full max-lg:px-8 max-lg:py-8">
 
+            
+
             <div class="w-full max-w-sm text-center">
+                <div class="flex items-start">
+                    <a href="/welcome"></a>
+                        <span class="material-symbols-outlined text-[25px] cursor-pointer">
+                        close
+                        </span>
+                    </a>
+            </div>
 
                 <!-- LOGO -->
                 <div class="flex items-center justify-center gap-2 mb-5
@@ -61,7 +70,8 @@
                 </p>
 
                 <!-- FORM -->
-                <form id="loginForm" class="text-left flex flex-col gap-3">
+                <form id="loginForm" action="/login" method="POST" class="text-left flex flex-col gap-3">
+                    @csrf
 
                     <!-- Email -->
                     <div class="flex flex-col gap-1">
@@ -76,7 +86,7 @@
                     <!-- Password -->
                     <div class="flex flex-col gap-1 relative">
                         <label for="password" class="font-semibold text-sm max-md:text-xs">Password</label>
-                        <input type="password" required
+                        <input type="password" name="password" id="password" required
                                placeholder="Masukkan Password Disini"
                                class="password-input
                                       w-full h-9 px-3 pr-9 border border-[#ccc] rounded-md bg-[#FCFCFC] text-sm placeholder:text-sm
@@ -90,7 +100,7 @@
                     <div class="flex justify-between items-center">
                         <label class="flex items-center gap-2 font-semibold text-sm bg-[#FCFCFC]
                                       max-md:text-xs">
-                            <input type="checkbox"> Ingat Saya
+                            <input type="checkbox" name="remember" id="remember"> Ingat Saya
                         </label>
                         <a href="/forgot-password"
                            class="underline text-xs font-semibold max-md:text-[10px]">
@@ -99,7 +109,7 @@
                     </div>
 
                     <!-- Submit -->
-                    <button type="button" onclick="window.location.href='/home'" id="submit" class="w-full h-10 bg-[#fbb45e] border-none text-sm text-[#363b58] font-semibold hover:bg-[#FEE8CD] rounded-md mt-1 max-md:h-9 max-md:text-xs">
+                    <button type="submit" class="w-full h-10 bg-[#fbb45e] border-none text-sm text-[#363b58] font-semibold hover:bg-[#FEE8CD] rounded-md mt-1 max-md:h-9 max-md:text-xs">
                         Masuk
                     </button>
 

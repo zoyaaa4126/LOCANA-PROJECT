@@ -4,27 +4,47 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\ResetPasswordController;
 
 // ROUTE VIEW PAGES
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
 });
 
+//LOGIN
 Route::get('/login', function () {
     return view('login');
 });
 
+Route::post('/login', [UserController::class, 'login']);
+
+
+//FORGOT PASSWORD
 Route::get('/forgot-password', function () {
     return view('forgotPassword');
 });
 
+Route::post('/forgot-password', [UserController::class, 'sendResetLink']);
+
+Route::get('/reset-password/{token}', function ($token) {
+    return view('reset-password', ['token' => $token]);
+});
+
+Route::post('/reset-password', [UserController::class, 'reset']);
+
+//REGISTER
 Route::get('/register', function () {
     return view('register');
 });
 
+Route::post('/register-step1', [UserController::class, 'registerStep1']);
+
 Route::get('/register-nextStep', function () {
     return view('registerNext');
 });
+
+Route::post('/register-nextStep', [UserController::class, 'store']);
 
 Route::get('/home', function () {
     return view('home');
@@ -41,6 +61,8 @@ Route::get('/syarat', function () {
 Route::get('/wishlist', function () {
     return view('wishlist');
 });
+
+
 
 
 // ROUTE CRUD USER

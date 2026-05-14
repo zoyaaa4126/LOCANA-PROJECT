@@ -22,6 +22,14 @@
 
             <div class="w-full max-w-sm text-center">
 
+            <div class="flex items-start">
+                <a href="/welcome">
+                    <span class="material-symbols-outlined text-[25px] cursor-pointer">
+                    close
+                    </span>
+                </a>
+                </div>
+
                 <!-- LOGO -->
                 <div class="flex items-center justify-center gap-2 mb-5
                             max-md:mb-3">
@@ -61,8 +69,8 @@
                 </p>
 
                 <!-- FORM -->
-                <form id="loginForm" class="text-left flex flex-col gap-3">
-
+                <form action="/register-step1" method="POST" id="loginForm" class="text-left flex flex-col gap-3">
+                @csrf
                     <!-- Username -->
                     <div class="flex flex-col gap-1">
                         <label for="username" class="font-semibold text-sm max-md:text-xs">Username</label>
@@ -86,7 +94,7 @@
                     <!-- Password -->
                     <div class="flex flex-col gap-1 relative">
                         <label for="password" class="font-semibold text-sm max-md:text-xs">Password</label>
-                        <input type="password" required
+                        <input type="password" name="password" id="password" required
                                placeholder="Masukkan Password Disini"
                                class="password-input
                                       w-full h-9 px-3 pr-9 border border-[#ccc] rounded-md bg-[#FCFCFC] text-sm placeholder:text-sm
@@ -99,18 +107,17 @@
                     <!-- Syarat & Ketentuan -->
                     <label class="flex items-start gap-2 font-semibold text-sm bg-[#FCFCFC]
                                   max-md:text-xs">
-                        <input type="checkbox" class="mt-0.5 shrink-0">
+                        <input type="checkbox" class="mt-0.5 shrink-0" name="check" id="check" required>
                         <span>
                             Saya menyetujui
-                            <a href="/syarat" class="underline font-semibold text-orange-400 ml-0.5">
+                            <a class="underline font-semibold text-orange-400 ml-0.5">
                                 syarat dan ketentuan
                             </a>
                         </span>
                     </label>
 
                     <!-- Submit -->
-                    <button type="button"
-                            onclick="window.location.href='/register-nextStep'"
+                    <button type="submit"
                             id="submit"
                             class="w-full h-10 bg-[#fbb45e] border-none text-sm text-[#363b58] font-semibold hover:bg-[#FEE8CD] rounded-md mt-1
                                    max-md:h-9 max-md:text-xs">
@@ -120,7 +127,7 @@
                     <p class="text-center text-sm font-semibold mb-6 mt-1
                               max-md:text-xs max-md:mb-4">
                         Sudah punya akun?
-                        <a href="/login" class="text-orange-400 underline font-medium">Masuk</a>
+                        <a class="text-orange-400 underline font-medium">Masuk</a>
                     </p>
 
                 </form>
