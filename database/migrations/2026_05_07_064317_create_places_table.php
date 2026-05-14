@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('kategori_id')->constrained('kategoris');
+            $table->foreignId('moods_id')->constrained('mood');
 
             $table->string('nama_tempat');
             $table->text('deskripsi')->nullable();
-            $table->enum('tipe_tempat', ['indoor', 'outdoor']);
             $table->text('alamat_lengkap');
 
             $table->decimal('latitude', 10, 7);
