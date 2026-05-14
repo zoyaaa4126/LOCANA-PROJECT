@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -26,21 +26,21 @@ class UserController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'role' => $request->role,
-            'password' => \Illuminate\Support\Facades\Hash::make($request->password),
+            'password' => Hash::make($request->password),
         ]);
 
         return redirect('/users');
     }
 
-    public function edit($id)
+    public function edit(int $id)
     {
         $user = User::findOrFail($id);
         return view('users.edit-user', compact('user'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
-        $user = \App\Models\User::findOrFail($id);
+        $user = User::findOrFail($id);
 
         $user->update([
             'name' => $request->name,
@@ -52,7 +52,7 @@ class UserController extends Controller
         return redirect('/users');
     }
 
-    public function destroy($id)
+    public function destroy(int $id)
     {
         User::destroy($id);
         return redirect('/users');
