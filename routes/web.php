@@ -6,9 +6,14 @@ use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 
-// HOME
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/home', [HomeController::class, 'index']);
+// ROUTE VIEW PAGES
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/home', function () {
+    return view('home');
+});
 
 // VIEW PAGES
 Route::get('/profile', function () {
@@ -38,3 +43,5 @@ Route::get('/lokasi', [AdminController::class, 'lokasi'])->name('lokasi');
 Route::get('/tambah-lokasi', [AdminController::class, 'tambahLokasi'])->name('tambahLokasi');
 Route::get('/ulasan', [AdminController::class, 'ulasan'])->name('ulasan');
 Route::get('/pengguna', [AdminController::class, 'pengguna'])->name('pengguna');
+Route::get('/tambah-pengguna', [AdminController::class, 'tambahPengguna'])->name('tambahPengguna');
+Route::get('/detail-pengguna', [AdminController::class, 'viewPengguna'])->name('viewPengguna');

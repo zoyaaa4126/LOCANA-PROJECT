@@ -46,8 +46,8 @@
 
             <!-- Auth Buttons Desktop -->
             <div class="flex items-center gap-4">
-                <a href="login.html" class="text-[#363B58] font-semibold hover:text-[#FBB45E] transition">Masuk</a>
-                <a href="register.html" class="flex items-center gap-1 bg-[#FBB45E] text-white px-4 py-2 rounded-lg hover:bg-orange-400 transition">
+                <a href="/login" class="text-[#363B58] font-semibold hover:text-[#FBB45E] transition">Masuk</a>
+                <a href="/register" class="flex items-center gap-1 bg-[#FBB45E] text-white px-4 py-2 rounded-lg hover:bg-orange-400 transition">
                     <span class="font-semibold text-[#363B58]">Daftar</span>
                     <span class="font-semibold text-[#363B58]">→</span>
                 </a>
@@ -108,11 +108,11 @@
                     <div class="h-px bg-gray-200 my-3 mx-4"></div>
                     
                     <!-- Auth Mobile -->
-                    <a href="login.html" class="flex items-center gap-3 px-4 py-3 text-[#363B58] hover:bg-gray-50 transition">
+                    <a href="/login" class="flex items-center gap-3 px-4 py-3 text-[#363B58] hover:bg-gray-50 transition">
                         <span class="material-symbols-outlined">login</span>
                         Masuk
                     </a>
-                    <a href="register.html" class="flex items-center justify-center gap-2 mx-4 mt-3 bg-[#FBB45E] py-3 rounded-lg hover:bg-orange-400 transition">
+                    <a href="/register" class="flex items-center justify-center gap-2 mx-4 mt-3 bg-[#FBB45E] py-3 rounded-lg hover:bg-orange-400 transition">
                         <span class="font-semibold text-[#363B58]">Daftar</span>
                         <span class="font-semibold text-[#363B58]">→</span>
                     </a>

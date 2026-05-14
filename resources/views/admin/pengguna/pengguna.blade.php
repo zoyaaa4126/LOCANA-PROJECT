@@ -10,7 +10,7 @@
             <p class="text-slate-300 text-sm font-semibold">Dashboard / <span class="text-[#FBB45E] font-bold">Pengguna</span></p>
             <h1 class="text-2xl font-bold text-[#363B58]">Pengguna</h1>
         </div>
-        <a class="flex gap-2 bg-[#FBB45E] text-[#363B58] font-bold text-md px-4 py-2 rounded-[10px] border-none cursor-pointer whitespace-nowrap hover:bg-[#E2A255] active:bg-[#FEE8CD] transition-colors duration-200">
+        <a href="/tambah-pengguna" class="flex gap-2 bg-[#FBB45E] text-[#363B58] font-bold text-md px-4 py-2 rounded-[10px] border-none cursor-pointer whitespace-nowrap hover:bg-[#E2A255] active:bg-[#FEE8CD] transition-colors duration-200">
             <span class="material-symbols-outlined">add</span>Tambah Pengguna
         </a>
     </div>
@@ -65,7 +65,7 @@
                                 {{ $user['role'] === 'Admin' ? 'bg-[#363B58] text-white' : 'bg-[#FEF4E7] text-brand' }}">
                                 {{ strtoupper(substr($user['username'], 0, 1)) }}
                             </div>
-                            <span class="font-bold text-navy text-[15px]">{{ $user['username'] }}</span>
+                            <span class="font-bold text-[#363B58] text-[15px]">{{ $user['username'] }}</span>
                         </div>
                     </td>
     
@@ -83,9 +83,9 @@
     
                     <td class="px-6 py-4 align-middle">
                         <div class="flex gap-3 items-center justify-center">
-                            <button class="text-gray-500 hover:text-navy transition-colors p-1"><span class="material-symbols-outlined">edit</span></button>
-                            <button class="text-[#FBB45E] hover:text-navy transition-colors p-1"><span class="material-symbols-outlined">visibility</span></button>
-                            <button class="text-red-400 hover:text-red-600 transition-colors p-1"><span class="material-symbols-outlined">delete</span></button>
+                            <a href=""><button class="text-gray-500 hover:text-navy transition-colors p-1"><span class="material-symbols-outlined">edit</span></button></a>
+                            <a href="/detail-pengguna"><button class="text-[#FBB45E] hover:text-navy transition-colors p-1"><span class="material-symbols-outlined">visibility</span></button></a>
+                            <a href=""><button class="text-red-400 hover:text-red-600 transition-colors p-1"><span class="material-symbols-outlined">delete</span></button></a>
                         </div>
                     </td>
                 </tr>

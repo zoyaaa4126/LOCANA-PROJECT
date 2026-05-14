@@ -26,4 +26,12 @@ class AdminController extends Controller
     {
         return view('admin/pengguna/pengguna');
     }
+    public function tambahPengguna()
+    {
+        return view('admin/pengguna/tambahPengguna');
+    }
+    public function viewPengguna()
+    {
+        return view('admin/pengguna/viewPengguna');
+    }
 }

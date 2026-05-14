@@ -10,7 +10,7 @@
             <p class="text-slate-300 text-sm font-semibold">Dashboard / <span class="text-[#FBB45E] font-bold">Lokasi</span></p>
             <h1 class="text-2xl font-bold text-[#363B58]">Halo Admin <span class="text-yellow-400">Higuruma Hiromi!</span></h1>
         </div>
-        <a class="flex gap-2 bg-[#FBB45E] text-[#363B58] font-bold text-md px-4 py-2 rounded-[10px] border-none cursor-pointer whitespace-nowrap hover:bg-[#E2A255] active:bg-[#FEE8CD] transition-colors duration-200">
+        <a href="/tambah-lokasi" class="flex gap-2 bg-[#FBB45E] text-[#363B58] font-bold text-md px-4 py-2 rounded-[10px] border-none cursor-pointer whitespace-nowrap hover:bg-[#E2A255] active:bg-[#FEE8CD] transition-colors duration-200">
             <span class="material-symbols-outlined">add</span>Tambah Lokasi
         </a>
     </div>

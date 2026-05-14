@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
@@ -27,7 +27,7 @@ class UserController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'role' => $request->role,
-            'password' => \Illuminate\Support\Facades\Hash::make($request->password),
+            'password' => Hash::make($request->password),
         ]);
 
         return redirect('/users');
@@ -41,7 +41,7 @@ class UserController extends Controller
 
     public function update(Request $request, int $id)
     {
-        $user = \App\Models\User::findOrFail($id);
+        $user = User::findOrFail($id);
 
         $user->update([
             'name' => $request->name,

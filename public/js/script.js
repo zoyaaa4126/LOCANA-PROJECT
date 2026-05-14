@@ -338,27 +338,134 @@ document.querySelectorAll('.main-cards').forEach(cardSection => {
   updateButtons();
 });
 
-const mobileToggle = document.getElementById("mobileFilterToggle");
-const sidebar = document.getElementById("desktopSidebar");
+//ADMIN TAMBAH PENGGUNA
+document.addEventListener('DOMContentLoaded', function () {
 
+    /* ===== ROLE DROPDOWN ===== */
+    const roleBtn   = document.getElementById('role-btn');
+    const roleMenu  = document.getElementById('role-menu');
+    const roleChev  = document.getElementById('role-chevron');
+    const roleLabel = document.getElementById('role-label');
+    const roleVal   = document.getElementById('role-value');
+
+    roleBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const open = roleMenu.style.display === 'block';
+        roleMenu.style.display  = open ? 'none' : 'block';
+        roleChev.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';
+    });
+
+    document.querySelectorAll('.role-opt').forEach(function (opt) {
+        opt.addEventListener('click', function (e) {
+            e.stopPropagation();
+            roleVal.value          = this.dataset.val;
+            roleLabel.textContent  = this.dataset.label;
+            roleLabel.style.color  = '#363B58';
+            roleMenu.style.display = 'none';
+            roleChev.style.transform = 'rotate(0deg)';
+        });
+    });
+
+    document.addEventListener('click', function (e) {
+        if (!document.getElementById('role-wrapper').contains(e.target)) {
+            roleMenu.style.display   = 'none';
+            roleChev.style.transform = 'rotate(0deg)';
+        }
+    });
+
+    /* ===== TOGGLE PASSWORD ===== */
+    const pwdInput  = document.getElementById('password-input');
+    const toggleBtn = document.getElementById('toggle-password');
+    const eyeIcon   = document.getElementById('eye-icon');
+
+    toggleBtn.addEventListener('click', function () {
+        const isHidden = pwdInput.type === 'password';
+        pwdInput.type      = isHidden ? 'text' : 'password';
+        eyeIcon.textContent = isHidden ? 'visibility' : 'visibility_off';
+    });
+
+    /* ===== PREVIEW FOTO PROFIL ===== */
+    document.getElementById('foto-input').addEventListener('change', function () {
+        const file = this.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const preview     = document.getElementById('foto-preview');
+            const placeholder = document.getElementById('foto-placeholder');
+            preview.src           = e.target.result;
+            preview.style.display = 'block';
+            placeholder.style.display = 'none';
+        };
+        reader.readAsDataURL(file);
+    });
+
+});
+
+// MOBILE MENU
+const menuBtn = document.getElementById('menuBtn');
+const closeBtn = document.getElementById('closeBtn');
+const mobileSidebar = document.getElementById('mobileSidebar');
+const overlay = document.getElementById('overlay');
+
+if (menuBtn && closeBtn && mobileSidebar && overlay) {
+
+    menuBtn.onclick = () => {
+        mobileSidebar.classList.remove('translate-x-full');
+        overlay.classList.remove('hidden');
+    };
+
+    closeBtn.onclick = overlay.onclick = () => {
+        mobileSidebar.classList.add('translate-x-full');
+        overlay.classList.add('hidden');
+    };
+}
+
+
+// MOBILE FILTER
+const mobileToggle = document.getElementById("mobileFilterToggle");
+const mobileFilterSidebar = document.getElementById("desktopSidebar");
+
+if (mobileToggle && mobileFilterSidebar) {
+
+    mobileToggle.addEventListener("click", () => {
+        mobileFilterSidebar.classList.toggle("max-sm:hidden");
+    });
+
+}
+
+
+// DESKTOP FILTER
 const desktopToggle = document.getElementById("desktopFilterToggle");
 const desktopSidebar = document.getElementById("desktopSidebar");
 
-mobileToggle.addEventListener("click", () => {
-    sidebar.classList.toggle("max-sm:hidden");
-});
+if (desktopToggle && desktopSidebar) {
 
-desktopToggle.addEventListener("click", () => {
-    desktopSidebar.classList.toggle("w-80");
-    desktopSidebar.classList.toggle("w-0");
-    desktopSidebar.classList.toggle("p-6");
-    desktopSidebar.classList.toggle("overflow-hidden");
+    desktopToggle.addEventListener("click", () => {
 
-    if (desktopSidebar.classList.contains("w-0")) {
-        desktopSidebar.classList.add("opacity-0");
-    } else {
-        desktopSidebar.classList.remove("opacity-0");
-    }
+        desktopSidebar.classList.toggle("w-80");
+        desktopSidebar.classList.toggle("w-0");
+        desktopSidebar.classList.toggle("p-6");
+        desktopSidebar.classList.toggle("overflow-hidden");
 
-    desktopToggle.classList.toggle("bg-gray-100");
+        if (desktopSidebar.classList.contains("w-0")) {
+            desktopSidebar.classList.add("opacity-0");
+        } else {
+            desktopSidebar.classList.remove("opacity-0");
+        }
+
+        desktopToggle.classList.toggle("bg-gray-100");
+    });
+
+}
+
+//POP UP
+function confirmHapus() {
+    document.getElementById('modal-hapus').classList.remove('hidden');
+}
+function tutupModal() {
+    document.getElementById('modal-hapus').classList.add('hidden');
+}
+// Tutup modal jika klik backdrop
+document.getElementById('modal-hapus').addEventListener('click', function(e) {
+    if (e.target === this) tutupModal();
 });

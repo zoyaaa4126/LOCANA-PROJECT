@@ -52,7 +52,7 @@
                                 <a href="/security"><li class="flex items-center gap-3 px-4 py-2 hover:bg-gray-100"><span class="material-symbols-outlined text-gray-500">security</span>Privasi & Keamanan</li></a>
                                 <a href="/help"><li class="flex items-center gap-3 px-4 py-2 hover:bg-gray-100"><span class="material-symbols-outlined text-gray-500">help</span>Bantuan</li></a>
                                 <hr class="my-1">
-                                <a href="/logout"><li class="flex items-center gap-3 px-4 py-2 hover:bg-red-50 text-red-500"><span class="material-symbols-outlined">logout</span>Keluar</li></a>
+                                <a onclick="bukaModalLogout()"><li class="flex items-center gap-3 px-4 py-2 hover:bg-red-50 text-red-500"><span class="material-symbols-outlined">logout</span>Keluar</li></a>
                             </ul>
                         </div>
                     </div>
@@ -175,7 +175,7 @@
                         <span class="material-symbols-outlined text-gray-500">help</span> Bantuan
                     </a>
                     <div class="h-px bg-gray-200 my-2 mx-4"></div>
-                    <a href="/logout" class="flex items-center gap-3 px-4 py-3 text-red-500 hover:bg-red-50 transition">
+                    <a onclick="bukaModalLogout()" class="flex items-center gap-3 px-4 py-3 text-red-500 hover:bg-red-50 transition">
                         <span class="material-symbols-outlined">logout</span> Keluar
                     </a>
                 </nav>
@@ -196,6 +196,7 @@
         <span class="material-symbols-outlined text-2xl">smart_toy</span>
     </a>
 
+    @include('components.modal-logout')
     <script src="{{ asset('js/script.js') }}"></script>
 </body>
 </html>
