@@ -4,22 +4,16 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HomeController; // Tambahkan ini!
 
-// ROUTE VIEW PAGES
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/home', function () {
-    return view('home');
-});
+// HOME - Pakai HomeController supaya data kategoris muncul
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/home', [HomeController::class, 'index']);
 
 // VIEW PAGES
 Route::get('/profile', function () {
     return view('profile');
 });
-
 Route::get('/syarat', function () {
     return view('syarat');
 });
@@ -28,7 +22,6 @@ Route::get('/syarat', function () {
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/create', [UserController::class, 'create']);
 Route::post('/users', [UserController::class, 'store']);
-
 Route::get('/users/{id}/edit', [UserController::class, 'edit']);
 Route::post('/users/{id}', [UserController::class, 'update']);
 Route::post('/users/{id}/delete', [UserController::class, 'destroy']);
@@ -43,5 +36,3 @@ Route::get('/lokasi', [AdminController::class, 'lokasi'])->name('lokasi');
 Route::get('/tambah-lokasi', [AdminController::class, 'tambahLokasi'])->name('tambahLokasi');
 Route::get('/ulasan', [AdminController::class, 'ulasan'])->name('ulasan');
 Route::get('/pengguna', [AdminController::class, 'pengguna'])->name('pengguna');
-Route::get('/tambah-pengguna', [AdminController::class, 'tambahPengguna'])->name('tambahPengguna');
-Route::get('/detail-pengguna', [AdminController::class, 'viewPengguna'])->name('viewPengguna');

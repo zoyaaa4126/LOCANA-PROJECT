@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use App\Models\Category; // Pastikan nama model sesuai (Category atau Kategori)
 use App\Models\kategoris;
-use App\Models\moods;
-use App\Models\places;
+use App\Models\Moods;     // Pastikan nama model sesuai
+use App\Models\Places;   // Sesuai diskusi kita tadi
 
 class HomeController extends Controller
 {
     public function index()
     {
+        // Mengambil data asli dari database
         $kategoris = kategoris::all();
         $moods = moods::all();
-        $places = places::with('kategori', 'moods')->get();
+        $places = Places::all();
 
-        return view('home', compact(
-            'kategoris',
-            'moods',
-            'places'
-        ));
+        // Mengirim data ke view 'home.blade.php'
+        return view('home', compact('kategoris', 'moods', 'places'));
     }
 }
