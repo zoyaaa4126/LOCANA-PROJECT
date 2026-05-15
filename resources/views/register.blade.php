@@ -91,7 +91,7 @@
                                class="w-full h-9 px-3 pr-9 border border-[#ccc] rounded-md bg-[#FCFCFC] text-sm placeholder:text-sm
                                       hover:[box-shadow:0_0_10px_rgba(0,123,255,0.7)]
                                       max-md:placeholder:text-xs max-md:text-xs">
-                        <span class="material-symbols-outlined absolute right-3 bottom-2 cursor-pointer text-base text-gray-400"
+                        <span class="toggle-password material-symbols-outlined absolute right-3 bottom-2 cursor-pointer text-base text-gray-400"
                               id="togglePassword">visibility</span>
                     </div>
 
@@ -165,6 +165,6 @@
 
     </div>
 
-    <script src="assets/js/script.js"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
 </body>
 </html>
