@@ -297,7 +297,7 @@ class places extends Seeder
             ]
         ];
 
-        foreach ($places as $place) {   // ← foreach MASIH di dalam run()
+        foreach ($places as $place) {
             DB::table('places')->insert(array_merge($place, [
                 'created_at' => now(),
                 'updated_at' => now(),

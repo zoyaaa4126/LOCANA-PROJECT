@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('kategori_id')->constrained('kategoris');
-            $table->foreignId('moods_id')->constrained('mood');
+            $table->foreignId('moods_id')->constrained('moods');
 
             $table->string('nama_tempat');
             $table->text('deskripsi')->nullable();
