@@ -28,85 +28,87 @@
             <div class="space-y-3">
 
                 @foreach($kategoris as $kategori)
-
-                <div
-                    class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer">
-
+                <div class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer">
                     <span class="material-symbols-outlined">
-                        category
+                        @php
+                        echo match(strtolower($kategori->nama)) {
+                        'cafe' => 'coffee',
+                        'restaurant' => 'restaurant',
+                        'bakery' => 'bakery_dining',
+                        'live music' => 'music_note',
+                        'indoor' => 'home',
+                        'outdoor' => 'landscape',
+                        default => 'category', // Icon default jika tidak ada yang cocok
+                        };
+                        @endphp
                     </span>
-
                     {{ $kategori->nama }}
-
                 </div>
-
                 @endforeach
 
             </div>
 
-        </div>
+            <!-- MOODS -->
+            <div class="mb-6">
 
-        <!-- MOODS -->
-        <div class="mb-6">
+                <p class="text-gray-400 font-semibold text-sm mb-3 uppercase tracking-wide">
+                    MOODS
+                </p>
 
-            <p class="text-gray-400 font-semibold text-sm mb-3 uppercase tracking-wide">
-                MOODS
-            </p>
+                <div class="space-y-3">
 
-            <div class="space-y-3">
+                    @foreach($moods as $mood)
 
-                @foreach($moods as $mood)
+                    <div
+                        class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer">
 
-                <div
-                    class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer">
+                        <span class="material-symbols-outlined">
+                            mood
+                        </span>
 
-                    <span class="material-symbols-outlined">
-                        mood
-                    </span>
+                        {{ $mood->nama }}
 
-                    {{ $mood->nama }}
+                    </div>
+
+                    @endforeach
 
                 </div>
 
-                @endforeach
-
             </div>
 
-        </div>
+            <!-- BUDGET -->
+            <div class="mb-6">
 
-        <!-- BUDGET -->
-        <div class="mb-6">
+                <p class="text-gray-400 font-semibold text-sm mb-3 uppercase tracking-wide">
+                    BUDGET
+                </p>
 
-            <p class="text-gray-400 font-semibold text-sm mb-3 uppercase tracking-wide">
-                BUDGET
-            </p>
+                <div class="space-y-2">
 
-            <div class="space-y-2">
+                    <label class="flex items-center gap-2">
+                        <input type="checkbox">
+                        <span class="text-sm">
+                            < Rp50.000
+                                </span>
+                    </label>
 
-                <label class="flex items-center gap-2">
-                    <input type="checkbox">
-                    <span class="text-sm">
-                        < Rp50.000
-                    </span>
-                </label>
+                    <label class="flex items-center gap-2">
+                        <input type="checkbox">
+                        <span class="text-sm">
+                            Rp50.000 - Rp100.000
+                        </span>
+                    </label>
 
-                <label class="flex items-center gap-2">
-                    <input type="checkbox">
-                    <span class="text-sm">
-                        Rp50.000 - Rp100.000
-                    </span>
-                </label>
+                    <label class="flex items-center gap-2">
+                        <input type="checkbox">
+                        <span class="text-sm">
+                            Rp100.000 - Rp200.000
+                        </span>
+                    </label>
 
-                <label class="flex items-center gap-2">
-                    <input type="checkbox">
-                    <span class="text-sm">
-                        Rp100.000 - Rp200.000
-                    </span>
-                </label>
+                </div>
 
             </div>
-
-        </div>
 
     </aside>
 
