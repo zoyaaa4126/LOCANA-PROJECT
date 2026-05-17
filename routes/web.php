@@ -4,11 +4,51 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\HomeController; // Tambahkan ini!
+use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\ResetPasswordController;
 
-// HOME - Pakai HomeController supaya data kategoris muncul
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/home', [HomeController::class, 'index']);
+// ROUTE VIEW PAGES
+Route::get('/welcome', function () {
+    return view('welcome');
+});
+
+//LOGIN
+Route::get('/login', function () {
+    return view('login');
+});
+
+Route::post('/login', [UserController::class, 'login']);
+
+
+//FORGOT PASSWORD
+Route::get('/forgot-password', function () {
+    return view('forgotPassword');
+});
+
+Route::post('/forgot-password', [UserController::class, 'sendResetLink']);
+
+Route::get('/reset-password/{token}', function ($token) {
+    return view('reset-password', ['token' => $token]);
+});
+
+Route::post('/reset-password', [UserController::class, 'reset']);
+
+//REGISTER
+Route::get('/register', function () {
+    return view('register');
+});
+
+Route::post('/register-step1', [UserController::class, 'registerStep1']);
+
+Route::get('/register-nextStep', function () {
+    return view('registerNext');
+});
+
+Route::post('/register-nextStep', [UserController::class, 'store']);
+
+Route::get('/home', function () {
+    return view('home');
+});
 
 // VIEW PAGES
 Route::get('/profile', function () {
@@ -18,7 +58,14 @@ Route::get('/syarat', function () {
     return view('syarat');
 });
 
-// CRUD USER
+Route::get('/wishlist', function () {
+    return view('wishlist');
+});
+
+
+
+
+// ROUTE CRUD USER
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/create', [UserController::class, 'create']);
 Route::post('/users', [UserController::class, 'store']);

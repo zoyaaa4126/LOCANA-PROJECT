@@ -22,6 +22,14 @@
             <div class="mt-6 bg-white text-center w-full
                         max-md:w-[353px] max-md:p-5 max-md:m-0">
 
+                <div class="flex items-start">
+                    <a href="/welcome">
+                        <span class="material-symbols-outlined text-[25px] cursor-pointer">
+                        close
+                        </span>
+                    </a>
+                </div>
+
                 <!-- LOGO -->
                 <div class="flex items-center justify-center mb-4
                             max-md:mb-1">
@@ -46,7 +54,8 @@
                 </p>
 
                 <!-- FORM -->
-                <form id="loginForm">
+                <form action="/register-nextStep" method="POST" id="loginForm">
+                    @csrf
                     <div class="flex flex-col items-start mx-14 my-auto
                                 max-md:m-0
                                 max-lg:mx-8">
@@ -86,8 +95,7 @@
                         <input type="file" id="foto-input" name="foto_profil" accept="image/png,image/jpeg" class="hidden" onchange="previewFoto(this)">
                     </div>
 
-                    <button type="button"
-                            onclick="window.location.href='/home'"
+                    <button type="submit"
                             class="w-4/5 h-10 p-2 bg-[#fbb45e] border-none ml-14 mt-3 text-sm text-[#363b58] font-semibold hover:bg-[#FEE8CD] rounded-md
                                    max-md:w-full max-md:mx-0 max-md:mt-1 max-md:h-9 max-md:text-base max-md:p-1
                                    max-lg:mx-0">

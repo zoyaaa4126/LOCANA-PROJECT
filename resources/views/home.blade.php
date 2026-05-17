@@ -6,9 +6,19 @@
 
 <div class="flex flex-col sm:flex-row gap-8">
 
-    <!-- SIDEBAR -->
-    <aside id="desktopSidebar"
-        class="w-80 shrink-0 bg-white shadow p-6 h-fit sticky top-5 border border-gray-200 max-sm:w-full max-sm:static max-sm:hidden transition-all duration-300 overflow-hidden">
+        <div class="flex-1 my-5 overflow-hidden max-sm:px-5">
+            <div class="w-full overflow-x-auto no-scrollbar">
+                <div class="flex gap-4 mb-6 whitespace-nowrap">
+                    <span id="desktopFilterToggle" class="inline-flex items-center gap-2 px-5 py-2 bg-[#FBB45E] text-[#363B58] rounded-full text-base cursor-pointer hover:bg-orange-100 transition flex-shrink-0 max-sm:hidden" ><span class="material-symbols-outlined">tune</span> Filter</span>
+                    <span class="inline-flex items-center gap-2 px-5 py-2 bg-gray-100 rounded-full text-base cursor-pointer hover:bg-orange-100 transition flex-shrink-0">Dekat Saya</span>
+                    <span class="inline-flex items-center gap-2 px-5 py-2 bg-gray-100 rounded-full text-base cursor-pointer hover:bg-orange-100 transition flex-shrink-0"><span class="material-symbols-outlined">local_cafe</span> Chill</span>
+                    <span class="inline-flex items-center gap-2 px-5 py-2 bg-gray-100 rounded-full text-base cursor-pointer hover:bg-orange-100 transition flex-shrink-0"><span class="material-symbols-outlined">wine_bar</span> Fancy</span>
+                    <span class="inline-flex items-center gap-2 px-5 py-2 bg-gray-100 rounded-full text-base cursor-pointer hover:bg-orange-100 transition flex-shrink-0"><span class="material-symbols-outlined">attractions</span> Keluarga</span>
+                    <span class="inline-flex items-center gap-2 px-5 py-2 bg-gray-100 rounded-full text-base cursor-pointer hover:bg-orange-100 transition flex-shrink-0"><span class="material-symbols-outlined">dine_heart</span> Romantis</span>
+                    <span class="inline-flex items-center gap-2 px-5 py-2 bg-gray-100 rounded-full text-base cursor-pointer hover:bg-orange-100 transition flex-shrink-0"><span class="material-symbols-outlined">hiking</span> Petualangan</span>
+                    <span class="inline-flex items-center gap-2 px-5 py-2 bg-gray-100 rounded-full text-base cursor-pointer hover:bg-orange-100 transition flex-shrink-0"><span class="material-symbols-outlined">laptop_chromebook</span> Produktif</span>
+                </div>
+            </div>
 
         <div class="flex justify-between items-center mb-4">
             <h2 class="font-bold text-xl">Filters</h2>
