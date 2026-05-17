@@ -22,6 +22,10 @@ class UserController extends Controller
     //CONTROLLER REGISTER
     public function registerStep1(Request $request)
     {
+        $request->validate([
+        'check' => 'required'
+    ]);
+
         session([
             'username' => $request->username,
             'email' => $request->email,
@@ -33,9 +37,6 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-        'check' => 'required'
-    ]);
 
         $path = null;
 
@@ -51,7 +52,7 @@ class UserController extends Controller
             'password' => bcrypt(session('password')),
         ]);
 
-        return redirect('/login');
+        return redirect('/home');
     }
 
     //CONTROLLER LOGIN
