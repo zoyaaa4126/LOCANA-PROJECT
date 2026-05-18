@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PlaceDetailsController;
 
 // ROUTE VIEW PAGES
 Route::get('/', function () {
@@ -60,3 +61,6 @@ Route::get('/ulasan', [AdminController::class, 'ulasan'])->name('ulasan');
 Route::get('/pengguna', [AdminController::class, 'pengguna'])->name('pengguna');
 Route::get('/tambah-pengguna', [AdminController::class, 'tambahPengguna'])->name('tambahPengguna');
 Route::get('/detail-pengguna', [AdminController::class, 'viewPengguna'])->name('viewPengguna');
+
+//PLACE DETAILS
+Route::get('/places/{id}', [PlaceDetailsController::class, 'show']);

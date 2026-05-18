@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Category;
 
 class places extends Model
 {
@@ -30,5 +31,15 @@ class places extends Model
     public function moods()
     {
         return $this->belongsToMany(moods::class, 'place_moods');
+    }
+
+    public function kategori()
+    {
+        return $this->belongsTo(kategoris::class, 'kategori_id');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(reviews::class, 'place_id');
     }
 }
