@@ -46,9 +46,7 @@ Route::get('/register-nextStep', function () {
 
 Route::post('/register-nextStep', [UserController::class, 'store']);
 
-Route::get('/home', function () {
-    return view('home');
-});
+Route::get('/home', [UserController::class, 'home']);
 
 // VIEW PAGES
 Route::get('/profile', function () {
