@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locana</title>
+    <link rel="stylesheet" href="assets/css/landing.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <!-- NAVBAR DESKTOP -->
+        <div class="nav-desktop">
+            <div class="logo">
+                <img src="assets/img/Locana_Logo 1.png" alt="logloc">
+                <span>LOCANA</span>
+            </div>
+            <nav>
+                <a href="#">Beranda</a>
+                <a href="#populer">Populer</a>
+                <a href="#mood">Mood</a>
+                <a href="#ulasan">Ulasan</a>
+            </nav>
+            <div class="daftar">
+                <a href="login.html">Masuk</a>
+                <a href="register.html" class="btn-daftar">
+                    <span>Daftar</span>
+                    <span>→</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- NAVBAR MOBILE -->
+        <div class="nav-mobile">
+            <div class="toggle-wrapper">
+                <div class="logo">
+                    <img src="assets/img/Locana_Logo 1.png" alt="logloc">
+                    <span>LOCANA</span>
+                </div>
+                <div id="toggleMenu" class="material-symbols-outlined" onclick="toggleMenu()">menu</div>
+            </div>
+            <nav class="mobile-navbar">
+                <a href="#">Beranda</a>
+                <a href="#populer">Populer</a>
+                <a href="#mood">Mood</a>
+                <a href="#ulasan">Ulasan</a>
+                <a href="login.html">Masuk</a>
+                <a href="register.html" class="btn-daftar">
+                    <span>Daftar</span>
+                    <span>→</span>
+                </a>
+            </nav>
+        </div>
+
+    </header>
+
+    <div class="container">
+
+        <section class="hero">
+            <div class="hero-left">
+                <p>JELAJAHI BANDUNG</p>
+                <h1>Temukan <span> Tempat Nongkrong</span> Favoritmu
+                    di Bandung</h1>
+                <p class="desc">Dari kafe yang cozy sampai tempat hangout yang lagi ramai, Locana membantu kamu
+                    menjelajahi
+                    spot terbaik
+                    di Bandung dengan mudah. </p>
+
+                <div class="search-box">
+                    <label for="search-box"></label>
+                    <input type="text" placeholder="Mau Pergi Kemana">
+                    <button class="btn-lg">
+                        <span>Telusuri</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="hero-right">
+                <img src="assets/img/cafe1.png" alt="cafe">
+
+                <div class="overlay">
+                    <p class="tag">SEDANG TRENDING</p>
+                    <h3>Alam Cafe</h3>
+                    <small>Ciwidey, Bandung</small>
+
+                    <span class="status">Buka</span>
+                </div>
+        </section>
+
+        <section class="kondisi">
+            <h3>Kondisi Tempat</h3>
+            <div class="icon">
+                <div class="bulet">
+                    <span class="material-symbols-outlined">
+                        coffee
+                    </span>
+                </div>
+                <div class="text">
+                    <p>Toko Kopi Jawa</p>
+                    <h2>Masih Sepi</h2>
+                </div>
+            </div>
+            <div class="icon">
+                <div class="bulet">
+                    <span class="material-symbols-outlined">
+                        bakery_dining
+                    </span>
+                </div>
+                <div class="text">
+                    <p>Toko Kopi Jawa</p>
+                    <h2>Masih Sepi</h2>
+                </div>
+            </div>
+            <div class="icon">
+                <div class="bulet">
+                    <span class="material-symbols-outlined">
+                        fork_spoon
+                    </span>
+                </div>
+                <div class="text">
+                    <p>Toko Kopi Jawa</p>
+                    <h2>Masih Sepi</h2>
+                </div>
+            </div>
+
+            <button class="btn-daftar">
+                <span>Lihat Semua Lokasi</span>
+            </button>
+        </section>
+
+        <section class="populer" id="populer">
+            <div class="populer-text">
+                <h3>Populer di <span>Bandung</span></h3>
+                <button class="btn-daftar">
+                    <span>Lihat Semua</span>
+                </button>
+
+            </div>
+            <div class="cards">
+                <div class="card" style="font-variation-settings: 'FILL' 1;">
+                    <img src="assets/img/cafe1.png" alt="fotocard">
+                    <div class="cafe">
+                        <h5>CAFE</h5>
+                        <p><span class="material-symbols-outlined">kid_star</span>4.8 (20)</p>
+                    </div>
+                    <h4>Alam Cafe</h4>
+                    <div class="loc">
+                        <span class="material-symbols-outlined">location_on</span>
+                        <p>4.5km</p>
+                        <p>|</p>
+                        <p>Ciwidey, Bandung</p>
+                    </div>
+                    <div class="price">
+                        <span class="material-symbols-outlined">
+                            payments
+                        </span>
+                        <p>Rp50.000 - Rp100.000</p>
+                    </div>
+                    <div class="btn-loc">
+                        <span class="material-symbols-outlined">
+                            location_on
+                        </span>
+                        <p>Lihat Lokasi</p>
+                    </div>
+                </div>
+                <div class="card" style="font-variation-settings: 'FILL' 1;">
+                    <img src="assets/img/cafe1.png" alt="fotocard">
+                    <div class="cafe">
+                        <h5>CAFE</h5>
+                        <p><span class="material-symbols-outlined">kid_star</span>4.8 (20)</p>
+                    </div>
+                    <h4>Alam Cafe</h4>
+                    <div class="loc">
+                        <span class="material-symbols-outlined">location_on</span>
+                        <p>4.5km</p>
+                        <p>|</p>
+                        <p>Ciwidey, Bandung</p>
+                    </div>
+                    <div class="price">
+                        <span class="material-symbols-outlined">
+                            payments
+                        </span>
+                        <p>Rp50.000 - Rp100.000</p>
+                    </div>
+                    <div class="btn-loc">
+                        <span class="material-symbols-outlined">
+                            location_on
+                        </span>
+                        <p>Lihat Lokasi</p>
+                    </div>
+                </div>
+                <div class="card" style="font-variation-settings: 'FILL' 1;">
+                    <img src="assets/img/cafe1.png" alt="fotocard">
+                    <div class="cafe">
+                        <h5>CAFE</h5>
+                        <p><span class="material-symbols-outlined">kid_star</span>4.8 (20)</p>
+                    </div>
+                    <h4>Alam Cafe</h4>
+                    <div class="loc">
+                        <span class="material-symbols-outlined">location_on</span>
+                        <p>4.5km</p>
+                        <p>|</p>
+                        <p>Ciwidey, Bandung</p>
+                    </div>
+                    <div class="price">
+                        <span class="material-symbols-outlined">
+                            payments
+                        </span>
+                        <p>Rp50.000 - Rp100.000</p>
+                    </div>
+                    <div class="btn-loc">
+                        <span class="material-symbols-outlined">
+                            location_on
+                        </span>
+                        <p>Lihat Lokasi</p>
+                    </div>
+                </div>
+                <div class="card" style="font-variation-settings: 'FILL' 1;">
+                    <img src="assets/img/cafe1.png" alt="fotocard">
+                    <div class="cafe">
+                        <h5>CAFE</h5>
+                        <p><span class="material-symbols-outlined">kid_star</span>4.8 (20)</p>
+                    </div>
+                    <h4>Alam Cafe</h4>
+                    <div class="loc">
+                        <span class="material-symbols-outlined">location_on</span>
+                        <p>4.5km</p>
+                        <p>|</p>
+                        <p>Ciwidey, Bandung</p>
+                    </div>
+                    <div class="price">
+                        <span class="material-symbols-outlined">
+                            payments
+                        </span>
+                        <p>Rp50.000 - Rp100.000</p>
+                    </div>
+                    <div class="btn-loc">
+                        <span class="material-symbols-outlined">
+                            location_on
+                        </span>
+                        <p>Lihat Lokasi</p>
+                    </div>
+                </div>
+                <div class="card" style="font-variation-settings: 'FILL' 1;">
+                    <img src="assets/img/cafe1.png" alt="fotocard">
+                    <div class="cafe">
+                        <h5>CAFE</h5>
+                        <p><span class="material-symbols-outlined">kid_star</span>4.8 (20)</p>
+                    </div>
+                    <h4>Alam Cafe</h4>
+                    <div class="loc">
+                        <span class="material-symbols-outlined">location_on</span>
+                        <p>4.5km</p>
+                        <p>|</p>
+                        <p>Ciwidey, Bandung</p>
+                    </div>
+                    <div class="price">
+                        <span class="material-symbols-outlined">
+                            payments
+                        </span>
+                        <p>Rp50.000 - Rp100.000</p>
+                    </div>
+                    <div class="btn-loc">
+                        <span class="material-symbols-outlined">
+                            location_on
+                        </span>
+                        <p>Lihat Lokasi</p>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+        <section class="rekomendasi">
+            <h2 id="mood">Rekomendasi Berdasarkan <span>Mood</span> </h2>
+            <div class="cards">
+                <div class="card-rec">
+                    <img src="assets/img/Hot beverage.png" alt="hotbeverage">
+                    <div class="text">
+                        <h4>Chill</h4>
+                        <p>Tempat santai dengan suasana tenang.</p>
+                        <div class="btn-jelajahi">
+                            <p>Jelajahi</p>
+                            <p>></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-rec">
+                    <img src="assets/img/Teacup without handle.png" alt="hotbeverage">
+                    <div class="text">
+                        <h4>Chill</h4>
+                        <p>Tempat santai dengan suasana tenang.</p>
+                        <div class="btn-jelajahi">
+                            <p>Jelajahi</p>
+                            <p>></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-rec">
+                    <img src="assets/img/Ferris wheel.png" alt="hotbeverage">
+                    <div class="text">
+                        <h4>Chill</h4>
+                        <p>Tempat santai dengan suasana tenang.</p>
+                        <div class="btn-jelajahi">
+                            <p>Jelajahi</p>
+                            <p>></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-rec">
+                    <img src="assets/img/red heart.png" alt="hotbeverage">
+                    <div class="text">
+                        <h4>Romantis</h4>
+                        <p>Tempat santai dengan suasana tenang.</p>
+                        <div class="btn-jelajahi">
+                            <p>Jelajahi</p>
+                            <p>></p>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+        <section class="review">
+            <h2 id="Ulasan">Dengar <span>Cerita</span> dari <span>Pengguna Lain</span></h2>
+            <div class="user-revs">
+                <div class="user-rev">
+                    <div class="top">
+                        <div class="top-left">
+                            <img src="assets/img/kenma.jpeg" alt="userpict">
+                            <div class="username">
+                                <h4>KenmaKozzz</h4>
+                                <p>15 Januari 2026</p>
+                            </div>
+                        </div>
+                        <span>⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <p>"Tempat ini sangat bagus saya suka sekali
+                        tidak sabar untuk merekomendasikan kepada yang lainnya."
+                    </p>
+                    <div class="bottom">
+                        <span class="material-symbols-outlined">location_on</span>
+                        <p>Kopi Senja Cafe</p>
+                    </div>
+                </div>
+                <div class="user-rev">
+                    <div class="top">
+                        <div class="top-left">
+                            <img src="assets/img/kenma.jpeg" alt="userpict">
+                            <div class="username">
+                                <h4>KenmaKozzz</h4>
+                                <p>15 Januari 2026</p>
+                            </div>
+                        </div>
+                        <span>⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <p>"Tempat ini sangat bagus saya suka sekali
+                        tidak sabar untuk merekomendasikan kepada yang lainnya."
+                    </p>
+                    <div class="bottom">
+                        <span class="material-symbols-outlined">location_on</span>
+                        <p>Kopi Senja Cafe</p>
+                    </div>
+                </div>
+                <div class="user-rev">
+                    <div class="top">
+                        <div class="top-left">
+                            <img src="assets/img/kenma.jpeg" alt="userpict">
+                            <div class="username">
+                                <h4>KenmaKozzz</h4>
+                                <p>15 Januari 2026</p>
+                            </div>
+                        </div>
+                        <span>⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <p>"Tempat ini sangat bagus saya suka sekali
+                        tidak sabar untuk merekomendasikan kepada yang lainnya."
+                    </p>
+                    <div class="bottom">
+                        <span class="material-symbols-outlined">location_on</span>
+                        <p>Kopi Senja Cafe</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="last-hero">
+            <h2>Setiap Momen Punya Tempatnya</h2>
+            <p>Temukan tempat terbaik sesuai mood kamu.</p>
+            <br>
+            <div class="btn">
+                <button class="btn-daftar">
+                    <span>Lanjut Sebagai Tamu</span>
+                </button>
+                <button class="btn-daftar">
+                    <span>Masuk</span>
+                </button>
+            </div>
+        </section>
+
+    </div>
+    <footer>
+        <div class="footer1">
+
+            <div class="logo">
+                <img src="assets/img/Locana_Logo 1.png" alt="logloc">
+                <span>LOCANA</span>
+            </div>
+
+            <p>"Setiap momen punya tempatnya sendiri—kami bantu kamu menemukannya dengan lebih mudah dan personal."</p>
+            <br>
+            <div class="info">
+                <button class="btn-info">
+                    <span class="material-symbols-outlined">
+                        call
+                    </span>
+                    <span>Telepon</span>
+                </button>
+                <button class="btn-info">
+                    <span class="material-symbols-outlined">
+                        mail
+                    </span>
+                    <span>Email</span>
+                </button>
+            </div>
+
+        </div>
+
+
+        <script src="script.js"></script>
+
+
+
+
+    </footer>
+
+    <div class="hakcipta">
+        <h2>&copy; 2026 Locana. All right reserved.</h2>
+    </div>
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

@@ -374,15 +374,31 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     /* ===== TOGGLE PASSWORD ===== */
-    const pwdInput  = document.getElementById('password-input');
-    const toggleBtn = document.getElementById('toggle-password');
-    const eyeIcon   = document.getElementById('eye-icon');
+ document.addEventListener("DOMContentLoaded", function () {
 
-    toggleBtn.addEventListener('click', function () {
-        const isHidden = pwdInput.type === 'password';
-        pwdInput.type      = isHidden ? 'text' : 'password';
-        eyeIcon.textContent = isHidden ? 'visibility' : 'visibility_off';
+  const toggles = document.querySelectorAll(".toggle-password");
+
+  toggles.forEach(function(toggle) {
+
+    toggle.addEventListener("click", function() {
+
+      const password =
+        toggle.parentElement.querySelector(".password-input");
+
+      if (password.type === "password") {
+        password.type = "text";
+        toggle.textContent = "visibility_off";
+      } else {
+        password.type = "password";
+        toggle.textContent = "visibility";
+      }
+
     });
+
+  });
+
+});
+
 
     /* ===== PREVIEW FOTO PROFIL ===== */
     document.getElementById('foto-input').addEventListener('change', function () {
@@ -391,7 +407,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const reader = new FileReader();
         reader.onload = function (e) {
             const preview     = document.getElementById('foto-preview');
-            const placeholder = document.getElementById('foto-placeholder');
+            const placeholder = document.getEl
+            ementById('foto-placeholder');
             preview.src           = e.target.result;
             preview.style.display = 'block';
             placeholder.style.display = 'none';

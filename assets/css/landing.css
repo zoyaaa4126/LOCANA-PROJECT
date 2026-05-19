@@ -1,0 +1,1182 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+    scroll-padding-top: 120px;
+}
+
+body {
+    background-color: #fafafa;
+
+    color: #333;
+}
+
+.container {
+    margin: 0 auto;
+    padding: 0 50px;
+
+}
+
+.nav-desktop {
+    display: flex;
+    align-self: stretch;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.nav-mobile {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.toggle-wrapper {
+    display: flex;
+    padding: 0.6rem 1.25rem;
+    align-self: stretch;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mobile-navbar {
+    display: flex;
+    align-self: stretch;
+    gap: 0;
+    flex-direction: column;
+}
+
+.mobile-navbar>a {
+    border: solid #DDD;
+    padding: 0.6rem;
+    display: flex;
+    font-size: 0.75rem;
+    justify-content: center;
+    align-items: center;
+    border-width: 0.1rem 0;
+    align-self: stretch;
+}
+
+.mobile-navbar>.btn-daftar {
+    display: flex;
+    align-self: stretch;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0;
+    gap: 0.6rem;
+}
+
+.mobile-navbar>.btn-daftar>span {
+    font-size: 0.75rem;
+}
+
+header {
+    background-color: white;
+    border-bottom: 1px solid #D9D9D9;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 10px 20px;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 28px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.logo {
+    display: flex;
+    color: #363b58;
+    align-items: center;
+    gap: 3px;
+}
+
+.logo img {
+    width: 3rem;
+height: 3.6rem;
+    object-fit: contain;
+    line-height: 120%;
+}
+
+.logo span {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+nav {
+    display: flex;
+    gap: 50px;
+    align-items: start;
+}
+
+nav a {
+    text-decoration: none;
+    color: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+nav a:hover {
+    color: #F2994A;
+
+}
+
+.daftar {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+
+}
+
+.daftar a {
+    font-size: 1rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+.daftar a:hover {
+    color: #F2994A;
+}
+
+.btn-daftar {
+    background-color: #fbb45e;
+    padding: 10px 15px;
+    align-items: center;
+    align-content: center;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.btn-daftar:hover {
+    color: #E2A255;
+}
+
+.btn-daftar span {
+    font-size: 1rem;
+}
+
+
+
+
+/* hero */
+
+
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    gap: 40px;
+    padding-top: 65px;
+
+}
+
+.hero-left {
+    display: flex;
+    /* flex: 1; */
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+    align-self: stretch;
+    width: 50%;
+}
+
+.hero-left p {
+    color: #fbb45e;
+    font-family: Poppins;
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 120%;
+    align-self: stretch;
+}
+
+.hero h1 {
+    font-family: Poppins;
+    font-size: 3rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    width: 100%;
+}
+
+.hero h1 span {
+    font-family: Poppins;
+    color: #fbb45e;
+    font-size: 3rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.hero-left .desc {
+    color: #363b58;
+    font-family: Poppins;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%;
+    width: 100%;
+}
+
+.search-box {
+    display: flex;
+    padding: 10px 15px;
+    align-items: center;
+    gap: 20px;
+    background-color: #EBEBEE;
+    border-radius: 15px;
+    width: fit-content;
+
+}
+
+.search-box input {
+    display: flex;
+    padding: 10px;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    background-color: transparent;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+
+}
+
+.btn-lg {
+    background: #F2994A;
+    border: none;
+    display: flex;
+    padding: 10px 15px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: larger;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.btn-lg span{
+    font-size: 1rem;
+}
+
+
+.btn-lg span:hover {
+    color: #363B58;
+}
+
+
+.hero-right {
+    position: relative;
+    overflow: hidden;
+    max-width: 700px;
+    max-height: 500px;
+}
+
+.hero-right img {
+
+    width: 100%;
+    height: 24rem;
+    object-fit: cover;
+    border-radius: 20px;
+    display: block;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    padding: 20px;
+    color: white;
+
+    border-radius: 0 0 20px 20px;
+
+    /* gradient biar teks kebaca */
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.6),
+            rgba(0, 0, 0, 0));
+}
+
+.overlay .tag {
+    font-size: 12px;
+    color: #fbb45e;
+    font-weight: 600;
+}
+
+.overlay h3 {
+    font-size: 20px;
+    margin: 5px 0;
+}
+
+.overlay small {
+    font-size: 13px;
+    color: #ddd;
+}
+
+/* badge kanan */
+.status {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+
+    background: #4CAF50;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.kondisi {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    margin-top: 85px;
+    margin-bottom: 85px;
+    gap: 15px;
+    background-color: #363b58;
+    border-radius: 15px;
+    color: #D9D9D9;
+}
+
+.kondisi h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: "poppins";
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-items: center;
+    width: fit-content;
+}
+
+.bulet {
+    display: flex;
+    border-radius: 50%;
+    background-color: #fff;
+    width: 25px;
+    height: 25px;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: fit-content;
+}
+
+
+
+
+.text p{
+    width: fit-content;
+    font-size: 0.8rem;
+}
+
+
+
+.text h2{
+    width: fit-content;
+    font-size: 1rem;
+}
+
+.material-symbols-outlined {
+    font-size: 32px;
+    color: #363b58;
+
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+}
+
+.populer {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.populer-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.populer-text h3 {
+    font-family: Poppins;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.populer-text h3 span {
+    color: #fbb45e;
+}
+
+.cards {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: fit-content;
+    height: fit-content;
+    /* gap: 4px; */
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 10px;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+
+}
+
+.card img {
+    width:200px;
+    height: 150px;
+    border-radius: 15px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.cafe {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.cafe span {
+    font-size: 20px;
+    color: #FBB45E;
+    font-weight: 400;
+}
+
+.cafe h5 {
+    color: #fbb45e;
+    font-size: 0.8rem;
+    font-weight: 700px;
+}
+
+.cafe p {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    color: #363b58;
+    font-size: 15px;
+}
+
+.card h4 {
+    width: 100%;
+    align-items: start;
+    font-size: 1rem;
+    font-weight: 400px;
+}
+
+.loc {
+    display: flex;
+    width: 100%;
+    gap: 5px;
+    font-weight: 400;
+    align-items: center;
+}
+
+.loc p{
+    font-size: 0.6rem;
+    width: 100%;
+}
+
+.price {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 5px;
+    font-weight: 400;
+}
+
+.price p{
+    font-size: 0.6rem;
+}
+
+.price span,
+.loc span {
+    font-size: 1rem;
+}
+
+.btn-loc {
+    display: flex;
+    align-items: center;
+    background-color: #363B58;
+    height: fit-content;
+    padding: 5px 10px;
+    color: #FBB45E;
+    border-radius: 30px;
+    width: 100%;
+    gap: 5px;
+    justify-content: center;
+    font-weight: 600;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.btn-loc:hover {
+    background-color: #BDBDBD;
+    color: #E0C9A6;
+}
+
+.btn-loc span {
+    font-size: 1rem;
+    color: #F2994A;
+}
+
+.btn-loc p{
+    font-size: 0.8rem;
+}
+
+.rekomendasi {
+    display: flex;
+    flex-direction: column;
+    margin-top: 85px;
+    gap: 20px;
+}
+
+.rekomendasi h2 {
+    color: #363b58;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    margin-bottom: 10px;
+
+}
+
+.rekomendasi span {
+    color: #F2994A;
+}
+
+.card-rec {
+    display: flex;
+    align-items: center;
+    max-width: fit-content;
+    gap: 10px;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 10px;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card-rec img {
+    width: 80px;
+    height: 80px;
+
+}
+
+
+
+.btn-jelajahi {
+    display: flex;
+    color: #F2994A;
+    background-color: #363B58;
+    width: fit-content;
+    padding: 10px 15px;
+    align-items: center;
+    justify-items: center;
+    border-radius: 10px;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.btn-jelajahi p{
+    font-size: 0.4;
+
+}
+
+.btn-jelajahi:hover {
+    background-color: #BDBDBD;
+    color: #E0C9A6;
+}
+
+.review {
+    display: flex;
+    flex-direction: column;
+    margin-top: 85px;
+    gap: 30px;
+    margin-bottom: 85px;
+}
+
+.review h2 {
+    color: #363b58;
+    font-family: Poppins;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.review span {
+    color: #F2994A;
+}
+
+.user-rev {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: fit-content;
+    gap: 10px;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.user-revs {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    justify-items: center;
+    gap: 20px;
+}
+
+.top-left {
+    display: flex;
+    gap: 10px;
+}
+
+    .user-rev p{
+        width: fit-content;
+    }
+
+    .bottom p{
+        width: fit-content;
+    }
+
+    .top{
+        width: fit-content;
+    }
+
+.top img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.top span {
+    font-size: 18px;
+}
+
+.username h4 {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%;
+    width: fit-content;
+
+}
+
+.username p {
+    font-size: 6px;
+    width: fit-content;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.user-rev p {
+    font-size: 15px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 120%;
+    width: fit-content;
+    align-items: flex-start;
+}
+
+.bottom {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #000;
+}
+
+.bottom p {
+    font-style: poppins;
+}
+
+.last-hero {
+    background-color: #363B58;
+    display: flex;
+    width: 100%;
+    height: 300px;
+    padding: 20px 30px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 20px;
+    color: #fefefe;
+    margin-bottom: 85px;
+}
+
+.last-hero h2 {
+    align-self: stretch;
+    text-align: center;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.last-hero p {
+    text-align: center;
+    width: 794px;
+    font-size: 0.8rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%;
+
+}
+
+.btn {
+    display: flex;
+    gap: 10px;
+}
+
+
+footer {
+    background: white;
+    color: #363b58;
+    padding: 40px;
+    width: 100%;
+    height: 200px;
+    align-content: center;
+}
+
+.footer1 {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+}
+
+
+.footer1 p {
+    font-size: 0.8rem;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 120%;
+    width: 600px;
+    text-align: center;
+    align-items: center;
+
+}
+
+.info {
+    display: flex;
+
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.btn-info {
+    display: flex;
+    padding: 5px 10px;
+    justify-content: center;
+    width: fit-content;
+    align-items: center;
+    gap: 5px;
+    border-radius: 10px;
+    background-color: #FEF4E7;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-info:hover {
+    background-color: #e3e1df;
+    color: white;
+}
+
+.hakcipta {
+    width: 100%;
+    text-align: center;
+    color: #363B58;
+    background-color: white;
+    margin-bottom: 10px;
+    padding: 20px;
+}
+
+.hakcipta h2 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+    header {
+        padding: 0 0;
+    }
+
+    .nav-mobile {
+        display: flex;
+    }
+
+    .mobile-navbar {
+        display: none;
+    }
+
+    .nav-desktop {
+        display: none;
+    }
+
+    .logo {
+        gap: 0.25rem;
+    }
+
+    .logo img {
+        height: 1.25rem;
+        width: 1.25rem;
+    }
+
+    .logo span {
+        font-size: 0.75rem;
+    }
+
+    .container {
+        padding: 1rem 1.5rem;
+    }
+
+    /* HERO */
+    .hero {
+        flex-direction: column;
+        padding: 0;
+        gap: 1.5rem;
+    }
+
+    .hero-left h1 {
+        font-size: 1.25rem;
+    }
+
+    .hero-left h1 span {
+        font-size: 1.25rem;
+    }
+
+    .hero-left p {
+        font-size: 0.75rem;
+    }
+
+    .hero-left .desc {
+        font-size: 0.6rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .hero-left {
+        align-self: stretch;
+        gap: 0.6rem;
+        width: 100%;
+    }
+
+    .search-box {
+        gap: 0.6rem;
+        width: 100%;
+        padding: 0.6rem 0.9rem;
+        border-radius: 0.6rem;
+    }
+
+    .search-box input {
+        flex-grow: 1;
+        padding: 0 0;
+        font-size: 0.75rem;
+    }
+
+    .search-box > .btn-lg {
+        padding: 0.4rem 1.25rem;
+        border-radius: 0.3rem;
+    }
+
+    .search-box > .btn-lg > span {
+        font-size: 0.75rem;
+    }
+    
+    .hero-right{
+        display: flex;
+        align-self: stretch;
+    }
+
+    .hero-right img {
+        height: 10rem;
+        border-radius: 0.5rem;
+    } 
+
+    /* KONDISI */
+    .kondisi {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 20px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    .kondisi h3 {
+        font-size: 20px;
+    }
+
+    .bulet {
+        width: 25px;
+        height: 25px;
+
+    }
+
+    .material-symbols-outlined {
+        font-size: 20px;
+    }
+
+    .text {
+        gap: 5px;
+    }
+
+    .text h2 {
+        font-size: 16px;
+    }
+
+    .subtitle {
+        font-size: 10px;
+    }
+
+    /* POPULER */
+
+    .populer-text h3 {
+        font-size: 16px;
+    }
+
+    .btn-daftar span {
+        font-size: 15px;
+    }
+
+    .card{
+        gap: 5px;
+        width: fit-content;
+    }
+
+    
+
+    .card img {
+        width: 19rem;
+height: 12.53125rem;
+    }
+
+    /* REKOMENDASI */
+
+    .rekomendasi {
+        margin-top: 50px;
+    }
+
+    .rekomendasi h2 {
+        font-size: 16px;
+
+    }
+
+    .cards{
+        align-self: stretch;
+        overflow-x: auto;
+    }
+
+
+    .card-rec {
+        flex-direction: column;
+        text-align: center;
+        align-content: center;
+        width: fit-content;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .card-rec img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .text h4 {
+        font-size: 1rem;
+    }
+
+    .text p {
+        width: 100%;
+        font-size: 0.7rem;
+    }
+
+    .btn-jelajahi {
+        width: fit-content;
+        gap: 5px;
+        
+    }
+
+    /* REVIEW */
+
+    .review {
+        margin-top: 50px;
+        margin-bottom: 50px;
+        gap: 30px;
+    }
+
+    .review h2 {
+        font-size: 16px;
+    }
+
+    .user-revs{
+        align-self: stretch;
+        overflow-x: auto;
+    }
+
+    .user-rev {
+        gap: 20px;
+    }
+
+    .user-rev p{
+        width: fit-content;
+    }
+
+    .bottom p{
+        width: fit-content;
+    }
+
+    .top{
+        width: fit-content;
+    }
+
+    .top-left {
+        gap: 10px;
+        width: fit;
+    }
+
+    .top img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .top span {
+        font-size: 17px;
+    }
+
+    .username h4 {
+        font-size: 13px;
+    }
+
+    .username p {
+        font-size: 10px;
+    }
+
+    .user-rev p {
+        font-size: 10px;
+
+    }
+
+    .bottom {
+        gap: 3px;
+
+    }
+
+
+
+    /* LAST HERO */
+    .last-hero {
+        height: 200px;
+        padding: 4.432px 6.648px;
+        gap: 5px;
+        margin-bottom: 25px;
+        margin-top: 25px;
+    }
+
+    .last-hero h2 {
+        font-size: 16px;
+    }
+
+    .last-hero p {
+        font-size: 10px;
+    }
+
+    .btn {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .btn-daftar {
+        padding: 7px 20px;
+    }
+
+    .btn span {
+        font-size: 10px;
+    }
+
+    /* FOOTER */
+    footer {
+        padding: 1.5rem 0.5rem 0 0.5rem;
+        height: fit-content;
+    }
+
+    .footer1{
+        gap: 1rem;
+    }
+
+    .footer1 p {
+        align-self: stretch;
+        font-size: 10px;
+        width: fit-content;
+    }
+
+    .info {
+        gap: 5px;
+    }
+
+    .btn-info {
+        width: 75px;
+        gap: 5px;
+    }
+
+    .btn-info span {
+        font-size: 0.6rem;
+
+    }
+
+    .hakcipta h2 {
+        font-size: 0.4rem;
+    }
+}
