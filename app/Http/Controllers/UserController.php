@@ -22,6 +22,10 @@ class UserController extends Controller
     //CONTROLLER REGISTER
     public function registerStep1(Request $request)
     {
+        $request->validate([
+        'check' => 'required'
+    ]);
+
         session([
             'username' => $request->username,
             'email' => $request->email,
@@ -33,9 +37,6 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-        'check' => 'required'
-    ]);
 
         $path = null;
 
@@ -51,7 +52,7 @@ class UserController extends Controller
             'password' => bcrypt(session('password')),
         ]);
 
-        return redirect('/login');
+        return redirect('/home');
     }
 
     //CONTROLLER LOGIN
@@ -69,13 +70,13 @@ class UserController extends Controller
         return back()->with('error', 'Email atau password salah');
     }
 
-    public function edit(int $id)
+    public function edit($id)
     {
         $user = User::findOrFail($id);
         return view('users.edit-user', compact('user'));
     }
 
-    public function update(Request $request, int $id)
+    public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
 
@@ -89,7 +90,7 @@ class UserController extends Controller
         return redirect('/users');
     }
 
-    public function destroy(int $id)
+    public function destroy($id)
     {
         User::destroy($id);
         return redirect('/users');
