@@ -8,7 +8,7 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ResetPasswordController;
 
 // ROUTE VIEW PAGES
-Route::get('/welcome', function () {
+Route::get('/', function () {
     return view('welcome');
 });
 

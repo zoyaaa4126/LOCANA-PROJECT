@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('kategori_id')->constrained('kategoris');
+            // $table->foreignId('moods_id')->constrained('moods');
 
             $table->string('nama_tempat');
             $table->text('deskripsi')->nullable();
-            $table->enum('tipe_tempat', ['indoor', 'outdoor']);
             $table->text('alamat_lengkap');
 
             $table->decimal('latitude', 10, 7);
@@ -30,7 +30,8 @@ return new class extends Migration
             $table->boolean('status_aktif')->default(true);
             $table->boolean('tempat_unggulan')->default(false);
 
-            $table->foreignId('created_by')->constrained('users');
+            $table->unsignedBigInteger('created_by');
+            $table->foreign('created_by')->references('id')->on('users');
 
             $table->timestamps();
         });
