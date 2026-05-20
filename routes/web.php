@@ -6,11 +6,10 @@ use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\LandingController;
 
 // ROUTE VIEW PAGES
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/welcome', [LandingController::class, 'index']);
 
 //LOGIN
 Route::get('/login', function () {
