@@ -9,7 +9,7 @@
     <!-- HERO SECTION -->
     <section class="flex flex-col gap-5 p-0 justify-between items-center md:flex-row md:gap-10 md:pt-16">
         <!-- HERO LEFT -->
-        <div class="self-stretch gap-[0.5rem] w-full flex flex-col md:justify-center">
+        <div class="self-stretch gap-2 w-full flex flex-col md:justify-center">
             <p class="text-[#fbb45e] font-[Poppins] text-[0.8rem] font-semibold self-stretch md:text-[1.25rem]">
                 JELAJAHI BANDUNG</p>
             <h1
@@ -20,7 +20,7 @@
                     Nongkrong</span> Favoritmu
                 di Bandung</h1>
             <p
-                class="text-[#363B58] text-[0.7rem]/[0.85rem] mb-1.5 text-[#363b58] text-justify font-normal w-full md:text-[1.25rem]/[1.5rem]">
+                class="text-[#363B58] text-[0.7rem]/[0.85rem] mb-1.5 text-justify font-normal w-full md:text-[1.25rem]/[1.5rem]">
                 Dari kafe yang cozy sampai tempat hangout yang lagi ramai, Locana membantu kamu
                 menjelajahi
                 spot terbaik
@@ -28,13 +28,13 @@
 
             <!-- BUTTON TELUSURI -->
             <div class="flex px-[0.9rem] py-[0.6rem] w-full items-center bg-[#EBEBEE] rounded-[0.6rem] md:mt-5">
-                <span class="material-symbols-outlined mr-[0.5rem] text-[#363B58] text-[0.1px]">search</span>
+                <span class="material-symbols-outlined mr-2 text-[#363B58] text-[0.1px]">search</span>
                 <!-- GANTI UKURAN LOGO -->
                 <input
-                    class="flex border-none font-normal rounded-[8px] flex-grow p-[0] placeholder-[#363B58] text-[0.8rem] text-[#363B58] cursor-pointer outline-[none] bg-transparent md:px-[16px] md:py-[12px] md:text-[1.2rem]"
+                    class="flex border-none font-normal rounded-lg grow p-0 placeholder-[#363B58] text-[0.8rem] text-[#363B58] cursor-pointer outline-[none] bg-transparent md:px-4 md:py-3 md:text-[1.2rem]"
                     type="text" placeholder="Mau Pergi Kemana">
                 <button
-                    class="bg-[#F2994A] border-none flex px-[1.25rem] py-[0.4rem] rounded-[0.3rem] text-[0.75rem] text-[#363B58] justify-center items-center font-bold cursor-pointer w-[fit-content] hover:text-[#363B58] md:text-[1.25rem]/[1.5rem] md:py-[0.7rem] md:px-[2rem]">
+                    class="bg-[#F2994A] border-none flex px-5 py-[0.4rem] rounded-[0.3rem] text-[0.75rem] text-[#363B58] justify-center items-center font-bold cursor-pointer w-fit hover:text-[#363B58] md:text-[1.25rem]/[1.5rem] md:py-[0.7rem] md:px-8">
                     <p>Telusuri</p>
                 </button>
             </div>
@@ -43,10 +43,10 @@
         <!-- HERO RIGHT -->
         <div class="flex align-stretch relative overflow-hidden w-full md:w-[50vw] md:h-full ">
             <img src="assets/img/180 Cafe - Bandung 1.png" alt="cafe"
-                class="w-full object-cover block [box-shadow:0_10px_25px_rgba(0,_0,_0,_0.1)] h-40 rounded-lg md:h-[24rem]">
+                class="w-full object-cover block [box-shadow:0,10px,25px,rgba(0,0,0,0.1)] h-40 rounded-lg md:h-96">
 
             <div
-                class="absolute flex justify-between items-center bottom-[0.8rem] left-[0] right-[0] p-[0.8rem] text-[white] mx-[1rem] rounded-lg bg-[rgba(255,_255,_255,_0.80)] backdrop-filter backdrop-blur-[5px] md:px-[1rem] md:py-[1rem]">
+                class="absolute flex justify-between items-center bottom-[0.8rem] left-0 right-0 p-[0.8rem] text-[white] mx-4 rounded-lg bg-[rgba(255,255,255,0.80)] backdrop-filter backdrop-blur-[5px] md:px-4 md:py-4">
                 <div class="flex flex-col gap-[0.1rem] md:gap-[0.3rem]">
                     <p class="text-[0.6rem] font-[Poppins] text-[#fbb45e] font-bold md:text-[1rem]/[120%]">SEDANG
                         TRENDING</p>
@@ -65,13 +65,13 @@
 
     <!-- SECTION KONDISI -->
     <section
-        class="flex justify-between flex-col items-center gap-[10px] p-[20px] bg-[#363b58] rounded-[15px] text-[#D9D9D9] md:flex-row md:px-[1.25rem] md:py-[0.8rem] md:gap-[15px]">
+        class="flex justify-between flex-col items-center gap-2.5 p-4.5 bg-[#363b58] rounded-[15px] text-[#D9D9D9] md:flex-row md:px-5 md:py-[0.8rem] md:gap-[15px]">
         <h3 class="text-[#EBEBEE] font-[Poppins] font-semibold text-[0.8rem] md:text-[1.25rem]">Kondisi Tempat</h3>
         <!-- KONDISI TEMPAT -->
         <div
-            class="max-w-[10rem] flex flex-col gap-[0.6rem] mt-[0.4rem] md:flex-row md:max-w-[100rem] md:gap-[2rem]">
-            <div class="flex items-center gap-[10px] justify-items-center w-[fit-content]">
-                <div class="flex rounded-[50%] bg-[#fff] w-[2rem] h-[2rem] items-center justify-center md:w-[2.5rem] md:h-[2.5rem]">
+            class="max-w-40 flex flex-col gap-[0.6rem] mt-[0.4rem] md:flex-row md:max-w-400 md:gap-8">
+            <div class="flex items-center gap-2.5 justify-items-center w-fit">
+                <div class="flex rounded-[50%] bg-white w-8 h-8 items-center justify-center md:w-10 md:h-10">
                     <span class="material-symbols-outlined text-[#363B58]">
                         coffee
                     </span>
@@ -83,8 +83,8 @@
                     <h2 class="text-[#EBEBEE] font-[Poppins] font-bold text-[1rem]">Masih Sepi</h2>
                 </div>
             </div>
-            <div class="flex items-center gap-[10px] justify-items-center w-[fit-content]">
-                <div class="flex rounded-[50%] bg-[#fff] w-[2rem] h-[2rem] items-center justify-center md:w-[2.5rem] md:h-[2.5rem]">
+            <div class="flex items-center gap-2.5 justify-items-center w-fit">
+                <div class="flex rounded-[50%] bg-white w-8 h-8 items-center justify-center md:w-10 md:h-10">
                     <span class="material-symbols-outlined text-[#363B58]">
                         bakery_dining
                     </span>
@@ -96,8 +96,8 @@
                     <h2 class="text-[#EBEBEE] font-[Poppins] font-bold text-[1rem]">Ramai</h2>
                 </div>
             </div>
-            <div class="flex items-center gap-[10px] justify-items-center w-[fit-content]">
-                <div class="flex rounded-[50%] bg-[#fff] w-[2rem] h-[2rem] items-center justify-center md:w-[2.5rem] md:h-[2.5rem]">
+            <div class="flex items-center gap-2.5 justify-items-center w-fit">
+                <div class="flex rounded-[50%] bg-white w-8 h-8 items-center justify-center md:w-10 md:h-10">
                     <span class="material-symbols-outlined text-[#363B58]">
                         fork_spoon
                     </span>
@@ -112,340 +112,169 @@
         </div>
 
         <button
-            class="bg-[#fbb45e] px-[1.25rem] py-[0.4rem] rounded-[0.3rem] border-none outline-none cursor-pointer flex items-center content-center hover:text-[#E2A255] md:px-[15px] md:py-[10px] px-[20px] py-[7px]">
+            class="bg-[#fbb45e] px-[20-px] py-[0.4rem] rounded-[0.3rem] border-none outline-none cursor-pointer flex items-center content-center hover:text-[#E2A255] md:px-[15px] md:py-2.5">
             <p class="text-[0.8rem] text-[#363B58] font-bold font-[Poppins] md:text-[1rem]">Lihat Semua Lokasi
             </p>
         </button>
     </section>
 </section>
 
-    <!-- KENAPA LOCANA DESKTOP -->
-<section class="hidden px-6 py-4 md:px-[30px] md:py-0 flex flex-col gap-2 md:mb-15 md:gap-5 md:block">
-    <!-- Header Kenapa -->
-    <div class="flex flex-col gap-1 items-center">
-        <h1 class="font-[Poppins] text-[#363B58] text-[1rem]/[1.5rem] font-bold  md:text-[2.5rem]/[3rem]">
-            Kenapa Harus <span
-                class="font-[Poppins] text-[#fbb45e] text-[1rem]/[1.5rem] font-bold  md:text-[2.5rem]/[3rem]">
-                Locana?</span>
-        </h1>
-        <p class="text-[0.6rem]/[120%] text-center md:text-[1rem]/[120%] md:max-w-[42rem]">Locana membantu kamu
-            menemukan tempat hangout terbaik di Bandung
-            dengan cepat dan mudah. Jelajahi berbagai kafe dan spot nongkrong yang sesuai dengan mood dan
-            aktivitasmu.</p>
-    </div>
+<!-- KENAPA LOCANA DESKTOP -->
+<section class="hidden px-6 py-4 md:px-[30px] md:py-0 md:flex md:flex-col md:gap-5 md:mb-15">
+</section>
+<!-- Header Kenapa -->
+<div class="flex flex-col gap-1 items-center">
+    <h1 class="font-[Poppins] text-[#363B58] text-[1rem]/[1.5rem] font-bold  md:text-[2.5rem]/[3rem]">
+        Kenapa Harus <span
+            class="font-[Poppins] text-[#fbb45e] text-[1rem]/[1.5rem] font-bold  md:text-[2.5rem]/[3rem]">
+            Locana?</span>
+    </h1>
+    <p class="text-[0.6rem]/[120%] text-center md:text-[1rem]/[120%] md:max-w-2xl">Locana membantu kamu
+        menemukan tempat hangout terbaik di Bandung
+        dengan cepat dan mudah. Jelajahi berbagai kafe dan spot nongkrong yang sesuai dengan mood dan
+        aktivitasmu.</p>
+</div>
 
-    <!-- Content Kenapa -->
-    <div class="flex flex-row flex-wrap justify-center">
-        <div class="w-1/2 p-2 md:w-1/5">
-            <div
-                class="flex flex-col justify-between min-h-[7.5rem] md:min-h-[10rem] w-full border-2 p-[0.6rem] rounded-[0.6rem] border-[#E2E8F0] bg-white">
-                <div class="p-2 bg-[#363B58] w-fit rounded-full flex items-center justify-center ">
-                    <span class="material-symbols-outlined text-[#FBB45E]"
-                        style="font-size: 1.5rem;">wifi_tethering</span>
-                </div>
-                <div class="flex flex-col gap-1">
-                    <h1 class="text-[0.6rem]/[120%] md:text-[0.9rem] font-bold">Update Kondisi Tempat</h1>
-                    <p class="text-[0.5rem]/[120%] md:text-[0.8rem]">Lihat kondisi terkini seperti ramai, sepi, atau
-                        penuh.</p>
-                </div>
+<!-- Content Kenapa -->
+<div class="flex flex-row flex-wrap justify-center">
+    <div class="w-1/2 p-2 md:w-1/5">
+        <div
+            class="flex flex-col justify-between min-h-30 md:min-h-40 w-full border-2 p-[0.6rem] rounded-[0.6rem] border-[#E2E8F0] bg-white">
+            <div class="p-2 bg-[#363B58] w-fit rounded-full flex items-center justify-center ">
+                <span class="material-symbols-outlined text-[#FBB45E]"
+                    style="font-size: 1.5rem;">wifi_tethering</span>
             </div>
-        </div>
-        <div class="w-1/2 p-2 md:w-1/5">
-            <div
-                class="flex flex-col justify-between min-h-[7.5rem] md:min-h-[10rem] w-full border-2 p-[0.6rem] rounded-[0.6rem] border-[#E2E8F0] bg-white">
-                <div class="p-2 bg-[#363B58] w-fit rounded-full flex items-center justify-center ">
-                    <span class="material-symbols-outlined text-[#FBB45E]"
-                        style="font-size: 1.5rem;">star</span>
-                </div>
-                <div class="flex flex-col gap-1">
-                    <h1 class="text-[0.6rem]/[120%] md:text-[0.9rem] font-bold ">Review Tempat</h1>
-                    <p class="text-[0.5rem]/[120%] md:text-[0.8rem]">Baca dan bagikan pengalamanmu tentang suatu
-                        tempat.</p>
-                </div>
-            </div>
-        </div>
-        <div class="w-1/2 p-2 md:w-1/5">
-            <div
-                class="flex flex-col justify-between min-h-[7.5rem] md:min-h-[10rem] w-full border-2 p-[0.6rem] rounded-[0.6rem] border-[#E2E8F0] bg-white">
-                <div class="p-2 bg-[#363B58] w-fit rounded-full flex items-center justify-center ">
-                    <span class="material-symbols-outlined text-[#FBB45E]"
-                        style="font-size: 1.5rem;">filter_list</span>
-                </div>
-                <div class="flex flex-col gap-1">
-                    <h1 class="text-[0.6rem]/[120%] md:text-[0.9rem] font-bold ">Cari Tempat Sesuai Preferensimu
-                    </h1>
-                    <p class="text-[0.5rem]/[120%] md:text-[0.8rem]">Temukan tempat berdasarkan kebutuhan dan
-                        preferensi kamu.</p>
-                </div>
-            </div>
-        </div>
-        <div class="w-1/2 p-2 md:w-1/5">
-            <div
-                class="flex flex-col justify-between min-h-[7.5rem] md:min-h-[10rem] w-full border-2 p-[0.6rem]  rounded-[0.6rem] border-[#E2E8F0] bg-white">
-                <div class="p-2 bg-[#363B58] w-fit rounded-full flex items-center justify-center ">
-                    <span class="material-symbols-outlined text-[#FBB45E]"
-                        style="font-size: 1.5rem;">mood</span>
-                </div>
-                <div class="flex flex-col gap-1">
-                    <h1 class="text-[0.6rem]/[120%] md:text-[0.9rem] font-bold ">Rekomendasi sesuai Mood</h1>
-                    <p class="text-[0.5rem]/[120%] md:text-[0.8rem]">Dapatkan rekomendasi tempat berdasarkan suasana
-                        hatimu.</p>
-                </div>
-            </div>
-        </div>
-        <div class="w-1/2 p-2 md:w-1/5">
-            <div
-                class="flex flex-col justify-between min-h-[7.5rem] md:min-h-[10rem] w-full border-2 p-[0.6rem] rounded-[0.6rem] border-[#E2E8F0] bg-white">
-                <div class="p-2 bg-[#363B58] w-fit rounded-full flex items-center justify-center ">
-                    <span class="material-symbols-outlined text-[#FBB45E]"
-                        style="font-size: 1.5rem;">favorite</span>
-                </div>
-                <div class="flex flex-col gap-1">
-                    <h1 class="text-[0.6rem]/[120%] md:text-[0.9rem] font-bold ">Tambahkan ke Wishlist</h1>
-                    <p class="text-[0.5rem]/[120%] md:text-[0.8rem]">Simpan tempat favorit untuk dikunjungi nanti.
-                    </p>
-                </div>
+            <div class="flex flex-col gap-1">
+                <h1 class="text-[0.6rem]/[120%] md:text-[0.9rem] font-bold">Update Kondisi Tempat</h1>
+                <p class="text-[0.5rem]/[120%] md:text-[0.8rem]">Lihat kondisi terkini seperti ramai, sepi, atau
+                    penuh.</p>
             </div>
         </div>
     </div>
+    <div class="w-1/2 p-2 md:w-1/5">
+        <div
+            class="flex flex-col justify-between min-h-30 md:min-h-40 w-full border-2 p-[0.6rem] rounded-[0.6rem] border-[#E2E8F0] bg-white">
+            <div class="p-2 bg-[#363B58] w-fit rounded-full flex items-center justify-center ">
+                <span class="material-symbols-outlined text-[#FBB45E]"
+                    style="font-size: 1.5rem;">star</span>
+            </div>
+            <div class="flex flex-col gap-1">
+                <h1 class="text-[0.6rem]/[120%] md:text-[0.9rem] font-bold ">Review Tempat</h1>
+                <p class="text-[0.5rem]/[120%] md:text-[0.8rem]">Baca dan bagikan pengalamanmu tentang suatu
+                    tempat.</p>
+            </div>
+        </div>
+    </div>
+    <div class="w-1/2 p-2 md:w-1/5">
+        <div
+            class="flex flex-col justify-between min-h-30 md:min-h-40 w-full border-2 p-[0.6rem] rounded-[0.6rem] border-[#E2E8F0] bg-white">
+            <div class="p-2 bg-[#363B58] w-fit rounded-full flex items-center justify-center ">
+                <span class="material-symbols-outlined text-[#FBB45E]"
+                    style="font-size: 1.5rem;">filter_list</span>
+            </div>
+            <div class="flex flex-col gap-1">
+                <h1 class="text-[0.6rem]/[120%] md:text-[0.9rem] font-bold ">Cari Tempat Sesuai Preferensimu
+                </h1>
+                <p class="text-[0.5rem]/[120%] md:text-[0.8rem]">Temukan tempat berdasarkan kebutuhan dan
+                    preferensi kamu.</p>
+            </div>
+        </div>
+    </div>
+    <div class="w-1/2 p-2 md:w-1/5">
+        <div
+            class="flex flex-col justify-between min-h-30 md:min-h-40 w-full border-2 p-[0.6rem]  rounded-[0.6rem] border-[#E2E8F0] bg-white">
+            <div class="p-2 bg-[#363B58] w-fit rounded-full flex items-center justify-center ">
+                <span class="material-symbols-outlined text-[#FBB45E]"
+                    style="font-size: 1.5rem;">mood</span>
+            </div>
+            <div class="flex flex-col gap-1">
+                <h1 class="text-[0.6rem]/[120%] md:text-[0.9rem] font-bold ">Rekomendasi sesuai Mood</h1>
+                <p class="text-[0.5rem]/[120%] md:text-[0.8rem]">Dapatkan rekomendasi tempat berdasarkan suasana
+                    hatimu.</p>
+            </div>
+        </div>
+    </div>
+    <div class="w-1/2 p-2 md:w-1/5">
+        <div
+            class="flex flex-col justify-between min-h-30 md:min-h-40 w-full border-2 p-[0.6rem] rounded-[0.6rem] border-[#E2E8F0] bg-white">
+            <div class="p-2 bg-[#363B58] w-fit rounded-full flex items-center justify-center ">
+                <span class="material-symbols-outlined text-[#FBB45E]"
+                    style="font-size: 1.5rem;">favorite</span>
+            </div>
+            <div class="flex flex-col gap-1">
+                <h1 class="text-[0.6rem]/[120%] md:text-[0.9rem] font-bold ">Tambahkan ke Wishlist</h1>
+                <p class="text-[0.5rem]/[120%] md:text-[0.8rem]">Simpan tempat favorit untuk dikunjungi nanti.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 </section>
 
 <!-- POPULER -->
 <section class="px-6 py-4 md:px-[30px] md:py-0 flex flex-col gap-2 md:mb-15">
-    <!-- Header Populer -->
     <div class="flex flex-row justify-between items-center">
-        <h1 class="font-[Poppins] text-[#363B58] text-[1rem]/[1.5rem] font-bold  md:text-[2.5rem]/[3rem]">
-            Populer di <span
-                class="font-[Poppins] text-[#fbb45e] text-[1rem]/[1.5rem] font-bold  md:text-[2.5rem]/[3rem]">Bandung</span>
+        <h1 class="font-[Poppins] text-[#363B58] text-[1rem]/[1.5rem] font-bold md:text-[2.5rem]/[3rem]">
+            Populer di <span class="font-[Poppins] text-[#fbb45e] text-[1rem]/[1.5rem] font-bold md:text-[2.5rem]/[3rem]">Bandung</span>
         </h1>
-        <button
-            class="bg-[#fbb45e] px-[1.25rem] py-[0.4rem] rounded-[0.3rem] border-none outline-none cursor-pointer flex items-center content-center hover:text-[#E2A255] md:px-[15px] md:py-[10px] px-[20px] py-[7px]">
+        <button class="bg-[#fbb45e] px-5 rounded-[0.3rem] border-none outline-none cursor-pointer flex items-center content-center hover:text-[#E2A255] md:px-[15px] md:py-2.5 py-[7px]">
             <p class="text-[0.8rem] text-[#363B58] font-bold font-[Poppins] md:text-[1rem]">Lihat Semua</p>
         </button>
     </div>
 
-    <!-- Content Populer -->
-    <div class="flex gap-[0.6rem] overflow-x-auto">
-        <div
-            class="bg-white rounded-xl shadow-md w-[43vw] flex-shrink-0 border border-gray-100 p-4 hover:shadow-lg transition md:w-fit">
-            <div style="position: relative; margin-bottom: 12px;">
-                <img src="assets/img/180 Cafe - Bandung 1.png"
-                    style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px;">
-                <button
-                    onclick="this.classList.toggle('bg-[#FBB45E]'); this.classList.toggle('text-[#363B58]'); this.classList.toggle('bg-[#FFF8EF]'); this.classList.toggle('text-[#FBB45E]');"
-                    class="wishlist-btn absolute top-2 right-2 bg-[#FFF8EF] text-[#FBB45E] rounded-full w-fit p-[0.3rem] flex items-center justify-center shadow-md cursor-pointer transition-all duration-200"
-                    style="font-variation-settings: 'FILL' 1;">
-                    <span class="material-symbols-outlined" style="font-size: 1rem;">bookmark</span>
-                </button>
-            </div>
+    <div class="flex gap-[0.6rem] overflow-x-auto py-2">
+        @forelse($tempatPopuler as $tempat)
+            <div class="bg-white rounded-xl shadow-md w-[43vw] shrink-0 border border-gray-100 p-4 hover:shadow-lg transition md:w-[280px]">
+                
+                <div style="position: relative; margin-bottom: 12px;">
+                    <img src="{{ $tempat->gambar ? asset('storage/' . $tempat->gambar) : asset('assets/img/180 Cafe - Bandung 1.png') }}" 
+                         alt="{{ $tempat->nama_tempat }}"
+                         style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px;">
+                    
+                    <button onclick="this.classList.toggle('bg-[#FBB45E]'); this.classList.toggle('text-[#363B58]'); this.classList.toggle('bg-[#FFF8EF]'); this.classList.toggle('text-[#FBB45E]');"
+                            class="wishlist-btn absolute top-2 right-2 bg-[#FFF8EF] text-[#FBB45E] rounded-full w-fit p-[0.3rem] flex items-center justify-center shadow-md cursor-pointer transition-all duration-200"
+                            style="font-variation-settings: 'FILL' 1;">
+                        <span class="material-symbols-outlined" style="font-size: 1rem;">bookmark</span>
+                    </button>
+                </div>
 
-            <div class="flex justify-between items-center">
-                <span class="text-[#FBB45E] font-[Poppins] font-bold text-[0.6rem]">CAFE</span>
-                <div class="flex items-center gap-1 text-sm">
-                    <span class="material-symbols-outlined text-yellow-400"
-                        style="font-variation-settings: 'FILL' 1; font-size: 0.8rem">kid_star</span>
-                    <span class="text-[0.6rem] font-[Poppins]">4.5 (20)</span>
+                <div class="flex justify-between items-center">
+                    <span class="text-[#FBB45E] font-[Poppins] font-bold text-[0.6rem] uppercase">
+                        {{ $tempat->kategori->nama_kategori ?? 'CAFE' }}
+                    </span>
+                    <div class="flex items-center gap-1 text-sm">
+                        <span class="material-symbols-outlined text-yellow-400" style="font-variation-settings: 'FILL' 1; font-size: 0.8rem">kid_star</span>
+                        <span class="text-[0.6rem] font-[Poppins]">{{ $tempat->rating ?? '4.5' }} ({{ $tempat->total_review ?? '20' }})</span>
+                    </div>
+                </div>
+                
+                <h4 class="font-bold text-[0.8rem] mt-1 line-clamp-1">{{ $tempat->nama_tempat }}</h4>
+                
+                <div class="flex items-center gap-1 text-gray-500 text-[0.6rem] mt-1">
+                    <span class="material-symbols-outlined text-sm" style="font-size: 0.8rem">location_on</span>
+                    <span class="line-clamp-1">{{ $tempat->alamat_lengkap ?? 'Bandung' }}</span>
+                </div>
+                
+                <div class="flex items-center gap-1 text-gray-500 text-[0.6rem] mt-1">
+                    <span class="material-symbols-outlined text-sm" style="font-size: 0.8rem">payments</span>
+                    <span>Rp{{ number_format($tempat->harga_min, 0, ',', '.') }} - Rp{{ number_format($tempat->harga_max, 0, ',', '.') }}</span>
+                </div>
+                
+                <div class="flex items-center gap-2 mt-4">
+                    <button class="flex-1 bg-gray-800 text-[#FBB45E] py-2 font-[Poppins] rounded-full text-[0.6rem] font-medium flex items-center justify-center gap-1 hover:bg-gray-700 transition">
+                        <span class="material-symbols-outlined text-sm" style="font-size: 1rem">location_on</span>
+                        Lihat Lokasi
+                    </button>
+                    <button class="share-btn bg-[#FBB45E] hover:bg-[#E2A255] text-[#363B58] flex items-center justify-center p-2 rounded-full transition">
+                        <span class="material-symbols-outlined" style="font-size: 1rem">share</span>
+                    </button>
                 </div>
             </div>
-            <h4 class="font-bold text-[0.8rem] mt-1">Alam Cafe</h4>
-            <div class="flex items-center gap-1 text-gray-500 text-[0.6rem] mt-1">
-                <span class="material-symbols-outlined text-sm" style="font-size: 0.8rem">location_on</span>
-                <span>Ciwidey, Bandung</span>
+        @empty
+            <div class="w-full text-center py-8 text-gray-400 text-sm">
+                Belum ada tempat populer yang tersedia saat ini.
             </div>
-            <div class="flex items-center gap-1 text-gray-500 text-[0.6rem] mt-1">
-                <span class="material-symbols-outlined text-sm" style="font-size: 0.8rem">payments</span>
-                <span>Rp50.000 - Rp100.000</span>
-            </div>
-            <!-- Tombol Lihat Lokasi dan Share -->
-            <div class="flex items-center gap-2 mt-4">
-                <button
-                    class="flex-1 bg-gray-800 text-[#FBB45E] py-2 font-bold font-[Poppins] rounded-full text-[0.6rem] font-medium flex items-center justify-center gap-1 hover:bg-gray-700 transition">
-                    <span class="material-symbols-outlined text-sm" style="font-size: 1rem">location_on</span>
-                    Lihat
-                    Lokasi
-                </button>
-                <button
-                    class="share-btn bg-[#FBB45E] hover:bg-[#E2A255] text-[#363B58] flex items-center justify-center p-2 rounded-full transition">
-                    <span class="material-symbols-outlined" style="font-size: 1rem">share</span>
-                </button>
-            </div>
-        </div>
-        <div
-            class="bg-white rounded-xl shadow-md w-[43vw] flex-shrink-0 border border-gray-100 p-4 hover:shadow-lg transition md:w-fit">
-            <div style="position: relative; margin-bottom: 12px;">
-                <img src="assets/img/180 Cafe - Bandung 1.png"
-                    style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px;">
-                <button
-                    onclick="this.classList.toggle('bg-[#FBB45E]'); this.classList.toggle('text-[#363B58]'); this.classList.toggle('bg-[#FFF8EF]'); this.classList.toggle('text-[#FBB45E]');"
-                    class="wishlist-btn absolute top-2 right-2 bg-[#FFF8EF] text-[#FBB45E] rounded-full w-fit p-[0.3rem] flex items-center justify-center shadow-md cursor-pointer transition-all duration-200"
-                    style="font-variation-settings: 'FILL' 1;">
-                    <span class="material-symbols-outlined" style="font-size: 1rem;">bookmark</span>
-                </button>
-            </div>
-
-            <div class="flex justify-between items-center">
-                <span class="text-[#FBB45E] font-[Poppins] font-bold text-[0.6rem]">CAFE</span>
-                <div class="flex items-center gap-1 text-sm">
-                    <span class="material-symbols-outlined text-yellow-400"
-                        style="font-variation-settings: 'FILL' 1; font-size: 0.8rem">kid_star</span>
-                    <span class="text-[0.6rem] font-[Poppins]">4.5 (20)</span>
-                </div>
-            </div>
-            <h4 class="font-bold text-[0.8rem] mt-1">Alam Cafe</h4>
-            <div class="flex items-center gap-1 text-gray-500 text-[0.6rem] mt-1">
-                <span class="material-symbols-outlined text-sm" style="font-size: 0.8rem">location_on</span>
-                <span>Ciwidey, Bandung</span>
-            </div>
-            <div class="flex items-center gap-1 text-gray-500 text-[0.6rem] mt-1">
-                <span class="material-symbols-outlined text-sm" style="font-size: 0.8rem">payments</span>
-                <span>Rp50.000 - Rp100.000</span>
-            </div>
-            <!-- Tombol Lihat Lokasi dan Share -->
-            <div class="flex items-center gap-2 mt-4">
-                <button
-                    class="flex-1 bg-gray-800 text-[#FBB45E] py-2 font-bold font-[Poppins] rounded-full text-[0.6rem] font-medium flex items-center justify-center gap-1 hover:bg-gray-700 transition">
-                    <span class="material-symbols-outlined text-sm" style="font-size: 1rem">location_on</span>
-                    Lihat
-                    Lokasi
-                </button>
-                <button
-                    class="share-btn bg-[#FBB45E] hover:bg-[#E2A255] text-[#363B58] flex items-center justify-center p-2 rounded-full transition">
-                    <span class="material-symbols-outlined" style="font-size: 1rem">share</span>
-                </button>
-            </div>
-        </div>
-        <div
-            class="bg-white rounded-xl shadow-md w-[43vw] flex-shrink-0 border border-gray-100 p-4 hover:shadow-lg transition md:w-fit">
-            <div style="position: relative; margin-bottom: 12px;">
-                <img src="assets/img/180 Cafe - Bandung 1.png"
-                    style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px;">
-                <button
-                    onclick="this.classList.toggle('bg-[#FBB45E]'); this.classList.toggle('text-[#363B58]'); this.classList.toggle('bg-[#FFF8EF]'); this.classList.toggle('text-[#FBB45E]');"
-                    class="wishlist-btn absolute top-2 right-2 bg-[#FFF8EF] text-[#FBB45E] rounded-full w-fit p-[0.3rem] flex items-center justify-center shadow-md cursor-pointer transition-all duration-200"
-                    style="font-variation-settings: 'FILL' 1;">
-                    <span class="material-symbols-outlined" style="font-size: 1rem;">bookmark</span>
-                </button>
-            </div>
-
-            <div class="flex justify-between items-center">
-                <span class="text-[#FBB45E] font-[Poppins] font-bold text-[0.6rem]">CAFE</span>
-                <div class="flex items-center gap-1 text-sm">
-                    <span class="material-symbols-outlined text-yellow-400"
-                        style="font-variation-settings: 'FILL' 1; font-size: 0.8rem">kid_star</span>
-                    <span class="text-[0.6rem] font-[Poppins]">4.5 (20)</span>
-                </div>
-            </div>
-            <h4 class="font-bold text-[0.8rem] mt-1">Alam Cafe</h4>
-            <div class="flex items-center gap-1 text-gray-500 text-[0.6rem] mt-1">
-                <span class="material-symbols-outlined text-sm" style="font-size: 0.8rem">location_on</span>
-                <span>Ciwidey, Bandung</span>
-            </div>
-            <div class="flex items-center gap-1 text-gray-500 text-[0.6rem] mt-1">
-                <span class="material-symbols-outlined text-sm" style="font-size: 0.8rem">payments</span>
-                <span>Rp50.000 - Rp100.000</span>
-            </div>
-            <!-- Tombol Lihat Lokasi dan Share -->
-            <div class="flex items-center gap-2 mt-4">
-                <button
-                    class="flex-1 bg-gray-800 text-[#FBB45E] py-2 font-bold font-[Poppins] rounded-full text-[0.6rem] font-medium flex items-center justify-center gap-1 hover:bg-gray-700 transition">
-                    <span class="material-symbols-outlined text-sm" style="font-size: 1rem">location_on</span>
-                    Lihat
-                    Lokasi
-                </button>
-                <button
-                    class="share-btn bg-[#FBB45E] hover:bg-[#E2A255] text-[#363B58] flex items-center justify-center p-2 rounded-full transition">
-                    <span class="material-symbols-outlined" style="font-size: 1rem">share</span>
-                </button>
-            </div>
-        </div>
-        <div
-            class="bg-white rounded-xl shadow-md w-[43vw] flex-shrink-0 border border-gray-100 p-4 hover:shadow-lg transition md:w-fit">
-            <div style="position: relative; margin-bottom: 12px;">
-                <img src="assets/img/180 Cafe - Bandung 1.png"
-                    style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px;">
-                <button
-                    onclick="this.classList.toggle('bg-[#FBB45E]'); this.classList.toggle('text-[#363B58]'); this.classList.toggle('bg-[#FFF8EF]'); this.classList.toggle('text-[#FBB45E]');"
-                    class="wishlist-btn absolute top-2 right-2 bg-[#FFF8EF] text-[#FBB45E] rounded-full w-fit p-[0.3rem] flex items-center justify-center shadow-md cursor-pointer transition-all duration-200"
-                    style="font-variation-settings: 'FILL' 1;">
-                    <span class="material-symbols-outlined" style="font-size: 1rem;">bookmark</span>
-                </button>
-            </div>
-
-            <div class="flex justify-between items-center">
-                <span class="text-[#FBB45E] font-[Poppins] font-bold text-[0.6rem]">CAFE</span>
-                <div class="flex items-center gap-1 text-sm">
-                    <span class="material-symbols-outlined text-yellow-400"
-                        style="font-variation-settings: 'FILL' 1; font-size: 0.8rem">kid_star</span>
-                    <span class="text-[0.6rem] font-[Poppins]">4.5 (20)</span>
-                </div>
-            </div>
-            <h4 class="font-bold text-[0.8rem] mt-1">Alam Cafe</h4>
-            <div class="flex items-center gap-1 text-gray-500 text-[0.6rem] mt-1">
-                <span class="material-symbols-outlined text-sm" style="font-size: 0.8rem">location_on</span>
-                <span>Ciwidey, Bandung</span>
-            </div>
-            <div class="flex items-center gap-1 text-gray-500 text-[0.6rem] mt-1">
-                <span class="material-symbols-outlined text-sm" style="font-size: 0.8rem">payments</span>
-                <span>Rp50.000 - Rp100.000</span>
-            </div>
-            <!-- Tombol Lihat Lokasi dan Share -->
-            <div class="flex items-center gap-2 mt-4">
-                <button
-                    class="flex-1 bg-gray-800 text-[#FBB45E] py-2 font-bold font-[Poppins] rounded-full text-[0.6rem] font-medium flex items-center justify-center gap-1 hover:bg-gray-700 transition">
-                    <span class="material-symbols-outlined text-sm" style="font-size: 1rem">location_on</span>
-                    Lihat
-                    Lokasi
-                </button>
-                <button
-                    class="share-btn bg-[#FBB45E] hover:bg-[#E2A255] text-[#363B58] flex items-center justify-center p-2 rounded-full transition">
-                    <span class="material-symbols-outlined" style="font-size: 1rem">share</span>
-                </button>
-            </div>
-        </div>
-        <div
-            class="bg-white rounded-xl shadow-md w-[43vw] flex-shrink-0 border border-gray-100 p-4 hover:shadow-lg transition md:w-fit">
-            <div style="position: relative; margin-bottom: 12px;">
-                <img src="assets/img/180 Cafe - Bandung 1.png"
-                    style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px;">
-                <button
-                    onclick="this.classList.toggle('bg-[#FBB45E]'); this.classList.toggle('text-[#363B58]'); this.classList.toggle('bg-[#FFF8EF]'); this.classList.toggle('text-[#FBB45E]');"
-                    class="wishlist-btn absolute top-2 right-2 bg-[#FFF8EF] text-[#FBB45E] rounded-full w-fit p-[0.3rem] flex items-center justify-center shadow-md cursor-pointer transition-all duration-200"
-                    style="font-variation-settings: 'FILL' 1;">
-                    <span class="material-symbols-outlined" style="font-size: 1rem;">bookmark</span>
-                </button>
-            </div>
-
-            <div class="flex justify-between items-center">
-                <span class="text-[#FBB45E] font-[Poppins] font-bold text-[0.6rem]">CAFE</span>
-                <div class="flex items-center gap-1 text-sm">
-                    <span class="material-symbols-outlined text-yellow-400"
-                        style="font-variation-settings: 'FILL' 1; font-size: 0.8rem">kid_star</span>
-                    <span class="text-[0.6rem] font-[Poppins]">4.5 (20)</span>
-                </div>
-            </div>
-            <h4 class="font-bold text-[0.8rem] mt-1">Alam Cafe</h4>
-            <div class="flex items-center gap-1 text-gray-500 text-[0.6rem] mt-1">
-                <span class="material-symbols-outlined text-sm" style="font-size: 0.8rem">location_on</span>
-                <span>Ciwidey, Bandung</span>
-            </div>
-            <div class="flex items-center gap-1 text-gray-500 text-[0.6rem] mt-1">
-                <span class="material-symbols-outlined text-sm" style="font-size: 0.8rem">payments</span>
-                <span>Rp50.000 - Rp100.000</span>
-            </div>
-            <!-- Tombol Lihat Lokasi dan Share -->
-            <div class="flex items-center gap-2 mt-4">
-                <button
-                    class="flex-1 bg-gray-800 text-[#FBB45E] py-2 font-bold font-[Poppins] rounded-full text-[0.6rem] font-medium flex items-center justify-center gap-1 hover:bg-gray-700 transition">
-                    <span class="material-symbols-outlined text-sm" style="font-size: 1rem">location_on</span>
-                    Lihat
-                    Lokasi
-                </button>
-                <button
-                    class="share-btn bg-[#FBB45E] hover:bg-[#E2A255] text-[#363B58] flex items-center justify-center p-2 rounded-full transition">
-                    <span class="material-symbols-outlined" style="font-size: 1rem">share</span>
-                </button>
-            </div>
-        </div>
+        @endforelse
     </div>
 </section>
 
@@ -460,70 +289,70 @@
     <!-- Content Rekomendasi -->
     <div class="flex gap-[0.4rem] overflow-x-auto">
         <div
-            class="flex items-center w-[7rem] h-fit gap-[10px] bg-white rounded-[0.6rem] p-[10px] border border-[#E2E8F0] shadow flex-col text-center content-center justify-center md:flex-row md:text-left md:justify-start md:w-fit">
+            class="flex items-center w-28 h-fit gap-2.5 bg-white rounded-[0.6rem] p-2.5 border border-[#E2E8F0] shadow flex-col text-center content-center justify-center md:flex-row md:text-left md:justify-start md:w-fit">
             <img src="assets/img/Hot beverage.png" class="w-[4.3rem]" alt="hotbeverage">
-            <div class="flex flex-col gap-[0.5rem]">
+            <div class="flex flex-col gap-2">
                 <h4 class="font-bold font-[Poppins] text-[0.8rem]">Chill</h4>
-                <p class="font-normal text-[0.6rem]/[120%] hidden md:block md:max-w-[11rem]">Tempat santai dengan
+                <p class="font-normal text-[0.6rem]/[120%] hidden md:block md:max-w-44">Tempat santai dengan
                     suasana tenang, cocok untuk melepas penat atau sekadar menikmati waktu sendiri.</p>
                 <div
-                    class="flex-1 bg-gray-800 text-[#FBB45E] px-[0.8rem] py-[0.4rem] font-bold font-[Poppins] rounded-lg text-[0.6rem] font-medium flex items-center justify-center gap-1 hover:bg-gray-700 transition md:hidden">
+                    class="flex-1 bg-gray-800 text-[#FBB45E] px-[0.8rem] py-[0.4rem] font-[Poppins] rounded-lg text-[0.6rem] font-medium flex items-center justify-center gap-1 hover:bg-gray-700 transition md:hidden">
                     <p>Jelajahi</p>
                     <p>></p>
                 </div>
             </div>
         </div>
         <div
-            class="flex items-center w-[7rem] h-fit gap-[10px] bg-white rounded-[0.6rem] p-[10px] border border-[#E2E8F0] shadow flex-col text-center content-center justify-center md:flex-row md:text-left md:justify-start md:w-fit">
+            class="flex items-center w-28 h-fit gap-2.5 bg-white rounded-[0.6rem] p-2.5 border border-[#E2E8F0] shadow flex-col text-center content-center justify-center md:flex-row md:text-left md:justify-start md:w-fit">
             <img src="assets/img/Teacup without handle.png" class="w-[4.3rem]" alt="hotbeverage">
-            <div class="flex flex-col gap-[0.5rem]">
+            <div class="flex flex-col gap-2">
                 <h4 class="font-bold font-[Poppins] text-[0.8rem]">Hangout</h4>
-                <p class="font-normal text-[0.6rem]/[120%] hidden md:block md:max-w-[11rem]">Tempat santai dengan
+                <p class="font-normal text-[0.6rem]/[120%] hidden md:block md:max-w-44">Tempat santai dengan
                     suasana tenang, cocok untuk melepas penat atau sekadar menikmati waktu sendiri.</p>
                 <div
-                    class="flex-1 bg-gray-800 text-[#FBB45E] px-[0.8rem] py-[0.4rem] font-bold font-[Poppins] rounded-lg text-[0.6rem] font-medium flex items-center justify-center gap-1 hover:bg-gray-700 transition md:hidden">
+                    class="flex-1 bg-gray-800 text-[#FBB45E] px-[0.8rem] py-[0.4rem] font-[Poppins] rounded-lg text-[0.6rem] font-medium flex items-center justify-center gap-1 hover:bg-gray-700 transition md:hidden">
                     <p>Jelajahi</p>
                     <p>></p>
                 </div>
             </div>
         </div>
         <div
-            class="flex items-center w-[7rem] h-fit gap-[10px] bg-white rounded-[0.6rem] p-[10px] border border-[#E2E8F0] shadow flex-col text-center content-center justify-center md:flex-row md:text-left md:justify-start md:w-fit">
+            class="flex items-center w-28 h-fit gap-2.5 bg-white rounded-[0.6rem] p-2.5 border border-[#E2E8F0] shadow flex-col text-center content-center justify-center md:flex-row md:text-left md:justify-start md:w-fit">
             <img src="assets/img/Ferris wheel.png" class="w-[4.3rem]" alt="hotbeverage">
-            <div class="flex flex-col gap-[0.5rem]">
+            <div class="flex flex-col gap-2">
                 <h4 class="font-bold font-[Poppins] text-[0.8rem]">Keluarga</h4>
-                <p class="font-normal text-[0.6rem]/[120%] hidden md:block md:max-w-[11rem]">Tempat santai dengan
+                <p class="font-normal text-[0.6rem]/[120%] hidden md:block md:max-w-44">Tempat santai dengan
                     suasana tenang, cocok untuk melepas penat atau sekadar menikmati waktu sendiri.</p>
                 <div
-                    class="flex-1 bg-gray-800 text-[#FBB45E] px-[0.8rem] py-[0.4rem] font-bold font-[Poppins] rounded-lg text-[0.6rem] font-medium flex items-center justify-center gap-1 hover:bg-gray-700 transition md:hidden">
+                    class="flex-1 bg-gray-800 text-[#FBB45E] px-[0.8rem] py-[0.4rem] font-[Poppins] rounded-lg text-[0.6rem] font-medium flex items-center justify-center gap-1 hover:bg-gray-700 transition md:hidden">
                     <p>Jelajahi</p>
                     <p>></p>
                 </div>
             </div>
         </div>
         <div
-            class="flex items-center w-[7rem] h-fit gap-[10px] bg-white rounded-[0.6rem] p-[10px] border border-[#E2E8F0] shadow flex-col text-center content-center justify-center md:flex-row md:text-left md:justify-start md:w-fit">
+            class="flex items-center w-28 h-fit gap-2.5 bg-white rounded-[0.6rem] p-2.5 border border-[#E2E8F0] shadow flex-col text-center content-center justify-center md:flex-row md:text-left md:justify-start md:w-fit">
             <img src="assets/img/red heart.png" class="w-[4.3rem]" alt="hotbeverage">
-            <div class="flex flex-col gap-[0.5rem]">
+            <div class="flex flex-col gap-2">
                 <h4 class="font-bold font-[Poppins] text-[0.8rem]">Romantis</h4>
-                <p class="font-normal text-[0.6rem]/[120%] hidden md:block md:max-w-[11rem]">Tempat santai dengan
+                <p class="font-normal text-[0.6rem]/[120%] hidden md:block md:max-w-44">Tempat santai dengan
                     suasana tenang, cocok untuk melepas penat atau sekadar menikmati waktu sendiri.</p>
                 <div
-                    class="flex-1 bg-gray-800 text-[#FBB45E] px-[0.8rem] py-[0.4rem] font-bold font-[Poppins] rounded-lg text-[0.6rem] font-medium flex items-center justify-center gap-1 hover:bg-gray-700 transition md:hidden">
+                    class="flex-1 bg-gray-800 text-[#FBB45E] px-[0.8rem] py-[0.4rem] font-[Poppins] rounded-lg text-[0.6rem] font-medium flex items-center justify-center gap-1 hover:bg-gray-700 transition md:hidden">
                     <p>Jelajahi</p>
                     <p>></p>
                 </div>
             </div>
         </div>
         <div
-            class="flex items-center w-[7rem] h-fit gap-[10px] bg-white rounded-[0.6rem] p-[10px] border border-[#E2E8F0] shadow flex-col text-center content-center justify-center md:flex-row md:text-left md:justify-start md:w-fit">
+            class="flex items-center w-28 h-fit gap-2.5 bg-white rounded-[0.6rem] p-2.5 border border-[#E2E8F0] shadow flex-col text-center content-center justify-center md:flex-row md:text-left md:justify-start md:w-fit">
             <img src="assets/img/moon.png" class="w-[4.3rem]" alt="hotbeverage">
-            <div class="flex flex-col gap-[0.5rem]">
+            <div class="flex flex-col gap-2">
                 <h4 class="font-bold font-[Poppins] text-[0.8rem]">Petualangan</h4>
-                <p class="font-normal text-[0.6rem]/[120%] hidden md:block md:max-w-[11rem]">Tempat santai dengan
+                <p class="font-normal text-[0.6rem]/[120%] hidden md:block md:max-w-44">Tempat santai dengan
                     suasana tenang, cocok untuk melepas penat atau sekadar menikmati waktu sendiri.</p>
                 <div
-                    class="flex-1 bg-gray-800 text-[#FBB45E] px-[0.8rem] py-[0.4rem] font-bold font-[Poppins] rounded-lg text-[0.6rem] font-medium flex items-center justify-center gap-1 hover:bg-gray-700 transition md:hidden">
+                    class="flex-1 bg-gray-800 text-[#FBB45E] px-[0.8rem] py-[0.4rem] font-[Poppins] rounded-lg text-[0.6rem] font-medium flex items-center justify-center gap-1 hover:bg-gray-700 transition md:hidden">
                     <p>Jelajahi</p>
                     <p>></p>
                 </div>
@@ -544,12 +373,12 @@
     </h1>
 
     <!-- Content Review -->
-    <div class="flex gap-[0.4rem] overflow-x-auto md:gap-[1rem]">
+    <div class="flex gap-[0.4rem] overflow-x-auto md:gap-4">
         <div
-            class="flex flex-col items-start w-[70vw] min-w-[70vw] bg-white rounded-[20px] p-[20px] border border-[#E2E8F0] shadow gap-[1.5rem] md:min-w-[25vw] md:max-w-[25vw]">
-            <div class="flex justify-between w-full items-center gap-[20px] w-fit">
-                <div class="flex gap-[10px] w-fit">
-                    <img src="assets/img/kenma.jpeg" class="rounded-full w-[1.8rem] md:w-[2.5rem]" alt="userpict">
+            class="flex flex-col items-start w-[70vw] min-w-[70vw] bg-white rounded-[20px] p-5 border border-[#E2E8F0] shadow gap-6 md:min-w-[25vw] md:max-w-[25vw]">
+            <div class="flex justify-between items-center gap-5 w-fit">
+                <div class="flex gap-2.5 w-fit">
+                    <img src="assets/img/kenma.jpeg" class="rounded-full w-[1.8rem] md:w-10" alt="userpict">
                     <div>
                         <h4 class="text-[0.8rem] font-semibold leading-[120%] w-fit md:text-[1rem]">KenmaKozzz
                         </h4>
@@ -562,16 +391,16 @@
             <p class="italic text-[0.7rem]/[120%]">"Tempat ini sangat bagus saya suka sekali
                 tidak sabar untuk merekomendasikan kepada yang lainnya."
             </p>
-            <div class="flex items-center gap-[5px] gap-[3px] border-t-1 w-full pt-2 border-gray-300">
+            <div class="flex items-center gap-[5px] border-t w-full pt-2 border-gray-300">
                 <span class="material-symbols-outlined text-[#FBB45E]" style="font-size: 0.8rem;">location_on</span>
                 <p class="text-[0.6rem] md:text-[0.7rem]">Kopi Senja Cafe</p>
             </div>
         </div>
         <div
-            class="flex flex-col items-start w-[70vw] min-w-[70vw] bg-white rounded-[20px] p-[20px] border border-[#E2E8F0] shadow gap-[1.5rem] md:min-w-[25vw] md:max-w-[25vw]">
-            <div class="flex justify-between w-full items-center gap-[20px] w-fit">
-                <div class="flex gap-[10px] w-fit">
-                    <img src="assets/img/kenma.jpeg" class="rounded-full w-[1.8rem] md:w-[2.5rem]" alt="userpict">
+            class="flex flex-col items-start w-[70vw] min-w-[70vw] bg-white rounded-[20px] p-5 border border-[#E2E8F0] shadow gap-6 md:min-w-[25vw] md:max-w-[25vw]">
+            <div class="flex justify-between items-center gap-5 w-fit">
+                <div class="flex gap-2.5 w-fit">
+                    <img src="assets/img/kenma.jpeg" class="rounded-full w-[1.8rem] md:w-10" alt="userpict">
                     <div>
                         <h4 class="text-[0.8rem] font-semibold leading-[120%] w-fit md:text-[1rem]">KenmaKozzz
                         </h4>
@@ -584,16 +413,16 @@
             <p class="italic text-[0.7rem]/[120%]">"Tempat ini sangat bagus saya suka sekali
                 tidak sabar untuk merekomendasikan kepada yang lainnya."
             </p>
-            <div class="flex items-center gap-[5px] gap-[3px] border-t-1 w-full pt-2 border-gray-300">
+            <div class="flex items-center gap-[5px] border-t w-full pt-2 border-gray-300">
                 <span class="material-symbols-outlined text-[#FBB45E]" style="font-size: 0.8rem;">location_on</span>
                 <p class="text-[0.6rem] md:text-[0.7rem]">Kopi Senja Cafe</p>
             </div>
         </div>
         <div
-            class="flex flex-col items-start w-[70vw] min-w-[70vw] bg-white rounded-[20px] p-[20px] border border-[#E2E8F0] shadow gap-[1.5rem] md:min-w-[25vw] md:max-w-[25vw]">
-            <div class="flex justify-between w-full items-center gap-[20px] w-fit">
-                <div class="flex gap-[10px] w-fit">
-                    <img src="assets/img/kenma.jpeg" class="rounded-full w-[1.8rem] md:w-[2.5rem]" alt="userpict">
+            class="flex flex-col items-start w-[70vw] min-w-[70vw] bg-white rounded-[20px] p-5 border border-[#E2E8F0] shadow gap-6 md:min-w-[25vw] md:max-w-[25vw]">
+            <div class="flex justify-between items-center gap-5 w-fit">
+                <div class="flex gap-2.5 w-fit">
+                    <img src="assets/img/kenma.jpeg" class="rounded-full w-[1.8rem] md:w-10" alt="userpict">
                     <div>
                         <h4 class="text-[0.8rem] font-semibold leading-[120%] w-fit md:text-[1rem]">KenmaKozzz
                         </h4>
@@ -606,16 +435,16 @@
             <p class="italic text-[0.7rem]/[120%]">"Tempat ini sangat bagus saya suka sekali
                 tidak sabar untuk merekomendasikan kepada yang lainnya."
             </p>
-            <div class="flex items-center gap-[5px] gap-[3px] border-t-1 w-full pt-2 border-gray-300">
+            <div class="flex items-center gap-[5px] border-t w-full pt-2 border-gray-300">
                 <span class="material-symbols-outlined text-[#FBB45E]" style="font-size: 0.8rem;">location_on</span>
                 <p class="text-[0.6rem] md:text-[0.7rem]">Kopi Senja Cafe</p>
             </div>
         </div>
         <div
-            class="flex flex-col items-start w-[70vw] min-w-[70vw] bg-white rounded-[20px] p-[20px] border border-[#E2E8F0] shadow gap-[1.5rem] md:min-w-[25vw] md:max-w-[25vw]">
-            <div class="flex justify-between w-full items-center gap-[20px] w-fit">
-                <div class="flex gap-[10px] w-fit">
-                    <img src="assets/img/kenma.jpeg" class="rounded-full w-[1.8rem] md:w-[2.5rem]" alt="userpict">
+            class="flex flex-col items-start w-[70vw] min-w-[70vw] bg-white rounded-[20px] p-5 border border-[#E2E8F0] shadow gap-6 md:min-w-[25vw] md:max-w-[25vw]">
+            <div class="flex justify-between items-center gap-5 w-fit">
+                <div class="flex gap-2.5 w-fit">
+                    <img src="assets/img/kenma.jpeg" class="rounded-full w-[1.8rem] md:w-10" alt="userpict">
                     <div>
                         <h4 class="text-[0.8rem] font-semibold leading-[120%] w-fit md:text-[1rem]">KenmaKozzz
                         </h4>
@@ -628,7 +457,7 @@
             <p class="italic text-[0.7rem]/[120%]">"Tempat ini sangat bagus saya suka sekali
                 tidak sabar untuk merekomendasikan kepada yang lainnya."
             </p>
-            <div class="flex items-center gap-[5px] gap-[3px] border-t-1 w-full pt-2 border-gray-300">
+            <div class="flex items-center gap-[5px] border-t w-full pt-2 border-gray-300">
                 <span class="material-symbols-outlined text-[#FBB45E]" style="font-size: 0.8rem;">location_on</span>
                 <p class="text-[0.6rem] md:text-[0.7rem]">Kopi Senja Cafe</p>
             </div>
@@ -645,7 +474,7 @@
                 class="font-[Poppins] text-[#fbb45e] text-[1rem]/[1.5rem] font-bold  md:text-[2.5rem]/[3rem]">
                 Locana?</span>
         </h1>
-        <p class="text-[0.6rem]/[120%] text-center md:text-[1rem]/[120%] md:max-w-[42rem]">Locana membantu kamu
+        <p class="text-[0.6rem]/[120%] text-center md:text-[1rem]/[120%] md:max-w-2xl">Locana membantu kamu
             menemukan tempat hangout terbaik di Bandung
             dengan cepat dan mudah. Jelajahi berbagai kafe dan spot nongkrong yang sesuai dengan mood dan
             aktivitasmu.</p>
@@ -655,7 +484,7 @@
     <div class="flex flex-row flex-wrap justify-center">
         <div class="w-1/2 p-2 md:w-1/5">
             <div
-                class="flex flex-col justify-between min-h-[7.5rem] md:min-h-[10rem] w-full border-2 p-[0.6rem] rounded-[0.6rem] border-[#E2E8F0] bg-white">
+                class="flex flex-col justify-between min-h-30 md:min-h-40 w-full border-2 p-[0.6rem] rounded-[0.6rem] border-[#E2E8F0] bg-white">
                 <div class="p-2 bg-[#363B58] w-fit rounded-full flex items-center justify-center ">
                     <span class="material-symbols-outlined text-[#FBB45E]"
                         style="font-size: 1.5rem;">wifi_tethering</span>
@@ -669,7 +498,7 @@
         </div>
         <div class="w-1/2 p-2 md:w-1/5">
             <div
-                class="flex flex-col justify-between min-h-[7.5rem] md:min-h-[10rem] w-full border-2 p-[0.6rem] rounded-[0.6rem] border-[#E2E8F0] bg-white">
+                class="flex flex-col justify-between min-h-30 md:min-h-40 w-full border-2 p-[0.6rem] rounded-[0.6rem] border-[#E2E8F0] bg-white">
                 <div class="p-2 bg-[#363B58] w-fit rounded-full flex items-center justify-center ">
                     <span class="material-symbols-outlined text-[#FBB45E]"
                         style="font-size: 1.5rem;">star</span>
@@ -683,7 +512,7 @@
         </div>
         <div class="w-1/2 p-2 md:w-1/5">
             <div
-                class="flex flex-col justify-between min-h-[7.5rem] md:min-h-[10rem] w-full border-2 p-[0.6rem] rounded-[0.6rem] border-[#E2E8F0] bg-white">
+                class="flex flex-col justify-between min-h-30 md:min-h-40 w-full border-2 p-[0.6rem] rounded-[0.6rem] border-[#E2E8F0] bg-white">
                 <div class="p-2 bg-[#363B58] w-fit rounded-full flex items-center justify-center ">
                     <span class="material-symbols-outlined text-[#FBB45E]"
                         style="font-size: 1.5rem;">filter_list</span>
@@ -698,7 +527,7 @@
         </div>
         <div class="w-1/2 p-2 md:w-1/5">
             <div
-                class="flex flex-col justify-between min-h-[7.5rem] md:min-h-[10rem] w-full border-2 p-[0.6rem]  rounded-[0.6rem] border-[#E2E8F0] bg-white">
+                class="flex flex-col justify-between min-h-30 md:min-h-40 w-full border-2 p-[0.6rem]  rounded-[0.6rem] border-[#E2E8F0] bg-white">
                 <div class="p-2 bg-[#363B58] w-fit rounded-full flex items-center justify-center ">
                     <span class="material-symbols-outlined text-[#FBB45E]"
                         style="font-size: 1.5rem;">mood</span>
@@ -712,7 +541,7 @@
         </div>
         <div class="w-1/2 p-2 md:w-1/5">
             <div
-                class="flex flex-col justify-between min-h-[7.5rem] md:min-h-[10rem] w-full border-2 p-[0.6rem] rounded-[0.6rem] border-[#E2E8F0] bg-white">
+                class="flex flex-col justify-between min-h-30 md:min-h-40 w-full border-2 p-[0.6rem] rounded-[0.6rem] border-[#E2E8F0] bg-white">
                 <div class="p-2 bg-[#363B58] w-fit rounded-full flex items-center justify-center ">
                     <span class="material-symbols-outlined text-[#FBB45E]"
                         style="font-size: 1.5rem;">favorite</span>
@@ -768,16 +597,16 @@
         </svg>
     </div>
     <div
-        class="bg-[#363B58] flex w-full flex-col justify-center items-center rounded-[20px] text-[#fefefe] py-[1rem] gap-[0.3rem] md:py-[4rem] md:px-[1.25rem] md:gap-[1rem]">
-        <h2 class="text-center text-[1rem] w-[14rem] not-italic font-bold leading-[120%] md:text-[2rem] md:w-fit">
+        class="bg-[#363B58] flex w-full flex-col justify-center items-center rounded-[20px] text-[#fefefe] py-4 gap-[0.3rem] md:py-4 md:px-5 md:gap-4">
+        <h2 class="text-center text-[1rem] w-56 not-italic font-bold leading-[120%] md:text-[2rem] md:w-fit">
             Setiap
             Momen Punya Tempatnya</h2>
-        <p class="text-center w-[16rem] text-[0.62rem]/[120%] font-normal md:text-[1rem] md:w-[30rem]">
+        <p class="text-center w-[16rem] text-[0.62rem]/[120%] font-normal md:text-[1rem] md:w-120">
             Temukan berbagai tempat hangout terbaik yang sesuai dengan mood, preferensi, dan momen kamu hari
             ini.
         </p>
 
-        <div class="flex gap-[5px] mt-[0.5rem] md:flex-row md:gap-[0.5rem] md:mt-[1rem]">
+        <div class="flex gap-[5px] mt-2 md:flex-row md:gap-2 md:mt-4">
             <button
                 class="bg-[#fbb45e] px-[15px] py-[0.3rem] flex items-center content-center rounded-[0.3rem] border-none outline-[none] cursor-pointer">
                 <span
@@ -794,8 +623,8 @@
 
 <!-- FOOTER BAWAH -->
 <footer
-    class="bg-[white] text-[#363b58] w-full py-6 h-[fit-content] mt-5 border-t-2 border-gray-300 content-center">
-    <div class="px-6 md:px-[30px] md:py-0 flex flex-col gap-2 items-center md:gap-[1rem]">
+    class="bg-[white] text-[#363b58] w-full py-6 h-fit mt-5 border-t-2 border-gray-300 content-center">
+    <div class="px-6 md:px-[30px] md:py-0 flex flex-col gap-2 items-center md:gap-4">
         <!-- LOGO -->
         <div class="flex text-[#363b58] items-center gap-1">
             <img src="assets/img/Locana_Logo 1.png" alt="logloc"
@@ -807,16 +636,16 @@
             "Setiap
             momen punya tempatnya sendiri-kami bantu kamu menemukannya dengan lebih mudah dan personal."</p>
 
-        <div class="flex justify-center mt-[0.5rem] items-start gap-[5px] md:gap-[5px]">
+        <div class="flex justify-center mt-2 items-start gap-[5px] md:gap-[5px]">
             <button
-                class="flex px-[0.6rem] py-[0.5rem] justify-center w-[75px] items-center gap-[5px] rounded-[10px] bg-[#FEF4E7] border-none cursor-pointer md:w-[fit-content] hover:bg-[#e3e1df] hover:text-[white]">
+                class="flex px-[0.6rem] py-2 justify-center w-[75px] items-center gap-[5px] rounded-[10px] bg-[#FEF4E7] border-none cursor-pointer md:w-fit hover:bg-[#e3e1df] hover:text-[white]">
                 <span class="material-symbols-outlined" style="font-size: 0.8rem;">
                     call
                 </span>
                 <span class="text-[0.6rem] md:text-[0.8rem]">Telepon</span>
             </button>
             <button
-                class="flex px-[0.6rem] py-[0.5rem] justify-center w-[75px] items-center gap-[5px] rounded-[10px] bg-[#FEF4E7] border-none cursor-pointer md:w-[fit-content] hover:bg-[#e3e1df] hover:text-[white]">
+                class="flex px-[0.6rem] py-2 justify-center w-[75px] items-center gap-[5px] rounded-[10px] bg-[#FEF4E7] border-none cursor-pointer md:w-fit hover:bg-[#e3e1df] hover:text-[white]">
                 <span class="material-symbols-outlined" style="font-size: 0.8rem;">
                     mail
                 </span>
@@ -825,7 +654,7 @@
         </div>
 
     </div>
-    <div class="w-full text-center text-[#363B58] bg-[white] mt-[1.5rem]">
+    <div class="w-full text-center text-[#363B58] bg-[white] mt-6">
         <h2 class="text-[0.6rem] font-bold leading-[120%] md:text-[0.8rem]">&copy; 2026 Locana. All right
             reserved.
         </h2>

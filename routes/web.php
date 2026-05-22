@@ -5,11 +5,12 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PlaceDetailsController;
+use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\LandingController;
 
 // ROUTE VIEW PAGES
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/welcome', [LandingController::class, 'index']);
 
 Route::get('/login', function () {
     return view('login');
@@ -27,14 +28,14 @@ Route::get('/register-nextStep', function () {
     return view('registerNext');
 });
 
-Route::get('/home', function () {
-    return view('home');
-});
+Route::post('/register-nextStep', [UserController::class, 'store']);
+Route::get('/home', [UserController::class, 'home']);
 
+
+// VIEW PAGES
 Route::get('/profile', function () {
     return view('profile');
 });
-
 Route::get('/syarat', function () {
     return view('syarat');
 });
@@ -44,20 +45,20 @@ Route::get('/syarat', function () {
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/create', [UserController::class, 'create']);
 Route::post('/users', [UserController::class, 'store']);
-
 Route::get('/users/{id}/edit', [UserController::class, 'edit']);
 Route::post('/users/{id}', [UserController::class, 'update']);
 Route::post('/users/{id}/delete', [UserController::class, 'destroy']);
 
-// ROUTE CHATBOT
+// CHATBOT
 Route::get('/chatbot', [ChatbotController::class, 'index']);
 Route::get('/chatbot/step/{key}', [ChatbotController::class, 'getStep']);
 
-//ADMIN
+// ADMIN
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 Route::get('/lokasi', [AdminController::class, 'lokasi'])->name('lokasi');
 Route::get('/tambah-lokasi', [AdminController::class, 'tambahLokasi'])->name('tambahLokasi');
 Route::get('/ulasan', [AdminController::class, 'ulasan'])->name('ulasan');
+
 Route::get('/pengguna', [AdminController::class, 'pengguna'])->name('pengguna');
 Route::get('/tambah-pengguna', [AdminController::class, 'tambahPengguna'])->name('tambahPengguna');
 Route::get('/detail-pengguna', [AdminController::class, 'viewPengguna'])->name('viewPengguna');

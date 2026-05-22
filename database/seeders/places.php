@@ -273,7 +273,7 @@ class places extends Seeder
                 'nama_tempat' => 'Trans Studio Bandung',
                 'deskripsi' => 'Trans Studio Bandung merupakan taman hiburan indoor terbesar di Bandung yang menawarkan berbagai wahana seru dan atraksi menarik. Tempat wisata ini memiliki beragam permainan, mulai dari wahana ekstrem hingga area hiburan keluarga dan anak-anak. Selain bermain, pengunjung juga dapat menikmati pertunjukan, berfoto di spot menarik, serta mencoba berbagai kuliner di dalam area wisata. Tempat ini cocok untuk rekreasi bersama keluarga maupun teman.',
                 'alamat_lengkap' => 'Trans Studio Mall, Kecamatan Batununggal, Jl. Gatot Subroto No.289A, Cibangkong, Kota Bandung, Jawa Barat 40273',
-                'latitude' => -6.925413786385778, 
+                'latitude' => -6.925413786385778,
                 'longitude' => 107.6362785941384,
                 'harga_min' => 200000,
                 'harga_max' => 500000,
@@ -299,7 +299,7 @@ class places extends Seeder
 
         foreach ($places as $place) {
             $moodId = $place['mood_id'];
-            unset($place['mood_id']); 
+            unset($place['mood_id']);
 
             $placeId = DB::table('places')->insertGetId(array_merge($place, [
                 'created_at' => now(),

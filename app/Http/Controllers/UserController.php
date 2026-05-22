@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
+use App\Models\Kategoris;
+
+
 class UserController extends Controller
 {
     public function index()
@@ -37,6 +40,13 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+
+
+        $request->validate([
+            'check' => 'required'
+        ]);
+
+
 
         $path = null;
 
@@ -94,5 +104,18 @@ class UserController extends Controller
     {
         User::destroy($id);
         return redirect('/users');
+    }
+
+    public function home()
+    {
+        // Ambil semua data kategori dari database
+        $kategoris = Kategoris::all();
+
+        $moods = \App\Models\moods::all();
+
+        $places = \App\Models\Places::all();
+
+        // Kirim data ke view home.blade.php
+        return view('home', compact('kategoris', 'moods', 'places'));
     }
 }
