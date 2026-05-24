@@ -13,9 +13,9 @@
             <p class="text-[#fbb45e] font-[Poppins] text-[0.8rem] font-semibold self-stretch md:text-[1.25rem]">
                 JELAJAHI BANDUNG</p>
             <h1
-                class="font-[Poppins] text-[#363B58] text-[1.25rem]/[1.5rem] font-bold w-full md:text-[2.5rem]/[3rem]">
+                class="font-[Poppins] text-[#363B58] text-[1.25rem]/[1.5rem] font-bold w-full md:text-3xl">
                 Temukan <span
-                    class="font-[Poppins] text-[#fbb45e] text-[1.25rem]/[1.5rem] font-bold md:text-[2.5rem]/[3rem]">
+                    class="font-[Poppins] text-[#fbb45e] text-[1.25rem]/[1.5rem] font-bold md:text-3xl">
                     Tempat
                     Nongkrong</span> Favoritmu
                 di Bandung</h1>
@@ -213,7 +213,7 @@
 </section>
 
 <!-- POPULER -->
-<section class="px-6 py-4 md:px-[30px] md:py-0 flex flex-col gap-2 md:mb-15 md:mt-4">
+<section id="populer" class="px-6 py-4 md:px-[30px] md:py-0 flex flex-col gap-2 md:mb-15 md:mt-4">
     <div class="flex flex-row justify-between items-center">
         <h1 class="font-[Poppins] text-[#363B58] text-[1rem]/[1.5rem] font-bold md:text-2xl ">
             Populer di <span class="font-[Poppins] text-[#fbb45e] text-[1rem]/[1.5rem] font-bold md:text-2xl">Bandung</span>
@@ -278,7 +278,7 @@
 </section>
 
 <!-- REKOMENDASI -->
-<section class="px-6 py-4 md:px-[30px] md:py-0 flex flex-col gap-4 md:mb-15 md:gap-5">
+<section id="mood" class="px-6 py-4 md:px-[30px] md:py-0 flex flex-col gap-4 md:mb-15 md:gap-5">
     <!-- Header Rekomendasi -->
     <h1 class="font-[Poppins] text-[#363B58] text-[1rem]/[1.5rem] font-bold  md:text-2xl">
         Rekomendasi Berdasarkan <span
@@ -364,7 +364,7 @@
 </section>
 
 <!-- REVIEW -->
-<section class="px-6 py-4 md:px-[30px] md:py-0 flex flex-col gap-4 md:mb-15 md:gap-5">
+<section id="ulasan" class="px-6 py-4 md:px-[30px] md:py-0 flex flex-col gap-4 md:mb-15 md:gap-5">
     <!-- Header Review -->
     <h1 class="font-[Poppins] text-[#363B58] text-[1rem]/[1.5rem] font-bold  md:text-2xl">
         Dengar <span class="font-[Poppins] text-[#fbb45e] text-[1rem]/[1.5rem] font-bold  md:text-2xl">

@@ -124,12 +124,6 @@
                         Daftar
                     </button>
 
-                    <p class="text-center text-sm font-semibold mb-6 mt-1
-                              max-md:text-xs max-md:mb-4">
-                        Sudah punya akun?
-                        <a class="text-orange-400 underline font-medium">Masuk</a>
-                    </p>
-
                 </form>
             </div>
         </div>

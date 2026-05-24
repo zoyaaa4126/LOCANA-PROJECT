@@ -116,12 +116,6 @@
 
                     <p id="error-msg" class="text-red-500 text-xs mt-1"></p>
 
-                    <p class="text-center text-sm font-semibold mb-6 mt-1
-                              max-md:text-xs max-md:mb-4">
-                        Belum punya akun?
-                        <a href="/register" class="text-orange-400 underline font-medium">Daftar</a>
-                    </p>
-
                 </form>
             </div>
         </div>
