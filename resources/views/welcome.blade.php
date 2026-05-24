@@ -214,8 +214,8 @@
 <!-- POPULER -->
 <section class="px-6 py-4 md:px-[30px] md:py-0 flex flex-col gap-2 md:mb-15">
     <div class="flex flex-row justify-between items-center">
-        <h1 class="font-[Poppins] text-[#363B58] text-[1rem]/[1.5rem] font-bold md:text-[2.5rem]/[3rem]">
-            Populer di <span class="font-[Poppins] text-[#fbb45e] text-[1rem]/[1.5rem] font-bold md:text-[2.5rem]/[3rem]">Bandung</span>
+        <h1 class="font-[Poppins] text-[#363B58] text-2xl font-bold md:text-[2.5rem]/[3rem]">
+            Populer di <span class="font-[Poppins] text-[#fbb45e] text-2xl font-bold md:text-[2.5rem]/[3rem]">Bandung</span>
         </h1>
         <button class="bg-[#fbb45e] px-5 rounded-[0.3rem] border-none outline-none cursor-pointer flex items-center content-center hover:text-[#E2A255] md:px-[15px] md:py-2.5 py-[7px]">
             <p class="text-[0.8rem] text-[#363B58] font-bold font-[Poppins] md:text-[1rem]">Lihat Semua</p>
@@ -234,7 +234,6 @@
                     <button onclick="this.classList.toggle('bg-[#FBB45E]'); this.classList.toggle('text-[#363B58]'); this.classList.toggle('bg-[#FFF8EF]'); this.classList.toggle('text-[#FBB45E]');"
                             class="wishlist-btn absolute top-2 right-2 bg-[#FFF8EF] text-[#FBB45E] rounded-full w-fit p-[0.3rem] flex items-center justify-center shadow-md cursor-pointer transition-all duration-200"
                             style="font-variation-settings: 'FILL' 1;">
-                        <span class="material-symbols-outlined" style="font-size: 1rem;">bookmark</span>
                     </button>
                 </div>
 
@@ -281,14 +280,17 @@
 <!-- REKOMENDASI -->
 <section class="px-6 py-4 md:px-[30px] md:py-0 flex flex-col gap-4 md:mb-15 md:gap-5">
     <!-- Header Rekomendasi -->
-    <h1 class="font-[Poppins] text-[#363B58] text-[1rem]/[1.5rem] font-bold  md:text-[2.5rem]/[3rem]">
+    <h1 class="font-[Poppins] text-[#363B58] text-2xl font-bold  md:text-[2.5rem]/[3rem]">
         Rekomendasi Berdasarkan <span
-            class="font-[Poppins] text-[#fbb45e] text-[1rem]/[1.5rem] font-bold  md:text-[2.5rem]/[3rem]">Mood</span>
+            class="font-[Poppins] text-[#fbb45e] text-2xl font-bold  md:text-[2.5rem]/[3rem]">Mood</span>
     </h1>
 
     <!-- Content Rekomendasi -->
     <div class="flex gap-[0.4rem] overflow-x-auto">
-        <div
+        @foreach ($moods as $mood)
+        <x-card-mood-landing :judul="$mood->nama"></x-card-mood-landing>
+        @endforeach
+        <!-- <div
             class="flex items-center w-28 h-fit gap-2.5 bg-white rounded-[0.6rem] p-2.5 border border-[#E2E8F0] shadow flex-col text-center content-center justify-center md:flex-row md:text-left md:justify-start md:w-fit">
             <img src="assets/img/Hot beverage.png" class="w-[4.3rem]" alt="hotbeverage">
             <div class="flex flex-col gap-2">
@@ -357,17 +359,17 @@
                     <p>></p>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </section>
 
 <!-- REVIEW -->
 <section class="px-6 py-4 md:px-[30px] md:py-0 flex flex-col gap-4 md:mb-15 md:gap-5">
     <!-- Header Review -->
-    <h1 class="font-[Poppins] text-[#363B58] text-[1rem]/[1.5rem] font-bold  md:text-[2.5rem]/[3rem]">
-        Dengar <span class="font-[Poppins] text-[#fbb45e] text-[1rem]/[1.5rem] font-bold  md:text-[2.5rem]/[3rem]">
+    <h1 class="font-[Poppins] text-[#363B58] text-2xl font-bold  md:text-[2.5rem]/[3rem]">
+        Dengar <span class="font-[Poppins] text-[#fbb45e] text-2xl font-bold  md:text-[2.5rem]/[3rem]">
             Cerita</span>
-        dari <span class="font-[Poppins] text-[#fbb45e] text-[1rem]/[1.5rem] font-bold  md:text-[2.5rem]/[3rem]">
+        dari <span class="font-[Poppins] text-[#fbb45e] text-2xl font-bold  md:text-[2.5rem]/[3rem]">
             Pengguna
             Lain</span>
     </h1>
@@ -469,9 +471,9 @@
 <section class="px-6 py-4 md:px-[30px] md:py-0 flex flex-col gap-2 md:mb-15 md:gap-5 md:hidden">
     <!-- Header Kenapa -->
     <div class="flex flex-col gap-1 items-center">
-        <h1 class="font-[Poppins] text-[#363B58] text-[1rem]/[1.5rem] font-bold  md:text-[2.5rem]/[3rem]">
+        <h1 class="font-[Poppins] text-[#363B58] text-2xl font-bold  md:text-[2.5rem]/[3rem]">
             Kenapa Harus <span
-                class="font-[Poppins] text-[#fbb45e] text-[1rem]/[1.5rem] font-bold  md:text-[2.5rem]/[3rem]">
+                class="font-[Poppins] text-[#fbb45e] text-2xl font-bold  md:text-[2.5rem]/[3rem]">
                 Locana?</span>
         </h1>
         <p class="text-[0.6rem]/[120%] text-center md:text-[1rem]/[120%] md:max-w-2xl">Locana membantu kamu

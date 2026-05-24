@@ -9,7 +9,7 @@ use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\LandingController;
 
 // ROUTE VIEW PAGES
-Route::get('/welcome', [LandingController::class, 'index']);
+Route::get('/', [LandingController::class, 'index'])->name('landing.index');
 
 //LOGIN
 Route::get('/login', function () {
