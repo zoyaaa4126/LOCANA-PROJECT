@@ -54,6 +54,8 @@
     </p>
 
     <!-- Input -->
+    <form action="/forgot-password" method="POST">
+        @csrf
     <div class="text-left mb-5
                 max-md:mb-3">
       <label class="text-sm text-[#363B58] font-semibold block mb-1
@@ -61,6 +63,7 @@
       <input 
         type="email"
         id="email-input"
+        name="email"
         placeholder="Masukkan Email Disini"
         class="w-full h-[2.5rem] text-sm px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400
                 max-md:text-[12px] max-md:h-[2.2rem]"
@@ -68,10 +71,11 @@
     </div>
 
     <!-- Button -->
-    <button onclick="goStep(2)" class="w-full bg-[#FBB45E] text-[#363b58] font-bold py-2 rounded-lg mb-5
+    <button type="submit" class="w-full bg-[#FBB45E] text-[#363b58] font-bold py-2 rounded-lg mb-5
                     max-md:h-[2.2rem] max-md:text-[15px] max-md:mb-2">
       Kirim Kode
     </button>
+    </form>
 
     <!-- Footer -->
     <div class="flex justify-between text-sm">
@@ -123,6 +127,8 @@
       </p>
 
     <!-- Input OTP -->
+    <form action="/verify-otp" method="POST">
+        @csrf
      <div class="flex gap-1.5 mb-5 justify-center">
         <input type="text" maxlength="1"
                class="otp-box w-[74px] h-[74px] rounded-2xl border border-[#D9D9D9] text-center text-3xl font-semibold outline-none focus:border-[#F0AE56] bg-white
@@ -137,12 +143,15 @@
                class="otp-box w-[74px] h-[74px] rounded-2xl border border-[#D9D9D9] text-center text-3xl font-semibold outline-none focus:border-[#F0AE56] bg-white
                         max-md:w-[55px] max-md:h-[55px] max-md:rounded-xl">
       </div>
+      <!-- agar bisa dibaca -->
+      <input type="hidden" name="otp" id="otp">
 
     <!-- Button -->
-    <button onclick="goStep(3)" class="w-full bg-[#FBB45E] text-[#363b58] font-bold py-2 rounded-lg mb-5
+    <button type="submit" class="w-full bg-[#FBB45E] text-[#363b58] font-bold py-2 rounded-lg mb-5
                     max-md:h-[2.2rem] max-md:text-[15px] max-md:mb-2">
       Verifikasi
     </button>
+    </form>
 
     <!-- Footer -->
     <div class="flex justify-between text-sm">
@@ -195,6 +204,7 @@
     </p>
 
     <!-- Input Password Baru -->
+    <form action="/reset-password" method="POST">
     <div class="text-left mb-5 relative
                 max-md:mb-3">
         <label class="text-sm text-[#363B58] font-semibold block mb-1
@@ -240,6 +250,7 @@
                     max-md:h-[2.2rem] max-md:text-[15px] max-md:mb-2">
       Lanjut
     </button>
+    </form>
 
     <!-- Back -->
     <div class="flex justify-start text-sm">
@@ -297,20 +308,6 @@
 
 <script src="assets/js/script.js"></script>
 <script>
-    /* ===== STEP NAVIGATION ===== */
-    function goStep(n) {
-        // Saat pindah ke step 2, tampilkan email ter-mask
-        if (n === 2) {
-            const email = document.getElementById('email-input').value.trim();
-            if (email) {
-                const [user, domain] = email.split('@');
-                const masked = user.slice(0, 2) + '***' + user.slice(-1);
-                document.getElementById('email-display').textContent = masked + '@' + domain;
-            }
-        }
-        document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
-        document.getElementById('step-' + n).classList.add('active');
-    }
 
     /* ===== TOGGLE PASSWORD VISIBILITY ===== */
     function togglePwd(inputId, iconEl) {
@@ -320,16 +317,43 @@
         iconEl.textContent = isHidden ? 'visibility_off' : 'visibility';
     }
 
-    /* ===== OTP AUTO FOCUS ===== */
-    document.querySelectorAll('.otp-box').forEach(function (input, idx, all) {
+    /* ===== OTP AUTO FOCUS & NGIRIM OTP KE LARAVEL ===== */
+    const otpBoxes = document.querySelectorAll('.otp-box');
+    const otpInput = document.getElementById('otp');
+
+    otpBoxes.forEach(function (input, idx, all) {
+
         input.addEventListener('input', function () {
+
+            // hanya angka
             this.value = this.value.replace(/[^0-9]/g, '');
-            if (this.value && idx < all.length - 1) all[idx + 1].focus();
+
+            // auto focus
+            if (this.value && idx < all.length - 1) {
+                all[idx + 1].focus();
+            }
+
+            // gabung otpnya
+            let otp = '';
+
+            all.forEach(box => {
+                otp += box.value;
+            });
+
+            otpInput.value = otp;
         });
+
+        // buat backspace
         input.addEventListener('keydown', function (e) {
-            if (e.key === 'Backspace' && !this.value && idx > 0) all[idx - 1].focus();
+
+            if (e.key === 'Backspace' && !this.value && idx > 0) {
+                all[idx - 1].focus();
+            }
+
         });
+
     });
+
 </script>
 </body>
 </html>

@@ -44,7 +44,7 @@
             </div>
 
             <!-- Form -->
-            <form action="/register-nextStep" method="POST" id="loginForm" class="flex flex-col gap-4 flex-1">
+            <form action="/register-nextStep" method="POST" enctype="multipart/form-data" id="loginForm" class="flex flex-col gap-4 flex-1">
                 @csrf
 
                 <!-- Nama -->

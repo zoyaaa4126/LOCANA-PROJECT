@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ForgotPasswordController;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\ResetPasswordController;
 
 // ROUTE VIEW PAGES
@@ -21,17 +22,16 @@ Route::post('/login', [UserController::class, 'login']);
 
 
 //FORGOT PASSWORD
-Route::get('/forgot-password', function () {
-    return view('forgotPassword');
-});
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showEmailForm']);
 
-Route::post('/forgot-password', [UserController::class, 'sendResetLink']);
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendOtp']);
 
-Route::get('/reset-password/{token}', function ($token) {
-    return view('reset-password', ['token' => $token]);
-});
+Route::get('/verify-otp', [ForgotPasswordController::class, 'showOtpForm']);
 
-Route::post('/reset-password', [UserController::class, 'reset']);
+Route::post('/verify-otp', [ForgotPasswordController::class, 'verifyOtp']);
+
+Route::get('/reset-password', [ForgotPasswordController::class, 'showResetForm']);
+Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword']);
 
 //REGISTER
 Route::get('/register', function () {

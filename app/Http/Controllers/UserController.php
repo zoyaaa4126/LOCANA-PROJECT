@@ -23,7 +23,10 @@ class UserController extends Controller
     public function registerStep1(Request $request)
     {
         $request->validate([
-        'check' => 'required'
+            'username' => 'required',
+            'email'    => 'required|email',
+            'password' => 'required|min:6',
+            'check' => 'required'
     ]);
 
         session([
@@ -50,8 +53,8 @@ class UserController extends Controller
             'email' => session('email'),
             'role' => 'user',
             'password' => bcrypt(session('password')),
+            'fotoProfile' => $path,
         ]);
-
         return redirect('/home');
     }
 
