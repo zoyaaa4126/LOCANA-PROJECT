@@ -111,11 +111,12 @@
             </div>
         </div>
 
-        <button
-            class="bg-[#fbb45e] px-[20-px] py-[0.4rem] rounded-[0.3rem] border-none outline-none cursor-pointer flex items-center content-center hover:text-[#E2A255] md:px-[15px] md:py-2.5">
-            <p class="text-[0.8rem] text-[#363B58] font-bold font-[Poppins] md:text-[1rem]">Lihat Semua Lokasi
+        <a href="/home" 
+            class=" bg-[#fbb45e] px-5 py-[0.4rem] md:px-[15px] md:py-2.5 rounded-[0.3rem] border-none outline-none cursor-pointer flex items-center justify-center hover:bg-[#e09e4f] no-underline transition">
+            <p class="text-[0.8rem] text-[#363B58] font-bold font-[Poppins] md:text-[1rem] m-0">
+                Lihat Semua Lokasi
             </p>
-        </button>
+    </a>
     </section>
 </section>
 
@@ -217,9 +218,12 @@
         <h1 class="font-[Poppins] text-[#363B58] text-[1rem]/[1.5rem] font-bold md:text-2xl ">
             Populer di <span class="font-[Poppins] text-[#fbb45e] text-[1rem]/[1.5rem] font-bold md:text-2xl">Bandung</span>
         </h1>
-        <button class="bg-[#fbb45e] px-5 rounded-[0.3rem] border-none outline-none cursor-pointer flex items-center content-center hover:text-[#E2A255] md:px-[15px] md:py-2.5 py-[7px]">
-            <p class="text-[0.8rem] text-[#363B58] font-bold font-[Poppins] md:text-[1rem]">Lihat Semua</p>
-        </button>
+        <a href="/home" 
+            class=" bg-[#fbb45e] px-5 py-[7px] md:px-[15px] md:py-2.5 rounded-[0.3rem] border-none outline-none cursor-pointer flex items-center justify-center hover:bg-[#e09e4f] no-underline transition">
+            <p class="text-[0.8rem] text-[#363B58] font-bold font-[Poppins] md:text-[1rem] m-0">
+            Lihat Semua
+            </p>
+        </a>
     </div>
 
     <div class="flex gap-[0.6rem] overflow-x-auto py-2">
@@ -230,11 +234,7 @@
                     <img src="{{ $tempat->gambar ? asset('storage/' . $tempat->gambar) : asset('assets/img/180 Cafe - Bandung 1.png') }}" 
                          alt="{{ $tempat->nama_tempat }}"
                          style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px;">
-                    
-                    <button onclick="this.classList.toggle('bg-[#FBB45E]'); this.classList.toggle('text-[#363B58]'); this.classList.toggle('bg-[#FFF8EF]'); this.classList.toggle('text-[#FBB45E]');"
-                            class="wishlist-btn absolute top-2 right-2 bg-[#FFF8EF] text-[#FBB45E] rounded-full w-fit p-[0.3rem] flex items-center justify-center shadow-md cursor-pointer transition-all duration-200"
-                            style="font-variation-settings: 'FILL' 1;">
-                    </button>
+
                 </div>
 
                 <div class="flex justify-between items-center">
@@ -608,18 +608,23 @@
             ini.
         </p>
 
-        <div class="flex gap-[5px] mt-2 md:flex-row md:gap-2 md:mt-4">
-            <button
-                class="bg-[#fbb45e] px-[15px] py-[0.3rem] flex items-center content-center rounded-[0.3rem] border-none outline-[none] cursor-pointer">
-                <span
-                    class="text-[0.6rem] text-[#363B58] md:text-[0.9rem]#363B58] font-bold text-0.8rem md:text-[1rem]">Lanjut
-                    Sebagai Tamu</span>
-            </button>
-            <button
-                class="bg-[#fbb45e] px-[15px] flex items-center content-center rounded-[0.3rem] border-none outline-[none] cursor-pointer">
-                <span class="text-[0.6rem] text-[#363B58] font-bold text-0.8rem md:text-[1rem]">Masuk</span>
-            </button>
-        </div>
+       <div class="flex gap-2.5 mt-2 md:flex-row md:gap-4 md:mt-4 relative z-50 justify-center">
+    
+    <button type="button" onclick="window.location.href='/home'"
+        class="bg-[#fbb45e] px-[15px] py-2 flex items-center justify-center rounded-[0.3rem] border-none outline-none cursor-pointer hover:bg-[#e09e4f] transition">
+        <span class="text-[0.8rem] md:text-[1rem] text-[#363B58] font-bold">
+            Lanjut Sebagai Tamu
+        </span>
+    </button>
+    
+    <button type="button" onclick="window.location.href='/login'"
+        class="bg-[#fbb45e] px-[15px] py-2 flex items-center justify-center rounded-[0.3rem] border-none outline-none cursor-pointer hover:bg-[#e09e4f] transition">
+        <span class="text-[0.8rem] md:text-[1rem] text-[#363B58] font-bold">
+            Masuk
+        </span>
+    </button>
+
+</div>
     </div>
 </section>
 

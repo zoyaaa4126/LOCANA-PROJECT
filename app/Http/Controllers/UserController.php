@@ -115,7 +115,17 @@ class UserController extends Controller
 
         $places = \App\Models\Places::all();
 
+        $popularPlaces = \App\Models\Places::all();
+        $recommendedPlaces = \App\Models\Places::all();
+
+
         // Kirim data ke view home.blade.php
-        return view('home', compact('kategoris', 'moods', 'places'));
+        return view('home', compact('kategoris', 'moods', 'popularPlaces', 'recommendedPlaces'));
     }
+
+    public function showPlace(int $id)
+{
+    $place = \App\Models\Places::findOrFail($id);
+    return view('places.show', compact('place'));
+}
 }

@@ -18,6 +18,7 @@ class LandingController extends Controller
         // Ambil data tempat populer/unggulan
         $tempatPopuler = Places::where('status_aktif', true)
                                ->where('tempat_unggulan', true)
+                               ->limit(5)
                                ->get();
 
         // Kirim data ke view 'welcome.blade.php'

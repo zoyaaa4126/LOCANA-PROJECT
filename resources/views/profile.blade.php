@@ -62,7 +62,7 @@
                     <div>
                         <h2 class="text-2xl font-bold text-gray-800 mb-5">Aktivitas <span class="text-[#FBB45E]">Terakhir</span></h2>
                         <div class="flex flex-row gap-4 overflow-x-auto no-scrollbar max-md:flex-col max-md:overflow-visible" style="font-variation-settings: 'FILL' 1;">
-                            <div class="bg-white rounded-xl border border-gray-100 p-4 shadow-sm flex flex-col gap-4 w-[500px] flex-shrink-0
+                            <div class="bg-white rounded-xl border border-gray-100 p-4 shadow-sm flex flex-col gap-4 w-[500px] shrink-0
                                         max-md:w-full max-md:grid max-md:grid-cols-[70px_1fr] max-md:grid-rows-[auto_auto_auto] max-md:gap-x-3 max-md:gap-y-1 max-md:items-center">
                                 <div class="flex justify-between items-center max-md:col-start-2 max-md:row-start-1">
                                     <div class="flex items-center gap-2 max-md:col-start-2 max-md:row-start-1">
@@ -72,7 +72,7 @@
                                 </div>
                                 <span class="text-xs text-gray-400 max-md:col-start-2 max-md:row-start-3 md:self-end md:-mt-10">10 Jam</span>
                                 <div class="flex gap-4 items-center max-md:contents">
-                                    <img src="assets/img/180 Cafe - Bandung 1.png" class="w-30 h-30 rounded-xl object-cover flex-shrink-0 max-md:row-span-3 max-md:w-[70px] max-md:h-[70px]" alt="Cafe">
+                                    <img src="assets/img/180 Cafe - Bandung 1.png" class="w-30 h-30 rounded-xl object-cover shrink-0 max-md:row-span-3 max-md:w-[70px] max-md:h-[70px]" alt="Cafe">
                                     <div class="flex flex-col max-md:contents">
                                         <h3 class="font-bold text-lg mt-1 max-md:text-base max-md:col-start-2 max-md:row-start-2">Alam Cafe</h3>
                                         <div class="flex text-yellow-500 text-sm my-1 max-md:col-start-2 max-md:row-start-2 max-md:justify-self-end">
@@ -86,7 +86,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="bg-white rounded-xl border border-gray-100 p-4 shadow-sm flex flex-col gap-4 w-[500px] flex-shrink-0
+                            <div class="bg-white rounded-xl border border-gray-100 p-4 shadow-sm flex flex-col gap-4 w-[500px] shrink-0
                                         max-md:w-full max-md:grid max-md:grid-cols-[70px_1fr] max-md:grid-rows-[auto_auto_auto] max-md:gap-x-3 max-md:gap-y-1 max-md:items-center">
                                 <div class="flex justify-between items-center max-md:col-start-2 max-md:row-start-1">
                                     <div class="flex items-center gap-2 max-md:col-start-2 max-md:row-start-1">
@@ -96,7 +96,7 @@
                                 </div>
                                 <span class="text-xs text-gray-400 max-md:col-start-2 max-md:row-start-3 md:self-end md:-mt-10">10 Jam</span>
                                 <div class="flex gap-4 items-center max-md:contents">
-                                    <img src="assets/img/180 Cafe - Bandung 1.png" class="w-30 h-30 rounded-xl object-cover flex-shrink-0 max-md:row-span-3 max-md:w-[70px] max-md:h-[70px]" alt="Cafe">
+                                    <img src="assets/img/180 Cafe - Bandung 1.png" class="w-30 h-30 rounded-xl object-cover shrink-0 max-md:row-span-3 max-md:w-[70px] max-md:h-[70px]" alt="Cafe">
                                     <div class="flex flex-col max-md:contents">
                                         <h3 class="font-bold text-lg mt-1 max-md:text-base max-md:col-start-2 max-md:row-start-2">Alam Cafe</h3>
                                         <div class="flex text-yellow-500 text-sm my-1 max-md:col-start-2 max-md:row-start-2 max-md:justify-self-end">
@@ -110,7 +110,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="bg-white rounded-xl border border-gray-100 p-4 shadow-sm flex flex-col gap-4 w-[500px] flex-shrink-0
+                            <div class="bg-white rounded-xl border border-gray-100 p-4 shadow-sm flex flex-col gap-4 w-[500px] shrink-0
                                         max-md:w-full max-md:grid max-md:grid-cols-[70px_1fr] max-md:grid-rows-[auto_auto_auto] max-md:gap-x-3 max-md:gap-y-1 max-md:items-center">
                                 <div class="flex justify-between items-center max-md:col-start-2 max-md:row-start-1">
                                     <div class="flex items-center gap-2 max-md:col-start-2 max-md:row-start-1">
@@ -120,7 +120,7 @@
                                 </div>
                                 <span class="text-xs text-gray-400 max-md:col-start-2 max-md:row-start-3 md:self-end md:-mt-10">10 Jam</span>
                                 <div class="flex gap-4 items-center max-md:contents">
-                                    <img src="assets/img/180 Cafe - Bandung 1.png" class="w-30 h-30 rounded-xl object-cover flex-shrink-0 max-md:row-span-3 max-md:w-[70px] max-md:h-[70px]" alt="Cafe">
+                                    <img src="assets/img/180 Cafe - Bandung 1.png" class="w-30 h-30 rounded-xl object-cover shrink-0 max-md:row-span-3 max-md:w-[70px] max-md:h-[70px]" alt="Cafe">
                                     <div class="flex flex-col max-md:contents">
                                         <h3 class="font-bold text-lg mt-1 max-md:text-base max-md:col-start-2 max-md:row-start-2">Alam Cafe</h3>
                                         <div class="flex text-sm my-1 max-md:col-start-2 max-md:row-start-2 max-md:justify-self-end">
@@ -138,7 +138,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="bg-white rounded-xl border border-gray-100 p-4 shadow-sm flex flex-col gap-4 w-[500px] flex-shrink-0
+                            <div class="bg-white rounded-xl border border-gray-100 p-4 shadow-sm flex flex-col gap-4 w-[500px] shrink-0
                                         max-md:w-full max-md:grid max-md:grid-cols-[70px_1fr] max-md:grid-rows-[auto_auto_auto] max-md:gap-x-3 max-md:gap-y-1 max-md:items-center">
                                 <div class="flex justify-between items-center max-md:col-start-2 max-md:row-start-1">
                                     <div class="flex items-center gap-2 max-md:col-start-2 max-md:row-start-1">
@@ -148,7 +148,7 @@
                                 </div>
                                 <span class="text-xs text-gray-400 max-md:col-start-2 max-md:row-start-3 md:self-end md:-mt-10">10 Jam</span>
                                 <div class="flex gap-4 items-center max-md:contents">
-                                    <img src="assets/img/180 Cafe - Bandung 1.png" class="w-30 h-30 rounded-xl object-cover flex-shrink-0 max-md:row-span-3 max-md:w-[70px] max-md:h-[70px]" alt="Cafe">
+                                    <img src="assets/img/180 Cafe - Bandung 1.png" class="w-30 h-30 rounded-xl object-cover shrink-0 max-md:row-span-3 max-md:w-[70px] max-md:h-[70px]" alt="Cafe">
                                     <div class="flex flex-col max-md:contents">
                                         <h3 class="font-bold text-lg mt-1 max-md:text-base max-md:col-start-2 max-md:row-start-2">Alam Cafe</h3>
                                         <div class="flex text-yellow-500 text-sm my-1 max-md:col-start-2 max-md:row-start-2 max-md:justify-self-end">
@@ -172,9 +172,9 @@
                             <a href="#" class="text-[#FBB45E] text-sm font-semibold">Lihat Semua →</a>
                         </div>
                         <div class="flex flex-row gap-6 overflow-x-auto no-scrollbar">
-                            <div class="flex gap-4 bg-white rounded-xl border border-gray-100 p-4 h-fit w-[500px] flex-shrink-0 shadow-sm">
+                            <div class="flex gap-4 bg-white rounded-xl border border-gray-100 p-4 h-fit w-[500px] shrink-0 shadow-sm">
                                 <!-- IMAGE -->
-                                <div class="relative w-40 h-40 flex-shrink-0">
+                                <div class="relative w-40 h-40 shrink-0">
                                     <img src="assets/img/180 Cafe - Bandung 1.png" class="w-full h-full object-cover rounded-xl" alt="Wishlist">
 
                                     <!-- BOOKMARK -->
@@ -226,9 +226,9 @@
 
                                 </div>
                             </div>
-                            <div class="flex gap-4 bg-white rounded-xl border border-gray-100 p-4 h-fit w-[500px] flex-shrink-0 shadow-sm">
+                            <div class="flex gap-4 bg-white rounded-xl border border-gray-100 p-4 h-fit w-[500px] shrink-0 shadow-sm">
                                 <!-- IMAGE -->
-                                <div class="relative w-40 h-40 flex-shrink-0">
+                                <div class="relative w-40 h-40 shrink-0">
                                     <img src="assets/img/180 Cafe - Bandung 1.png" class="w-full h-full object-cover rounded-xl" alt="Wishlist">
 
                                     <!-- BOOKMARK -->
@@ -280,9 +280,9 @@
 
                                 </div>
                             </div>
-                            <div class="flex gap-4 bg-white rounded-xl border border-gray-100 p-4 h-fit w-[500px] flex-shrink-0 shadow-sm">
+                            <div class="flex gap-4 bg-white rounded-xl border border-gray-100 p-4 h-fit w-[500px] shrink-0 shadow-sm">
                                 <!-- IMAGE -->
-                                <div class="relative w-40 h-40 flex-shrink-0">
+                                <div class="relative w-40 h-40 shrink-0">
                                     <img src="assets/img/180 Cafe - Bandung 1.png" class="w-full h-full object-cover rounded-xl" alt="Wishlist">
 
                                     <!-- BOOKMARK -->
