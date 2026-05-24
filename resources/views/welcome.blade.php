@@ -5,7 +5,7 @@
 @section('content')
 
 <!-- CONTENT -->
-<section class="px-6 py-4 md:px-[30px] md:py-0 flex flex-col gap-5 md:gap-8 md:mb-15">
+<section class="px-6 py-4 md:px-[30px] md:py-0 flex flex-col gap-5 md:gap-8">
     <!-- HERO SECTION -->
     <section class="flex flex-col gap-5 p-0 justify-between items-center md:flex-row md:gap-10 md:pt-16">
         <!-- HERO LEFT -->
@@ -124,12 +124,12 @@
 </section>
 <!-- Header Kenapa -->
 <div class="flex flex-col gap-1 items-center">
-    <h1 class="font-[Poppins] text-[#363B58] text-[1rem]/[1.5rem] font-bold  md:text-[2.5rem]/[3rem]">
+    <h1 class="font-[Poppins] text-[#363B58] text-[1rem]/[1.5rem] font-bold  md:text-2xl">
         Kenapa Harus <span
-            class="font-[Poppins] text-[#fbb45e] text-[1rem]/[1.5rem] font-bold  md:text-[2.5rem]/[3rem]">
+            class="font-[Poppins] text-[#fbb45e] text-[1rem]/[1.5rem] font-bold  md:text-2xl">
             Locana?</span>
     </h1>
-    <p class="text-[0.6rem]/[120%] text-center md:text-[1rem]/[120%] md:max-w-2xl">Locana membantu kamu
+    <p class="text-[0.6rem]/[120%] text-center md:text-[1rem]/[120%] md:max-w-xl">Locana membantu kamu
         menemukan tempat hangout terbaik di Bandung
         dengan cepat dan mudah. Jelajahi berbagai kafe dan spot nongkrong yang sesuai dengan mood dan
         aktivitasmu.</p>
@@ -212,10 +212,10 @@
 </section>
 
 <!-- POPULER -->
-<section class="px-6 py-4 md:px-[30px] md:py-0 flex flex-col gap-2 md:mb-15">
+<section class="px-6 py-4 md:px-[30px] md:py-0 flex flex-col gap-2 md:mb-15 md:mt-4">
     <div class="flex flex-row justify-between items-center">
-        <h1 class="font-[Poppins] text-[#363B58] text-2xl font-bold md:text-[2.5rem]/[3rem]">
-            Populer di <span class="font-[Poppins] text-[#fbb45e] text-2xl font-bold md:text-[2.5rem]/[3rem]">Bandung</span>
+        <h1 class="font-[Poppins] text-[#363B58] text-[1rem]/[1.5rem] font-bold md:text-2xl ">
+            Populer di <span class="font-[Poppins] text-[#fbb45e] text-[1rem]/[1.5rem] font-bold md:text-2xl">Bandung</span>
         </h1>
         <button class="bg-[#fbb45e] px-5 rounded-[0.3rem] border-none outline-none cursor-pointer flex items-center content-center hover:text-[#E2A255] md:px-[15px] md:py-2.5 py-[7px]">
             <p class="text-[0.8rem] text-[#363B58] font-bold font-[Poppins] md:text-[1rem]">Lihat Semua</p>
@@ -280,9 +280,9 @@
 <!-- REKOMENDASI -->
 <section class="px-6 py-4 md:px-[30px] md:py-0 flex flex-col gap-4 md:mb-15 md:gap-5">
     <!-- Header Rekomendasi -->
-    <h1 class="font-[Poppins] text-[#363B58] text-2xl font-bold  md:text-[2.5rem]/[3rem]">
+    <h1 class="font-[Poppins] text-[#363B58] text-[1rem]/[1.5rem] font-bold  md:text-2xl">
         Rekomendasi Berdasarkan <span
-            class="font-[Poppins] text-[#fbb45e] text-2xl font-bold  md:text-[2.5rem]/[3rem]">Mood</span>
+            class="font-[Poppins] text-[#fbb45e] text-[1rem]/[1.5rem] font-bold  md:text-2xl">Mood</span>
     </h1>
 
     <!-- Content Rekomendasi -->
@@ -366,10 +366,10 @@
 <!-- REVIEW -->
 <section class="px-6 py-4 md:px-[30px] md:py-0 flex flex-col gap-4 md:mb-15 md:gap-5">
     <!-- Header Review -->
-    <h1 class="font-[Poppins] text-[#363B58] text-2xl font-bold  md:text-[2.5rem]/[3rem]">
-        Dengar <span class="font-[Poppins] text-[#fbb45e] text-2xl font-bold  md:text-[2.5rem]/[3rem]">
+    <h1 class="font-[Poppins] text-[#363B58] text-[1rem]/[1.5rem] font-bold  md:text-2xl">
+        Dengar <span class="font-[Poppins] text-[#fbb45e] text-[1rem]/[1.5rem] font-bold  md:text-2xl">
             Cerita</span>
-        dari <span class="font-[Poppins] text-[#fbb45e] text-2xl font-bold  md:text-[2.5rem]/[3rem]">
+        dari <span class="font-[Poppins] text-[#fbb45e] text-[1rem]/[1.5rem] font-bold  md:text-2xl">
             Pengguna
             Lain</span>
     </h1>
@@ -471,9 +471,9 @@
 <section class="px-6 py-4 md:px-[30px] md:py-0 flex flex-col gap-2 md:mb-15 md:gap-5 md:hidden">
     <!-- Header Kenapa -->
     <div class="flex flex-col gap-1 items-center">
-        <h1 class="font-[Poppins] text-[#363B58] text-2xl font-bold  md:text-[2.5rem]/[3rem]">
+        <h1 class="font-[Poppins] text-[#363B58] text-[1rem]/[1.5rem] font-bold  md:text-[2.5rem]/[3rem]">
             Kenapa Harus <span
-                class="font-[Poppins] text-[#fbb45e] text-2xl font-bold  md:text-[2.5rem]/[3rem]">
+                class="font-[Poppins] text-[#fbb45e] text-[1rem]/[1.5rem] font-bold  md:text-[2.5rem]/[3rem]">
                 Locana?</span>
         </h1>
         <p class="text-[0.6rem]/[120%] text-center md:text-[1rem]/[120%] md:max-w-2xl">Locana membantu kamu
@@ -600,10 +600,10 @@
     </div>
     <div
         class="bg-[#363B58] flex w-full flex-col justify-center items-center rounded-[20px] text-[#fefefe] py-4 gap-[0.3rem] md:py-4 md:px-5 md:gap-4">
-        <h2 class="text-center text-[1rem] w-56 not-italic font-bold leading-[120%] md:text-[2rem] md:w-fit">
+        <h2 class="text-center text-[1rem] w-56 not-italic font-bold leading-[120%] md:text-[1.5rem] md:w-fit md:mt-4">
             Setiap
             Momen Punya Tempatnya</h2>
-        <p class="text-center w-[16rem] text-[0.62rem]/[120%] font-normal md:text-[1rem] md:w-120">
+        <p class="text-center w-[16rem] text-[0.62rem]/[120%] font-normal md:text-[0.8rem] md:w-120">
             Temukan berbagai tempat hangout terbaik yang sesuai dengan mood, preferensi, dan momen kamu hari
             ini.
         </p>
