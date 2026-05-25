@@ -142,8 +142,13 @@
                                 <img src="{{ $place->gambar ? asset('storage/' . $place->gambar) : asset('assets/img/180 Cafe - Bandung 1.png') }}"
                                     alt="{{ $place->nama_tempat }}"
                                     style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px;">
-                                <button class="wishlist-btn absolute top-2 right-2 rounded-full w-8 h-8 flex items-center justify-center shadow-md cursor-pointer transition-all duration-200"
-                                    style="background: #FFF8EF; color: #FBB45E; font-variation-settings: 'FILL' 1;">
+                                @php $isWishlisted = in_array($place->id, $wishlistIds); @endphp
+                                <button
+                                    data-id="{{ $place->id }}"
+                                    data-active="{{ $isWishlisted ? 'true' : 'false' }}"
+                                    onclick="toggleWishlist(this)"
+                                    class="wishlist-btn absolute top-2 right-2 rounded-full w-8 h-8 flex items-center justify-center shadow-md cursor-pointer transition-all duration-200"
+                                    style="background: {{ $isWishlisted ? '#FBB45E' : '#FFF8EF' }}; color: {{ $isWishlisted ? '#363B58' : '#FBB45E' }}; font-variation-settings: 'FILL' 1;">
                                     <span class="material-symbols-outlined">bookmark</span>
                                 </button>
                             </div>
@@ -182,7 +187,6 @@
                 </div>
             </div>
 
-            {{-- ===== SECTION 2: Rekomendasi ===== --}}
             <div id="rekomendasi">
                 <div class="mb-6">
                     <h1 class="text-2xl font-bold text-[#363B58]">Rekomendasi <span class="text-yellow-400">Untuk Anda</span></h1>
@@ -199,9 +203,13 @@
                         <div class="bg-white rounded-xl shadow-md w-[250px] shrink-0 border border-gray-100 p-4 hover:shadow-lg transition">
                             <div style="position: relative; margin-bottom: 12px;">
                                 <img src="{{ asset('storage/' . $place->gambar) }}" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px;" alt="{{ $place->nama }}">
+                                @php $isWishlisted = in_array($place->id, $wishlistIds); @endphp
                                 <button
+                                    data-id="{{ $place->id }}"
+                                    data-active="{{ $isWishlisted ? 'true' : 'false' }}"
+                                    onclick="toggleWishlist(this)"
                                     class="wishlist-btn absolute top-2 right-2 rounded-full w-8 h-8 flex items-center justify-center shadow-md cursor-pointer transition-all duration-200"
-                                    style="background: #FFF8EF; color: #FBB45E; font-variation-settings: 'FILL' 1;">
+                                    style="background: {{ $isWishlisted ? '#FBB45E' : '#FFF8EF' }}; color: {{ $isWishlisted ? '#363B58' : '#FBB45E' }}; font-variation-settings: 'FILL' 1;">
                                     <span class="material-symbols-outlined">bookmark</span>
                                 </button>
                             </div>
@@ -245,48 +253,31 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    function toggleWishlist(btn) {
+        const placeId = btn.dataset.id;
 
-        // Toggle sidebar desktop
-        const sidebar = document.getElementById('desktopSidebar');
-        document.getElementById('desktopFilterToggle')?.addEventListener('click', () => {
-            sidebar.classList.toggle('hidden');
-        });
-
-        // Scroll carousel
-        document.querySelectorAll('.main-cards').forEach(section => {
-            const container = section.querySelector('.scrollContainer');
-            section.querySelector('.scrollLeft')?.addEventListener('click', () => {
-                container.scrollBy({
-                    left: -280,
-                    behavior: 'smooth'
-                });
-            });
-            section.querySelector('.scrollRight')?.addEventListener('click', () => {
-                container.scrollBy({
-                    left: 280,
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Wishlist toggle
-        document.querySelectorAll('.wishlist-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const active = this.dataset.active === 'true';
-                this.dataset.active = !active;
-                this.style.background = active ? '#FFF8EF' : '#FBB45E';
-                this.style.color = active ? '#FBB45E' : '#363B58';
-            });
-        });
-
-        // Reset filters
-        document.getElementById('resetFilters')?.addEventListener('click', () => {
-            document.querySelectorAll('input[type=checkbox]').forEach(cb => cb.checked = false);
-            document.querySelectorAll('input[name=rating]').forEach(r => r.checked = false);
-        });
-
-    });
+        fetch('/wishlist/toggle', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+            },
+            body: `place_id=${placeId}`
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === 'added') {
+                btn.style.background = '#FBB45E';
+                btn.style.color = '#363B58';
+                btn.dataset.active = 'true';
+            } else {
+                btn.style.background = '#FFF8EF';
+                btn.style.color = '#FBB45E';
+                btn.dataset.active = 'false';
+            }
+        })
+        .catch(err => console.error('Error:', err));
+    }
 </script>
 
 @endsection

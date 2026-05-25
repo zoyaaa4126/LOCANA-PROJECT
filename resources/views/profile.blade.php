@@ -14,7 +14,7 @@
                         <span class="material-symbols-outlined">person</span>
                         <span>Profil</span>
                     </div></a>
-                    <a href="wishlist.html"><div class="flex items-center gap-3 px-4 py-3 rounded-xl text-[#363B58] hover:text-[#E2A255] cursor-pointer">
+                    <a href="/wishlist"><div class="flex items-center gap-3 px-4 py-3 rounded-xl text-[#363B58] hover:text-[#E2A255] cursor-pointer">
                         <span class="material-symbols-outlined">favorite</span>
                         <span>Wishlist</span>
                     </div></a>
@@ -169,171 +169,51 @@
                     <div>
                         <div class="flex justify-between items-center mb-5">
                             <h2 class="text-2xl font-bold text-gray-800"><span class="text-[#FBB45E]">Wishlist</span> Saya</h2>
-                            <a href="#" class="text-[#FBB45E] text-sm font-semibold">Lihat Semua →</a>
+                            <a href="/wishlist" class="text-[#FBB45E] text-sm font-semibold">Lihat Semua →</a>
                         </div>
                         <div class="flex flex-row gap-6 overflow-x-auto no-scrollbar">
-                            <div class="flex gap-4 bg-white rounded-xl border border-gray-100 p-4 h-fit w-[500px] shrink-0 shadow-sm">
-                                <!-- IMAGE -->
-                                <div class="relative w-40 h-40 shrink-0">
-                                    <img src="assets/img/180 Cafe - Bandung 1.png" class="w-full h-full object-cover rounded-xl" alt="Wishlist">
 
-                                    <!-- BOOKMARK -->
-                                    <button 
-                                    onclick="this.classList.toggle('bg-[#FBB45E]'); this.classList.toggle('text-[#363B58]'); this.classList.toggle('bg-[#FFF8EF]'); this.classList.toggle('text-[#FBB45E]');"
-                                    class="wishlist-btn absolute top-2 right-2 bg-[#FBB45E] text-[#363B58] rounded-full w-8 h-8 flex items-center justify-center shadow-md cursor-pointer transition-all duration-200"
-                                    style="font-variation-settings: 'FILL' 1;">
+                            @forelse ($wishlists as $item)
+                            <div class="flex gap-4 bg-white rounded-xl border border-gray-100 p-4 h-fit w-[500px] shrink-0 shadow-sm">
+                                <div class="relative w-40 h-40 shrink-0">
+                                    <img src="{{ $item->place->gambar ? asset('storage/' . $item->place->gambar) : asset('assets/img/180 Cafe - Bandung 1.png') }}"
+                                        class="w-full h-full object-cover rounded-xl">
+                                    <button
+                                        data-id="{{ $item->place->id }}"
+                                        onclick="toggleWishlist(this)"
+                                        class="wishlist-btn absolute top-2 right-2 bg-[#FBB45E] text-[#363B58] rounded-full w-8 h-8 flex items-center justify-center shadow-md cursor-pointer"
+                                        style="font-variation-settings: 'FILL' 1;">
                                         <span class="material-symbols-outlined">bookmark</span>
                                     </button>
                                 </div>
-
-                                <!-- CONTENT -->
                                 <div class="flex flex-col gap-2 flex-1">
-                                    <!-- TOP -->
                                     <div class="flex flex-col gap-1">
-                                        <div class="flex justify-between items-center">
-                                            <span class="text-[#FBB45E] font-bold text-xs">CAFE</span>
-                                            <div class="flex items-center gap-1">
-                                                <span class="material-symbols-outlined text-yellow-500 text-sm"
-                                                    style="font-variation-settings: 'FILL' 1;">star</span>
-                                                <span class="text-sm font-medium">4.8 (20)</span>
-                                            </div>
-                                        </div>
-
-                                        <h3 class="font-bold text-base">Alam Cafe</h3>
-
+                                        <span class="text-[#FBB45E] font-bold text-xs">{{ strtoupper($item->place->kategori->nama ?? '-') }}</span>
+                                        <h3 class="font-bold text-base">{{ $item->place->nama_tempat }}</h3>
                                         <div class="flex items-center gap-1 text-gray-500 text-xs">
                                             <span class="material-symbols-outlined text-sm">location_on</span>
-                                            <span>4.5km | Ciwidey, Bandung</span>
+                                            <span class="line-clamp-1">{{ $item->place->alamat_lengkap }}</span>
                                         </div>
-
                                         <div class="flex items-center gap-1 text-gray-500 text-xs">
                                             <span class="material-symbols-outlined text-sm">payments</span>
-                                            <span>Rp50.000 - Rp100.000</span>
+                                            <span>Rp{{ number_format($item->place->harga_min, 0, ',', '.') }} - Rp{{ number_format($item->place->harga_max, 0, ',', '.') }}</span>
                                         </div>
                                     </div>
-
-                                    <!-- BUTTON -->
                                     <div class="flex gap-2 mt-2">
-                                        <button class="flex-1 bg-gray-800 text-[#FBB45E] py-2 rounded-xl text-sm font-semibold flex items-center justify-center gap-1">
-                                            <span class="material-symbols-outlined text-sm">location_on</span> 
-                                            Lihat Lokasi
-                                        </button>
-
+                                        <a href="{{ route('places.show', $item->place->id) }}"
+                                            class="flex-1 bg-gray-800 text-[#FBB45E] py-2 rounded-xl text-sm font-semibold flex items-center justify-center gap-1">
+                                            <span class="material-symbols-outlined text-sm">location_on</span> Lihat Lokasi
+                                        </a>
                                         <button class="bg-[#FBB45E] text-white w-10 h-10 rounded-xl flex items-center justify-center">
                                             <span class="material-symbols-outlined text-sm">share</span>
                                         </button>
                                     </div>
-
                                 </div>
                             </div>
-                            <div class="flex gap-4 bg-white rounded-xl border border-gray-100 p-4 h-fit w-[500px] shrink-0 shadow-sm">
-                                <!-- IMAGE -->
-                                <div class="relative w-40 h-40 shrink-0">
-                                    <img src="assets/img/180 Cafe - Bandung 1.png" class="w-full h-full object-cover rounded-xl" alt="Wishlist">
+                            @empty
+                            <p class="text-gray-400 text-sm italic">Belum ada wishlist tersimpan.</p>
+                            @endforelse
 
-                                    <!-- BOOKMARK -->
-                                    <button 
-                                    onclick="this.classList.toggle('bg-[#FBB45E]'); this.classList.toggle('text-[#363B58]'); this.classList.toggle('bg-[#FFF8EF]'); this.classList.toggle('text-[#FBB45E]');"
-                                    class="wishlist-btn absolute top-2 right-2 bg-[#FBB45E] text-[#363B58] rounded-full w-8 h-8 flex items-center justify-center shadow-md cursor-pointer transition-all duration-200"
-                                    style="font-variation-settings: 'FILL' 1;">
-                                        <span class="material-symbols-outlined">bookmark</span>
-                                    </button>
-                                </div>
-
-                                <!-- CONTENT -->
-                                <div class="flex flex-col gap-2 flex-1">
-                                    <!-- TOP -->
-                                    <div class="flex flex-col gap-1">
-                                        <div class="flex justify-between items-center">
-                                            <span class="text-[#FBB45E] font-bold text-xs">CAFE</span>
-                                            <div class="flex items-center gap-1">
-                                                <span class="material-symbols-outlined text-yellow-500 text-sm"
-                                                    style="font-variation-settings: 'FILL' 1;">star</span>
-                                                <span class="text-sm font-medium">4.8 (20)</span>
-                                            </div>
-                                        </div>
-
-                                        <h3 class="font-bold text-base">Alam Cafe</h3>
-
-                                        <div class="flex items-center gap-1 text-gray-500 text-xs">
-                                            <span class="material-symbols-outlined text-sm">location_on</span>
-                                            <span>4.5km | Ciwidey, Bandung</span>
-                                        </div>
-
-                                        <div class="flex items-center gap-1 text-gray-500 text-xs">
-                                            <span class="material-symbols-outlined text-sm">payments</span>
-                                            <span>Rp50.000 - Rp100.000</span>
-                                        </div>
-                                    </div>
-
-                                    <!-- BUTTON -->
-                                    <div class="flex gap-2 mt-2">
-                                        <button class="flex-1 bg-gray-800 text-[#FBB45E] py-2 rounded-xl text-sm font-semibold flex items-center justify-center gap-1">
-                                            <span class="material-symbols-outlined text-sm">location_on</span> 
-                                            Lihat Lokasi
-                                        </button>
-
-                                        <button class="bg-[#FBB45E] text-white w-10 h-10 rounded-xl flex items-center justify-center">
-                                            <span class="material-symbols-outlined text-sm">share</span>
-                                        </button>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="flex gap-4 bg-white rounded-xl border border-gray-100 p-4 h-fit w-[500px] shrink-0 shadow-sm">
-                                <!-- IMAGE -->
-                                <div class="relative w-40 h-40 shrink-0">
-                                    <img src="assets/img/180 Cafe - Bandung 1.png" class="w-full h-full object-cover rounded-xl" alt="Wishlist">
-
-                                    <!-- BOOKMARK -->
-                                    <button 
-                                    onclick="this.classList.toggle('bg-[#FBB45E]'); this.classList.toggle('text-[#363B58]'); this.classList.toggle('bg-[#FFF8EF]'); this.classList.toggle('text-[#FBB45E]');"
-                                    class="wishlist-btn absolute top-2 right-2 bg-[#FBB45E] text-[#363B58] rounded-full w-8 h-8 flex items-center justify-center shadow-md cursor-pointer transition-all duration-200"
-                                    style="font-variation-settings: 'FILL' 1;">
-                                        <span class="material-symbols-outlined">bookmark</span>
-                                    </button>
-                                </div>
-
-                                <!-- CONTENT -->
-                                <div class="flex flex-col gap-2 flex-1">
-                                    <!-- TOP -->
-                                    <div class="flex flex-col gap-1">
-                                        <div class="flex justify-between items-center">
-                                            <span class="text-[#FBB45E] font-bold text-xs">CAFE</span>
-                                            <div class="flex items-center gap-1">
-                                                <span class="material-symbols-outlined text-yellow-500 text-sm"
-                                                    style="font-variation-settings: 'FILL' 1;">star</span>
-                                                <span class="text-sm font-medium">4.8 (20)</span>
-                                            </div>
-                                        </div>
-
-                                        <h3 class="font-bold text-base">Alam Cafe</h3>
-
-                                        <div class="flex items-center gap-1 text-gray-500 text-xs">
-                                            <span class="material-symbols-outlined text-sm">location_on</span>
-                                            <span>4.5km | Ciwidey, Bandung</span>
-                                        </div>
-
-                                        <div class="flex items-center gap-1 text-gray-500 text-xs">
-                                            <span class="material-symbols-outlined text-sm">payments</span>
-                                            <span>Rp50.000 - Rp100.000</span>
-                                        </div>
-                                    </div>
-
-                                    <!-- BUTTON -->
-                                    <div class="flex gap-2 mt-2">
-                                        <button class="flex-1 bg-gray-800 text-[#FBB45E] py-2 rounded-xl text-sm font-semibold flex items-center justify-center gap-1">
-                                            <span class="material-symbols-outlined text-sm">location_on</span> 
-                                            Lihat Lokasi
-                                        </button>
-
-                                        <button class="bg-[#FBB45E] text-white w-10 h-10 rounded-xl flex items-center justify-center">
-                                            <span class="material-symbols-outlined text-sm">share</span>
-                                        </button>
-                                    </div>
-
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
