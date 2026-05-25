@@ -24,13 +24,14 @@ class UserController extends Controller
     {
         $request->validate([
             'username' => 'required',
-            'email'    => 'required|email',
+            'email'    => 'required|email|unique:users,email',
             'password' => 'required|min:6|confirmed',
             'check'    => 'required',
         ], [
             'username.required' => 'username tidak boleh kosong',
             'email.required'    => 'email tidak boleh kosong',
             'email.email'       => 'format email tidak valid',
+            'email.unique'      => 'email sudah terdaftar',
             'password.required' => 'password tidak boleh kosong',
             'password.min'      => 'password minimal 6 karakter',
             'check.required'    => 'harap centang persetujuan',
@@ -68,6 +69,15 @@ class UserController extends Controller
     //CONTROLLER LOGIN
     public function login(Request $request)
     {
+         $request->validate([
+            'email'    => 'required|email',
+            'password' => 'required',
+        ], [
+            'email.required'    => 'email tidak boleh kosong',
+            'email.email'       => 'format email tidak valid',
+            'password.required' => 'password tidak boleh kosong',
+        ]);
+
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials, $request->remember)) { //di cek apakah ada atau engga
