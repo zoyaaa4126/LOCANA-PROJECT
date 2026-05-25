@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class moods extends Model
 {
+
+    protected $fillable = [
+        'nama'
+    ];
     //
     public function places()
     {

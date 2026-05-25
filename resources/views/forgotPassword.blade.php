@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="m-0 p-0 font-['Poppins',_sans-serif] box-border text-[#363b58]">
+<html lang="en" class="m-0 p-0 font-['Poppins',sans-serif] box-border text-[#363b58]">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,18 +24,18 @@
 
         <!-- LOGO -->
         <div class="flex items-center justify-center mb-[17px]
-                    max-md:mb-[10px]">
+                    max-md:mb-2.5">
             <img src="assets/img/Locana_Logo 1.png" 
                  alt="gambar" 
-                 class="w-[2.5rem] h-auto
-                        max-md:m-[0] max-md:w-[35px]">
+                 class="w-10 h-auto
+                        max-md:m-0 max-md:w-[35px]">
             <h2 class="font-bold text-[#363b58] m-0 text-[1.1rem] leading-[1.2]
-                       max-md:text-[13px] max-md:m-[0]">LOCANA
+                       max-md:text-[13px] max-md:m-0">LOCANA
             </h2>
         </div>
 
     <!-- Icon -->
-    <div class="w-[2.5rem] h-[2.5rem] bg-[#FEF4E7] rounded-xl flex items-center justify-center mx-auto mb-2.5 text-3xl">
+    <div class="w-10 h-10 bg-[#FEF4E7] rounded-xl flex items-center justify-center mx-auto mb-2.5 text-3xl">
         <span class="material-symbols-outlined text-[#FBB45E] w-[2.6rem]">
         lock
         </span>
@@ -62,7 +62,7 @@
         type="email"
         id="email-input"
         placeholder="Masukkan Email Disini"
-        class="w-full h-[2.5rem] text-sm px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400
+        class="w-full h-10 text-sm px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400
                 max-md:text-[12px] max-md:h-[2.2rem]"
       >
     </div>
@@ -90,18 +90,18 @@
 
         <!-- LOGO -->
         <div class="flex items-center justify-center mb-[17px]
-                    max-md:mb-[10px]">
+                    max-md:mb-2.5">
             <img src="assets/img/Locana_Logo 1.png" 
                  alt="gambar" 
-                 class="w-[2.5rem] h-auto
-                        max-md:m-[0] max-md:w-[35px]">
+                 class="w-10 h-auto
+                        max-md:m-0 max-md:w-[35px]">
             <h2 class="font-bold text-[#363b58] m-0 text-[1.1rem] leading-[1.2]
-                       max-md:text-[13px] max-md:m-[0]">LOCANA
+                       max-md:text-[13px] max-md:m-0">LOCANA
             </h2>
         </div>
 
     <!-- Icon -->
-    <div class="w-[3rem] h-[3rem] bg-[#FEF4E7] rounded-xl flex items-center justify-center mx-auto mb-2.5 text-3xl">
+    <div class="w-12 h-12 bg-[#FEF4E7] rounded-xl flex items-center justify-center mx-auto mb-2.5 text-3xl">
         <span class="material-symbols-outlined text-[#FBB45E] w-[2.6rem]">
         lock
         </span>
@@ -165,18 +165,18 @@
 
         <!-- LOGO -->
         <div class="flex items-center justify-center mb-[17px]
-                    max-md:mb-[10px]">
+                    max-md:mb-2.5">
             <img src="assets/img/Locana_Logo 1.png" 
                  alt="gambar" 
-                 class="w-[2.5rem] h-auto
-                        max-md:m-[0] max-md:w-[35px]">
+                 class="w-10 h-auto
+                        max-md:m-0 max-md:w-[35px]">
             <h2 class="font-bold text-[#363b58] m-0 text-[1.1rem] leading-[1.2]
-                       max-md:text-[13px] max-md:m-[0]">LOCANA
+                       max-md:text-[13px] max-md:m-0">LOCANA
             </h2>
         </div>
 
     <!-- Icon -->
-    <div class="w-[2.5rem] h-[2.5rem] bg-[#FEF4E7] rounded-xl flex items-center justify-center mx-auto mb-2.5 text-3xl">
+    <div class="w-10 h-10 bg-[#FEF4E7] rounded-xl flex items-center justify-center mx-auto mb-2.5 text-3xl">
         <span class="material-symbols-outlined text-[#FBB45E] w-[2.6rem]">
         lock
         </span>
@@ -206,7 +206,7 @@
             id="pwd-new"
             placeholder="Masukkan Password Disini"
             class="password-input 
-                w-full h-[2.5rem] text-sm px-4 pr-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400
+                w-full h-10 text-sm px-4 pr-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400
                 max-md:text-[12px] max-md:h-[2.2rem]"
         >
         <span onclick="togglePwd('pwd-new', this)"
@@ -226,7 +226,7 @@
             id="pwd-confirm"
             placeholder="Masukkan Password Disini"
             class="password-input 
-                w-full h-[2.5rem] text-sm px-4 pr-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400
+                w-full h-10 text-sm px-4 pr-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400
                 max-md:text-[12px] max-md:h-[2.2rem]"
         >
         <span onclick="togglePwd('pwd-confirm', this)"
@@ -258,18 +258,18 @@
 
         <!-- LOGO -->
         <div class="flex items-center justify-center mb-[17px]
-                    max-md:mb-[10px]">
+                    max-md:mb-2.5">
             <img src="assets/img/Locana_Logo 1.png" 
                  alt="gambar" 
-                 class="w-[2.5rem] h-auto
-                        max-md:m-[0] max-md:w-[35px]">
+                 class="w-10 h-auto
+                        max-md:m-0 max-md:w-[35px]">
             <h2 class="font-bold text-[#363b58] m-0 text-[1.1rem] leading-[1.2]
-                       max-md:text-[13px] max-md:m-[0]">LOCANA
+                       max-md:text-[13px] max-md:m-0">LOCANA
             </h2>
         </div>
 
     <!-- Icon -->
-    <div class="w-[3rem] h-[3rem] bg-[#DCFCE7] rounded-full flex items-center justify-center mx-auto mb-2.5 text-3xl">
+    <div class="w-12 h-12 bg-[#DCFCE7] rounded-full flex items-center justify-center mx-auto mb-2.5 text-3xl">
         <span class="material-symbols-outlined text-[#00C951] w-[2.6rem]">
             check
         </span>

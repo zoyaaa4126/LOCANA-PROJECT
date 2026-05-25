@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="min-h-screen bg-gradient-to-r from-[#FBDAB2] via-[#F6E8D8] to-[#F9F7F4]">
+<div class="min-h-screen bg-linear-to-r from-[#FBDAB2] via-[#F6E8D8] to-[#F9F7F4]">
     <div class="max-w-2xl mx-auto px-4 py-10">
 
         <!-- TOMBOL KEMBALI (selalu muncul) -->
@@ -65,7 +65,7 @@
             </div>
 
             <!-- FOLLOW-UP OPTIONS -->
-            <div id="followUpMenu" class="hidden flex flex-wrap gap-2"></div>
+            <div id="followUpMenu" class="flex flex-wrap gap-2"></div>
 
         </div>
 

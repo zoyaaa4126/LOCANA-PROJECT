@@ -5,7 +5,7 @@
 @section('content')
 
 <!-- CONTENT -->
-<section class="px-6 py-4 md:px-[30px] md:py-0 flex flex-col gap-5 md:gap-8 md:mb-15">
+<section class="px-6 py-4 md:px-[30px] md:py-0 flex flex-col gap-5 md:gap-8">
     <!-- HERO SECTION -->
     <section class="flex flex-col gap-5 p-0 justify-between items-center md:flex-row md:gap-10 md:pt-16">
         <!-- HERO LEFT -->
@@ -13,9 +13,9 @@
             <p class="text-[#fbb45e] font-[Poppins] text-[0.8rem] font-semibold self-stretch md:text-[1.25rem]">
                 JELAJAHI BANDUNG</p>
             <h1
-                class="font-[Poppins] text-[#363B58] text-[1.25rem]/[1.5rem] font-bold w-full md:text-[2.5rem]/[3rem]">
+                class="font-[Poppins] text-[#363B58] text-[1.25rem]/[1.5rem] font-bold w-full md:text-3xl">
                 Temukan <span
-                    class="font-[Poppins] text-[#fbb45e] text-[1.25rem]/[1.5rem] font-bold md:text-[2.5rem]/[3rem]">
+                    class="font-[Poppins] text-[#fbb45e] text-[1.25rem]/[1.5rem] font-bold md:text-3xl">
                     Tempat
                     Nongkrong</span> Favoritmu
                 di Bandung</h1>
@@ -111,11 +111,12 @@
             </div>
         </div>
 
-        <button
-            class="bg-[#fbb45e] px-[20-px] py-[0.4rem] rounded-[0.3rem] border-none outline-none cursor-pointer flex items-center content-center hover:text-[#E2A255] md:px-[15px] md:py-2.5">
-            <p class="text-[0.8rem] text-[#363B58] font-bold font-[Poppins] md:text-[1rem]">Lihat Semua Lokasi
+        <a href="/home" 
+            class=" bg-[#fbb45e] px-5 py-[0.4rem] md:px-[15px] md:py-2.5 rounded-[0.3rem] border-none outline-none cursor-pointer flex items-center justify-center hover:bg-[#e09e4f] no-underline transition">
+            <p class="text-[0.8rem] text-[#363B58] font-bold font-[Poppins] md:text-[1rem] m-0">
+                Lihat Semua Lokasi
             </p>
-        </button>
+    </a>
     </section>
 </section>
 
@@ -124,12 +125,12 @@
 </section>
 <!-- Header Kenapa -->
 <div class="flex flex-col gap-1 items-center">
-    <h1 class="font-[Poppins] text-[#363B58] text-[1rem]/[1.5rem] font-bold  md:text-[2.5rem]/[3rem]">
+    <h1 class="font-[Poppins] text-[#363B58] text-[1rem]/[1.5rem] font-bold  md:text-2xl">
         Kenapa Harus <span
-            class="font-[Poppins] text-[#fbb45e] text-[1rem]/[1.5rem] font-bold  md:text-[2.5rem]/[3rem]">
+            class="font-[Poppins] text-[#fbb45e] text-[1rem]/[1.5rem] font-bold  md:text-2xl">
             Locana?</span>
     </h1>
-    <p class="text-[0.6rem]/[120%] text-center md:text-[1rem]/[120%] md:max-w-2xl">Locana membantu kamu
+    <p class="text-[0.6rem]/[120%] text-center md:text-[1rem]/[120%] md:max-w-xl">Locana membantu kamu
         menemukan tempat hangout terbaik di Bandung
         dengan cepat dan mudah. Jelajahi berbagai kafe dan spot nongkrong yang sesuai dengan mood dan
         aktivitasmu.</p>
@@ -212,14 +213,17 @@
 </section>
 
 <!-- POPULER -->
-<section class="px-6 py-4 md:px-[30px] md:py-0 flex flex-col gap-2 md:mb-15">
+<section id="populer" class="px-6 py-4 md:px-[30px] md:py-0 flex flex-col gap-2 md:mb-15 md:mt-4">
     <div class="flex flex-row justify-between items-center">
-        <h1 class="font-[Poppins] text-[#363B58] text-[1rem]/[1.5rem] font-bold md:text-[2.5rem]/[3rem]">
-            Populer di <span class="font-[Poppins] text-[#fbb45e] text-[1rem]/[1.5rem] font-bold md:text-[2.5rem]/[3rem]">Bandung</span>
+        <h1 class="font-[Poppins] text-[#363B58] text-[1rem]/[1.5rem] font-bold md:text-2xl ">
+            Populer di <span class="font-[Poppins] text-[#fbb45e] text-[1rem]/[1.5rem] font-bold md:text-2xl">Bandung</span>
         </h1>
-        <button class="bg-[#fbb45e] px-5 rounded-[0.3rem] border-none outline-none cursor-pointer flex items-center content-center hover:text-[#E2A255] md:px-[15px] md:py-2.5 py-[7px]">
-            <p class="text-[0.8rem] text-[#363B58] font-bold font-[Poppins] md:text-[1rem]">Lihat Semua</p>
-        </button>
+        <a href="/home" 
+            class=" bg-[#fbb45e] px-5 py-[7px] md:px-[15px] md:py-2.5 rounded-[0.3rem] border-none outline-none cursor-pointer flex items-center justify-center hover:bg-[#e09e4f] no-underline transition">
+            <p class="text-[0.8rem] text-[#363B58] font-bold font-[Poppins] md:text-[1rem] m-0">
+            Lihat Semua
+            </p>
+        </a>
     </div>
 
     <div class="flex gap-[0.6rem] overflow-x-auto py-2">
@@ -230,12 +234,7 @@
                     <img src="{{ $tempat->gambar ? asset('storage/' . $tempat->gambar) : asset('assets/img/180 Cafe - Bandung 1.png') }}" 
                          alt="{{ $tempat->nama_tempat }}"
                          style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px;">
-                    
-                    <button onclick="this.classList.toggle('bg-[#FBB45E]'); this.classList.toggle('text-[#363B58]'); this.classList.toggle('bg-[#FFF8EF]'); this.classList.toggle('text-[#FBB45E]');"
-                            class="wishlist-btn absolute top-2 right-2 bg-[#FFF8EF] text-[#FBB45E] rounded-full w-fit p-[0.3rem] flex items-center justify-center shadow-md cursor-pointer transition-all duration-200"
-                            style="font-variation-settings: 'FILL' 1;">
-                        <span class="material-symbols-outlined" style="font-size: 1rem;">bookmark</span>
-                    </button>
+
                 </div>
 
                 <div class="flex justify-between items-center">
@@ -279,16 +278,19 @@
 </section>
 
 <!-- REKOMENDASI -->
-<section class="px-6 py-4 md:px-[30px] md:py-0 flex flex-col gap-4 md:mb-15 md:gap-5">
+<section id="mood" class="px-6 py-4 md:px-[30px] md:py-0 flex flex-col gap-4 md:mb-15 md:gap-5">
     <!-- Header Rekomendasi -->
-    <h1 class="font-[Poppins] text-[#363B58] text-[1rem]/[1.5rem] font-bold  md:text-[2.5rem]/[3rem]">
+    <h1 class="font-[Poppins] text-[#363B58] text-[1rem]/[1.5rem] font-bold  md:text-2xl">
         Rekomendasi Berdasarkan <span
-            class="font-[Poppins] text-[#fbb45e] text-[1rem]/[1.5rem] font-bold  md:text-[2.5rem]/[3rem]">Mood</span>
+            class="font-[Poppins] text-[#fbb45e] text-[1rem]/[1.5rem] font-bold  md:text-2xl">Mood</span>
     </h1>
 
     <!-- Content Rekomendasi -->
     <div class="flex gap-[0.4rem] overflow-x-auto">
-        <div
+        @foreach ($moods as $mood)
+        <x-card-mood-landing :judul="$mood->nama"></x-card-mood-landing>
+        @endforeach
+        <!-- <div
             class="flex items-center w-28 h-fit gap-2.5 bg-white rounded-[0.6rem] p-2.5 border border-[#E2E8F0] shadow flex-col text-center content-center justify-center md:flex-row md:text-left md:justify-start md:w-fit">
             <img src="assets/img/Hot beverage.png" class="w-[4.3rem]" alt="hotbeverage">
             <div class="flex flex-col gap-2">
@@ -357,17 +359,17 @@
                     <p>></p>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </section>
 
 <!-- REVIEW -->
-<section class="px-6 py-4 md:px-[30px] md:py-0 flex flex-col gap-4 md:mb-15 md:gap-5">
+<section id="ulasan" class="px-6 py-4 md:px-[30px] md:py-0 flex flex-col gap-4 md:mb-15 md:gap-5">
     <!-- Header Review -->
-    <h1 class="font-[Poppins] text-[#363B58] text-[1rem]/[1.5rem] font-bold  md:text-[2.5rem]/[3rem]">
-        Dengar <span class="font-[Poppins] text-[#fbb45e] text-[1rem]/[1.5rem] font-bold  md:text-[2.5rem]/[3rem]">
+    <h1 class="font-[Poppins] text-[#363B58] text-[1rem]/[1.5rem] font-bold  md:text-2xl">
+        Dengar <span class="font-[Poppins] text-[#fbb45e] text-[1rem]/[1.5rem] font-bold  md:text-2xl">
             Cerita</span>
-        dari <span class="font-[Poppins] text-[#fbb45e] text-[1rem]/[1.5rem] font-bold  md:text-[2.5rem]/[3rem]">
+        dari <span class="font-[Poppins] text-[#fbb45e] text-[1rem]/[1.5rem] font-bold  md:text-2xl">
             Pengguna
             Lain</span>
     </h1>
@@ -598,26 +600,31 @@
     </div>
     <div
         class="bg-[#363B58] flex w-full flex-col justify-center items-center rounded-[20px] text-[#fefefe] py-4 gap-[0.3rem] md:py-4 md:px-5 md:gap-4">
-        <h2 class="text-center text-[1rem] w-56 not-italic font-bold leading-[120%] md:text-[2rem] md:w-fit">
+        <h2 class="text-center text-[1rem] w-56 not-italic font-bold leading-[120%] md:text-[1.5rem] md:w-fit md:mt-4">
             Setiap
             Momen Punya Tempatnya</h2>
-        <p class="text-center w-[16rem] text-[0.62rem]/[120%] font-normal md:text-[1rem] md:w-120">
+        <p class="text-center w-[16rem] text-[0.62rem]/[120%] font-normal md:text-[0.8rem] md:w-120">
             Temukan berbagai tempat hangout terbaik yang sesuai dengan mood, preferensi, dan momen kamu hari
             ini.
         </p>
 
-        <div class="flex gap-[5px] mt-2 md:flex-row md:gap-2 md:mt-4">
-            <button
-                class="bg-[#fbb45e] px-[15px] py-[0.3rem] flex items-center content-center rounded-[0.3rem] border-none outline-[none] cursor-pointer">
-                <span
-                    class="text-[0.6rem] text-[#363B58] md:text-[0.9rem]#363B58] font-bold text-0.8rem md:text-[1rem]">Lanjut
-                    Sebagai Tamu</span>
-            </button>
-            <button
-                class="bg-[#fbb45e] px-[15px] flex items-center content-center rounded-[0.3rem] border-none outline-[none] cursor-pointer">
-                <span class="text-[0.6rem] text-[#363B58] font-bold text-0.8rem md:text-[1rem]">Masuk</span>
-            </button>
-        </div>
+       <div class="flex gap-2.5 mt-2 md:flex-row md:gap-4 md:mt-4 relative z-50 justify-center">
+    
+    <button type="button" onclick="window.location.href='/home'"
+        class="bg-[#fbb45e] px-[15px] py-2 flex items-center justify-center rounded-[0.3rem] border-none outline-none cursor-pointer hover:bg-[#e09e4f] transition">
+        <span class="text-[0.8rem] md:text-[1rem] text-[#363B58] font-bold">
+            Lanjut Sebagai Tamu
+        </span>
+    </button>
+    
+    <button type="button" onclick="window.location.href='/login'"
+        class="bg-[#fbb45e] px-[15px] py-2 flex items-center justify-center rounded-[0.3rem] border-none outline-none cursor-pointer hover:bg-[#e09e4f] transition">
+        <span class="text-[0.8rem] md:text-[1rem] text-[#363B58] font-bold">
+            Masuk
+        </span>
+    </button>
+
+</div>
     </div>
 </section>
 

@@ -10,7 +10,7 @@ use App\Http\Controllers\LandingController;
 use App\Http\Controllers\HomeController;
 
 // ROUTE VIEW PAGES
-Route::get('/welcome', [LandingController::class, 'index']);
+Route::get('/', [LandingController::class, 'index'])->name('landing.index');
 
 //LOGIN
 Route::get('/login', function () {
@@ -60,7 +60,11 @@ Route::get('/wishlist', function () {
     return view('wishlist');
 });
 
+Route::get('/places/{id}', [UserController::class, 'showPlace'])->name('places.show');
 
+//rekomendasi
+Route::get('/rekomendasi', [UserController::class, 'rekomendasi'])->name('rekomendasi');
+Route::get('/places/kategori/{id}', [UserController::class, 'placesByKategori'])->name('places.kategori');
 
 
 // ROUTE CRUD USER

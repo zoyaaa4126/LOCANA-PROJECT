@@ -26,8 +26,8 @@ class UserController extends Controller
     public function registerStep1(Request $request)
     {
         $request->validate([
-            'check' => 'required'
-        ]);
+                'check' => 'required'
+            ]);
 
         session([
             'username' => $request->username,
@@ -114,6 +114,14 @@ class UserController extends Controller
         $moods = \App\Models\moods::all();
 
         $places = \App\Models\Places::all();
+
+        $popularPlaces = \App\Models\Places::where('status_aktif', true)
+            ->where('tempat_unggulan', true)
+            ->limit(10)
+            ->get();
+
+        $recommendedPlaces = $places;
+
 
         $popularPlaces = \App\Models\Places::where('status_aktif', true)
             ->where('tempat_unggulan', true)

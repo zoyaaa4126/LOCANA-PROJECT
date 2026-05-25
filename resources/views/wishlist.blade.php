@@ -35,20 +35,20 @@
                 </div>
             </aside>
 
-            <main class="flex-row gap-[40px] overflow-hidden">
-        <div class="flex flex-col gap-[20px] mt-[20px]">
-            <div class="flex flex-col gap-[20px]
+            <main class="flex-row gap-10 overflow-hidden">
+        <div class="flex flex-col gap-5 mt-5">
+            <div class="flex flex-col gap-5
                         max-md:flex-none">
                 <div class="flex gap-[200px] ml-[60px] mr-[60px] justify-between items-center self-stretch
                             max-md:ml-[30px] max-md:mr-[30px] max-md:gap-[70px]">
-                    <div class="flex flex-col gap-[10px]">
+                    <div class="flex flex-col gap-2.5">
                         <h1 class="text-[#31354F] font-extrabold text-3xl
                                     max-md:2xl">Wishlist</h1>
                         <p class="text-[#31354F] text-[1rem]
                                     max-md:text-[10px]">Tempat-Tempat Favorit yang Pengen Kamu Kunjungi</p>
                     </div>
-                    <div class="flex items-center bg-[#fbb45e] px-[20px] py-[10px] text-[#363B58] rounded-[10px] w-[8rem] gap-[10px] text-[15px] font-semibold
-                                max-md:px-[8px] py-[5px] max-md:text-[10px] max-md:w-[10rem]">
+                    <div class="flex items-center bg-[#fbb45e] px-5 text-[#363B58] rounded-[10px] w-32 gap-2.5 text-[15px] font-semibold
+                                max-md:px-2 py-[5px] max-md:text-[10px] max-md:w-40">
                         <span class="material-symbols-outlined " 
                                     style="font-size:17px;">select_check_box</span>Select
                     </div>
@@ -56,13 +56,13 @@
 
                 <!-- CARD -->
         
-            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 px-[60px] py-[20px]
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 px-[60px] py-5
                         max-md:px-[15px] max-md:grid-cols-2 max-md:gap-5">
 
                 <!-- CARD ITEM -->
-                <div class="flex flex-col bg-white rounded-[30px] p-[20px] border border-[#E2E8F0] w-60 h-106
+                <div class="flex flex-col bg-white rounded-[30px] p-5 border border-[#E2E8F0] w-60 h-106
                             max-md:w-40 max-md:h-87">
-                    <div class="relative w-50 h-50 flex-shrink-0
+                    <div class="relative w-50 h-50 shrink-0
                                 max-md:w-30 max-md:h-30">
                         <img src="assets/img/180 Cafe - Bandung 1.png" class="w-full h-full object-cover rounded-xl" alt="Wishlist">
                         <!-- BOOKMARK -->
@@ -118,9 +118,9 @@
                 </div>
 
                 <!-- CARD ITEM -->
-                <div class="flex flex-col bg-white rounded-[30px] p-[20px] border border-[#E2E8F0] w-60 h-106
+                <div class="flex flex-col bg-white rounded-[30px] p-5 border border-[#E2E8F0] w-60 h-106
                             max-md:w-40 max-md:h-87">
-                    <div class="relative w-50 h-50 flex-shrink-0
+                    <div class="relative w-50 h-50 shrink-0
                                 max-md:w-30 max-md:h-30">
                         <img src="assets/img/180 Cafe - Bandung 1.png" class="w-full h-full object-cover rounded-xl" alt="Wishlist">
                         <!-- BOOKMARK -->
@@ -177,9 +177,9 @@
 
 
                 <!-- CARD ITEM -->
-                <div class="flex flex-col bg-white rounded-[30px] p-[20px] border border-[#E2E8F0] w-60 h-106
+                <div class="flex flex-col bg-white rounded-[30px] p-5 border border-[#E2E8F0] w-60 h-106
                             max-md:w-40 max-md:h-87">
-                    <div class="relative w-50 h-50 flex-shrink-0
+                    <div class="relative w-50 h-50 shrink-0
                                 max-md:w-30 max-md:h-30">
                         <img src="assets/img/180 Cafe - Bandung 1.png" class="w-full h-full object-cover rounded-xl" alt="Wishlist">
                         <!-- BOOKMARK -->
@@ -237,9 +237,9 @@
 
 
             <!-- CARD ITEM -->
-                <div class="flex flex-col bg-white rounded-[30px] p-[20px] border border-[#E2E8F0] w-60 h-106
+                <div class="flex flex-col bg-white rounded-[30px] p-5 border border-[#E2E8F0] w-60 h-106
                             max-md:w-40 max-md:h-87">
-                    <div class="relative w-50 h-50 flex-shrink-0
+                    <div class="relative w-50 h-50 shrink-0
                                 max-md:w-30 max-md:h-30">
                         <img src="assets/img/180 Cafe - Bandung 1.png" class="w-full h-full object-cover rounded-xl" alt="Wishlist">
                         <!-- BOOKMARK -->
@@ -295,9 +295,9 @@
                 </div>
 
                 <!-- CARD ITEM -->
-                <div class="flex flex-col bg-white rounded-[30px] p-[20px] border border-[#E2E8F0] w-60 h-106
+                <div class="flex flex-col bg-white rounded-[30px] p-5 border border-[#E2E8F0] w-60 h-106
                             max-md:w-40 max-md:h-87">
-                    <div class="relative w-50 h-50 flex-shrink-0
+                    <div class="relative w-50 h-50 shrink-0
                                 max-md:w-30 max-md:h-30">
                         <img src="assets/img/180 Cafe - Bandung 1.png" class="w-full h-full object-cover rounded-xl" alt="Wishlist">
                         <!-- BOOKMARK -->
@@ -354,9 +354,9 @@
 
 
                 <!-- CARD ITEM -->
-                <div class="flex flex-col bg-white rounded-[30px] p-[20px] border border-[#E2E8F0] w-60 h-106
+                <div class="flex flex-col bg-white rounded-[30px] p-5 border border-[#E2E8F0] w-60 h-106
                             max-md:w-40 max-md:h-87">
-                    <div class="relative w-50 h-50 flex-shrink-0
+                    <div class="relative w-50 h-50 shrink-0
                                 max-md:w-30 max-md:h-30">
                         <img src="assets/img/180 Cafe - Bandung 1.png" class="w-full h-full object-cover rounded-xl" alt="Wishlist">
                         <!-- BOOKMARK -->

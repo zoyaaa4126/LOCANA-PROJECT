@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
 </head>
 
-<body class="m-0 p-0 font-[Poppins] text-[#363b58] bg-[#fff8ef] min-h-screen flex justify-center items-center p-6">
+<body class="m-0 font-[Poppins] text-[#363b58] bg-[#fff8ef] min-h-screen flex justify-center items-center p-6">
 
     <div class="w-full max-w-[1000px] flex rounded-2xl overflow-hidden bg-white shadow-2xl
                 max-md:flex-col-reverse max-md:max-w-[420px]">
@@ -22,7 +22,7 @@
                     max-md:w-full max-md:p-6">
 
             <!-- Close -->
-            <a href="/welcome" class="absolute top-5 left-5 text-gray-400 hover:text-gray-700 transition-colors">
+            <a href="/" class="absolute top-5 left-5 text-gray-400 hover:text-gray-700 transition-colors">
                 <span class="material-symbols-outlined" style="font-size:22px;">close</span>
             </a>
 
