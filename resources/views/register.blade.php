@@ -74,7 +74,7 @@
                     <!-- Username -->
                     <div class="flex flex-col gap-1">
                         <label for="username" class="font-semibold text-sm max-md:text-xs">Username</label>
-                        <input type="text" name="username" id="username" required
+                        <input type="text" name="username" id="username" 
                                placeholder="Masukkan Username Disini"
                                class="w-full h-9 px-3 border border-[#ccc] rounded-md bg-[#FCFCFC] text-sm placeholder:text-sm
                                       hover:[box-shadow:0_0_10px_rgba(0,123,255,0.7)]
@@ -84,7 +84,7 @@
                     <!-- Email -->
                     <div class="flex flex-col gap-1">
                         <label for="email" class="font-semibold text-sm max-md:text-xs">Email</label>
-                        <input type="email" name="email" id="email" required
+                        <input type="email" name="email" id="email" 
                                placeholder="Masukkan Email Disini"
                                class="w-full h-9 px-3 border border-[#ccc] rounded-md bg-[#FCFCFC] text-sm placeholder:text-sm
                                       hover:[box-shadow:0_0_10px_rgba(0,123,255,0.7)]
@@ -94,7 +94,7 @@
                     <!-- Password -->
                     <div class="flex flex-col gap-1 relative">
                         <label for="password" class="font-semibold text-sm max-md:text-xs">Password</label>
-                        <input type="password" name="password" id="password" required
+                        <input type="password" name="password" id="password" 
                                placeholder="Masukkan Password Disini"
                                class="password-input
                                       w-full h-9 px-3 pr-9 border border-[#ccc] rounded-md bg-[#FCFCFC] text-sm placeholder:text-sm
@@ -107,7 +107,7 @@
                     <!-- Syarat & Ketentuan -->
                     <label class="flex items-start gap-2 font-semibold text-sm bg-[#FCFCFC]
                                   max-md:text-xs">
-                        <input type="checkbox" class="mt-0.5 shrink-0" name="check" id="check" required>
+                        <input type="checkbox" class="mt-0.5 shrink-0" name="check" id="check">
                         <span>
                             Saya menyetujui
                             <a class="underline font-semibold text-orange-400 ml-0.5">
@@ -116,15 +116,15 @@
                         </span>
                     </label>
 
-                    @if ($errors->any())
-                    <div class="text-red-500 text-xs">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                    <!-- Condition False -->
+                    @if ($errors->hasAny(['email', 'password']))
+                        <p class="text-red-500 text-xs">
+                            {{ implode(' dan ', array_filter([
+                                $errors->first('email'),
+                                $errors->first('password')
+                            ])) }}
+                        </p>
+                    @endif
 
                     <!-- Submit -->
                     <button type="submit"
@@ -133,12 +133,6 @@
                                    max-md:h-9 max-md:text-xs">
                         Daftar
                     </button>
-
-                    <p class="text-center text-sm font-semibold mb-6 mt-1
-                              max-md:text-xs max-md:mb-4">
-                        Sudah punya akun?
-                        <a class="text-orange-400 underline font-medium">Masuk</a>
-                    </p>
 
                 </form>
             </div>

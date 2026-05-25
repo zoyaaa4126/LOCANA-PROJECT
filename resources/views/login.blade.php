@@ -76,7 +76,7 @@
                     <!-- Email -->
                     <div class="flex flex-col gap-1">
                         <label for="email" class="font-semibold text-sm max-md:text-xs">Email</label>
-                        <input type="email" name="email" id="email" required
+                        <input type="email" name="email" id="email"
                                placeholder="Masukkan Email Disini"
                                class="w-full h-9 px-3 border border-[#ccc] rounded-md bg-[#FCFCFC] text-sm placeholder:text-sm
                                       hover:[box-shadow:0_0_10px_rgba(0,123,255,0.7)]
@@ -86,7 +86,7 @@
                     <!-- Password -->
                     <div class="flex flex-col gap-1 relative">
                         <label for="password" class="font-semibold text-sm max-md:text-xs">Password</label>
-                        <input type="password" name="password" id="password" required
+                        <input type="password" name="password" id="password"
                                placeholder="Masukkan Password Disini"
                                class="password-input
                                       w-full h-9 px-3 pr-9 border border-[#ccc] rounded-md bg-[#FCFCFC] text-sm placeholder:text-sm
@@ -113,12 +113,11 @@
                         Masuk
                     </button>
 
-                    <p id="error-msg" class="text-red-500 text-xs mt-1"></p>
-
-                    <p class="text-center text-sm font-semibold mb-6 mt-1
-                              max-md:text-xs max-md:mb-4">
-                        Belum punya akun?
-                        <a href="/register" class="text-orange-400 underline font-medium">Daftar</a>
+                    <!-- Condition FALSE -->
+                    <p id="error-msg" class="text-red-500 text-xs mt-1">
+                        @error('login')
+                            {{ $message }}
+                        @enderror
                     </p>
 
                 </form>

@@ -17,21 +17,22 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('login');
 });
-
 Route::post('/login', [UserController::class, 'login']);
 
 
 //FORGOT PASSWORD
 Route::get('/forgot-password', [ForgotPasswordController::class, 'showEmailForm']);
-
 Route::post('/forgot-password', [ForgotPasswordController::class, 'sendOtp']);
 
 Route::get('/verify-otp', [ForgotPasswordController::class, 'showOtpForm']);
-
 Route::post('/verify-otp', [ForgotPasswordController::class, 'verifyOtp']);
+
+Route::post('/resend-otp', [ForgotPasswordController::class, 'resendOtp']);
 
 Route::get('/reset-password', [ForgotPasswordController::class, 'showResetForm']);
 Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword']);
+
+Route::get('/success', [ForgotPasswordController::class, 'showSuccess']);
 
 //REGISTER
 Route::get('/register', function () {

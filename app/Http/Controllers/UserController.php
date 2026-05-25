@@ -25,9 +25,16 @@ class UserController extends Controller
         $request->validate([
             'username' => 'required',
             'email'    => 'required|email',
-            'password' => 'required|min:6',
-            'check' => 'required'
-    ]);
+            'password' => 'required|min:6|confirmed',
+            'check'    => 'required',
+        ], [
+            'username.required' => 'username tidak boleh kosong',
+            'email.required'    => 'email tidak boleh kosong',
+            'email.email'       => 'format email tidak valid',
+            'password.required' => 'password tidak boleh kosong',
+            'password.min'      => 'password minimal 6 karakter',
+            'check.required'    => 'harap centang persetujuan',
+        ]);
 
         session([
             'username' => $request->username,
@@ -64,13 +71,13 @@ class UserController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials, $request->remember)) { //di cek apakah ada atau engga
-
             $request->session()->regenerate();
-
             return redirect('/home');
         }
 
-        return back()->with('error', 'Email atau password salah');
+        return back()->withErrors([
+            'login' => 'Email atau password salah!'
+        ]);
     }
 
     public function edit($id)
