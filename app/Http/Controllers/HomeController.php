@@ -16,7 +16,6 @@ class HomeController extends Controller
         $moods = moods::all();
         $places = Places::all(); // Tetap ambil semua data untuk bagian lain
 
-
         return view('home', compact('kategoris', 'moods', 'places'));
     }
 }

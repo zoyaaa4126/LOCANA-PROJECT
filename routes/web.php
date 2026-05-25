@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\HomeController;
 
 // ROUTE VIEW PAGES
 Route::get('/welcome', [LandingController::class, 'index']);
@@ -45,7 +46,7 @@ Route::get('/register-nextStep', function () {
 
 Route::post('/register-nextStep', [UserController::class, 'store']);
 
-Route::get('/home', [UserController::class, 'home']);
+Route::get('/home', [HomeController::class, 'home']);
 
 // VIEW PAGES
 Route::get('/profile', function () {
