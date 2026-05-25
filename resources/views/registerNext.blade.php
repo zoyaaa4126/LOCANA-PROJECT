@@ -22,7 +22,7 @@
                     max-md:w-full max-md:p-6">
 
             <!-- Close -->
-            <a href="/welcome" class="absolute top-5 left-5 text-gray-400 hover:text-gray-700 transition-colors">
+            <a href="/register-step1" class="absolute top-5 left-5 text-gray-400 hover:text-gray-700 transition-colors">
                 <span class="material-symbols-outlined" style="font-size:22px;">close</span>
             </a>
 

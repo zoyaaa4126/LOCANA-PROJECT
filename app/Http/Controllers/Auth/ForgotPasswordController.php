@@ -23,9 +23,7 @@ class ForgotPasswordController extends Controller{
 
         $request->validate([
             'email' => 'required|email|exists:users,email'], 
-            ['email.required' => 'email tidak boleh kosong',
-             'email.email'    => 'format email tidak valid',
-             'email.exists'   => 'email tidak terdaftar',
+            ['email.exists'   => 'Email tidak terdaftar.',
 ]);
 
         $otp = rand(1000, 9999);
@@ -57,8 +55,7 @@ class ForgotPasswordController extends Controller{
     public function verifyOtp(Request $request){
 
         $request->validate([
-            'otp' => 'required'],
-            ['otp.required' => 'kolom otp tidak boleh kosong'
+            'otp' => 'required',
         ]);
 
         $record = PasswordReset::where('email', session('reset_email'))
@@ -94,7 +91,7 @@ class ForgotPasswordController extends Controller{
             'otp' => $otp,
             'expires_at' => Carbon::now('Asia/Jakarta')->addMinutes(5),
         ]);
-        
+
         Mail::raw("Kode OTP kamu adalah: $otp", function($message) use ($email) {
             $message->to($email)
                     ->subject('Kode OTP Reset Password');
@@ -113,10 +110,8 @@ class ForgotPasswordController extends Controller{
     public function resetPassword(Request $request){
 
         $request->validate([
-            'password' => 'required|min:6|confirmed'], 
-             ['password.required' => 'password tidak boleh kosong',
-              'password.min'      => 'password minimal 6 karakter',
-              'password.confirmed'=> 'konfirmasi password tidak cocok',
+            'password'           => 'required|min:6|confirmed'],
+            ['password.min'      => 'Password minimal 6 karakter.', 
         ]);
 
         $user = User::where('email', session('reset_email'))->first();

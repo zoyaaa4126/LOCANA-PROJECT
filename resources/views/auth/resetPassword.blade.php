@@ -61,7 +61,7 @@
             type="password" 
             name="password"
             id="pwd-new"
-            placeholder="Masukkan Password Disini"
+            placeholder="Masukkan Password Disini" required
             class="password-input 
                 w-full h-[2.5rem] text-sm px-4 pr-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400
                 max-md:text-[12px] max-md:h-[2.2rem]"
@@ -82,7 +82,7 @@
             type="password"
             id="pwd-confirm"
             name="password_confirmation"
-            placeholder="Masukkan Password Disini"
+            placeholder="Masukkan Password Disini" required
             class="password-input 
                 w-full h-[2.5rem] text-sm px-4 pr-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400
                 max-md:text-[12px] max-md:h-[2.2rem]"

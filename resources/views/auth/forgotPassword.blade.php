@@ -59,7 +59,7 @@
         type="email"
         id="email-input"
         name="email"
-        placeholder="Masukkan Email Disini"
+        placeholder="Masukkan Email Disini" required
         class="w-full h-[2.5rem] text-sm px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400
                 max-md:text-[12px] max-md:h-[2.2rem]"
       >

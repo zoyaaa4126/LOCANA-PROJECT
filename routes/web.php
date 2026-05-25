@@ -17,7 +17,9 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('login');
 });
+// ->middleware('guest');
 Route::post('/login', [UserController::class, 'login']);
+// ->middleware('guest');
 
 
 //FORGOT PASSWORD
@@ -35,17 +37,21 @@ Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword'
 Route::get('/success', [ForgotPasswordController::class, 'showSuccess']);
 
 //REGISTER
-Route::get('/register', function () {
+Route::get('/register-step1', function () {
     return view('register');
 });
+// ->middleware('guest');
 
 Route::post('/register-step1', [UserController::class, 'registerStep1']);
+// ->middleware('guest');
 
 Route::get('/register-nextStep', function () {
     return view('registerNext');
 });
+// ->middleware('guest');
 
 Route::post('/register-nextStep', [UserController::class, 'store']);
+// ->middleware('guest');
 
 Route::get('/home', function () {
     return view('home');

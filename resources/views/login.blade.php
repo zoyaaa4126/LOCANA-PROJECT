@@ -77,7 +77,7 @@
                     <div class="flex flex-col gap-1">
                         <label for="email" class="font-semibold text-sm max-md:text-xs">Email</label>
                         <input type="email" name="email" id="email"
-                               placeholder="Masukkan Email Disini"
+                               placeholder="Masukkan Email Disini" required
                                class="w-full h-9 px-3 border border-[#ccc] rounded-md bg-[#FCFCFC] text-sm placeholder:text-sm
                                       hover:[box-shadow:0_0_10px_rgba(0,123,255,0.7)]
                                       max-md:placeholder:text-xs max-md:text-xs">
@@ -87,7 +87,7 @@
                     <div class="flex flex-col gap-1 relative">
                         <label for="password" class="font-semibold text-sm max-md:text-xs">Password</label>
                         <input type="password" name="password" id="password"
-                               placeholder="Masukkan Password Disini"
+                               placeholder="Masukkan Password Disini" required
                                class="password-input
                                       w-full h-9 px-3 pr-9 border border-[#ccc] rounded-md bg-[#FCFCFC] text-sm placeholder:text-sm
                                       hover:[box-shadow:0_0_10px_rgba(0,123,255,0.7)]
@@ -108,17 +108,17 @@
                         </a>
                     </div>
 
-                    <!-- Submit -->
-                    <button type="submit" class="w-full h-10 bg-[#fbb45e] border-none text-sm text-[#363b58] font-semibold hover:bg-[#FEE8CD] rounded-md mt-1 max-md:h-9 max-md:text-xs">
-                        Masuk
-                    </button>
-
                     <!-- Condition FALSE -->
                     <p id="error-msg" class="text-red-500 text-xs mt-1">
                         @error('login')
                             {{ $message }}
                         @enderror
                     </p>
+
+                    <!-- Submit -->
+                    <button type="submit" class="w-full h-10 bg-[#fbb45e] border-none text-sm text-[#363b58] font-semibold hover:bg-[#FEE8CD] rounded-md mt-1 max-md:h-9 max-md:text-xs">
+                        Masuk
+                    </button>
 
                 </form>
             </div>

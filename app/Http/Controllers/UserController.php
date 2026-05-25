@@ -25,16 +25,10 @@ class UserController extends Controller
         $request->validate([
             'username' => 'required',
             'email'    => 'required|email|unique:users,email',
-            'password' => 'required|min:6|confirmed',
+            'password' => 'required|min:6',
             'check'    => 'required',
-        ], [
-            'username.required' => 'username tidak boleh kosong',
-            'email.required'    => 'email tidak boleh kosong',
-            'email.email'       => 'format email tidak valid',
-            'email.unique'      => 'email sudah terdaftar',
-            'password.required' => 'password tidak boleh kosong',
-            'password.min'      => 'password minimal 6 karakter',
-            'check.required'    => 'harap centang persetujuan',
+        ], ['email.unique'      => 'Email sudah terdaftar.',
+            'password.min'      => 'Password minimal 6 karakter.',
         ]);
 
         session([
@@ -71,11 +65,7 @@ class UserController extends Controller
     {
          $request->validate([
             'email'    => 'required|email',
-            'password' => 'required',
-        ], [
-            'email.required'    => 'email tidak boleh kosong',
-            'email.email'       => 'format email tidak valid',
-            'password.required' => 'password tidak boleh kosong',
+            'password' => 'required|min:6',
         ]);
 
         $credentials = $request->only('email', 'password');
