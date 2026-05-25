@@ -26,8 +26,8 @@ class UserController extends Controller
     public function registerStep1(Request $request)
     {
         $request->validate([
-        'check' => 'required'
-    ]);
+            'check' => 'required'
+        ]);
 
         session([
             'username' => $request->username,
@@ -115,8 +115,12 @@ class UserController extends Controller
 
         $places = \App\Models\Places::all();
 
-        $popularPlaces = \App\Models\Places::all();
-        $recommendedPlaces = \App\Models\Places::all();
+        $popularPlaces = \App\Models\Places::where('status_aktif', true)
+            ->where('tempat_unggulan', true)
+            ->limit(10)
+            ->get();
+
+        $recommendedPlaces = $places;
 
 
         // Kirim data ke view home.blade.php
@@ -124,8 +128,20 @@ class UserController extends Controller
     }
 
     public function showPlace(int $id)
-{
-    $place = \App\Models\Places::findOrFail($id);
-    return view('places.show', compact('place'));
-}
+    {
+        $place = \App\Models\Places::findOrFail($id);
+        return view('places.show', compact('place'));
+    }
+
+    public function rekomendasi()
+    {
+        return view('rekomendasi');
+    }
+
+    public function placesByKategori(int $id)
+    {
+        $places = \App\Models\Places::where('kategori_id', $id)->get();
+        $kategori = Kategoris::findOrFail($id);
+        return view('places.kategori', compact('places', 'kategori'));
+    }
 }

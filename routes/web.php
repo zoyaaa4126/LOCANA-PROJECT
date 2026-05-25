@@ -61,7 +61,9 @@ Route::get('/wishlist', function () {
 
 Route::get('/places/{id}', [UserController::class, 'showPlace'])->name('places.show');
 
-
+//rekomendasi
+Route::get('/rekomendasi', [UserController::class, 'rekomendasi'])->name('rekomendasi');
+Route::get('/places/kategori/{id}', [UserController::class, 'placesByKategori'])->name('places.kategori');
 
 
 // ROUTE CRUD USER
