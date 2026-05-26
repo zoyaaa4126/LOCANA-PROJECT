@@ -13,12 +13,12 @@ class MoodSeeder extends Seeder
     public function run(): void
     {
         $moods = [
-            ['id' => 1, 'nama' => 'Chill', 'created_at' => now(), 'updated_at' => now()],
-            ['id' => 2, 'nama' => 'Fancy', 'created_at' => now(), 'updated_at' => now()],
-            ['id' => 3, 'nama' => 'Keluarga', 'created_at' => now(), 'updated_at' => now()],
-            ['id' => 4, 'nama' => 'Romantis', 'created_at' => now(), 'updated_at' => now()],
-            ['id' => 5, 'nama' => 'Petualangan', 'created_at' => now(), 'updated_at' => now()],
-            ['id' => 6, 'nama' => 'Produktif', 'created_at' => now(), 'updated_at' => now()],
+            ['id' => 1, 'nama' => 'Chill'],
+            ['id' => 2, 'nama' => 'Fancy'],
+            ['id' => 3, 'nama' => 'Keluarga'],
+            ['id' => 4, 'nama' => 'Romantis'],
+            ['id' => 5, 'nama' => 'Petualangan'],
+            ['id' => 6, 'nama' => 'Produktif'],
         ];
         
         DB::table('moods')->insert($moods);

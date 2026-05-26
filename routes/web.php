@@ -88,12 +88,16 @@ Route::get('/profile', [UserController::class, 'profile']);
 Route::get('/wishlist', [WishlistController::class, 'index']);
 Route::post('/wishlist/toggle', [WishlistController::class, 'toggle']);
 
-Route::middleware('auth')->group(function () {
+// Route::middleware('auth')->group(function () {
 
+    Route::get('/places/kategori/{id}', [UserController::class, 'placesByKategori'])->name('places.kategori');
+    Route::get('/places/{id}/reviews', [ReviewController::class, 'index'])->name('reviews.index');
+    Route::get('/places/{id}/reviews/create', [ReviewController::class, 'create'])->name('reviews.create');
+    Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+    Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
 
-    // Review
-    Route::get('/reviews', [ReviewController::class, 'index']);
-    Route::post('/reviews', [ReviewController::class, 'store']);
-    Route::delete('/reviews/{id}', [ReviewController::class, 'destroy']);
-
-});
+    // GENERAL - taruh paling bawah
+    Route::get('/places/{id}', [UserController::class, 'showPlace'])->name('places.show');
+    Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
+    
+// });

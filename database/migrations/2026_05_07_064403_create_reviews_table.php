@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('place_id')->constrained('places');
 
             $table->integer('rating');
+            $table->text('title');
             $table->text('comment')->nullable();
             $table->string('file_url')->nullable();
 
