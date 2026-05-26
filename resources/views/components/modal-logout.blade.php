@@ -1,6 +1,6 @@
 {{-- ====== MODAL KONFIRMASI LOGOUT ====== --}}
 <div id="modal-logout"
-     class=" fixed inset-0 z-999 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+     class=" fixed inset-0 z-999 hidden items-center justify-center bg-black/40 backdrop-blur-sm">
     <div class="bg-white rounded-2xl shadow-xl p-8 w-full max-w-xs mx-4 relative text-center">
 
         {{-- Tombol Tutup --}}

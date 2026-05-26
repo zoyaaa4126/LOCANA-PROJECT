@@ -7,6 +7,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\ReviewController;
 
 // ROUTE VIEW PAGES
 Route::get('/', [LandingController::class, 'index'])->name('landing.index');
@@ -48,18 +51,12 @@ Route::post('/register-nextStep', [UserController::class, 'store']);
 Route::get('/home', [UserController::class, 'home']);
 
 // VIEW PAGES
-Route::get('/profile', function () {
-    return view('profile');
-});
 Route::get('/syarat', function () {
     return view('syarat');
 });
 
-Route::get('/wishlist', function () {
-    return view('wishlist');
-});
-
 Route::get('/places/{id}', [UserController::class, 'showPlace'])->name('places.show');
+
 
 //rekomendasi
 Route::get('/rekomendasi', [UserController::class, 'rekomendasi'])->name('rekomendasi');
@@ -84,3 +81,19 @@ Route::get('/lokasi', [AdminController::class, 'lokasi'])->name('lokasi');
 Route::get('/tambah-lokasi', [AdminController::class, 'tambahLokasi'])->name('tambahLokasi');
 Route::get('/ulasan', [AdminController::class, 'ulasan'])->name('ulasan');
 Route::get('/pengguna', [AdminController::class, 'pengguna'])->name('pengguna');
+
+Route::get('/profile', [UserController::class, 'profile']);
+
+// Wishlist
+Route::get('/wishlist', [WishlistController::class, 'index']);
+Route::post('/wishlist/toggle', [WishlistController::class, 'toggle']);
+
+Route::middleware('auth')->group(function () {
+
+
+    // Review
+    Route::get('/reviews', [ReviewController::class, 'index']);
+    Route::post('/reviews', [ReviewController::class, 'store']);
+    Route::delete('/reviews/{id}', [ReviewController::class, 'destroy']);
+
+});

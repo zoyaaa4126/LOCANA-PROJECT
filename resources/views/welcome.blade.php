@@ -31,9 +31,11 @@
                 <span class="material-symbols-outlined mr-2 text-[#363B58] text-[0.1px]">search</span>
                 <!-- GANTI UKURAN LOGO -->
                 <input
+                    id="landingSearch"
                     class="flex border-none font-normal rounded-lg grow p-0 placeholder-[#363B58] text-[0.8rem] text-[#363B58] cursor-pointer outline-[none] bg-transparent md:px-4 md:py-3 md:text-[1.2rem]"
                     type="text" placeholder="Mau Pergi Kemana">
                 <button
+                    id="landingSearchBtn"
                     class="bg-[#F2994A] border-none flex px-5 py-[0.4rem] rounded-[0.3rem] text-[0.75rem] text-[#363B58] justify-center items-center font-bold cursor-pointer w-fit hover:text-[#363B58] md:text-[1.25rem]/[1.5rem] md:py-[0.7rem] md:px-8">
                     <p>Telusuri</p>
                 </button>
@@ -111,12 +113,12 @@
             </div>
         </div>
 
-        <a href="/home" 
+        <a href="/home"
             class=" bg-[#fbb45e] px-5 py-[0.4rem] md:px-[15px] md:py-2.5 rounded-[0.3rem] border-none outline-none cursor-pointer flex items-center justify-center hover:bg-[#e09e4f] no-underline transition">
             <p class="text-[0.8rem] text-[#363B58] font-bold font-[Poppins] md:text-[1rem] m-0">
                 Lihat Semua Lokasi
             </p>
-    </a>
+        </a>
     </section>
 </section>
 
@@ -218,61 +220,61 @@
         <h1 class="font-[Poppins] text-[#363B58] text-[1rem]/[1.5rem] font-bold md:text-2xl ">
             Populer di <span class="font-[Poppins] text-[#fbb45e] text-[1rem]/[1.5rem] font-bold md:text-2xl">Bandung</span>
         </h1>
-        <a href="/home" 
+        <a href="/home"
             class=" bg-[#fbb45e] px-5 py-[7px] md:px-[15px] md:py-2.5 rounded-[0.3rem] border-none outline-none cursor-pointer flex items-center justify-center hover:bg-[#e09e4f] no-underline transition">
             <p class="text-[0.8rem] text-[#363B58] font-bold font-[Poppins] md:text-[1rem] m-0">
-            Lihat Semua
+                Lihat Semua
             </p>
         </a>
     </div>
 
     <div class="flex gap-[0.6rem] overflow-x-auto py-2">
         @forelse($tempatPopuler as $tempat)
-            <div class="bg-white rounded-xl shadow-md w-[43vw] shrink-0 border border-gray-100 p-4 hover:shadow-lg transition md:w-[280px]">
-                
-                <div style="position: relative; margin-bottom: 12px;">
-                    <img src="{{ $tempat->gambar ? asset('storage/' . $tempat->gambar) : asset('assets/img/180 Cafe - Bandung 1.png') }}" 
-                         alt="{{ $tempat->nama_tempat }}"
-                         style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px;">
+        <div class="bg-white rounded-xl shadow-md w-[43vw] shrink-0 border border-gray-100 p-4 hover:shadow-lg transition md:w-[280px]">
 
-                </div>
+            <div style="position: relative; margin-bottom: 12px;">
+                <img src="{{ $tempat->gambar ? asset('storage/' . $tempat->gambar) : asset('assets/img/180 Cafe - Bandung 1.png') }}"
+                    alt="{{ $tempat->nama_tempat }}"
+                    style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px;">
 
-                <div class="flex justify-between items-center">
-                    <span class="text-[#FBB45E] font-[Poppins] font-bold text-[0.6rem] uppercase">
-                        {{ $tempat->kategori->nama_kategori ?? 'CAFE' }}
-                    </span>
-                    <div class="flex items-center gap-1 text-sm">
-                        <span class="material-symbols-outlined text-yellow-400" style="font-variation-settings: 'FILL' 1; font-size: 0.8rem">kid_star</span>
-                        <span class="text-[0.6rem] font-[Poppins]">{{ $tempat->rating ?? '4.5' }} ({{ $tempat->total_review ?? '20' }})</span>
-                    </div>
-                </div>
-                
-                <h4 class="font-bold text-[0.8rem] mt-1 line-clamp-1">{{ $tempat->nama_tempat }}</h4>
-                
-                <div class="flex items-center gap-1 text-gray-500 text-[0.6rem] mt-1">
-                    <span class="material-symbols-outlined text-sm" style="font-size: 0.8rem">location_on</span>
-                    <span class="line-clamp-1">{{ $tempat->alamat_lengkap ?? 'Bandung' }}</span>
-                </div>
-                
-                <div class="flex items-center gap-1 text-gray-500 text-[0.6rem] mt-1">
-                    <span class="material-symbols-outlined text-sm" style="font-size: 0.8rem">payments</span>
-                    <span>Rp{{ number_format($tempat->harga_min, 0, ',', '.') }} - Rp{{ number_format($tempat->harga_max, 0, ',', '.') }}</span>
-                </div>
-                
-                <div class="flex items-center gap-2 mt-4">
-                    <button class="flex-1 bg-gray-800 text-[#FBB45E] py-2 font-[Poppins] rounded-full text-[0.6rem] font-medium flex items-center justify-center gap-1 hover:bg-gray-700 transition">
-                        <span class="material-symbols-outlined text-sm" style="font-size: 1rem">location_on</span>
-                        Lihat Lokasi
-                    </button>
-                    <button class="share-btn bg-[#FBB45E] hover:bg-[#E2A255] text-[#363B58] flex items-center justify-center p-2 rounded-full transition">
-                        <span class="material-symbols-outlined" style="font-size: 1rem">share</span>
-                    </button>
+            </div>
+
+            <div class="flex justify-between items-center">
+                <span class="text-[#FBB45E] font-[Poppins] font-bold text-[0.6rem] uppercase">
+                    {{ $tempat->kategori->nama_kategori ?? 'CAFE' }}
+                </span>
+                <div class="flex items-center gap-1 text-sm">
+                    <span class="material-symbols-outlined text-yellow-400" style="font-variation-settings: 'FILL' 1; font-size: 0.8rem">kid_star</span>
+                    <span class="text-[0.6rem] font-[Poppins]">{{ $tempat->rating ?? '4.5' }} ({{ $tempat->total_review ?? '20' }})</span>
                 </div>
             </div>
+
+            <h4 class="font-bold text-[0.8rem] mt-1 line-clamp-1">{{ $tempat->nama_tempat }}</h4>
+
+            <div class="flex items-center gap-1 text-gray-500 text-[0.6rem] mt-1">
+                <span class="material-symbols-outlined text-sm" style="font-size: 0.8rem">location_on</span>
+                <span class="line-clamp-1">{{ $tempat->alamat_lengkap ?? 'Bandung' }}</span>
+            </div>
+
+            <div class="flex items-center gap-1 text-gray-500 text-[0.6rem] mt-1">
+                <span class="material-symbols-outlined text-sm" style="font-size: 0.8rem">payments</span>
+                <span>Rp{{ number_format($tempat->harga_min, 0, ',', '.') }} - Rp{{ number_format($tempat->harga_max, 0, ',', '.') }}</span>
+            </div>
+
+            <div class="flex items-center gap-2 mt-4">
+                <button class="flex-1 bg-gray-800 text-[#FBB45E] py-2 font-[Poppins] rounded-full text-[0.6rem] font-medium flex items-center justify-center gap-1 hover:bg-gray-700 transition">
+                    <span class="material-symbols-outlined text-sm" style="font-size: 1rem">location_on</span>
+                    Lihat Lokasi
+                </button>
+                <button class="share-btn bg-[#FBB45E] hover:bg-[#E2A255] text-[#363B58] flex items-center justify-center p-2 rounded-full transition">
+                    <span class="material-symbols-outlined" style="font-size: 1rem">share</span>
+                </button>
+            </div>
+        </div>
         @empty
-            <div class="w-full text-center py-8 text-gray-400 text-sm">
-                Belum ada tempat populer yang tersedia saat ini.
-            </div>
+        <div class="w-full text-center py-8 text-gray-400 text-sm">
+            Belum ada tempat populer yang tersedia saat ini.
+        </div>
         @endforelse
     </div>
 </section>
@@ -608,23 +610,23 @@
             ini.
         </p>
 
-       <div class="flex gap-2.5 mt-2 md:flex-row md:gap-4 md:mt-4 relative z-50 justify-center">
-    
-    <button type="button" onclick="window.location.href='/home'"
-        class="bg-[#fbb45e] px-[15px] py-2 flex items-center justify-center rounded-[0.3rem] border-none outline-none cursor-pointer hover:bg-[#e09e4f] transition">
-        <span class="text-[0.8rem] md:text-[1rem] text-[#363B58] font-bold">
-            Lanjut Sebagai Tamu
-        </span>
-    </button>
-    
-    <button type="button" onclick="window.location.href='/login'"
-        class="bg-[#fbb45e] px-[15px] py-2 flex items-center justify-center rounded-[0.3rem] border-none outline-none cursor-pointer hover:bg-[#e09e4f] transition">
-        <span class="text-[0.8rem] md:text-[1rem] text-[#363B58] font-bold">
-            Masuk
-        </span>
-    </button>
+        <div class="flex gap-2.5 mt-2 md:flex-row md:gap-4 md:mt-4 relative z-50 justify-center">
 
-</div>
+            <button type="button" onclick="window.location.href='/home'"
+                class="bg-[#fbb45e] px-[15px] py-2 flex items-center justify-center rounded-[0.3rem] border-none outline-none cursor-pointer hover:bg-[#e09e4f] transition">
+                <span class="text-[0.8rem] md:text-[1rem] text-[#363B58] font-bold">
+                    Lanjut Sebagai Tamu
+                </span>
+            </button>
+
+            <button type="button" onclick="window.location.href='/login'"
+                class="bg-[#fbb45e] px-[15px] py-2 flex items-center justify-center rounded-[0.3rem] border-none outline-none cursor-pointer hover:bg-[#e09e4f] transition">
+                <span class="text-[0.8rem] md:text-[1rem] text-[#363B58] font-bold">
+                    Masuk
+                </span>
+            </button>
+
+        </div>
     </div>
 </section>
 
@@ -667,5 +669,21 @@
         </h2>
     </div>
 </footer>
+
+<script>
+    function goToSearch() {
+        const keyword = document.getElementById('landingSearch').value.trim();
+        if (keyword === '') {
+            window.location.href = '/home';
+        } else {
+            window.location.href = '/home?search=' + encodeURIComponent(keyword);
+        }
+    }
+
+    document.getElementById('landingSearchBtn').addEventListener('click', goToSearch);
+    document.getElementById('landingSearch').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') goToSearch();
+    });
+</script>
 
 @endsection
