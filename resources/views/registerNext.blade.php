@@ -22,7 +22,7 @@
                     max-md:w-full max-md:p-6">
 
             <!-- Close -->
-            <a href="/" class="absolute top-5 left-5 text-gray-400 hover:text-gray-700 transition-colors">
+            <a href="/register-step1" class="absolute top-5 left-5 text-gray-400 hover:text-gray-700 transition-colors">
                 <span class="material-symbols-outlined" style="font-size:22px;">close</span>
             </a>
 
@@ -44,7 +44,7 @@
             </div>
 
             <!-- Form -->
-            <form action="/register-nextStep" method="POST" id="loginForm" class="flex flex-col gap-4 flex-1">
+            <form action="/register-nextStep" method="POST" enctype="multipart/form-data" id="loginForm" class="flex flex-col gap-4 flex-1">
                 @csrf
 
                 <!-- Nama -->

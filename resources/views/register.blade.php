@@ -74,8 +74,8 @@
                     <!-- Username -->
                     <div class="flex flex-col gap-1">
                         <label for="username" class="font-semibold text-sm max-md:text-xs">Username</label>
-                        <input type="text" name="username" id="username" required
-                               placeholder="Masukkan Username Disini"
+                        <input type="text" name="username" id="username" 
+                               placeholder="Masukkan Username Disini" required
                                class="w-full h-9 px-3 border border-[#ccc] rounded-md bg-[#FCFCFC] text-sm placeholder:text-sm
                                       hover:[box-shadow:0_0_10px_rgba(0,123,255,0.7)]
                                       max-md:placeholder:text-xs max-md:text-xs">
@@ -84,8 +84,8 @@
                     <!-- Email -->
                     <div class="flex flex-col gap-1">
                         <label for="email" class="font-semibold text-sm max-md:text-xs">Email</label>
-                        <input type="email" name="email" id="email" required
-                               placeholder="Masukkan Email Disini"
+                        <input type="email" name="email" id="email" 
+                               placeholder="Masukkan Email Disini" required
                                class="w-full h-9 px-3 border border-[#ccc] rounded-md bg-[#FCFCFC] text-sm placeholder:text-sm
                                       hover:[box-shadow:0_0_10px_rgba(0,123,255,0.7)]
                                       max-md:placeholder:text-xs max-md:text-xs">
@@ -94,8 +94,8 @@
                     <!-- Password -->
                     <div class="flex flex-col gap-1 relative">
                         <label for="password" class="font-semibold text-sm max-md:text-xs">Password</label>
-                        <input type="password" name="password" id="password" required
-                               placeholder="Masukkan Password Disini"
+                        <input type="password" name="password" id="password" 
+                               placeholder="Masukkan Password Disini" required
                                class="password-input
                                       w-full h-9 px-3 pr-9 border border-[#ccc] rounded-md bg-[#FCFCFC] text-sm placeholder:text-sm
                                       hover:[box-shadow:0_0_10px_rgba(0,123,255,0.7)]
@@ -110,11 +110,21 @@
                         <input type="checkbox" class="mt-0.5 shrink-0" name="check" id="check" required>
                         <span>
                             Saya menyetujui
-                            <a class="underline font-semibold text-orange-400 ml-0.5">
+                            <a href="/syarat" class="underline font-semibold text-orange-400 ml-0.5">
                                 syarat dan ketentuan
                             </a>
                         </span>
                     </label>
+
+                    <!-- Condition False -->
+                    @if ($errors->hasAny(['email', 'password']))
+                        <p class="text-red-500 text-xs">
+                            {{ implode(' dan ', array_filter([
+                                $errors->first('email'),
+                                $errors->first('password')
+                            ])) }}
+                        </p>
+                    @endif
 
                     <!-- Submit -->
                     <button type="submit"
