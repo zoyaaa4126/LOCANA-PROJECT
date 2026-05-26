@@ -50,7 +50,7 @@
                         </div>
                     </a>
                     <!-- Daftar (ACTIVE) -->
-                    <a href="/register" class="w-full">
+                    <a href="/register-step1" class="w-full">
                         <div class="w-full text-center bg-white shadow-md text-black py-1 text-sm font-medium rounded-md transition hover:bg-[#C1C2CB]
                                     max-md:text-xs max-md:py-0.5">
                             Daftar

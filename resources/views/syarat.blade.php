@@ -13,7 +13,7 @@
 
     <div class="flex items-center justify-between mb-6">
       <h1 class="text-3xl font-bold text-[#363B58]">Syarat dan Ketentuan</h1>
-      <a href="/register" class="bg-gray-200 px-4 py-2 rounded-lg text-md font-bold text-[#363B58] hover:bg-gray-300">
+      <a href="/register-step1" class="bg-gray-200 px-4 py-2 rounded-lg text-md font-bold text-[#363B58] hover:bg-gray-300">
         Kembali
       </a>
     </div>
