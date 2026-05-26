@@ -37,7 +37,7 @@
                     @auth
                         <div class="relative" id="profileDropdown">
                             <button id="dropdownButton" class="flex items-center gap-2 hover:bg-gray-100 px-2 py-1 rounded-lg transition">
-                                <img src="{{ auth()->user()->fotoProfile ? asset(auth()->user()->fotoProfile) : asset('assets/img/nanamin.jpg') }}" class="w-10 h-10 rounded-full object-cover">
+                                <img src="{{ auth()->user()->fotoProfile ? asset('storage/' . auth()->user()->fotoProfile) : asset('assets/img/nanamin.jpg') }}" class="w-10 h-10 rounded-full object-cover">
                                 <div class="flex flex-col items-end leading-tight">
                                     <span class="text-sm font-semibold">{{ auth()->user()->nama }}</span>
                                     <span class="text-xs text-gray-500">{{ auth()->user()->username }}</span>
@@ -224,5 +224,36 @@
 
     @include('components.modal-logout')
     <script src="{{ asset('js/script.js') }}"></script>
+
+    <script>
+    function toggleWishlist(btn) {
+        const placeId = btn.dataset.id;
+        if (!placeId) return;
+
+        fetch('/wishlist/toggle', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+            },
+            body: `place_id=${placeId}`
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === 'added') {
+                btn.style.background = '#FBB45E';
+                btn.style.color = '#363B58';
+                btn.dataset.active = 'true';
+            } else {
+                btn.style.background = '#FFF8EF';
+                btn.style.color = '#FBB45E';
+                btn.dataset.active = 'false';
+                const card = btn.closest('.flex.flex-col.bg-white');
+                if (card) card.remove();
+            }
+        })
+        .catch(err => console.error(err));
+    }
+    </script>
 </body>
 </html>

@@ -153,8 +153,12 @@
                                         <img src="{{ $place->gambar ? asset('storage/' . $place->gambar) : asset('assets/img/180 Cafe - Bandung 1.png') }}"
                                             alt="{{ $place->nama_tempat }}"
                                             style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px;">
-                                        <button class="wishlist-btn absolute top-2 right-2 rounded-full w-8 h-8 flex items-center justify-center shadow-md cursor-pointer transition-all duration-200"
-                                            style="background: #FFF8EF; color: #FBB45E; font-variation-settings: 'FILL' 1;">
+                                        <button
+                                            data-id="{{ $place->id }}"
+                                            onclick="toggleWishlist(this)"
+                                            class="wishlist-btn absolute top-2 right-2 rounded-full w-8 h-8 flex items-center justify-center shadow-md cursor-pointer transition-all duration-200"
+                                            style="background: {{ in_array($place->id, $wishlistIds) ? '#FBB45E' : '#FFF8EF' }}; color: {{ in_array($place->id, $wishlistIds) ? '#363B58' : '#FBB45E' }}; font-variation-settings: 'FILL' 1;">
+                                            
                                             <span class="material-symbols-outlined">bookmark</span>
                                         </button>
                                     </div>
@@ -220,8 +224,11 @@
                                     <div style="position: relative; margin-bottom: 12px;">
                                         <img src="{{ asset('storage/' . $place->gambar) }}" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px;" alt="{{ $place->nama }}">
                                         <button
+                                            data-id="{{ $place->id }}"
+                                            onclick="toggleWishlist(this)"
                                             class="wishlist-btn absolute top-2 right-2 rounded-full w-8 h-8 flex items-center justify-center shadow-md cursor-pointer transition-all duration-200"
-                                            style="background: #FFF8EF; color: #FBB45E; font-variation-settings: 'FILL' 1;">
+                                            style="background: {{ in_array($place->id, $wishlistIds) ? '#FBB45E' : '#FFF8EF' }}; color: {{ in_array($place->id, $wishlistIds) ? '#363B58' : '#FBB45E' }}; font-variation-settings: 'FILL' 1;">
+                                            
                                             <span class="material-symbols-outlined">bookmark</span>
                                         </button>
                                     </div>
@@ -319,16 +326,6 @@
             });
         });
 
-        // Wishlist toggle
-        document.querySelectorAll('.wishlist-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const active = this.dataset.active === 'true';
-                this.dataset.active = !active;
-                this.style.background = active ? '#FFF8EF' : '#FBB45E';
-                this.style.color = active ? '#FBB45E' : '#363B58';
-            });
-        });
-
         // Reset filters
         document.getElementById('resetFilters')?.addEventListener('click', () => {
             document.querySelectorAll('input[type=checkbox]').forEach(cb => cb.checked = false);
@@ -378,8 +375,12 @@
                     <div class="bg-white rounded-xl shadow-md border border-gray-100 p-4 hover:shadow-lg transition">
                         <div class="relative mb-3">
                             <img src="${card.dataset.gambar}" class="w-full h-40 object-cover rounded-xl" alt="${card.dataset.nama}">
-                            <button class="wishlist-btn absolute top-2 right-2 rounded-full w-8 h-8 flex items-center justify-center shadow-md cursor-pointer transition-all duration-200"
-                                style="background: #FFF8EF; color: #FBB45E; font-variation-settings: 'FILL' 1;">
+                            <button
+                                data-id="{{ $place->id }}"
+                                onclick="toggleWishlist(this)"
+                                class="wishlist-btn absolute top-2 right-2 rounded-full w-8 h-8 flex items-center justify-center shadow-md cursor-pointer transition-all duration-200"
+                                style="background: {{ in_array($place->id, $wishlistIds) ? '#FBB45E' : '#FFF8EF' }}; color: {{ in_array($place->id, $wishlistIds) ? '#363B58' : '#FBB45E' }}; font-variation-settings: 'FILL' 1;">
+                                
                                 <span class="material-symbols-outlined">bookmark</span>
                             </button>
                         </div>

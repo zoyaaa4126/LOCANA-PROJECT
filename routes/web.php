@@ -89,11 +89,11 @@ Route::get('/tambah-lokasi', [AdminController::class, 'tambahLokasi'])->name('ta
 Route::get('/ulasan', [AdminController::class, 'ulasan'])->name('ulasan');
 Route::get('/pengguna', [AdminController::class, 'pengguna'])->name('pengguna');
 
-Route::get('/profile', [UserController::class, 'profile']);
-
-// Wishlist
-Route::get('/wishlist', [WishlistController::class, 'index']);
-Route::post('/wishlist/toggle', [WishlistController::class, 'toggle']);
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [UserController::class, 'profile']);
+    Route::get('/wishlist', [WishlistController::class, 'index']);
+    Route::post('/wishlist/toggle', [WishlistController::class, 'toggle']);
+});
 
 // Route::middleware('auth')->group(function () {
 

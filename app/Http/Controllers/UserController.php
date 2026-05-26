@@ -46,13 +46,6 @@ class UserController extends Controller
     public function store(Request $request)
     {
 
-
-        $request->validate([
-            'check' => 'required'
-        ]);
-
-
-
         $path = null;
 
         if ($request->hasFile('foto_profil')) {
@@ -90,13 +83,13 @@ class UserController extends Controller
         ]);
     }
 
-    public function edit(int $id)
+    public function edit($id)
     {
         $user = User::findOrFail($id);
         return view('users.edit-user', compact('user'));
     }
 
-    public function update(Request $request, int $id)
+    public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
 
@@ -110,7 +103,7 @@ class UserController extends Controller
         return redirect('/users');
     }
 
-    public function destroy(int $id)
+    public function destroy($id)
     {
         User::destroy($id);
         return redirect('/users');
@@ -118,37 +111,21 @@ class UserController extends Controller
 
     public function home()
     {
-        // Ambil semua data kategori dari database
         $kategoris = Kategoris::all();
-
         $moods = \App\Models\moods::all();
-
         $places = \App\Models\Places::all();
-
         $popularPlaces = \App\Models\Places::where('status_aktif', true)
             ->where('tempat_unggulan', true)
             ->limit(10)
             ->get();
-
         $recommendedPlaces = $places;
-
-
-        $popularPlaces = \App\Models\Places::where('status_aktif', true)
-            ->where('tempat_unggulan', true)
-            ->limit(10)
-            ->get();
-
-        $recommendedPlaces = $places;
-
-        $wishlistIds = \App\Models\Wishlist::where('user_id', 2)
-            ->pluck('place_id')
-            ->toArray();
-        
         $allPlaces = \App\Models\Places::with('kategori')->get();
 
+        $wishlistIds = Auth::check()
+            ? \App\Models\Wishlist::where('user_id', Auth::id())->pluck('place_id')->toArray()
+            : [];
 
-        // Kirim data ke view home.blade.php
-        return view('home', compact('kategoris', 'moods', 'popularPlaces', 'recommendedPlaces', 'wishlistIds','allPlaces'));
+        return view('home', compact('kategoris', 'moods', 'popularPlaces', 'recommendedPlaces', 'wishlistIds', 'allPlaces'));
     }
 
     public function showPlace(int $id)
@@ -170,17 +147,11 @@ class UserController extends Controller
     }
     public function profile()
     {
-        $wishlists = \App\Models\wishlist::with('place.kategori')
-            ->where('user_id', 2) // ganti Auth::id() kalau auth sudah beres
+        $wishlists = \App\Models\Wishlist::with('place.kategori')
+            ->where('user_id', Auth::id())
             ->latest()
             ->get();
 
-        // $reviews = \App\Models\Review::with('place')
-        //     ->where('user_id', 1)
-        //     ->latest()
-        //     ->get();
-
-        // return view('profile', compact('wishlists', 'reviews'));
         return view('profile', compact('wishlists'));
     }
 }
