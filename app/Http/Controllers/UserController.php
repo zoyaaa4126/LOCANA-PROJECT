@@ -143,10 +143,12 @@ class UserController extends Controller
         $wishlistIds = \App\Models\Wishlist::where('user_id', 2)
             ->pluck('place_id')
             ->toArray();
+        
+        $allPlaces = \App\Models\Places::with('kategori')->get();
 
 
         // Kirim data ke view home.blade.php
-        return view('home', compact('kategoris', 'moods', 'popularPlaces', 'recommendedPlaces', 'wishlistIds'));
+        return view('home', compact('kategoris', 'moods', 'popularPlaces', 'recommendedPlaces', 'wishlistIds','allPlaces'));
     }
 
     public function showPlace(int $id)

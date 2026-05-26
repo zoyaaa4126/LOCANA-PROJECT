@@ -86,7 +86,7 @@
         <a href="/"
            class="flex items-center gap-3.5 bg-white border border-gray-100 rounded-2xl px-5 py-4 no-underline text-[#363B58]
                   hover:border-[#FBB45E] hover:shadow-[0_4px_20px_rgba(251,180,94,0.2)] hover:-translate-y-0.5 transition-all group">
-            <div class="w-9 h-9 bg-orange-50 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-orange-100 transition-colors">
+            <div class="w-9 h-9 bg-orange-50 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-orange-100 transition-colors">
                 <span class="material-symbols-outlined text-[#FBB45E] text-lg" style="font-variation-settings:'FILL' 1;">home</span>
             </div>
             <div class="flex-1">
@@ -99,7 +99,7 @@
         <a href="/login"
            class="flex items-center gap-3.5 bg-white border border-gray-100 rounded-2xl px-5 py-4 no-underline text-[#363B58]
                   hover:border-[#FBB45E] hover:shadow-[0_4px_20px_rgba(251,180,94,0.2)] hover:-translate-y-0.5 transition-all group">
-            <div class="w-9 h-9 bg-orange-50 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-orange-100 transition-colors">
+            <div class="w-9 h-9 bg-orange-50 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-orange-100 transition-colors">
                 <span class="material-symbols-outlined text-[#FBB45E] text-lg" style="font-variation-settings:'FILL' 1;">login</span>
             </div>
             <div class="flex-1">
