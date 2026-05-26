@@ -26,8 +26,13 @@ class UserController extends Controller
     public function registerStep1(Request $request)
     {
         $request->validate([
-                'check' => 'required'
-            ]);
+            'username' => 'required',
+            'email'    => 'required|email|unique:users,email',
+            'password' => 'required|min:6',
+            'check'    => 'required',
+        ], ['email.unique'      => 'Email sudah terdaftar.',
+            'password.min'      => 'Password minimal 6 karakter.',
+        ]);
 
         session([
             'username' => $request->username,
@@ -60,24 +65,29 @@ class UserController extends Controller
             'email' => session('email'),
             'role' => 'user',
             'password' => bcrypt(session('password')),
+            'fotoProfile' => $path,
         ]);
-
         return redirect('/home');
     }
 
     //CONTROLLER LOGIN
     public function login(Request $request)
     {
+         $request->validate([
+            'email'    => 'required|email',
+            'password' => 'required|min:6',
+        ]);
+
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials, $request->remember)) { //di cek apakah ada atau engga
-
             $request->session()->regenerate();
-
             return redirect('/home');
         }
 
-        return back()->with('error', 'Email atau password salah');
+        return back()->withErrors([
+            'login' => 'Email atau password salah!'
+        ]);
     }
 
     public function edit(int $id)

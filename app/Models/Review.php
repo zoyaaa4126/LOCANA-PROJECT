@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class reviews extends Model
+class Review extends Model
 {
     //
     protected $fillable = [
         'user_id',
         'place_id',
         'rating',
+        'title',
         'comment',
         'file_url'
     ];

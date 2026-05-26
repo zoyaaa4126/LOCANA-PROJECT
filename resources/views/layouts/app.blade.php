@@ -34,7 +34,6 @@
                 </a>
                 <div class="flex flex-row-reverse gap-4 items-center">
                     
-                    {{-- Proteksi Guest v1: Bagian Profile Desktop --}}
                     @auth
                         <div class="relative" id="profileDropdown">
                             <button id="dropdownButton" class="flex items-center gap-2 hover:bg-gray-100 px-2 py-1 rounded-lg transition">
