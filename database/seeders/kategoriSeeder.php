@@ -13,12 +13,12 @@ class KategoriSeeder extends Seeder
     public function run(): void
     {
         $kategoris = [
-            ['id' => 1, 'nama' => 'Cafe', 'created_at' => now(), 'updated_at' => now()],
-            ['id' => 2, 'nama' => 'Restaurant', 'created_at' => now(), 'updated_at' => now()],
-            ['id' => 3, 'nama' => 'Bakery', 'created_at' => now(), 'updated_at' => now()],
-            ['id' => 4, 'nama' => 'Live Music', 'created_at' => now(), 'updated_at' => now()],
-            ['id' => 5, 'nama' => 'Indoor', 'created_at' => now(), 'updated_at' => now()],
-            ['id' => 6, 'nama' => 'Outdoor', 'created_at' => now(), 'updated_at' => now()],
+            ['id' => 1, 'nama' => 'Cafe'],
+            ['id' => 2, 'nama' => 'Restaurant'],
+            ['id' => 3, 'nama' => 'Bakery'],
+            ['id' => 4, 'nama' => 'Live Music'],
+            ['id' => 5, 'nama' => 'Indoor'],
+            ['id' => 6, 'nama' => 'Outdoor'],
         ];
 
         DB::table('kategoris')->insert($kategoris); 

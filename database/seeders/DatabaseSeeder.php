@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             KategoriSeeder::class,
             MoodSeeder::class,
+            UserSeeder::class,
             places::class,
         ]);
     }

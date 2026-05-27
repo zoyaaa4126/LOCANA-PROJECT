@@ -52,7 +52,7 @@
                         </div>
                     </a>
                     <!-- Daftar (NON ACTIVE) -->
-                    <a href="/register" class="w-full">
+                    <a href="/register-step1" class="w-full">
                         <div class="w-full text-center text-[#939393] py-0.5 text-sm font-medium rounded-md transition hover:bg-[#C1C2CB]
                                     max-md:text-xs">
                             Daftar
@@ -77,8 +77,8 @@
                     <!-- Email -->
                     <div class="flex flex-col gap-1">
                         <label for="email" class="font-semibold text-sm max-md:text-xs">Email</label>
-                        <input type="email" name="email" id="email" required
-                               placeholder="Masukkan Email Disini"
+                        <input type="email" name="email" id="email"
+                               placeholder="Masukkan Email Disini" required
                                class="w-full h-9 px-3 border border-[#ccc] rounded-md bg-[#FCFCFC] text-sm placeholder:text-sm
                                       hover:[box-shadow:0_0_10px_rgba(0,123,255,0.7)]
                                       max-md:placeholder:text-xs max-md:text-xs">
@@ -87,8 +87,8 @@
                     <!-- Password -->
                     <div class="flex flex-col gap-1 relative">
                         <label for="password" class="font-semibold text-sm max-md:text-xs">Password</label>
-                        <input type="password" name="password" id="password" required
-                               placeholder="Masukkan Password Disini"
+                        <input type="password" name="password" id="password"
+                               placeholder="Masukkan Password Disini" required
                                class="password-input
                                       w-full h-9 px-3 pr-9 border border-[#ccc] rounded-md bg-[#FCFCFC] text-sm placeholder:text-sm
                                       hover:[box-shadow:0_0_10px_rgba(0,123,255,0.7)]
@@ -109,12 +109,17 @@
                         </a>
                     </div>
 
+                    <!-- Condition FALSE -->
+                    <p id="error-msg" class="text-red-500 text-xs mt-1">
+                        @error('login')
+                            {{ $message }}
+                        @enderror
+                    </p>
+
                     <!-- Submit -->
                     <button type="submit" class="w-full h-10 bg-[#fbb45e] border-none text-sm text-[#363b58] font-semibold hover:bg-[#FEE8CD] rounded-md mt-1 max-md:h-9 max-md:text-xs">
                         Masuk
                     </button>
-
-                    <p id="error-msg" class="text-red-500 text-xs mt-1"></p>
 
                 </form>
             </div>

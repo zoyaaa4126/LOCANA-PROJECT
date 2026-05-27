@@ -26,8 +26,13 @@ class UserController extends Controller
     public function registerStep1(Request $request)
     {
         $request->validate([
-                'check' => 'required'
-            ]);
+            'username' => 'required',
+            'email'    => 'required|email|unique:users,email',
+            'password' => 'required|min:6',
+            'check'    => 'required',
+        ], ['email.unique'      => 'Email sudah terdaftar.',
+            'password.min'      => 'Password minimal 6 karakter.',
+        ]);
 
         session([
             'username' => $request->username,
@@ -41,13 +46,6 @@ class UserController extends Controller
     public function store(Request $request)
     {
 
-
-        $request->validate([
-            'check' => 'required'
-        ]);
-
-
-
         $path = null;
 
         if ($request->hasFile('foto_profil')) {
@@ -60,33 +58,38 @@ class UserController extends Controller
             'email' => session('email'),
             'role' => 'user',
             'password' => bcrypt(session('password')),
+            'fotoProfile' => $path,
         ]);
-
         return redirect('/home');
     }
 
     //CONTROLLER LOGIN
     public function login(Request $request)
     {
+         $request->validate([
+            'email'    => 'required|email',
+            'password' => 'required|min:6',
+        ]);
+
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials, $request->remember)) { //di cek apakah ada atau engga
-
             $request->session()->regenerate();
-
             return redirect('/home');
         }
 
-        return back()->with('error', 'Email atau password salah');
+        return back()->withErrors([
+            'login' => 'Email atau password salah!'
+        ]);
     }
 
-    public function edit(int $id)
+    public function edit($id)
     {
         $user = User::findOrFail($id);
         return view('users.edit-user', compact('user'));
     }
 
-    public function update(Request $request, int $id)
+    public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
 
@@ -100,7 +103,7 @@ class UserController extends Controller
         return redirect('/users');
     }
 
-    public function destroy(int $id)
+    public function destroy($id)
     {
         User::destroy($id);
         return redirect('/users');
@@ -108,35 +111,21 @@ class UserController extends Controller
 
     public function home()
     {
-        // Ambil semua data kategori dari database
         $kategoris = Kategoris::all();
-
         $moods = \App\Models\moods::all();
-
         $places = \App\Models\Places::all();
-
         $popularPlaces = \App\Models\Places::where('status_aktif', true)
             ->where('tempat_unggulan', true)
             ->limit(10)
             ->get();
-
         $recommendedPlaces = $places;
+        $allPlaces = \App\Models\Places::with('kategori')->get();
 
+        $wishlistIds = Auth::check()
+            ? \App\Models\Wishlist::where('user_id', Auth::id())->pluck('place_id')->toArray()
+            : [];
 
-        $popularPlaces = \App\Models\Places::where('status_aktif', true)
-            ->where('tempat_unggulan', true)
-            ->limit(10)
-            ->get();
-
-        $recommendedPlaces = $places;
-
-        $wishlistIds = \App\Models\Wishlist::where('user_id', 2)
-            ->pluck('place_id')
-            ->toArray();
-
-
-        // Kirim data ke view home.blade.php
-        return view('home', compact('kategoris', 'moods', 'popularPlaces', 'recommendedPlaces', 'wishlistIds'));
+        return view('home', compact('kategoris', 'moods', 'popularPlaces', 'recommendedPlaces', 'wishlistIds', 'allPlaces'));
     }
 
     public function showPlace(int $id)
@@ -158,17 +147,11 @@ class UserController extends Controller
     }
     public function profile()
     {
-        $wishlists = \App\Models\wishlist::with('place.kategori')
-            ->where('user_id', 2) // ganti Auth::id() kalau auth sudah beres
+        $wishlists = \App\Models\Wishlist::with('place.kategori')
+            ->where('user_id', Auth::id())
             ->latest()
             ->get();
 
-        // $reviews = \App\Models\Review::with('place')
-        //     ->where('user_id', 1)
-        //     ->latest()
-        //     ->get();
-
-        // return view('profile', compact('wishlists', 'reviews'));
         return view('profile', compact('wishlists'));
     }
 }

@@ -113,36 +113,4 @@
         </a>
     </div>
 
-    <script>
-        function toggleWishlist(btn) {
-            const placeId = btn.dataset.id;
-
-            fetch('/wishlist/toggle', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-                },
-                body: `place_id=${placeId}`
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.status === 'added') {
-                    btn.style.background = '#FBB45E';
-                    btn.style.color = '#363B58';
-                    btn.dataset.active = 'true';
-                } else {
-                    btn.style.background = '#FFF8EF';
-                    btn.style.color = '#FBB45E';
-                    btn.dataset.active = 'false';
-
-                    // Kalau di halaman wishlist, hapus card-nya langsung
-                    const card = btn.closest('.flex.flex-col.bg-white.rounded-\\[30px\\]');
-                    if (card) card.remove();
-                }
-            })
-            .catch(err => console.error('Error:', err));
-        }
-    </script>
-
 @endsection
