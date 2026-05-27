@@ -23,7 +23,8 @@ class UserController extends Controller
     public function registerStep1(Request $request)
     {
         $request->validate([
-            'username' => 'required',
+            'nama'     => 'required',
+            'username' => 'required|unique',
             'email'    => 'required|email|unique:users,email',
             'password' => 'required|min:6',
             'check'    => 'required',
