@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\places as ModelsPlaces;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
@@ -301,16 +302,18 @@ class places extends Seeder
             $moodId = $place['mood_id'];
             unset($place['mood_id']);
 
-            $placeId = DB::table('places')->insertGetId(array_merge($place, [
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]));
+            ModelsPlaces::create($place);
 
-            // insert ke tabel pivot
-            DB::table('place_moods')->insert([
-                'place_id' => $placeId,
-                'mood_id'  => $moodId,
-            ]);
+            // $placeId = DB::table('places')->insertGetId(array_merge($place, [
+            //     'created_at' => now(),
+            //     'updated_at' => now(),
+            // ]));
+
+            // // insert ke tabel pivot
+            // DB::table('place_moods')->insert([
+            //     'place_id' => $placeId,
+            //     'mood_id'  => $moodId,
+            // ]);
         }
     }
 }

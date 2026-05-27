@@ -41,7 +41,7 @@
                 <a href="#" class="text-[#363B58] font-semibold hover:text-[#FBB45E] transition">Beranda</a>
                 <a href="#populer" class="text-[#363B58] font-semibold hover:text-[#FBB45E] transition">Populer</a>
                 <a href="#mood" class="text-[#363B58] font-semibold hover:text-[#FBB45E] transition">Mood</a>
-                <a href="#Ulasan" class="text-[#363B58] font-semibold hover:text-[#FBB45E] transition">Ulasan</a>
+                <a href="#ulasan" class="text-[#363B58] font-semibold hover:text-[#FBB45E] transition">Ulasan</a>
             </nav>
 
             <!-- Auth Buttons Desktop -->

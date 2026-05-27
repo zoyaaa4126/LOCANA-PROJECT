@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="m-0 p-0 font-['Poppins',_sans-serif] box-border text-[#363b58]">
+<html lang="en" class="m-0 p-0 font-['Poppins',sans-serif] box-border text-[#363b58]">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
-<body class="m-0 p-0 box-border font-['Poppins',_sans-serif] text-[#363b58] scroll-smooth bg-[#fff8ef] min-h-screen flex justify-center items-center py-8">
+<body class="m-0 p-0 box-border font-['Poppins',sans-serif] text-[#363b58] scroll-smooth bg-[#fff8ef] min-h-screen flex justify-center items-center py-8">
 
     <div class="w-4/5 max-w-[1728px] flex rounded-[20px] overflow-hidden bg-white [box-shadow:0_10px_25px_rgba(0,0,0,0.2)]
                 max-lg:flex-col max-lg:w-11/12 max-lg:mx-auto">
@@ -23,7 +23,7 @@
             <div class="w-full max-w-sm text-center">
 
             <div class="flex items-start">
-                <a href="/welcome">
+                <a href="/">
                     <span class="material-symbols-outlined text-[25px] cursor-pointer">
                     close
                     </span>
@@ -123,12 +123,6 @@
                                    max-md:h-9 max-md:text-xs">
                         Daftar
                     </button>
-
-                    <p class="text-center text-sm font-semibold mb-6 mt-1
-                              max-md:text-xs max-md:mb-4">
-                        Sudah punya akun?
-                        <a class="text-orange-400 underline font-medium">Masuk</a>
-                    </p>
 
                 </form>
             </div>

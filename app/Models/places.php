@@ -37,6 +37,15 @@ class places extends Model
     {
         return $this->belongsTo(kategoris::class, 'kategori_id');
     }
+
+    public function wishlists() {
+        return $this->hasMany(Wishlist::class);
+    }
+
+    public function reviews() {
+        return $this->hasMany(Review::class);
+    }
+}
 <<<<<<< HEAD
 
     public function reviews()

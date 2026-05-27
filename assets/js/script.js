@@ -25,23 +25,23 @@ document.addEventListener("DOMContentLoaded", function () {
   // TOGGLE PASSWORD
   const toggles = document.querySelectorAll(".toggle-password");
 
-toggles.forEach(function(toggle) {
+  toggles.forEach(function(toggle) {
 
-  toggle.addEventListener("click", function() {
+    toggle.addEventListener("click", function() {
 
-    const password =
-      toggle.parentElement.querySelector(".password-input");
+      const password =
+        toggle.parentElement.querySelector(".password-input");
 
-    if (password.type === "password") {
-      password.type = "text";
-      toggle.textContent = "visibility_off";
-    } else {
-      password.type = "password";
-      toggle.textContent = "visibility";
-    }
+      if (password.type === "password") {
+        password.type = "text";
+        toggle.textContent = "visibility_off";
+      } else {
+        password.type = "password";
+        toggle.textContent = "visibility";
+      }
+
+    });
 
   });
-
-});
 
 });

@@ -26,8 +26,8 @@ class UserController extends Controller
     public function registerStep1(Request $request)
     {
         $request->validate([
-        'check' => 'required'
-    ]);
+                'check' => 'required'
+            ]);
 
         session([
             'username' => $request->username,
@@ -115,7 +115,60 @@ class UserController extends Controller
 
         $places = \App\Models\Places::all();
 
+        $popularPlaces = \App\Models\Places::where('status_aktif', true)
+            ->where('tempat_unggulan', true)
+            ->limit(10)
+            ->get();
+
+        $recommendedPlaces = $places;
+
+
+        $popularPlaces = \App\Models\Places::where('status_aktif', true)
+            ->where('tempat_unggulan', true)
+            ->limit(10)
+            ->get();
+
+        $recommendedPlaces = $places;
+
+        $wishlistIds = \App\Models\Wishlist::where('user_id', 2)
+            ->pluck('place_id')
+            ->toArray();
+
+
         // Kirim data ke view home.blade.php
-        return view('home', compact('kategoris', 'moods', 'places'));
+        return view('home', compact('kategoris', 'moods', 'popularPlaces', 'recommendedPlaces', 'wishlistIds'));
+    }
+
+    public function showPlace(int $id)
+    {
+        $place = \App\Models\Places::findOrFail($id);
+        return view('places.show', compact('place'));
+    }
+
+    public function rekomendasi()
+    {
+        return view('rekomendasi');
+    }
+
+    public function placesByKategori(int $id)
+    {
+        $places = \App\Models\Places::where('kategori_id', $id)->get();
+        $kategori = Kategoris::findOrFail($id);
+        return view('places.kategori', compact('places', 'kategori'));
+    }
+    public function profile()
+    {
+        $wishlists = \App\Models\wishlist::with('place.kategori')
+            ->where('user_id', 2) // ganti Auth::id() kalau auth sudah beres
+            ->latest()
+            ->get();
+
+        // $reviews = \App\Models\Review::with('place')
+        //     ->where('user_id', 1)
+        //     ->latest()
+        //     ->get();
+
+        // return view('profile', compact('wishlists', 'reviews'));
+        return view('profile', compact('wishlists'));
     }
 }
