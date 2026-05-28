@@ -41,14 +41,21 @@
                     <!-- HEADER PROFIL dengan Avatar -->
                     <div class="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm flex flex-col sm:flex-row items-center gap-6">
                         <div class="relative">
-                            <img src="assets/img/nanamin.jpg" class="w-24 h-24 rounded-full object-cover" alt="Profile">
+                            <!-- FOTO PROFILE BERUBAH -->
+                            @if(Auth::user()->fotoProfile)
+                                <img src="{{ asset('storage/' . Auth::user()->fotoProfile) }}" 
+                                    class="w-24 h-24 rounded-full object-cover" alt="Profile">
+                            @else
+                                <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->nama) }}&background=FBB45E&color=363B58" 
+                                    class="w-24 h-24 rounded-full object-cover" alt="Profile">
+                            @endif
                             <button class="absolute bottom-0 right-0 bg-[#FBB45E] w-8 h-8 flex items-center justify-center rounded-full">
                                 <span class="material-symbols-outlined text-[#363B58] text-sm">edit</span>
                             </button>
                         </div>
                         <div class="flex-1 text-center sm:text-left">
-                            <h1 class="text-2xl font-bold text-gray-800">Nanami Kento</h1>
-                            <p class="text-gray-500">nnmkentoo</p>
+                            <h1 class="text-2xl font-bold text-gray-800">{{ $user->nama }}</h1>
+                            <p class="text-gray-500">{{ $user->username }}</p>
                             <p class="text-[#363B58] italic mt-1">"Exploring new spots, from cozy coffee corners to lively hangout places."</p>
                             <div class="flex justify-center sm:justify-start gap-6 mt-3">
                                 <div class="flex flex-col justify-center items-center"><span class="font-bold text-[#FBB45E] text-lg">24</span> <span class="text-gray-500">Ulasan</span></div>

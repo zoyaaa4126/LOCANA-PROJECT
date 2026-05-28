@@ -38,10 +38,16 @@
                 <div class="flex flex-row-reverse gap-4 items-center">
                     <div class="relative" id="profileDropdown">
                         <button id="dropdownButton" class="flex items-center gap-2 hover:bg-gray-100 px-2 py-1 rounded-lg transition">
-                            <img src="assets/img/nanamin.jpg" class="w-10 h-10 rounded-full object-cover">
+                            @if(Auth::user()->fotoProfile)
+                                <img src="{{ asset('storage/' . Auth::user()->fotoProfile) }}" 
+                                    class="w-10 h-10 rounded-full object-cover" alt="Profile">
+                            @else
+                                <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->nama) }}&background=FBB45E&color=363B58" 
+                                    class="w-10 h-10 rounded-full object-cover" alt="Profile">
+                            @endif
                             <div class="flex flex-col items-end leading-tight">
-                                <span class="text-sm font-semibold">Nanami Kento</span>
-                                <span class="text-xs text-gray-500">nnmkentoo</span>
+                                <span class="text-sm font-semibold">{{ Auth::user()->nama }}</span>
+                                <span class="text-xs text-gray-500">{{ Auth::user()->username }}</span>
                             </div>
                             <span id="arrowIcon" class="material-symbols-outlined transition-transform duration-300">expand_more</span>
                         </button>
@@ -148,10 +154,16 @@
             <div class="flex flex-col h-full">
                 <div class="p-4 border-b border-gray-200 flex justify-between items-start">
                     <div class="flex items-center gap-3">
-                        <img src="assets/img/nanamin.jpg" class="w-12 h-12 rounded-full object-cover">
+                        @if(Auth::user()->fotoProfile)
+                                <img src="{{ asset('storage/' . Auth::user()->fotoProfile) }}" 
+                                    class="w-12 h-12 rounded-full object-cover" alt="Profile">
+                            @else
+                                <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->nama) }}&background=FBB45E&color=363B58" 
+                                    class="w-12 h-12 rounded-full object-cover" alt="Profile">
+                            @endif
                         <div>
-                            <p class="font-semibold text-base">Nanami Kento</p>
-                            <p class="text-xs text-gray-500">nnmkentoo</p>
+                            <p class="font-semibold text-base">{{ Auth::user()->nama }}</p>
+                            <p class="text-xs text-gray-500">{{ Auth::user()->username }}</p>
                         </div>
                     </div>
                     <button id="closeMenuBtn" class="p-2 hover:bg-gray-100 rounded-lg">

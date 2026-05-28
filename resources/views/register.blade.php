@@ -66,7 +66,6 @@
                 <p class="text-xs font-semibold leading-snug text-gray-500 mb-4
                           max-md:text-[9px] max-md:mb-2">
                     Dari ngopi santai sampai nongkrong malam, temukan tempat yang pas untuk setiap momenmu.
-                </p>
 
                 <!-- FORM -->
                 <form action="/register-step1" method="POST" id="loginForm" class="text-left flex flex-col gap-3">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Kategoris;
 
 class UserController extends Controller
 {
@@ -23,13 +24,13 @@ class UserController extends Controller
     public function registerStep1(Request $request)
     {
         $request->validate([
-            'nama'     => 'required',
-            'username' => 'required|unique',
+            'username' => 'required|unique:users,username',
             'email'    => 'required|email|unique:users,email',
             'password' => 'required|min:6',
             'check'    => 'required',
         ], ['email.unique'      => 'Email sudah terdaftar.',
             'password.min'      => 'Password minimal 6 karakter.',
+            'username.unique'   => 'Username sudah digunakan'
         ]);
 
         session([
@@ -41,8 +42,17 @@ class UserController extends Controller
         return redirect('/register-nextStep');
     }
 
+    public function registerNext()
+    {
+        return view('registerNext'); 
+    }
+
     public function store(Request $request)
     {
+        $request->validate([
+            'nama' => 'required',], 
+            ['nama.required' => 'Nama wajib diisi.',
+        ]);
 
         $path = null;
 
@@ -51,7 +61,7 @@ class UserController extends Controller
         }
 
         User::create([
-            'nama' => $request->nama,
+            'nama' => $request->nama, 
             'username' => session('username'),
             'email' => session('email'),
             'role' => 'user',
@@ -106,4 +116,52 @@ class UserController extends Controller
         User::destroy($id);
         return redirect('/users');
     }
+
+    public function home()
+    {
+        $kategoris = Kategoris::all();
+        $moods = \App\Models\moods::all();
+        $places = \App\Models\Places::all();
+        $popularPlaces = \App\Models\Places::where('status_aktif', true)
+            ->where('tempat_unggulan', true)
+            ->limit(10)
+            ->get();
+        $recommendedPlaces = $places;
+        $allPlaces = \App\Models\Places::with('kategori')->get();
+
+        $wishlistIds = Auth::check()
+            ? \App\Models\Wishlist::where('user_id', Auth::id())->pluck('place_id')->toArray()
+            : [];
+
+        return view('home', compact('kategoris', 'moods', 'popularPlaces', 'recommendedPlaces', 'wishlistIds', 'allPlaces'));
+    }
+
+    public function showPlace(int $id)
+    {
+        $place = \App\Models\Places::findOrFail($id);
+        return view('places.show', compact('place'));
+    }
+
+    public function rekomendasi()
+    {
+        return view('rekomendasi');
+    }
+
+    public function placesByKategori(int $id)
+    {
+        $places = \App\Models\Places::where('kategori_id', $id)->get();
+        $kategori = Kategoris::findOrFail($id);
+        return view('places.kategori', compact('places', 'kategori'));
+    }
+    public function profile()
+    {
+        $user = Auth::user();
+        $wishlists = \App\Models\Wishlist::with('place.kategori')
+            ->where('user_id', Auth::id())
+            ->latest()
+            ->get();
+
+        return view('profile', compact('user', 'wishlists'));
+    }
+
 }

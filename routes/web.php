@@ -6,6 +6,7 @@ use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ResetPasswordController;
 
 // ROUTE VIEW PAGES
@@ -45,21 +46,16 @@ Route::get('/register-step1', function () {
 Route::post('/register-step1', [UserController::class, 'registerStep1']);
 // ->middleware('guest');
 
-Route::get('/register-nextStep', function () {
-    return view('registerNext');
-});
+Route::get('/register-nextStep', [UserController::class, 'registerNext']);
 // ->middleware('guest');
 
 Route::post('/register-nextStep', [UserController::class, 'store']);
 // ->middleware('guest');
 
-Route::get('/home', function () {
-    return view('home');
-});
+Route::get('/home', [UserController::class, 'home']) ->middleware('auth');
 
-Route::get('/profile', function () {
-    return view('profile');
-});
+// PROFILE
+Route::get('/profile', [UserController::class, 'profile']) ->middleware('auth');
 
 Route::get('/syarat', function () {
     return view('syarat');
