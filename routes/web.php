@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ResetPasswordController;
@@ -82,10 +83,10 @@ Route::get('/chatbot', [ChatbotController::class, 'index']);
 Route::get('/chatbot/step/{key}', [ChatbotController::class, 'getStep']);
 
 //ADMIN
-Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-Route::get('/lokasi', [AdminController::class, 'lokasi'])->name('lokasi');
-Route::get('/tambah-lokasi', [AdminController::class, 'tambahLokasi'])->name('tambahLokasi');
-Route::get('/ulasan', [AdminController::class, 'ulasan'])->name('ulasan');
-Route::get('/pengguna', [AdminController::class, 'pengguna'])->name('pengguna');
-Route::get('/tambah-pengguna', [AdminController::class, 'tambahPengguna'])->name('tambahPengguna');
-Route::get('/detail-pengguna', [AdminController::class, 'viewPengguna'])->name('viewPengguna');
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard')->middleware('auth');
+    Route::get('/lokasi', [AdminController::class, 'lokasi'])->name('lokasi')->middleware('auth');
+    Route::get('/tambah-lokasi', [AdminController::class, 'tambahLokasi'])->name('tambahLokasi')->middleware('auth');
+    Route::get('/ulasan', [AdminController::class, 'ulasan'])->name('ulasan')->middleware('auth')->middleware('auth');
+    Route::get('/pengguna', [AdminController::class, 'pengguna'])->name('pengguna')->middleware('auth');
+    Route::get('/tambah-pengguna', [AdminController::class, 'tambahPengguna'])->name('tambahPengguna')->middleware('auth');
+    Route::get('/detail-pengguna', [AdminController::class, 'viewPengguna'])->name('viewPengguna')->middleware('auth');

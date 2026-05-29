@@ -28,12 +28,16 @@
 
                 <!-- PROFILE -->
                 <div class="flex items-center gap-2">
-                    <img src="assets/img/higuu.jpg"
-                        class="w-10 h-10 max-md:w-9 max-md:h-9 rounded-full object-cover">
-
+                    @if(Auth::user()->fotoProfile)
+                        <img src="{{ asset('storage/' . Auth::user()->fotoProfile) }}" 
+                            class=" w-10 h-10 max-md:w-9 max-md:h-9 rounded-full object-cover" alt="Profile">
+                    @else
+                        <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->nama) }}&background=FBB45E&color=363B58" 
+                            class=" w-10 h-10 max-md:w-9 max-md:h-9 rounded-full object-cover" alt="Profile">
+                    @endif
                     <div class="hidden md:flex flex-col leading-tight">
-                        <span class="text-sm font-semibold">Higuruma Hiromi</span>
-                        <span class="text-xs text-gray-500">Admin</span>
+                        <span class="text-sm font-semibold">{{ $user->nama }}</span>
+                        <span class="text-xs text-gray-500">{{ $user->username }}</span>
                     </div>
                 </div>
 

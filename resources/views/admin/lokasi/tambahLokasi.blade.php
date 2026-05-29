@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <form id="form-lokasi" class="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-5 items-start">
+    <form action="/tambah-lokasi" id="form-lokasi" class="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-5 items-start" method="POST">
 
         <div class="flex flex-col gap-5">
 
@@ -61,21 +61,17 @@
 
                         <div id="kategori-dropdown"
                              class="hidden absolute top-full left-0 right-0 mt-1 bg-white border border-[#E2E8F0] rounded-xl shadow-lg z-50 overflow-hidden">
-                            @php
-                            $kategoriList = [
-                                ['value' => 'cafe',       'label' => 'Cafe',       'icon' => 'coffee'],
-                                ['value' => 'restaurant', 'label' => 'Restaurant', 'icon' => 'restaurant'],
-                                ['value' => 'bakery',     'label' => 'Bakery',     'icon' => 'cake'],
-                                ['value' => 'park',       'label' => 'Park',       'icon' => 'park'],
-                                ['value' => 'mall',       'label' => 'Mall',       'icon' => 'local_mall'],
-                            ];
-                            @endphp
                             @foreach($kategoriList as $kat)
+                            @php
+                                $katValue = $kat['value'];
+                                $katLabel = $kat['label'];
+                                $katIcon  = $kat['icon'];
+                            @endphp
                             <button type="button"
-                                    onclick="selectKategori('{{ $kat['value'] }}', '{{ $kat['label'] }}', '{{ $kat['icon'] }}')"
+                                    onclick="selectKategori('{{ $katValue }}', '{{ $katLabel }}', '{{ $katIcon }}')"
                                     class="w-full flex items-center gap-3 px-4 py-3 text-sm text-[#363B58] font-medium hover:bg-[#FEF4E7] hover:text-[#FBB45E] transition-colors border-b border-[#F1F5F9] last:border-0">
-                                <span class="material-symbols-outlined text-gray-400" style="font-size:20px; font-variation-settings:'FILL' 1;">{{ $kat['icon'] }}</span>
-                                {{ $kat['label'] }}
+                                <span class="material-symbols-outlined text-gray-400" style="font-size:20px; font-variation-settings:'FILL' 1;">{{ $katIcon }}</span>
+                                {{ $katLabel }}
                             </button>
                             @endforeach
                         </div>

@@ -23,7 +23,7 @@
         </div>
     </div>
 
-    <form id="form-tambah-pengguna"
+    <form id="form-tambah-pengguna" action="/tambah-pengguna" method="POST"
           class="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-5 items-start">
 
         <div class="bg-white rounded-2xl p-6 shadow-sm border border-[#F1F5F9]">
