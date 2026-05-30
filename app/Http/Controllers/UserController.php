@@ -145,6 +145,7 @@ class UserController extends Controller
         $kategori = Kategoris::findOrFail($id);
         return view('places.kategori', compact('places', 'kategori'));
     }
+
     public function profile()
     {
         $wishlists = \App\Models\Wishlist::with('place.kategori')
@@ -152,6 +153,36 @@ class UserController extends Controller
             ->latest()
             ->get();
 
-        return view('profile', compact('wishlists'));
+        $reviews = \App\Models\Review::with('place.kategori')
+            ->where('user_id', Auth::id())
+            ->latest()
+            ->get();
+
+        $wishlistCount = $wishlists->count();
+        $reviewCount = $reviews->count();
+
+        $activities = collect();
+
+        foreach ($wishlists as $item) {
+            $activities->push([
+                'type'       => 'wishlist',
+                'created_at' => $item->created_at,
+                'place'      => $item->place,
+            ]);
+        }
+
+        foreach ($reviews as $item) {
+            $activities->push([
+                'type'       => 'review',
+                'created_at' => $item->created_at,
+                'place'      => $item->place,
+                'rating'     => $item->rating,
+                'comment'    => $item->comment,
+            ]);
+        }
+
+        $activities = $activities->sortByDesc('created_at')->take(7)->values();
+
+        return view('profile', compact('wishlists', 'reviews', 'activities', 'wishlistCount', 'reviewCount'));
     }
 }

@@ -143,5 +143,16 @@
         </form>
     </div>
 </div>
+@if($loginRequired)
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        bukaModalLoginRequired();
+    });
 
+    history.pushState(null, null, location.href);
+    window.addEventListener('popstate', function() {
+        window.location.href = '/';
+    });
+</script>
+@endif
 @endsection

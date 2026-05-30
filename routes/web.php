@@ -93,18 +93,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [UserController::class, 'profile']);
     Route::get('/wishlist', [WishlistController::class, 'index']);
     Route::post('/wishlist/toggle', [WishlistController::class, 'toggle']);
+
+    Route::get('/places/{id}/reviews/create', [ReviewController::class, 'create'])
+        ->name('reviews.create');
+
+    Route::post('/reviews', [ReviewController::class, 'store'])
+        ->name('reviews.store');
+
+    Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])
+        ->name('reviews.destroy');
 });
 
-// Route::middleware('auth')->group(function () {
+// REVIEW (bisa dilihat semua orang, termasuk form create)
+Route::get('/places/{id}/reviews', [ReviewController::class, 'index'])
+    ->name('reviews.index');
 
-    Route::get('/places/kategori/{id}', [UserController::class, 'placesByKategori'])->name('places.kategori');
-    Route::get('/places/{id}/reviews', [ReviewController::class, 'index'])->name('reviews.index');
-    Route::get('/places/{id}/reviews/create', [ReviewController::class, 'create'])->name('reviews.create');
-    Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
-    Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
-
-    // GENERAL - taruh paling bawah
-    Route::get('/places/{id}', [UserController::class, 'showPlace'])->name('places.show');
-    Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
-    
-// });
+Route::get('/places/{id}/reviews/create', [ReviewController::class, 'create'])
+    ->name('reviews.create');

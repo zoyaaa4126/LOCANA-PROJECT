@@ -43,7 +43,7 @@ class User extends Authenticatable
     // user punya banyak review
     public function reviews()
     {
-        return $this->hasMany(Reviews::class);
+        return $this->hasMany(Review::class);
     }
 
     // user punya banyak wishlist

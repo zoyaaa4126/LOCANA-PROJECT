@@ -10,7 +10,7 @@ class ReviewController extends Controller
 {
     public function index(int $id)
     {
-        $place = \App\Models\places::with(['kategori', 'reviews.user'])->findOrFail($id);
+        $place = \App\Models\Places::with(['kategori', 'reviews.user'])->findOrFail($id);
         $reviews = $place->reviews()->with('user')->latest()->get();
     
         return view('review', compact('place', 'reviews'));
@@ -19,8 +19,8 @@ class ReviewController extends Controller
     // Tampilkan form tambah review
     public function create(int $id)
     {
-        $place = \App\Models\places::with(['kategori', 'reviews'])->findOrFail($id);
-    
+        $place = \App\Models\Places::with(['kategori', 'reviews'])->findOrFail($id);
+
         return view('addReview', compact('place'));
     }
     
@@ -28,7 +28,7 @@ class ReviewController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'place_id' => 'required|exists:places,id',
+            'place_id' => 'required|exists:Places,id',
             'rating'   => 'required|integer|min:1|max:5',
             'title'    => 'required|string|max:255',
             'comment'  => 'nullable|string|max:1000',

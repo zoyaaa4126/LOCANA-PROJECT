@@ -51,117 +51,63 @@
                             <p class="text-gray-500">nnmkentoo</p>
                             <p class="text-[#363B58] italic mt-1">"Exploring new spots, from cozy coffee corners to lively hangout places."</p>
                             <div class="flex justify-center sm:justify-start gap-6 mt-3">
-                                <div class="flex flex-col justify-center items-center"><span class="font-bold text-[#FBB45E] text-lg">24</span> <span class="text-gray-500">Ulasan</span></div>
-                                <div class="flex flex-col justify-center items-center"><span class="font-bold text-[#FBB45E] text-lg">112</span> <span class="text-gray-500">Wishlist</span></div>
+                                <div class="flex flex-col justify-center items-center"><span class="font-bold text-[#FBB45E] text-lg">{{ $reviewCount }}</span> <span class="text-gray-500">Ulasan</span></div>
+                                <div class="flex flex-col justify-center items-center"><span class="font-bold text-[#FBB45E] text-lg">{{ $wishlistCount }}</span> <span class="text-gray-500">Wishlist</span></div>
                             </div>
                         </div>
                         <button class="bg-[#FBB45E] text-[#363B58] px-5 py-2 rounded-lg text-sm font-bold">Edit Profil</button>
                     </div>
 
-                    <!-- AKTIVITAS TERAKHIR dengan Gambar -->
                     <div>
-                        <h2 class="text-2xl font-bold text-gray-800 mb-5">Aktivitas <span class="text-[#FBB45E]">Terakhir</span></h2>
-                        <div class="flex flex-row gap-4 overflow-x-auto no-scrollbar max-md:flex-col max-md:overflow-visible" style="font-variation-settings: 'FILL' 1;">
-                            <div class="bg-white rounded-xl border border-gray-100 p-4 shadow-sm flex flex-col gap-4 w-[500px] shrink-0
-                                        max-md:w-full max-md:grid max-md:grid-cols-[70px_1fr] max-md:grid-rows-[auto_auto_auto] max-md:gap-x-3 max-md:gap-y-1 max-md:items-center">
-                                <div class="flex justify-between items-center max-md:col-start-2 max-md:row-start-1">
-                                    <div class="flex items-center gap-2 max-md:col-start-2 max-md:row-start-1">
-                                        <span class="material-symbols-outlined text-[#363B58] bg-[#FBB45E] p-1 rounded-full text-[12px]">star</span>
-                                        <span class="font-semibold text-sm">Memberi Ulasan</span>
+                        <h2 class="text-2xl font-bold text-gray-800"><span class="text-[#FBB45E]">Aktivitas</span> Terakhir</h2>
+                        <div class="flex flex-row gap-4 overflow-x-auto no-scrollbar max-md:flex-col max-md:overflow-visible">
+                            @forelse ($activities as $activity)
+                            <div class="bg-white rounded-xl border border-gray-100 p-4 shadow-sm flex flex-col gap-4 w-[500px] shrink-0">
+                                
+                                {{-- Badge tipe aktivitas --}}
+                                <div class="flex justify-between items-center">
+                                    <div class="flex items-center gap-2">
+                                        @if($activity['type'] === 'review')
+                                            <span class="material-symbols-outlined text-[#363B58] bg-[#FBB45E] p-1 rounded-full text-[12px]">star</span>
+                                            <span class="font-semibold text-sm">Memberi Ulasan</span>
+                                        @else
+                                            <span class="material-symbols-outlined text-[#FBB45E] bg-[#363B58] p-1 rounded-full text-[12px]">bookmark</span>
+                                            <span class="font-semibold text-sm">Menambahkan ke Wishlist</span>
+                                        @endif
+                                    </div>
+                                    <span class="text-xs text-gray-400">{{ $activity['created_at']->diffForHumans() }}</span>
+                                </div>
+    
+                                {{-- Konten --}}
+                                <div class="flex gap-4 items-center">
+                                    <img src="{{ $activity['place']->gambar ? asset('storage/' . $activity['place']->gambar) : asset('assets/img/180 Cafe - Bandung 1.png') }}"
+                                        class="w-20 h-20 rounded-xl object-cover shrink-0">
+                                    <div class="flex flex-col">
+                                        <h3 class="font-bold text-base">{{ $activity['place']->nama_tempat }}</h3>
+                                        @if($activity['type'] === 'review')
+                                            <div class="flex text-yellow-500 text-sm my-1">
+                                                @for ($i = 1; $i <= 5; $i++)
+                                                    <span class="material-symbols-outlined text-sm {{ $i <= $activity['rating'] ? 'text-yellow-500' : 'text-gray-300' }}">star</span>
+                                                @endfor
+                                            </div>
+                                            <p class="text-[#363B58] text-sm italic line-clamp-2">{{ $activity['comment'] }}</p>
+                                        @else
+                                            <div class="flex items-center gap-1 text-gray-500 text-xs mt-1">
+                                                <span class="material-symbols-outlined text-sm">location_on</span>
+                                                <span class="line-clamp-1">{{ $activity['place']->alamat_lengkap }}</span>
+                                            </div>
+                                            <div class="flex items-center gap-1 text-gray-500 text-xs mt-1">
+                                                <span class="material-symbols-outlined text-sm">payments</span>
+                                                <span>Rp{{ number_format($activity['place']->harga_min, 0, ',', '.') }} - Rp{{ number_format($activity['place']->harga_max, 0, ',', '.') }}</span>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
-                                <span class="text-xs text-gray-400 max-md:col-start-2 max-md:row-start-3 md:self-end md:-mt-10">10 Jam</span>
-                                <div class="flex gap-4 items-center max-md:contents">
-                                    <img src="assets/img/180 Cafe - Bandung 1.png" class="w-30 h-30 rounded-xl object-cover shrink-0 max-md:row-span-3 max-md:w-[70px] max-md:h-[70px]" alt="Cafe">
-                                    <div class="flex flex-col max-md:contents">
-                                        <h3 class="font-bold text-lg mt-1 max-md:text-base max-md:col-start-2 max-md:row-start-2">Alam Cafe</h3>
-                                        <div class="flex text-yellow-500 text-sm my-1 max-md:col-start-2 max-md:row-start-2 max-md:justify-self-end">
-                                            <span class="material-symbols-outlined text-sm">star</span>
-                                            <span class="material-symbols-outlined text-sm">star</span>
-                                            <span class="material-symbols-outlined text-sm">star</span>
-                                            <span class="material-symbols-outlined text-sm">star</span>
-                                            <span class="material-symbols-outlined text-sm">star</span>
-                                        </div>
-                                        <p class="text-[#363B58] text-sm italic max-md:hidden">Pilihan tempat yang baik selalu memberi ruang untuk berbagi cerita. Di sini, momen sederhana terasa lebih berarti.</p>
-                                    </div>
-                                </div>
+    
                             </div>
-                            <div class="bg-white rounded-xl border border-gray-100 p-4 shadow-sm flex flex-col gap-4 w-[500px] shrink-0
-                                        max-md:w-full max-md:grid max-md:grid-cols-[70px_1fr] max-md:grid-rows-[auto_auto_auto] max-md:gap-x-3 max-md:gap-y-1 max-md:items-center">
-                                <div class="flex justify-between items-center max-md:col-start-2 max-md:row-start-1">
-                                    <div class="flex items-center gap-2 max-md:col-start-2 max-md:row-start-1">
-                                        <span class="material-symbols-outlined text-[#363B58] bg-[#FBB45E] p-1 rounded-full text-[12px]">star</span>
-                                        <span class="font-semibold text-sm">Memberi Ulasan</span>
-                                    </div>
-                                </div>
-                                <span class="text-xs text-gray-400 max-md:col-start-2 max-md:row-start-3 md:self-end md:-mt-10">10 Jam</span>
-                                <div class="flex gap-4 items-center max-md:contents">
-                                    <img src="assets/img/180 Cafe - Bandung 1.png" class="w-30 h-30 rounded-xl object-cover shrink-0 max-md:row-span-3 max-md:w-[70px] max-md:h-[70px]" alt="Cafe">
-                                    <div class="flex flex-col max-md:contents">
-                                        <h3 class="font-bold text-lg mt-1 max-md:text-base max-md:col-start-2 max-md:row-start-2">Alam Cafe</h3>
-                                        <div class="flex text-yellow-500 text-sm my-1 max-md:col-start-2 max-md:row-start-2 max-md:justify-self-end">
-                                            <span class="material-symbols-outlined text-sm">star</span>
-                                            <span class="material-symbols-outlined text-sm">star</span>
-                                            <span class="material-symbols-outlined text-sm">star</span>
-                                            <span class="material-symbols-outlined text-sm">star</span>
-                                            <span class="material-symbols-outlined text-sm">star</span>
-                                        </div>
-                                        <p class="text-[#363B58] text-sm italic max-md:hidden">Pilihan tempat yang baik selalu memberi ruang untuk berbagi cerita. Di sini, momen sederhana terasa lebih berarti.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bg-white rounded-xl border border-gray-100 p-4 shadow-sm flex flex-col gap-4 w-[500px] shrink-0
-                                        max-md:w-full max-md:grid max-md:grid-cols-[70px_1fr] max-md:grid-rows-[auto_auto_auto] max-md:gap-x-3 max-md:gap-y-1 max-md:items-center">
-                                <div class="flex justify-between items-center max-md:col-start-2 max-md:row-start-1">
-                                    <div class="flex items-center gap-2 max-md:col-start-2 max-md:row-start-1">
-                                        <span class="material-symbols-outlined text-[#FBB45E] bg-[#363B58] p-1 rounded-full text-[12px]">bookmark</span>
-                                        <span class="font-semibold text-sm">Menambahkan ke Wishlist</span>
-                                    </div>
-                                </div>
-                                <span class="text-xs text-gray-400 max-md:col-start-2 max-md:row-start-3 md:self-end md:-mt-10">10 Jam</span>
-                                <div class="flex gap-4 items-center max-md:contents">
-                                    <img src="assets/img/180 Cafe - Bandung 1.png" class="w-30 h-30 rounded-xl object-cover shrink-0 max-md:row-span-3 max-md:w-[70px] max-md:h-[70px]" alt="Cafe">
-                                    <div class="flex flex-col max-md:contents">
-                                        <h3 class="font-bold text-lg mt-1 max-md:text-base max-md:col-start-2 max-md:row-start-2">Alam Cafe</h3>
-                                        <div class="flex text-sm my-1 max-md:col-start-2 max-md:row-start-2 max-md:justify-self-end">
-                                            <span class="material-symbols-outlined text-sm text-yellow-500">star</span>
-                                            <p>4.5 (120)</p>
-                                        </div>
-                                        <div class="flex items-center gap-1 text-gray-500 text-xs mt-1 max-md:hidden">
-                                            <span class="material-symbols-outlined text-sm">location_on</span>
-                                            <span>Ciwidey, Bandung</span>
-                                        </div>
-                                        <div class="flex items-center gap-1 text-gray-500 text-xs mt-1 max-md:hidden">
-                                            <span class="material-symbols-outlined text-sm">payments</span>
-                                            <span>Rp50.000 - Rp100.000</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bg-white rounded-xl border border-gray-100 p-4 shadow-sm flex flex-col gap-4 w-[500px] shrink-0
-                                        max-md:w-full max-md:grid max-md:grid-cols-[70px_1fr] max-md:grid-rows-[auto_auto_auto] max-md:gap-x-3 max-md:gap-y-1 max-md:items-center">
-                                <div class="flex justify-between items-center max-md:col-start-2 max-md:row-start-1">
-                                    <div class="flex items-center gap-2 max-md:col-start-2 max-md:row-start-1">
-                                        <span class="material-symbols-outlined text-[#363B58] bg-[#FBB45E] p-1 rounded-full text-[12px]">star</span>
-                                        <span class="font-semibold text-sm">Memberi Ulasan</span>
-                                    </div>
-                                </div>
-                                <span class="text-xs text-gray-400 max-md:col-start-2 max-md:row-start-3 md:self-end md:-mt-10">10 Jam</span>
-                                <div class="flex gap-4 items-center max-md:contents">
-                                    <img src="assets/img/180 Cafe - Bandung 1.png" class="w-30 h-30 rounded-xl object-cover shrink-0 max-md:row-span-3 max-md:w-[70px] max-md:h-[70px]" alt="Cafe">
-                                    <div class="flex flex-col max-md:contents">
-                                        <h3 class="font-bold text-lg mt-1 max-md:text-base max-md:col-start-2 max-md:row-start-2">Alam Cafe</h3>
-                                        <div class="flex text-yellow-500 text-sm my-1 max-md:col-start-2 max-md:row-start-2 max-md:justify-self-end">
-                                            <span class="material-symbols-outlined text-sm">star</span>
-                                            <span class="material-symbols-outlined text-sm">star</span>
-                                            <span class="material-symbols-outlined text-sm">star</span>
-                                            <span class="material-symbols-outlined text-sm">star</span>
-                                            <span class="material-symbols-outlined text-sm">star</span>
-                                        </div>
-                                        <p class="text-[#363B58] text-sm italic max-md:hidden">Pilihan tempat yang baik selalu memberi ruang untuk berbagi cerita. Di sini, momen sederhana terasa lebih berarti.</p>
-                                    </div>
-                                </div>
-                            </div>
+                            @empty
+                            <p class="text-gray-400 text-sm italic">Belum ada aktivitas.</p>
+                            @endforelse
                         </div>
                     </div>
 

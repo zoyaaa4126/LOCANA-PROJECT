@@ -21,11 +21,22 @@
                     <h1 class="text-2xl font-extrabold text-[#363B58]">Review</h1>
                 </div>
             </div>
+            @auth
             <a href="{{ route('reviews.create', $place->id) }}"
-               class="flex items-center gap-2 bg-[#FBB45E] hover:bg-[#E2A255] text-[#363B58] font-bold px-5 py-2.5 rounded-xl transition">
+            class="flex items-center gap-2 bg-[#FBB45E] hover:bg-[#E2A255] text-[#363B58] font-bold px-5 py-2.5 rounded-xl transition">
                 <span class="material-symbols-outlined text-sm">add</span>
                 Tambah Review
             </a>
+            @endauth
+
+            @guest
+            <button type="button"
+                    onclick="bukaModalLoginRequired()"
+                    class="flex items-center gap-2 bg-[#FBB45E] hover:bg-[#E2A255] text-[#363B58] font-bold px-5 py-2.5 rounded-xl transition">
+                <span class="material-symbols-outlined text-sm">add</span>
+                Tambah Review
+            </button>
+            @endguest
         </div>
 
         {{-- PLACE CARD --}}
@@ -71,7 +82,7 @@
                 {{-- USER + RATING --}}
                 <div class="flex items-start justify-between mb-3">
                     <div class="flex items-center gap-3">
-                        <img src="{{ $review->user->fotoProfile ? asset('storage/' . $review->user->fotoProfile) : asset('assets/img/default-avatar.png') }}"
+                        <img src="{{ $review->user->fotoProfile ? asset('storage/' . $review->user->fotoProfile) : asset('assets/img/avatar.jpg') }}"
                              class="w-10 h-10 rounded-full object-cover" alt="{{ $review->user->username }}">
                         <div>
                             <p class="font-semibold text-sm text-[#363B58]">{{ $review->user->username }}</p>
@@ -126,5 +137,15 @@
         </div>
     </div>
 </div>
+
+@include('components.modal-loginRequired')
+
+@if(request('login_required'))
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        bukaModalLoginRequired();
+    });
+</script>
+@endif
 
 @endsection
