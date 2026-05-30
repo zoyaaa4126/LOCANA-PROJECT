@@ -94,3 +94,5 @@ Route::get('/chatbot/step/{key}', [ChatbotController::class, 'getStep']);
     Route::get('/tambah-pengguna', [AdminController::class, 'tambahPengguna'])->name('tambahPengguna')->middleware('auth');
     Route::get('/detail-pengguna', [AdminController::class, 'viewPengguna'])->name('viewPengguna')->middleware('auth');
     Route::get('/profile-admin', [AdminController::class, 'profileAdmin'])->name('profileAdmin')->middleware('auth');
+    Route::get('/edit-profile-admin', [AdminController::class, 'editProfileAdmin'])->name('editProfileAdmin')->middleware('auth');
+    Route::post('/edit-profile-admin', [AdminController::class, 'updateProfileAdmin'])->middleware('auth');

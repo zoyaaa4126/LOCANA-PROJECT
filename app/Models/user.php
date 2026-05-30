@@ -17,7 +17,8 @@ class User extends Authenticatable
         'email',
         'password',
         'fotoProfile',
-        'role'
+        'role',
+        'deskripsi',
     ];
 
     // field yang disembunyikan

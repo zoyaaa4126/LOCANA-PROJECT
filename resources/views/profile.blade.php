@@ -56,7 +56,7 @@
                         <div class="flex-1 text-center sm:text-left">
                             <h1 class="text-2xl font-bold text-gray-800">{{ $user->nama }}</h1>
                             <p class="text-gray-500">{{ $user->username }}</p>
-                            <p class="text-[#363B58] italic mt-1">"Exploring new spots, from cozy coffee corners to lively hangout places."</p>
+                            <p class="text-[#363B58] italic mt-1">{{ $user->deskripsi }}</p>
                             <div class="flex justify-center sm:justify-start gap-6 mt-3">
                                 <div class="flex flex-col justify-center items-center"><span class="font-bold text-[#FBB45E] text-lg">24</span> <span class="text-gray-500">Ulasan</span></div>
                                 <div class="flex flex-col justify-center items-center"><span class="font-bold text-[#FBB45E] text-lg">112</span> <span class="text-gray-500">Wishlist</span></div>

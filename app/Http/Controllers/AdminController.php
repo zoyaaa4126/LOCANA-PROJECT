@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class AdminController extends Controller
 {
@@ -56,5 +57,32 @@ class AdminController extends Controller
     {
         $user = Auth::user();
         return view('admin/profileAdmin', compact('user'));
+    }
+    public function editProfileAdmin()
+    {
+        $user = Auth::user();
+        return view('admin/editProfileAdmin', compact('user'));
+    }
+    public function updateProfileAdmin(Request $request)
+    {
+        $user = User::findOrFail(Auth::id());
+
+        $user->update([
+            'nama' => $request->nama,
+            'username' => $request->username,
+            'email' => $request->email,
+        ]);
+
+        if($request->password){
+            $user->update([
+                'password' => bcrypt($request->password)
+            ]);
+        }
+        if ($request->hasFile('foto_profil')) {
+            $path = $request->file('foto_profil')->store('foto-profile', 'public');
+            $user->update(['fotoProfile' => $path]);
+        }
+
+        return redirect('/profile-admin');
     }
 }

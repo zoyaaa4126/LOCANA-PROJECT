@@ -134,6 +134,7 @@
 
     @include('components.modal-logout')
     <script src="{{ asset('js/script.js') }}"></script>
+    @stack('scripts')
 
     </body>
 </html>

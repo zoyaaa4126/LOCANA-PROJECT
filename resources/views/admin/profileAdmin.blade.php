@@ -21,7 +21,7 @@
                                 <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->nama) }}&background=FBB45E&color=363B58" 
                                     class="w-24 h-24 rounded-full object-cover" alt="Profile">
                             @endif
-                            <button class="absolute bottom-0 right-0 bg-[#FBB45E] w-8 h-8 flex items-center justify-center rounded-full">
+                            <button class="absolute bottom-0 right-0 bg-[#FBB45E] w-8 h-8 flex items-center justify-center rounded-full cursor-pointer">
                                 <span class="material-symbols-outlined text-[#363B58] text-sm">edit</span>
                             </button>
                         </div>
@@ -30,7 +30,7 @@
                             <p class="text-gray-500">{{ $user->username }}</p>
                         </div>
                         <a href="/edit-profile-admin">
-                            <button class="bg-[#FBB45E] text-[#363B58] px-5 py-2 rounded-lg text-sm font-bold">Edit Profil</button>
+                            <button class="bg-[#FBB45E] text-[#363B58] px-5 py-2 rounded-lg text-sm font-bold cursor-pointer">Edit Profil</button>
                         </a>
                     </div>
 

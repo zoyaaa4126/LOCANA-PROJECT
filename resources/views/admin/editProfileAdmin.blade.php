@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
-@section('title', 'Edit Profile')
+@section('title', 'Edit Profile Admin')
 
 @section('content')
 
@@ -14,16 +14,16 @@
             <h1 class="text-2xl font-bold text-[#363B58]">Edit Profil</h1>
         </div>
         <div class="flex gap-3">
-            <a href="/profile" class="flex items-center gap-2 bg-white border border-[#E2E8F0] text-[#363B58] font-bold text-sm px-5 py-2.5 rounded-[10px] no-underline hover:bg-[#F1F5F9] active:bg-[#E2E8F0] transition-colors duration-200 select-none">
+            <a href="/profile-admin" class="flex items-center gap-2 bg-white border border-[#E2E8F0] text-[#363B58] font-bold text-sm px-5 py-2.5 rounded-[10px] no-underline hover:bg-[#F1F5F9] active:bg-[#E2E8F0] transition-colors duration-200 select-none">
                 Kembali
             </a>
-            <button type="submit" form="form-edit-profile" class="flex items-center gap-2 bg-[#FBB45E] text-[#363B58] font-bold text-sm px-5 py-2.5 rounded-[10px] border-none cursor-pointer hover:bg-[#E2A255] active:bg-[#FEE8CD] focus:outline-none focus:ring-2 focus:ring-[#FBB45E]/50 transition-colors duration-200 select-none">
+            <button type="submit" form="form-edit-profile-admin" class="flex items-center gap-2 bg-[#FBB45E] text-[#363B58] font-bold text-sm px-5 py-2.5 rounded-[10px] border-none cursor-pointer hover:bg-[#E2A255] active:bg-[#FEE8CD] focus:outline-none focus:ring-2 focus:ring-[#FBB45E]/50 transition-colors duration-200 select-none">
                 Simpan
             </button>
         </div>
     </div>
 
-    <form id="form-edit-profile" action="/edit-profile" method="POST" enctype="multipart/form-data"
+    <form id="form-edit-profile-admin" action="/edit-profile-admin" method="POST" enctype="multipart/form-data"
           class="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-5 items-start">
           @csrf
 
@@ -73,12 +73,6 @@
                         <span class="material-symbols-outlined" style="font-size:20px;" id="eye-icon">visibility_off</span>
                     </button>
                 </div>
-            </div>
-
-            <div class="flex flex-col gap-1.5">
-                <label class="text-sm font-semibold text-[#363B58]">Deskripsi</label>
-                <textarea name="deskripsi" rows="5" placeholder="Masukkan Deskripsi Tempat Disini&#10;(maks. 300 kata)" 
-                          class="border border-[#E2E8F0] rounded-xl px-4 py-3 text-sm outline-none bg-[#FAFAFA] placeholder-gray-300 resize-none focus:border-[#FBB45E] focus:ring-2 focus:ring-[#FBB45E]/20 hover:border-[#FBB45E]/50 transition-all duration-200" >{{ $user->deskripsi }}</textarea>
             </div>
         </div>
 

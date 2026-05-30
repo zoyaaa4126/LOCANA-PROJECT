@@ -160,7 +160,7 @@ class UserController extends Controller
     }
     public function profile()
     {
-        $user = Auth::user();
+        $user = User::findOrFail(Auth::id()); 
         $wishlists = \App\Models\Wishlist::with('place.kategori')
             ->where('user_id', Auth::id())
             ->latest()
@@ -175,12 +175,13 @@ class UserController extends Controller
     }
     public function updateProfile(Request $request)
     {
-         $user = User::findOrFail(Auth::id());
+        $user = User::findOrFail(Auth::id());
 
         $user->update([
-            'nama' => $request->nama,
-            'username' => $request->username,
-            'email' => $request->email,
+            'nama'      => $request->nama,
+            'username'  => $request->username,
+            'email'     => $request->email,
+            'deskripsi' => $request->deskripsi,
         ]);
 
         if($request->password){
