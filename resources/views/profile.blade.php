@@ -49,9 +49,9 @@
                                 <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->nama) }}&background=FBB45E&color=363B58" 
                                     class="w-24 h-24 rounded-full object-cover" alt="Profile">
                             @endif
-                            <button class="absolute bottom-0 right-0 bg-[#FBB45E] w-8 h-8 flex items-center justify-center rounded-full">
+                            <a href="/edit-profile" class="absolute bottom-0 right-0 bg-[#FBB45E] w-8 h-8 flex items-center justify-center rounded-full">
                                 <span class="material-symbols-outlined text-[#363B58] text-sm">edit</span>
-                            </button>
+                            </a>
                         </div>
                         <div class="flex-1 text-center sm:text-left">
                             <h1 class="text-2xl font-bold text-gray-800">{{ $user->nama }}</h1>
@@ -62,7 +62,9 @@
                                 <div class="flex flex-col justify-center items-center"><span class="font-bold text-[#FBB45E] text-lg">112</span> <span class="text-gray-500">Wishlist</span></div>
                             </div>
                         </div>
-                        <button class="bg-[#FBB45E] text-[#363B58] px-5 py-2 rounded-lg text-sm font-bold">Edit Profil</button>
+                        <a href="/edit-profile">
+                            <button class="bg-[#FBB45E] text-[#363B58] px-5 py-2 rounded-lg text-sm font-bold cursor-pointer">Edit Profil</button>
+                        </a>
                     </div>
 
                     <!-- AKTIVITAS TERAKHIR dengan Gambar -->

@@ -168,5 +168,31 @@ class UserController extends Controller
 
         return view('profile', compact('user', 'wishlists'));
     }
+    public function editProfile()
+    {
+        $user = Auth::user();
+        return view('editProfile', compact('user'));
+    }
+    public function updateProfile(Request $request)
+    {
+         $user = User::findOrFail(Auth::id());
 
+        $user->update([
+            'nama' => $request->nama,
+            'username' => $request->username,
+            'email' => $request->email,
+        ]);
+
+        if($request->password){
+            $user->update([
+                'password' => bcrypt($request->password)
+            ]);
+        }
+        if ($request->hasFile('foto_profil')) {
+            $path = $request->file('foto_profil')->store('foto-profile', 'public');
+            $user->update(['fotoProfile' => $path]);
+        }
+
+        return redirect('/profile');
+    }
 }

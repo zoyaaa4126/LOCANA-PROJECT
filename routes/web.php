@@ -58,6 +58,9 @@ Route::get('/home', [UserController::class, 'home']) ->middleware('auth');
 // PROFILE
 Route::get('/profile', [UserController::class, 'profile']) ->middleware('auth');
 
+Route::get('/edit-profile', [UserController::class, 'editProfile'])->name('editProfile')->middleware('auth');
+Route::post('/edit-profile', [UserController::class, 'updateProfile'])->middleware('auth');
+
 Route::get('/syarat', function () {
     return view('syarat');
 });
@@ -90,3 +93,4 @@ Route::get('/chatbot/step/{key}', [ChatbotController::class, 'getStep']);
     Route::get('/pengguna', [AdminController::class, 'pengguna'])->name('pengguna')->middleware('auth');
     Route::get('/tambah-pengguna', [AdminController::class, 'tambahPengguna'])->name('tambahPengguna')->middleware('auth');
     Route::get('/detail-pengguna', [AdminController::class, 'viewPengguna'])->name('viewPengguna')->middleware('auth');
+    Route::get('/profile-admin', [AdminController::class, 'profileAdmin'])->name('profileAdmin')->middleware('auth');

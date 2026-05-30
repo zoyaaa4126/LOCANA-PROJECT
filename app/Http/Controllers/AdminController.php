@@ -52,4 +52,9 @@ class AdminController extends Controller
         $user = Auth::user();
         return view('admin/pengguna/viewPengguna', compact('user'));
     }
+    public function profileAdmin()
+    {
+        $user = Auth::user();
+        return view('admin/profileAdmin', compact('user'));
+    }
 }
