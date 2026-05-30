@@ -45,20 +45,20 @@
         <div class="flex-1 my-5 overflow-hidden max-sm:px-5">
             <div class="w-full overflow-x-auto no-scrollbar">
                 <div class="flex gap-4 mb-6 whitespace-nowrap">
-                    <span id="desktopFilterToggle" class="inline-flex items-center gap-2 px-5 py-2 bg-[#FBB45E] text-[#363B58] rounded-full text-base cursor-pointer hover:bg-orange-100 transition flex-shrink-0 max-sm:hidden" ><span class="material-symbols-outlined">tune</span> Filter</span>
-                    <span class="inline-flex items-center gap-2 px-5 py-2 bg-gray-100 rounded-full text-base cursor-pointer hover:bg-orange-100 transition flex-shrink-0">Dekat Saya</span>
-                    <span class="inline-flex items-center gap-2 px-5 py-2 bg-gray-100 rounded-full text-base cursor-pointer hover:bg-orange-100 transition flex-shrink-0"><span class="material-symbols-outlined">local_cafe</span> Chill</span>
-                    <span class="inline-flex items-center gap-2 px-5 py-2 bg-gray-100 rounded-full text-base cursor-pointer hover:bg-orange-100 transition flex-shrink-0"><span class="material-symbols-outlined">wine_bar</span> Fancy</span>
-                    <span class="inline-flex items-center gap-2 px-5 py-2 bg-gray-100 rounded-full text-base cursor-pointer hover:bg-orange-100 transition flex-shrink-0"><span class="material-symbols-outlined">attractions</span> Keluarga</span>
-                    <span class="inline-flex items-center gap-2 px-5 py-2 bg-gray-100 rounded-full text-base cursor-pointer hover:bg-orange-100 transition flex-shrink-0"><span class="material-symbols-outlined">dine_heart</span> Romantis</span>
-                    <span class="inline-flex items-center gap-2 px-5 py-2 bg-gray-100 rounded-full text-base cursor-pointer hover:bg-orange-100 transition flex-shrink-0"><span class="material-symbols-outlined">hiking</span> Petualangan</span>
-                    <span class="inline-flex items-center gap-2 px-5 py-2 bg-gray-100 rounded-full text-base cursor-pointer hover:bg-orange-100 transition flex-shrink-0"><span class="material-symbols-outlined">laptop_chromebook</span> Produktif</span>
+                    <span id="desktopFilterToggle" class="inline-flex items-center gap-2 px-5 py-2 bg-[#FBB45E] text-[#363B58] rounded-full text-base cursor-pointer hover:bg-orange-100 transition shrink-0 max-sm:hidden" ><span class="material-symbols-outlined">tune</span> Filter</span>
+                    <span class="inline-flex items-center gap-2 px-5 py-2 bg-gray-100 rounded-full text-base cursor-pointer hover:bg-orange-100 transition shrink-0">Dekat Saya</span>
+                    <span class="inline-flex items-center gap-2 px-5 py-2 bg-gray-100 rounded-full text-base cursor-pointer hover:bg-orange-100 transition shrink-0"><span class="material-symbols-outlined">local_cafe</span> Chill</span>
+                    <span class="inline-flex items-center gap-2 px-5 py-2 bg-gray-100 rounded-full text-base cursor-pointer hover:bg-orange-100 transition shrink-0"><span class="material-symbols-outlined">wine_bar</span> Fancy</span>
+                    <span class="inline-flex items-center gap-2 px-5 py-2 bg-gray-100 rounded-full text-base cursor-pointer hover:bg-orange-100 transition shrink-0"><span class="material-symbols-outlined">attractions</span> Keluarga</span>
+                    <span class="inline-flex items-center gap-2 px-5 py-2 bg-gray-100 rounded-full text-base cursor-pointer hover:bg-orange-100 transition shrink-0"><span class="material-symbols-outlined">dine_heart</span> Romantis</span>
+                    <span class="inline-flex items-center gap-2 px-5 py-2 bg-gray-100 rounded-full text-base cursor-pointer hover:bg-orange-100 transition shrink-0"><span class="material-symbols-outlined">hiking</span> Petualangan</span>
+                    <span class="inline-flex items-center gap-2 px-5 py-2 bg-gray-100 rounded-full text-base cursor-pointer hover:bg-orange-100 transition shrink-0"><span class="material-symbols-outlined">laptop_chromebook</span> Produktif</span>
                 </div>
             </div>
 
             <div class="relative rounded-xl overflow-hidden mb-8">
                 <img src="assets/img/180 Cafe - Bandung 1.png" class="w-full h-64 object-cover" alt="Hero">
-                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 to-transparent p-6 text-white">
+                <div class="absolute bottom-0 left-0 right-0 bg-linear-to-t from-gray-900 to-transparent p-6 text-white">
                     <span class="bg-[#FBB45E] text-[#363B58] text-xs font-bold px-3 py-1 rounded-full inline-block mb-2">MOOD TERSIMPAN: PRODUKTIF</span>
                     <h2 class="text-2xl font-bold">Senang melihat anda kembali, Nanami Kento!</h2>
                     <p class="text-gray-200 text-sm">Lagi cari tempat yang tenang untuk fokus? Kopi Senja Cafe sedang tidak terlalu ramai sekarang.</p>
@@ -77,7 +77,7 @@
                             <span class="material-symbols-outlined">chevron_left</span>
                         </button>
                         <div class="scrollContainer flex overflow-x-auto no-scrollbar gap-4 px-0 scroll-smooth">
-                            <div class="bg-white rounded-xl shadow-md w-[250px] flex-shrink-0 border border-gray-100 p-4 hover:shadow-lg transition">
+                            <div class="bg-white rounded-xl shadow-md w-[250px] shrink-0 border border-gray-100 p-4 hover:shadow-lg transition">
                                 <div style="position: relative; margin-bottom: 12px;">
                                     <img src="assets/img/180 Cafe - Bandung 1.png" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px;">
                                     <button 
@@ -114,7 +114,7 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="bg-white rounded-xl shadow-md w-[250px] flex-shrink-0 border border-gray-100 p-4 hover:shadow-lg transition">
+                            <div class="bg-white rounded-xl shadow-md w-[250px] shrink-0 border border-gray-100 p-4 hover:shadow-lg transition">
                                 <div style="position: relative; margin-bottom: 12px;">
                                     <img src="assets/img/180 Cafe - Bandung 1.png" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px;">
                                     <button 
@@ -151,7 +151,7 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="bg-white rounded-xl shadow-md w-[250px] flex-shrink-0 border border-gray-100 p-4 hover:shadow-lg transition">
+                            <div class="bg-white rounded-xl shadow-md w-[250px] shrink-0 border border-gray-100 p-4 hover:shadow-lg transition">
                                 <div style="position: relative; margin-bottom: 12px;">
                                     <img src="assets/img/180 Cafe - Bandung 1.png" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px;">
                                     <button 
@@ -188,7 +188,7 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="bg-white rounded-xl shadow-md w-[250px] flex-shrink-0 border border-gray-100 p-4 hover:shadow-lg transition">
+                            <div class="bg-white rounded-xl shadow-md w-[250px] shrink-0 border border-gray-100 p-4 hover:shadow-lg transition">
                                 <div style="position: relative; margin-bottom: 12px;">
                                     <img src="assets/img/180 Cafe - Bandung 1.png" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px;">
                                     <button 
@@ -225,7 +225,7 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="bg-white rounded-xl shadow-md w-[250px] flex-shrink-0 border border-gray-100 p-4 hover:shadow-lg transition">
+                            <div class="bg-white rounded-xl shadow-md w-[250px] shrink-0 border border-gray-100 p-4 hover:shadow-lg transition">
                                 <div style="position: relative; margin-bottom: 12px;">
                                     <img src="assets/img/180 Cafe - Bandung 1.png" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px;">
                                     <button 
@@ -262,7 +262,7 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="bg-white rounded-xl shadow-md w-[250px] flex-shrink-0 border border-gray-100 p-4 hover:shadow-lg transition">
+                            <div class="bg-white rounded-xl shadow-md w-[250px] shrink-0 border border-gray-100 p-4 hover:shadow-lg transition">
                                 <div style="position: relative; margin-bottom: 12px;">
                                     <img src="assets/img/180 Cafe - Bandung 1.png" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px;">
                                     <button 
@@ -317,7 +317,7 @@
                             <span class="material-symbols-outlined">chevron_left</span>
                         </button>
                         <div class="scrollContainer flex overflow-x-auto no-scrollbar gap-4 px-0 scroll-smooth">
-                            <div class="bg-white rounded-xl shadow-md w-[250px] flex-shrink-0 border border-gray-100 p-4 hover:shadow-lg transition">
+                            <div class="bg-white rounded-xl shadow-md w-[250px] shrink-0 border border-gray-100 p-4 hover:shadow-lg transition">
                                 <div style="position: relative; margin-bottom: 12px;">
                                     <img src="assets/img/180 Cafe - Bandung 1.png" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px;">
                                     <button 
@@ -354,7 +354,7 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="bg-white rounded-xl shadow-md w-[250px] flex-shrink-0 border border-gray-100 p-4 hover:shadow-lg transition">
+                            <div class="bg-white rounded-xl shadow-md w-[250px] shrink-0 border border-gray-100 p-4 hover:shadow-lg transition">
                                 <div style="position: relative; margin-bottom: 12px;">
                                     <img src="assets/img/180 Cafe - Bandung 1.png" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px;">
                                     <button 
@@ -391,7 +391,7 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="bg-white rounded-xl shadow-md w-[250px] flex-shrink-0 border border-gray-100 p-4 hover:shadow-lg transition">
+                            <div class="bg-white rounded-xl shadow-md w-[250px] shrink-0 border border-gray-100 p-4 hover:shadow-lg transition">
                                 <div style="position: relative; margin-bottom: 12px;">
                                     <img src="assets/img/180 Cafe - Bandung 1.png" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px;">
                                     <button 
@@ -428,7 +428,7 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="bg-white rounded-xl shadow-md w-[250px] flex-shrink-0 border border-gray-100 p-4 hover:shadow-lg transition">
+                            <div class="bg-white rounded-xl shadow-md w-[250px] shrink-0 border border-gray-100 p-4 hover:shadow-lg transition">
                                 <div style="position: relative; margin-bottom: 12px;">
                                     <img src="assets/img/180 Cafe - Bandung 1.png" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px;">
                                     <button 
@@ -465,7 +465,7 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="bg-white rounded-xl shadow-md w-[250px] flex-shrink-0 border border-gray-100 p-4 hover:shadow-lg transition">
+                            <div class="bg-white rounded-xl shadow-md w-[250px] shrink-0 border border-gray-100 p-4 hover:shadow-lg transition">
                                 <div style="position: relative; margin-bottom: 12px;">
                                     <img src="assets/img/180 Cafe - Bandung 1.png" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px;">
                                     <button 
@@ -502,7 +502,7 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="bg-white rounded-xl shadow-md w-[250px] flex-shrink-0 border border-gray-100 p-4 hover:shadow-lg transition">
+                            <div class="bg-white rounded-xl shadow-md w-[250px] shrink-0 border border-gray-100 p-4 hover:shadow-lg transition">
                                 <div style="position: relative; margin-bottom: 12px;">
                                     <img src="assets/img/180 Cafe - Bandung 1.png" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px;">
                                     <button 
