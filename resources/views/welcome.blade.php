@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title')
+@section('title', 'Locana | Rekomendasi Tempat Hangout di Bandung')
 
 @section('content')
 

@@ -21,7 +21,9 @@ class ReviewController extends Controller
     {
         $place = \App\Models\Places::with(['kategori', 'reviews'])->findOrFail($id);
 
-        return view('addReview', compact('place'));
+        $loginRequired = !Auth::check();
+
+        return view('addReview', compact('place', 'loginRequired'));
     }
     
     // Simpan review baru
@@ -32,10 +34,10 @@ class ReviewController extends Controller
             'rating'   => 'required|integer|min:1|max:5',
             'title'    => 'required|string|max:255',
             'comment'  => 'nullable|string|max:1000',
-            'file_url' => 'nullable|file|mimes:jpg,jpeg,png,mp4,mov|max:5120',
+            'file_url'   => 'nullable|array|max:6',
+            'file_url.*' => 'file|mimes:jpg,jpeg,png,mp4,mov|max:5120',
         ]);
     
-        // Cek duplikat review
         $existing = \App\Models\Review::where('user_id', 2) // ganti Auth::id() nanti
             ->where('place_id', $request->place_id)
             ->first();
@@ -44,9 +46,13 @@ class ReviewController extends Controller
             return back()->withErrors(['rating' => 'Kamu sudah pernah mereview tempat ini.']);
         }
     
-        $path = null;
+        $paths = null;
         if ($request->hasFile('file_url')) {
-            $path = $request->file('file_url')->store('reviews', 'public');
+            $paths = [];
+            foreach ($request->file('file_url') as $file) {
+                $paths[] = $file->store('reviews', 'public');
+            }
+            $paths = json_encode($paths);
         }
     
         \App\Models\Review::create([
@@ -55,10 +61,10 @@ class ReviewController extends Controller
             'rating'   => $request->rating,
             'title'    => $request->title,
             'comment'  => $request->comment,
-            'file_url' => $path,
+            'file_url' => $paths,
         ]);
     
-        return redirect()->route('review', $request->place_id)
+        return redirect()->route('reviews', $request->place_id)
             ->with('success', 'Review berhasil ditambahkan!');
     }
     

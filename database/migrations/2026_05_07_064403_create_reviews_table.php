@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('rating');
             $table->text('title');
             $table->text('comment')->nullable();
-            $table->string('file_url')->nullable();
+            $table->text('file_url')->nullable();
 
             $table->timestamps();
         });

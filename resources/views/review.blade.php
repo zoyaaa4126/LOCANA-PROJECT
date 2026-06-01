@@ -106,11 +106,33 @@
                 <p class="text-gray-600 text-sm italic mb-3">"{{ $review->comment }}"</p>
                 @endif
 
-                {{-- FOTO --}}
+                {{-- FOTO + VIDEO --}}
                 @if($review->file_url)
                 <div class="flex gap-2 flex-wrap mb-4">
-                    <img src="{{ asset('storage/' . $review->file_url) }}"
-                         class="w-24 h-24 rounded-xl object-cover cursor-pointer hover:opacity-90 transition" alt="Foto review">
+                    @foreach(json_decode($review->file_url) as $file)
+                        @php $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION)); @endphp
+                        @if(in_array($ext, ['mp4', 'webm', 'mov', 'ogg']))
+                        <div class="relative w-24 h-24 rounded-xl overflow-hidden cursor-pointer group"
+                            onclick="bukaLightboxVideo('{{ asset('storage/' . $file) }}')">
+                            <video src="{{ asset('storage/' . $file) }}#t=0.1"
+                                class="w-full h-full object-cover"
+                                preload="metadata"
+                                muted
+                                playsinline>
+                            </video>
+                            <div class="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/55 transition">
+                                <div class="w-9 h-9 bg-white/90 rounded-full flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-[#363B58] text-lg" style="font-variation-settings:'FILL' 1;">play_arrow</span>
+                                </div>
+                            </div>
+                        </div>
+                        @else
+                        <img src="{{ asset('storage/' . $file) }}"
+                            class="w-24 h-24 rounded-xl object-cover cursor-pointer hover:opacity-90 transition"
+                            onclick="bukaLightbox('{{ asset('storage/' . $file) }}')"
+                            alt="Foto review">
+                        @endif
+                    @endforeach
                 </div>
                 @endif
 
@@ -147,5 +169,68 @@
     });
 </script>
 @endif
+
+{{-- LIGHTBOX MODAL --}}
+<div id="lightboxModal"
+     class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm"
+     onclick="tutupLightbox()">
+    <button class="absolute top-4 right-4 text-white bg-black/40 rounded-full p-2 hover:bg-black/70 transition z-10"
+            onclick="event.stopPropagation(); tutupLightbox()">
+        <span class="material-symbols-outlined text-2xl">close</span>
+    </button>
+    <img id="lightboxImg"
+         src=""
+         class="max-w-[90vw] max-h-[88vh] rounded-2xl shadow-2xl object-contain hidden"
+         onclick="event.stopPropagation()"
+         alt="Preview">
+    <video id="lightboxVideo"
+           class="max-w-[90vw] max-h-[88vh] rounded-2xl shadow-2xl hidden"
+           controls
+           playsinline
+           onclick="event.stopPropagation()">
+    </video>
+</div>
+
+<script>
+function bukaLightbox(src) {
+    document.getElementById('lightboxImg').src = src;
+    document.getElementById('lightboxImg').classList.remove('hidden');
+    document.getElementById('lightboxVideo').classList.add('hidden');
+    document.getElementById('lightboxVideo').pause();
+    document.getElementById('lightboxVideo').src = '';
+    bukaModal();
+}
+
+function bukaLightboxVideo(src) {
+    const vid = document.getElementById('lightboxVideo');
+    vid.src = src;
+    vid.classList.remove('hidden');
+    document.getElementById('lightboxImg').classList.add('hidden');
+    document.getElementById('lightboxImg').src = '';
+    bukaModal();
+    vid.play().catch(() => {});
+}
+
+function bukaModal() {
+    const modal = document.getElementById('lightboxModal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+}
+
+function tutupLightbox() {
+    const modal = document.getElementById('lightboxModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = '';
+    const vid = document.getElementById('lightboxVideo');
+    vid.pause();
+    vid.src = '';
+}
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') tutupLightbox();
+});
+</script>
 
 @endsection

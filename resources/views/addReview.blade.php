@@ -110,23 +110,23 @@
                     {{-- UPLOAD FOTO --}}
                     <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
                         <p class="font-bold text-[#363B58] mb-1">Tambahkan Foto atau Video</p>
-                        <p class="text-gray-400 text-xs mb-1">Unggah hingga 6 foto atau video (maks. 5MB)</p>
+                        <p class="text-gray-400 text-xs mb-1">Unggah hingga 6 foto atau video (maks. 5MB per file)</p>
                         <p class="text-gray-400 text-xs mb-4">Format: JPG, PNG, MP4, MOV</p>
 
                         <label for="fileUpload"
-                               class="inline-flex items-center gap-2 border border-gray-200 rounded-xl px-5 py-2.5 text-sm font-medium text-[#363B58] hover:bg-gray-50 cursor-pointer transition">
+                            class="inline-flex items-center gap-2 border border-gray-200 rounded-xl px-5 py-2.5 text-sm font-medium text-[#363B58] hover:bg-gray-50 cursor-pointer transition">
                             <span class="material-symbols-outlined text-sm">upload</span>
                             Unggah File
                         </label>
-                        <input type="file" id="fileUpload" name="file_url"
-                               accept=".jpg,.jpeg,.png,.mp4,.mov"
-                               class="hidden" onchange="previewFile(this)">
+                        <input type="file" id="fileUpload" name="file_url[]"
+                            accept=".jpg,.jpeg,.png,.mp4,.mov"
+                            class="hidden" multiple onchange="previewFiles(this)">
 
-                        {{-- Preview --}}
-                        <div id="filePreview" class="mt-3 hidden">
-                            <img id="previewImg" src="" alt="Preview" class="w-24 h-24 rounded-xl object-cover">
-                            <p id="previewName" class="text-xs text-gray-400 mt-1"></p>
-                        </div>
+                        {{-- Error --}}
+                        <p id="fileError" class="text-red-500 text-xs mt-2 hidden"></p>
+
+                        {{-- Preview grid --}}
+                        <div id="filePreview" class="mt-3 flex flex-wrap gap-2"></div>
                     </div>
 
                 </div>
@@ -143,6 +143,125 @@
         </form>
     </div>
 </div>
+<script>
+// STAR RATING
+const starBtns = document.querySelectorAll('.star-btn');
+const ratingInput = document.getElementById('ratingInput');
+const ratingLabel = document.getElementById('ratingLabel');
+
+const ratingLabels = { 1:'Buruk', 2:'Kurang', 3:'Cukup', 4:'Bagus', 5:'Sangat Bagus!' };
+
+function highlightStars(count) {
+    starBtns.forEach(btn => {
+        const val = parseInt(btn.dataset.value);
+        btn.style.color = val <= count ? '#FBB45E' : '#D1D5DB';
+        btn.style.fontVariationSettings = val <= count ? "'FILL' 1" : "'FILL' 0";
+    });
+}
+
+starBtns.forEach(btn => {
+    btn.addEventListener('mouseenter', () => highlightStars(parseInt(btn.dataset.value)));
+    btn.addEventListener('mouseleave', () => highlightStars(parseInt(ratingInput.value) || 0));
+    btn.addEventListener('click', () => {
+        const val = parseInt(btn.dataset.value);
+        ratingInput.value = val;
+        highlightStars(val);
+        if (ratingLabel) {
+            ratingLabel.textContent = ratingLabels[val];
+            ratingLabel.classList.add('text-[#FBB45E]');
+            ratingLabel.classList.remove('text-gray-400');
+        }
+    });
+});
+
+let activeFiles = [];
+
+function previewFiles(input) {
+    const preview = document.getElementById('filePreview');
+    const errorEl = document.getElementById('fileError');
+
+    errorEl.classList.add('hidden');
+    errorEl.textContent = '';
+
+    const newFiles = Array.from(input.files);
+
+    // Gabungkan file lama dengan yang baru, hindari duplikat nama
+    newFiles.forEach(newFile => {
+        const isDuplicate = activeFiles.some(f => f.name === newFile.name && f.size === newFile.size);
+        if (!isDuplicate) {
+            activeFiles.push(newFile);
+        }
+    });
+
+    // Reset input value biar bisa pilih file yang sama lagi kalau perlu
+    input.value = '';
+
+    if (activeFiles.length > 6) {
+        errorEl.textContent = 'Maksimal 6 file.';
+        errorEl.classList.remove('hidden');
+        activeFiles = activeFiles.slice(0, 6);
+    }
+
+    for (const file of activeFiles) {
+        if (file.size > 5 * 1024 * 1024) {
+            errorEl.textContent = `File "${file.name}" melebihi 5MB.`;
+            errorEl.classList.remove('hidden');
+            activeFiles = activeFiles.filter(f => f !== file);
+        }
+    }
+
+    // Sync ke input file
+    function syncInput() {
+        const dt = new DataTransfer();
+        activeFiles.forEach(f => dt.items.add(f));
+        input.files = dt.files;
+    }
+
+    function renderPreviews() {
+        preview.innerHTML = '';
+        activeFiles.forEach((file, index) => {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'relative w-24 h-24';
+
+            const removeBtn = document.createElement('button');
+            removeBtn.type = 'button';
+            removeBtn.className = 'absolute top-1 left-1 z-10 bg-black/60 text-white rounded-full w-5 h-5 flex items-center justify-center hover:bg-red-500 transition';
+            removeBtn.innerHTML = '<span class="material-symbols-outlined" style="font-size:12px">close</span>';
+            removeBtn.addEventListener('click', () => {
+                activeFiles.splice(index, 1);
+                syncInput();
+                renderPreviews();
+            });
+
+            if (file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    wrapper.innerHTML = `
+                        <img src="${e.target.result}" class="w-24 h-24 rounded-xl object-cover">
+                        <span class="absolute bottom-1 right-1 bg-black/50 text-white text-[9px] px-1 rounded">${file.name.split('.').pop().toUpperCase()}</span>
+                    `;
+                    wrapper.appendChild(removeBtn);
+                };
+                reader.readAsDataURL(file);
+            } else {
+                wrapper.innerHTML = `
+                    <div class="w-24 h-24 rounded-xl bg-gray-100 flex flex-col items-center justify-center gap-1">
+                        <span class="material-symbols-outlined text-gray-400 text-2xl">videocam</span>
+                        <span class="text-[9px] text-gray-400 text-center px-1 line-clamp-2">${file.name}</span>
+                    </div>
+                `;
+                wrapper.appendChild(removeBtn);
+            }
+
+            preview.appendChild(wrapper);
+        });
+    }
+
+    syncInput();
+    renderPreviews();
+}
+</script>
+
 @if($loginRequired)
 <script>
     document.addEventListener('DOMContentLoaded', function() {
