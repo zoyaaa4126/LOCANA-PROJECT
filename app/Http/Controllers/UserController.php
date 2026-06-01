@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-
 use App\Models\Kategoris;
 
 
@@ -26,12 +25,13 @@ class UserController extends Controller
     public function registerStep1(Request $request)
     {
         $request->validate([
-            'username' => 'required',
+            'username' => 'required|unique:users,username',
             'email'    => 'required|email|unique:users,email',
             'password' => 'required|min:6',
             'check'    => 'required',
         ], ['email.unique'      => 'Email sudah terdaftar.',
             'password.min'      => 'Password minimal 6 karakter.',
+            'username.unique'   => 'Username sudah digunakan'
         ]);
 
         session([
@@ -43,8 +43,17 @@ class UserController extends Controller
         return redirect('/register-nextStep');
     }
 
+    public function registerNext()
+    {
+        return view('registerNext'); 
+    }
+
     public function store(Request $request)
     {
+        $request->validate([
+            'nama' => 'required',], 
+            ['nama.required' => 'Nama wajib diisi.',
+        ]);
 
         $path = null;
 
@@ -53,7 +62,7 @@ class UserController extends Controller
         }
 
         User::create([
-            'nama' => $request->nama,
+            'nama' => $request->nama, 
             'username' => session('username'),
             'email' => session('email'),
             'role' => 'user',
@@ -73,8 +82,13 @@ class UserController extends Controller
 
         $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials, $request->remember)) { //di cek apakah ada atau engga
+        if (Auth::attempt($credentials, $request->remember)) {
             $request->session()->regenerate();
+
+            if (Auth::user()->role === 'admin') {
+                return redirect('/dashboard');
+            }
+
             return redirect('/home');
         }
 
@@ -145,9 +159,9 @@ class UserController extends Controller
         $kategori = Kategoris::findOrFail($id);
         return view('places.kategori', compact('places', 'kategori'));
     }
-
     public function profile()
     {
+        $user = User::findOrFail(Auth::id()); 
         $wishlists = \App\Models\Wishlist::with('place.kategori')
             ->where('user_id', Auth::id())
             ->latest()
@@ -183,6 +197,35 @@ class UserController extends Controller
 
         $activities = $activities->sortByDesc('created_at')->take(7)->values();
 
-        return view('profile', compact('wishlists', 'reviews', 'activities', 'wishlistCount', 'reviewCount'));
+        return view('profile', compact('user', 'wishlists', 'reviews', 'activities', 'wishlistCount', 'reviewCount'));
+    }
+
+    public function editProfile()
+    {
+        $user = Auth::user();
+        return view('editProfile', compact('user'));
+    }
+    public function updateProfile(Request $request)
+    {
+        $user = User::findOrFail(Auth::id());
+
+        $user->update([
+            'nama'      => $request->nama,
+            'username'  => $request->username,
+            'email'     => $request->email,
+            'deskripsi' => $request->deskripsi,
+        ]);
+
+        if($request->password){
+            $user->update([
+                'password' => bcrypt($request->password)
+            ]);
+        }
+        if ($request->hasFile('foto_profil')) {
+            $path = $request->file('foto_profil')->store('foto-profile', 'public');
+            $user->update(['fotoProfile' => $path]);
+        }
+
+        return redirect('/profile');
     }
 }

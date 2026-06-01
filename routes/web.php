@@ -5,10 +5,11 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\LandingController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\ReviewController;
 
@@ -47,9 +48,7 @@ Route::get('/register-step1', function () {
 Route::post('/register-step1', [UserController::class, 'registerStep1']);
 // ->middleware('guest');
 
-Route::get('/register-nextStep', function () {
-    return view('registerNext');
-});
+Route::get('/register-nextStep', [UserController::class, 'registerNext']);
 // ->middleware('guest');
 
 Route::post('/register-nextStep', [UserController::class, 'store']);

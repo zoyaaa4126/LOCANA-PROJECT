@@ -34,6 +34,7 @@
                     <span class="font-bold text-xl text-gray-800">LOCANA</span>
                 </a>
                 <div class="flex flex-row-reverse gap-4 items-center">
+<<<<<<< HEAD
                     
                     @auth
                         <div class="relative" id="profileDropdown">
@@ -55,6 +56,20 @@
                                     <hr class="my-1">
                                     <a onclick="bukaModalLogout()"><li class="flex items-center gap-3 px-4 py-2 hover:bg-red-50 text-red-500 cursor-pointer"><span class="material-symbols-outlined">logout</span>Keluar</li></a>
                                 </ul>
+=======
+                    <div class="relative" id="profileDropdown">
+                        <button id="dropdownButton" class="flex items-center gap-2 hover:bg-gray-100 px-2 py-1 rounded-lg transition">
+                            @if(Auth::user()->fotoProfile)
+                                <img src="{{ asset('storage/' . Auth::user()->fotoProfile) }}" 
+                                    class="w-10 h-10 rounded-full object-cover" alt="Profile">
+                            @else
+                                <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->nama) }}&background=FBB45E&color=363B58" 
+                                    class="w-10 h-10 rounded-full object-cover" alt="Profile">
+                            @endif
+                            <div class="flex flex-col items-end leading-tight">
+                                <span class="text-sm font-semibold">{{ Auth::user()->nama }}</span>
+                                <span class="text-xs text-gray-500">{{ Auth::user()->username }}</span>
+>>>>>>> 3a6c029069c9d4609b006bf65f3ca40b6b649d35
                             </div>
                         </div>
                     @else
@@ -152,6 +167,7 @@
                 
                 {{-- Proteksi Guest v2: Bagian Header Menu Sidebar --}}
                 <div class="p-4 border-b border-gray-200 flex justify-between items-start">
+<<<<<<< HEAD
                     @auth
                         <div class="flex items-center gap-3">
                             <img src="{{ auth()->user()->fotoProfile ? asset(auth()->user()->fotoProfile) : asset('assets/img/avatar.jpg') }}" class="w-12 h-12 rounded-full object-cover">
@@ -159,6 +175,19 @@
                                 <p class="font-semibold text-base">{{ auth()->user()->nama }}</p>
                                 <p class="text-xs text-gray-500">{{ auth()->user()->username }}</p>
                             </div>
+=======
+                    <div class="flex items-center gap-3">
+                        @if(Auth::user()->fotoProfile)
+                                <img src="{{ asset('storage/' . Auth::user()->fotoProfile) }}" 
+                                    class="w-12 h-12 rounded-full object-cover" alt="Profile">
+                            @else
+                                <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->nama) }}&background=FBB45E&color=363B58" 
+                                    class="w-12 h-12 rounded-full object-cover" alt="Profile">
+                            @endif
+                        <div>
+                            <p class="font-semibold text-base">{{ Auth::user()->nama }}</p>
+                            <p class="text-xs text-gray-500">{{ Auth::user()->username }}</p>
+>>>>>>> 3a6c029069c9d4609b006bf65f3ca40b6b649d35
                         </div>
                     @else
                         <div class="flex items-center gap-2 py-2">
@@ -226,6 +255,7 @@
     @include('components.modal-logout')
     @include('components.modal-loginRequired')
     <script src="{{ asset('js/script.js') }}"></script>
+<<<<<<< HEAD
 
     <script>
     function toggleWishlist(btn) {
@@ -257,5 +287,8 @@
         .catch(err => console.error(err));
     }
     </script>
+=======
+    @stack('scripts')
+>>>>>>> 3a6c029069c9d4609b006bf65f3ca40b6b649d35
 </body>
 </html>
