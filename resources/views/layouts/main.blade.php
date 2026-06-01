@@ -32,7 +32,7 @@
         <div class="hidden md:flex items-center justify-between px-6 py-4">
             <!-- Logo -->
             <div class="flex items-center gap-2">
-                <img src="assets/img/Locana_Logo 1.png" alt="logo" class="w-8 h-8 object-contain">
+                <img src="{{ asset('assets/img/Locana_Logo 1.png') }}" alt="logo" class="w-8 h-8 object-contain">
                 <span class="font-semibold text-lg text-[#363B58]">LOCANA</span>
             </div>
 

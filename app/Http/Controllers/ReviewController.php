@@ -38,7 +38,7 @@ class ReviewController extends Controller
             'file_url.*' => 'file|mimes:jpg,jpeg,png,mp4,mov|max:5120',
         ]);
     
-        $existing = \App\Models\Review::where('user_id', 2) // ganti Auth::id() nanti
+        $existing = \App\Models\Review::where('user_id', Auth::id()) 
             ->where('place_id', $request->place_id)
             ->first();
     
@@ -56,7 +56,7 @@ class ReviewController extends Controller
         }
     
         \App\Models\Review::create([
-            'user_id'  => 2, // ganti Auth::id() nanti
+            'user_id'  => Auth::id(),
             'place_id' => $request->place_id,
             'rating'   => $request->rating,
             'title'    => $request->title,
@@ -72,7 +72,7 @@ class ReviewController extends Controller
     public function destroy(int $id)
     {
         $review = \App\Models\Review::where('id', $id)
-            ->where('user_id', 2) // ganti Auth::id() nanti
+            ->where('user_id', Auth::id())
             ->firstOrFail();
     
         $review->delete();

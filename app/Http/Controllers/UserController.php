@@ -228,4 +228,11 @@ class UserController extends Controller
 
         return redirect('/profile');
     }
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/')->with('success', 'Berhasil keluar.');
+    }
 }
