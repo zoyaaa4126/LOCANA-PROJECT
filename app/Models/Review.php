@@ -23,6 +23,6 @@ class Review extends Model
 
     public function place()
     {
-        return $this->belongsTo(Places::class);
+        return $this->belongsTo(places::class);
     }
 }

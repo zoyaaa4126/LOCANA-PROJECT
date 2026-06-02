@@ -10,6 +10,7 @@ class places extends Model
     protected $fillable = [
         'kategori_id',
         'nama_tempat',
+        'gambar_tempat',
         'deskripsi',
         'tipe_tempat',
         'alamat_lengkap',
@@ -19,7 +20,18 @@ class places extends Model
         'harga_max',
         'status_aktif',
         'tempat_unggulan',
-        'created_by'
+        'created_by',
+
+        'wifi',
+        'ruang_ac',
+        'stopkontan',
+        'parkir_luas',
+        'area_merokok',
+        'toilet',
+        'photobooth',
+        'musholla',
+        'ruang_meeting',
+        'board_game',
     ];
 
     public function user()
@@ -29,7 +41,7 @@ class places extends Model
 
     public function moods()
     {
-        return $this->belongsToMany(moods::class, 'place_moods');
+        return $this->belongsToMany(moods::class, 'place_moods', 'place_id', 'mood_id');
     }
 
     public function kategori()
@@ -45,5 +57,13 @@ class places extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class, 'place_id');
+    }
+
+    public function hour() {
+        return $this->hasMany(PlaceHour::class, 'place_id');
+    }
+
+    public function galleries(){
+        return $this->hasMany(PlaceGallery::class, 'place_id');
     }
 }

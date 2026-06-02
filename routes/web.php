@@ -18,6 +18,15 @@ Route::get('/rekomendasi', [UserController::class, 'rekomendasi'])->name('rekome
 Route::get('/places/{id}', [UserController::class, 'showPlace'])->name('places.show');
 Route::get('/places/kategori/{id}', [UserController::class, 'placesByKategori'])->name('places.kategori');
 Route::get('/places/{id}/reviews', [ReviewController::class, 'index'])->name('reviews.index');
+
+// ROUTE CRUD USER
+Route::get('/users', [UserController::class, 'index']);
+Route::get('/users/create', [UserController::class, 'create']);
+Route::get('/users/{id}/edit', [UserController::class, 'edit']);
+Route::post('/users/{id}', [UserController::class, 'update']);
+Route::post('/users/{id}/delete', [UserController::class, 'destroy']);
+
+// CHATBOT
 Route::get('/chatbot', [ChatbotController::class, 'index']);
 Route::get('/syarat', fn() => view('syarat'));
 
