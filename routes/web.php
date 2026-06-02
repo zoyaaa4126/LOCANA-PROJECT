@@ -86,6 +86,7 @@ Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard
 Route::get('/lokasi', [AdminController::class, 'lokasi'])->name('lokasi');
 Route::get('/tambah-lokasi', [AdminController::class, 'tambahLokasi'])->name('tambahLokasi');
 Route::get('/ulasan', [AdminController::class, 'ulasan'])->name('ulasan');
+Route::post('/tambah-lokasi', [AdminController::class, 'simpanFasilitastempat'])->name('simpanTempat');
 
 Route::get('/pengguna', [AdminController::class, 'pengguna'])->name('pengguna');
 

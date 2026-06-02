@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Category;
 
 class places extends Model
 {
@@ -11,6 +10,7 @@ class places extends Model
     protected $fillable = [
         'kategori_id',
         'nama_tempat',
+        'gambar_tempat',
         'deskripsi',
         'tipe_tempat',
         'alamat_lengkap',
@@ -20,7 +20,18 @@ class places extends Model
         'harga_max',
         'status_aktif',
         'tempat_unggulan',
-        'created_by'
+        'created_by',
+
+        'wifi',
+        'ruang_ac',
+        'stopkontan',
+        'parkir_luas',
+        'area_merokok',
+        'toilet',
+        'photobooth',
+        'musholla',
+        'ruang_meeting',
+        'board_game',
     ];
 
     public function user()
@@ -30,7 +41,7 @@ class places extends Model
 
     public function moods()
     {
-        return $this->belongsToMany(moods::class, 'place_moods');
+        return $this->belongsToMany(moods::class, 'place_moods', 'place_id', 'mood_id');
     }
 
     public function kategori()
@@ -47,14 +58,12 @@ class places extends Model
     {
         return $this->hasMany(Review::class, 'place_id');
     }
-}
-<<<<<<< HEAD
 
-    public function reviews()
-    {
-        return $this->hasMany(reviews::class, 'place_id');
+    public function hour() {
+        return $this->hasMany(PlaceHour::class, 'place_id');
+    }
+
+    public function galleries(){
+        return $this->hasMany(PlaceGallery::class, 'place_id');
     }
 }
-=======
-}
->>>>>>> 02a6a367373b6c203882aaa400cf53abc922c6f0

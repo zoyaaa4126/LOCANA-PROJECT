@@ -27,7 +27,8 @@
         </div>
     </div>
 
-    <form id="form-lokasi" class="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-5 items-start">
+    <form id="form-lokasi" class="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-5 items-start" action="{{ route('simpanTempat') }}" method="POST" enctype="multipart/form-data">
+        @csrf
 
         <div class="flex flex-col gap-5">
 
@@ -80,6 +81,25 @@
                             @endforeach
                         </div>
                         <input type="hidden" name="kategori_tempat" id="kategori-value">
+                    </div>
+
+                    <div class="flex flex-col gap-1.5 mb-1 mt-2">
+                        <label class="text-sm font-semibold text-[#363B58]">Mood</label>
+                        <div class="grid grid-cols-2 gap-x-8 gap-y-3">
+                            @foreach($moods as $m)
+                            <label class="flex items-center gap-2.5 cursor-pointer group">
+                                <div class="relative">
+                                    <input type="checkbox" name="moods[]" value="{{ $m->id }}"
+                                        class="peer w-[18px] h-[18px] rounded-md border border-[#DDD] appearance-none cursor-pointer
+                                                checked:bg-[#FBB45E] checked:border-transparent transition-all">
+                                    <span class="absolute inset-0 flex items-center justify-center text-white pointer-events-none opacity-0 peer-checked:opacity-100">
+                                        <svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    </span>
+                                </div>
+                                <span class="text-sm text-[#363B58] font-medium group-hover:text-[#FBB45E] transition-colors">{{ $m->nama }}</span>
+                            </label>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
 

@@ -130,8 +130,8 @@ class UserController extends Controller
 
     public function showPlace(int $id)
     {
-        $place = \App\Models\Places::findOrFail($id);
-        return view('places.show', compact('place'));
+        $places = \App\Models\Places::findOrFail($id);
+        return view('placeDetails.places', compact('places'));
     }
 
     public function rekomendasi()
