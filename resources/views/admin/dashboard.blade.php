@@ -46,7 +46,7 @@
             </div>
         
             <div class="flex flex-col md:flex-row gap-5">
-                <a href="/tambah-lokasi"
+                <a href="/admin/tambah-lokasi"
                 class="flex flex-row justify-between items-center bg-white px-5 py-3 w-full text-[#363B58] border border-[#D9D9D9] rounded-[10px] no-underline
                         hover:bg-[#FEF4E7] hover:border-[#E2A255] transition-all duration-200">
                     <div class="flex items-center bg-[#FBB45E] text-[#363B58] p-[5px] rounded-full">
@@ -59,7 +59,7 @@
                     <span class="material-symbols-outlined" style="font-size:28px;">keyboard_arrow_right</span>
                 </a>
         
-                <a href="/ulasan"
+                <a href="/admin/ulasan"
                 class="flex flex-row justify-between items-center bg-white px-5 py-3 w-full text-[#363B58] border border-[#D9D9D9] rounded-[10px] no-underline
                         hover:bg-[#FEF4E7] hover:border-[#E2A255] transition-all duration-200">
                     <div class="flex items-center bg-[#FBB45E] text-[#363B58] p-[5px] rounded-full">

@@ -27,8 +27,9 @@
                     class="flex-1 border border-[#E2E8F0] text-[#363B58] font-semibold text-sm py-2.5 rounded-xl hover:bg-[#F1F5F9] transition">
                 Batalkan
             </button>
-            <form action="" method="POST" class="flex-1">
-                <button type="button" onclick="window.location.href='/login'" class="w-full bg-red-500 hover:bg-red-600 text-white font-semibold text-sm py-2.5 rounded-xl transition">
+            <form action="{{ route('logout') }}" method="POST" class="flex-1">
+                @csrf
+                <button type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white font-semibold text-sm py-2.5 rounded-xl transition">
                     Logout
                 </button>
             </form>

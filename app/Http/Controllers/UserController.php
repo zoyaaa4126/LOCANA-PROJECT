@@ -82,13 +82,15 @@ class UserController extends Controller
 
         $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials, $request->remember)) {
-            $request->session()->regenerate();
-
-            if (Auth::user()->role === 'admin') {
-                return redirect('/dashboard');
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
+    
+            $user = Auth::user();
+            
+            // Cek role, redirect ke tempat yang sesuai
+            if ($user->role === 'admin') {
+                return redirect('/admin/dashboard'); // atau route dashboard admin kamu
             }
-
+            
             return redirect('/home');
         }
 

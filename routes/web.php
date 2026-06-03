@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ReviewReportController;
 
 // ============================================================
 // PUBLIC — Bisa diakses siapa saja (guest & user)
@@ -64,6 +65,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/places/{id}/reviews/create', [ReviewController::class, 'create'])->name('reviews.create');
     Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
     Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
+    Route::post('/reviews/{id}/report', [ReviewReportController::class, 'store'])->name('reviews.report');
 
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 });
@@ -72,9 +74,16 @@ Route::middleware('auth')->group(function () {
 // ADMIN ONLY
 // ============================================================
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
-    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-    Route::get('/lokasi', [AdminController::class, 'lokasi'])->name('lokasi');
-    Route::get('/tambah-lokasi', [AdminController::class, 'tambahLokasi'])->name('tambahLokasi');
-    Route::get('/ulasan', [AdminController::class, 'ulasan'])->name('ulasan');
-    Route::get('/pengguna', [AdminController::class, 'pengguna'])->name('pengguna');
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/lokasi', [AdminController::class, 'lokasi'])->name('admin.lokasi');
+    Route::get('/tambah-lokasi', [AdminController::class, 'tambahLokasi'])->name('admin.tambahLokasi');
+    Route::post('/simpan-tempat', [AdminController::class, 'simpanTempat'])->name('admin.simpanTempat');
+    Route::get('/ulasan', [AdminController::class, 'ulasan'])->name('admin.ulasan');
+    Route::delete('/reviews/{id}', [ReviewReportController::class, 'destroy'])->name('admin.reviews.destroy');
+    Route::post('/admin/reviews/{id}/unflag', [ReviewReportController::class, 'unflag'])->name('admin.reviews.unflag');
+    Route::get('/pengguna', [AdminController::class, 'pengguna'])->name('admin.pengguna');
+    Route::get('/tambah-pengguna', [AdminController::class, 'tambahPengguna'])->name('admin.tambahPengguna');
+    Route::get('/profile', [AdminController::class, 'profileAdmin'])->name('admin.profile');
+    Route::get('/edit-profile', [AdminController::class, 'editProfileAdmin'])->name('admin.editProfile');
+    Route::post('/update-profile', [AdminController::class, 'updateProfileAdmin'])->name('admin.updateProfile');
 });

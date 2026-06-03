@@ -15,6 +15,7 @@ class AdminController extends Controller
         $user = Auth::user();
         return view('admin/dashboard', compact('user'));
     }
+
     public function lokasi()
     {
         $user = Auth::user();
@@ -40,7 +41,21 @@ class AdminController extends Controller
     public function ulasan()
     {
         $user = Auth::user();
-        return view('admin/ulasan', compact('user'));
+        $flaggedReviews = \App\Models\Review::with(['user', 'place'])
+            ->where('flagged', true)
+            ->orWhere(function($q) {
+                // Auto-flag keyword spam meski belum dilaporkan user
+                foreach (\App\Models\Review::SPAM_KEYWORDS as $kw) {
+                    $q->orWhere('comment', 'like', "%$kw%")
+                    ->orWhere('title', 'like', "%$kw%");
+                }
+            })
+            ->latest()
+            ->get();
+
+        $totalReviews = \App\Models\Review::count();
+
+        return view('admin/ulasan', compact('user', 'flaggedReviews', 'totalReviews'));
     }
     public function pengguna()
     {

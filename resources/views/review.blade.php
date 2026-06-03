@@ -143,10 +143,13 @@
                         Membantu ({{ $review->helpful_count ?? 0 }})
                     </button>
                     <span class="text-gray-200">|</span>
-                    <button class="flex items-center gap-1.5 text-red-400 text-xs hover:text-red-600 transition">
+                    @auth
+                    <button onclick="laporkanReview({{ $review->id }})"
+                            class="flex items-center gap-1.5 text-red-400 text-xs hover:text-red-600 transition">
                         <span class="material-symbols-outlined text-sm">flag</span>
-                        Laporkan Penyalahgunaan
+                        Laporkan
                     </button>
+                    @endauth
                 </div>
             </div>
             @empty
@@ -231,6 +234,22 @@ function tutupLightbox() {
 document.addEventListener('keydown', e => {
     if (e.key === 'Escape') tutupLightbox();
 });
+
+function laporkanReview(reviewId) {
+    if (!confirm('Yakin ingin melaporkan review ini?')) return;
+
+    fetch(`/reviews/${reviewId}/report`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+        },
+        body: JSON.stringify({ review_id: reviewId, alasan: 'Konten tidak pantas' })
+    })
+    .then(res => res.json())
+    .then(data => alert(data.message))
+    .catch(() => alert('Gagal mengirim laporan.'));
+}
 </script>
 
 @endsection

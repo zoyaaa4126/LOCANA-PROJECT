@@ -14,7 +14,7 @@
             <h1 class="text-2xl font-bold text-[#363B58]">Tambah Lokasi</h1>
         </div>
         <div class="flex gap-3">
-            <a href="/lokasi"
+            <a href="/admin/lokasi"
                class="flex items-center gap-2 bg-white border border-[#E2E8F0] text-[#363B58] font-bold text-sm px-5 py-2.5 rounded-[10px] cursor-pointer hover:bg-[#F1F5F9] transition-colors duration-200">
                 <span class="material-symbols-outlined" style="font-size:18px;">arrow_back</span>
                 Kembali
@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <form id="form-lokasi" class="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-5 items-start" action="{{ route('simpanTempat') }}" method="POST" enctype="multipart/form-data">
+    <form id="form-lokasi" class="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-5 items-start" action="{{ route('admin.simpanTempat') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="flex flex-col gap-5">

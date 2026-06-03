@@ -55,7 +55,7 @@ class ReviewController extends Controller
             $paths = json_encode($paths);
         }
     
-        \App\Models\Review::create([
+        $review = \App\Models\Review::create([
             'user_id'  => Auth::id(),
             'place_id' => $request->place_id,
             'rating'   => $request->rating,
@@ -63,8 +63,12 @@ class ReviewController extends Controller
             'comment'  => $request->comment,
             'file_url' => $paths,
         ]);
+
+        if ($review->containsSpam()) {
+            $review->update(['flagged' => true]);
+        }
     
-        return redirect()->route('reviews', $request->place_id)
+        return redirect()->route('reviews.index', $request->place_id)
             ->with('success', 'Review berhasil ditambahkan!');
     }
     
