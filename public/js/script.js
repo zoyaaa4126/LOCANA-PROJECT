@@ -475,18 +475,22 @@ if (desktopToggle && desktopSidebar) {
 
 }
 
-//POP UP
-function confirmHapus() {
+function confirmHapus(id, nama) {
+    document.getElementById('modal-nama').textContent = nama;
+    document.getElementById('form-hapus').action = '/pengguna/' + id;
     document.getElementById('modal-hapus').classList.remove('hidden');
 }
+
 function tutupModal() {
     document.getElementById('modal-hapus').classList.add('hidden');
 }
-// Tutup modal jika klik backdrop
-document.getElementById('modal-hapus').addEventListener('click', function(e) {
-    if (e.target === this) tutupModal();
-});
 
+const modalHapus = document.getElementById('modal-hapus');
+if (modalHapus) {
+    modalHapus.addEventListener('click', function(e) {
+        if (e.target === this) tutupModal();
+    });
+}
 document.addEventListener("DOMContentLoaded", function () {
 
   // LOGIN

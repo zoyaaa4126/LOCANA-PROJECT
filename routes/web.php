@@ -18,11 +18,10 @@ Route::get('/', function () {
 //LOGIN
 Route::get('/login', function () {
     return view('login');
-});
-// ->middleware('guest');
-Route::post('/login', [UserController::class, 'login']);
-// ->middleware('guest');
-
+})
+->middleware('guest');
+Route::post('/login', [UserController::class, 'login'])
+->middleware('guest');
 
 //FORGOT PASSWORD
 Route::get('/forgot-password', [ForgotPasswordController::class, 'showEmailForm']);
@@ -41,17 +40,17 @@ Route::get('/success', [ForgotPasswordController::class, 'showSuccess']);
 //REGISTER
 Route::get('/register-step1', function () {
     return view('register');
-});
-// ->middleware('guest');
+})
+->middleware('guest');
 
-Route::post('/register-step1', [UserController::class, 'registerStep1']);
-// ->middleware('guest');
+Route::post('/register-step1', [UserController::class, 'registerStep1'])
+->middleware('guest');
 
-Route::get('/register-nextStep', [UserController::class, 'registerNext']);
-// ->middleware('guest');
+Route::get('/register-nextStep', [UserController::class, 'registerNext'])
+->middleware('guest');
 
-Route::post('/register-nextStep', [UserController::class, 'store']);
-// ->middleware('guest');
+Route::post('/register-nextStep', [UserController::class, 'store'])
+->middleware('guest');
 
 Route::get('/home', [UserController::class, 'home']) ->middleware('auth');
 
@@ -91,8 +90,13 @@ Route::get('/chatbot/step/{key}', [ChatbotController::class, 'getStep']);
     Route::get('/tambah-lokasi', [AdminController::class, 'tambahLokasi'])->name('tambahLokasi')->middleware('auth');
     Route::get('/ulasan', [AdminController::class, 'ulasan'])->name('ulasan')->middleware('auth')->middleware('auth');
     Route::get('/pengguna', [AdminController::class, 'pengguna'])->name('pengguna')->middleware('auth');
+    Route::delete('/pengguna/{id}', [AdminController::class, 'hapusPengguna'])->middleware('auth');
     Route::get('/tambah-pengguna', [AdminController::class, 'tambahPengguna'])->name('tambahPengguna')->middleware('auth');
-    Route::get('/detail-pengguna', [AdminController::class, 'viewPengguna'])->name('viewPengguna')->middleware('auth');
+    Route::post('/tambah-pengguna', [AdminController::class, 'storePengguna'])->name('storePengguna')->middleware('auth');
+    Route::get('/pengguna/edit/{id}',   [AdminController::class, 'editPengguna'])->name('editPengguna')->middleware('auth');
+    Route::post('/edit-pengguna/{id}',  [AdminController::class, 'updatePengguna'])->middleware('auth');
+    Route::get('/detail-pengguna/{id}', [AdminController::class, 'viewPengguna'])->name('viewPengguna')->middleware('auth');
+    Route::delete('/detail-pengguna/{id}', [AdminController::class, 'hapusPengguna'])->name('hapusPengguna')->middleware('auth');
     Route::get('/profile-admin', [AdminController::class, 'profileAdmin'])->name('profileAdmin')->middleware('auth');
     Route::get('/edit-profile-admin', [AdminController::class, 'editProfileAdmin'])->name('editProfileAdmin')->middleware('auth');
     Route::post('/edit-profile-admin', [AdminController::class, 'updateProfileAdmin'])->middleware('auth');

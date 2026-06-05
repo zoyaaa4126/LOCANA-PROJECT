@@ -19,7 +19,7 @@
 
             <!-- Logo -->
             <div class="flex items-center gap-2">
-                <img src="assets/img/Locana_Logo 1.png" class="h-10 max-md:h-7">
+                <img src="{{ asset('assets/img/Locana_Logo 1.png') }}" class="h-10 max-md:h-7">
                 <span class="font-bold text-xl max-md:text-sm text-gray-800">LOCANA Admin</span>
             </div>
 
