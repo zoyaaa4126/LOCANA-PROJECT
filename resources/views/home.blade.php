@@ -309,6 +309,20 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
 
+        //Kebutuhan Rekomendasi (Pengambilan Lokasi)
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                const lat = position.coords.latitude;
+                const lng = position.coords.longitude;
+                const url = new URL(window.location.href);
+
+                if (!url.searchParams.get('lat')) {
+                    url.searchParams.set('lat', lat);
+                    url.searchParams.set('lng', lng);
+                    window.location.href = url.toString();
+                }
+            });
+        }
         // Toggle sidebar desktop
         const sidebar = document.getElementById('desktopSidebar');
         document.getElementById('desktopFilterToggle')?.addEventListener('click', () => {

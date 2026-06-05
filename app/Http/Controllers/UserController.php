@@ -29,7 +29,8 @@ class UserController extends Controller
             'email'    => 'required|email|unique:users,email',
             'password' => 'required|min:6',
             'check'    => 'required',
-        ], ['email.unique'      => 'Email sudah terdaftar.',
+        ], [
+            'email.unique'      => 'Email sudah terdaftar.',
             'password.min'      => 'Password minimal 6 karakter.',
             'username.unique'   => 'Username sudah digunakan'
         ]);
@@ -45,15 +46,19 @@ class UserController extends Controller
 
     public function registerNext()
     {
-        return view('registerNext'); 
+        return view('registerNext');
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'nama' => 'required',], 
-            ['nama.required' => 'Nama wajib diisi.',
-        ]);
+        $request->validate(
+            [
+                'nama' => 'required',
+            ],
+            [
+                'nama.required' => 'Nama wajib diisi.',
+            ]
+        );
 
         $path = null;
 
@@ -62,7 +67,7 @@ class UserController extends Controller
         }
 
         User::create([
-            'nama' => $request->nama, 
+            'nama' => $request->nama,
             'username' => session('username'),
             'email' => session('email'),
             'role' => 'user',
@@ -75,7 +80,7 @@ class UserController extends Controller
     //CONTROLLER LOGIN
     public function login(Request $request)
     {
-         $request->validate([
+        $request->validate([
             'email'    => 'required|email',
             'password' => 'required|min:6',
         ]);
@@ -83,14 +88,14 @@ class UserController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
-    
+
             $user = Auth::user();
-            
+
             // Cek role, redirect ke tempat yang sesuai
             if ($user->role === 'admin') {
                 return redirect('/admin/dashboard'); // atau route dashboard admin kamu
             }
-            
+
             return redirect('/home');
         }
 
@@ -125,21 +130,38 @@ class UserController extends Controller
         return redirect('/users');
     }
 
-    public function home()
+    public function home(Request $request)
     {
+        $lat = $request->query('lat');
+        $lng = $request->query('lng');
+
         $kategoris = Kategoris::all();
         $moods = \App\Models\moods::all();
-        $places = \App\Models\Places::all();
         $popularPlaces = \App\Models\Places::where('status_aktif', true)
             ->where('tempat_unggulan', true)
             ->limit(10)
             ->get();
-        $recommendedPlaces = $places;
         $allPlaces = \App\Models\Places::with('kategori')->get();
-
         $wishlistIds = Auth::check()
             ? \App\Models\Wishlist::where('user_id', Auth::id())->pluck('place_id')->toArray()
             : [];
+
+        // Buat Rekomendasi
+        if ($lat && $lng) {
+            $recommendedPlaces = \App\Models\Places::selectRaw("
+            *,
+            (6371 * ACOS(
+                COS(RADIANS(?)) * COS(RADIANS(latitude)) *
+                COS(RADIANS(longitude) - RADIANS(?)) +
+                SIN(RADIANS(?)) * SIN(RADIANS(latitude))
+            )) AS distance
+        ", [$lat, $lng, $lat])
+                ->orderBy('distance')
+                ->limit(10)
+                ->get();
+        } else {
+            $recommendedPlaces = \App\Models\Places::limit(10)->get();
+        }
 
         return view('home', compact('kategoris', 'moods', 'popularPlaces', 'recommendedPlaces', 'wishlistIds', 'allPlaces'));
     }
@@ -163,7 +185,7 @@ class UserController extends Controller
     }
     public function profile()
     {
-        $user = User::findOrFail(Auth::id()); 
+        $user = User::findOrFail(Auth::id());
         $wishlists = \App\Models\Wishlist::with('place.kategori')
             ->where('user_id', Auth::id())
             ->latest()
@@ -218,7 +240,7 @@ class UserController extends Controller
             'deskripsi' => $request->deskripsi,
         ]);
 
-        if($request->password){
+        if ($request->password) {
             $user->update([
                 'password' => bcrypt($request->password)
             ]);
