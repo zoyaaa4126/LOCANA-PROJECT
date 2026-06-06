@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\places;
 use App\Models\moods;
+use \App\Models\ActivityLog;
 
 class AdminController extends Controller
 {
@@ -109,12 +110,22 @@ class AdminController extends Controller
             $user->update(['fotoProfile' => $path]);
         }
 
+        ActivityLog::create([
+        'user_id'   => Auth::id(),
+        'aktivitas' => 'Mengupdate data pengguna ' . $user->username,
+    ]);
+
         return redirect('/admin/pengguna')->with('success', 'Pengguna berhasil diupdate.');
     }
      public function hapusPengguna($id)
     {
-        User::findOrFail($id)->delete();
-        return redirect('/pengguna')->with('success', 'Pengguna berhasil dihapus.');
+        $targetUser = User::findOrFail($id);
+        ActivityLog::create([
+            'user_id'   => Auth::id(),
+            'aktivitas' => 'Menghapus pengguna ' . $targetUser->username,
+        ]);
+        $targetUser->delete();
+        return redirect('/admin/pengguna')->with('success', 'Pengguna berhasil dihapus.');
     }
     public function tambahPengguna()
     {
@@ -151,7 +162,12 @@ class AdminController extends Controller
 
         User::create($data);
 
-        return redirect('/pengguna')->with('success', 'Pengguna berhasil ditambahkan.');
+        ActivityLog::create([
+        'user_id'   => Auth::id(),
+        'aktivitas' => 'Menambahkan pengguna baru ' . $request->username,
+    ]);
+
+        return redirect('/admin/pengguna')->with('success', 'Pengguna berhasil ditambahkan.');
     }
     public function viewPengguna($id)
     {
@@ -161,7 +177,10 @@ class AdminController extends Controller
     public function profileAdmin()
     {
         $user = Auth::user();
-        return view('admin/profileAdmin', compact('user'));
+        $logs = \App\Models\ActivityLog::where('user_id', Auth::id())
+                    ->latest()
+                    ->paginate(5);
+        return view('admin/profileAdmin', compact('user', 'logs'));
     }
     public function editProfileAdmin()
     {
@@ -270,6 +289,11 @@ class AdminController extends Controller
             }
         }
 
-        return redirect('/lokasi');
+        ActivityLog::create([
+        'user_id'   => Auth::id(),
+        'aktivitas' => 'Menambahkan lokasi ' . $request->nama,
+    ]);
+
+        return redirect('/admin/lokasi');
     }
 }

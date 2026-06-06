@@ -12,6 +12,7 @@
         <!-- Tailwind -->
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     </head>
+    @stack('scripts')
     <body class="bg-[#FAFAFA] text-[#333]">
 
     <header class="bg-white border-b border-gray-300 sticky top-0 z-50 shadow-sm">
