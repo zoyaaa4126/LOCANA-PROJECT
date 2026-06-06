@@ -29,10 +29,6 @@
                             <span class="material-symbols-outlined text-[#363B58] p-2 rounded-full">tune</span>
                         </div>
                     </div>
-                    <div class="relative bg-slate-100 border rounded-lg border-slate-200 max-sm:col-span-2 max-md:w-full">
-                        <span class="material-symbols-outlined absolute left-3 top-2.5 text-[#363B58]">search</span>
-                        <input type="text" placeholder="Telusuri" class="pl-10 pr-4 py-2 w-64 max-sm:w-full placeholder-[#363B58]">
-                    </div>
                 </div>
             </div>
         </header>

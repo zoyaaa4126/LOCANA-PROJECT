@@ -86,7 +86,10 @@ Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard
 Route::get('/lokasi', [AdminController::class, 'lokasi'])->name('lokasi');
 Route::get('/tambah-lokasi', [AdminController::class, 'tambahLokasi'])->name('tambahLokasi');
 Route::get('/ulasan', [AdminController::class, 'ulasan'])->name('ulasan');
-Route::post('/tambah-lokasi', [AdminController::class, 'simpanFasilitastempat'])->name('simpanTempat');
+Route::post('/tambah-lokasi', [AdminController::class, 'simpanTempat'])->name('simpanTempat');
+Route::get('/lokasi/{id}/edit', [AdminController::class, 'editTempat'])->name('editTempat');
+Route::put('/lokasi/{id}', [AdminController::class, 'updateTempat'])->name('updateTempat');
+Route::delete('/lokasi/{id}', [AdminController::class, 'hapusTempat']);
 
 Route::get('/pengguna', [AdminController::class, 'pengguna'])->name('pengguna');
 

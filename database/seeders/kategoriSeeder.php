@@ -19,6 +19,8 @@ class KategoriSeeder extends Seeder
             ['id' => 4, 'nama' => 'Live Music'],
             ['id' => 5, 'nama' => 'Indoor'],
             ['id' => 6, 'nama' => 'Outdoor'],
+            ['id' => 7, 'nama' => 'Mall'],
+            ['id' => 8, 'nama' => 'Park'],
         ];
 
         DB::table('kategoris')->insert($kategoris); 

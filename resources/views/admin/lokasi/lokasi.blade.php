@@ -27,110 +27,56 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Row 1 -->
+                @foreach ($lokasi as $item)
                 <tr class="border-t border-[#F1F5F9] hover:bg-[#FAFAFA] transition-colors">
                     <td class="px-4 py-4 align-middle">
-                        <img src="assets/img/180 Cafe - Bandung 1.png" class="w-[52px] h-[52px] rounded-xl object-fill" alt="">
+                        <img src="{{ asset($item->gambar_tempat) }}" class="w-[52px] h-[52px] rounded-xl object-fill" alt="">
                     </td>
-                    <td class="px-4 py-4 align-middle font-semibold text-navy">Alam Cafe</td>
+                    <td class="px-4 py-4 align-middle font-semibold text-navy">{{ $item->nama_tempat }}</td>
                     <td class="px-4 py-4 align-middle">
-                        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-[#FEF4E7] text-[#c78332]">Cafe</span>
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold
+                            @switch($item->kategori_id)
+                                @case(1) bg-[#FEF4E7] text-[#c78332] @break
+                                @case(2) bg-[#E3F2FD] text-blue-600 @break
+                                @case(5) bg-[#FFF3E0] text-orange-600 @break
+                                @case(6) bg-[#E8F5E9] text-green-700 @break
+                                @default bg-gray-100 text-gray-600
+                            @endswitch">
+                            {{ $item->kategori->nama ?? '-' }}
+                        </span>
                     </td>
-                    <td class="px-4 py-4 align-middle text-gray-400 text-sm hidden md:table-cell">Sumurbandung, Kota Bandung</td>
+                    <td class="px-4 py-4 align-middle text-gray-400 text-sm hidden md:table-cell">{{ $item->alamat_lengkap }}</td>
                     <td class="px-4 py-4 align-middle">
                         <div class="flex gap-3 items-center justify-center">
-                            <button class="text-gray-500 hover:text-navy transition-colors p-1"><span class="material-symbols-outlined">edit</span></button>
-                            <button class="text-[#FBB45E] hover:text-navy transition-colors p-1"><span class="material-symbols-outlined">visibility</span></button>
-                            <button class="text-red-400 hover:text-red-600 transition-colors p-1"><span class="material-symbols-outlined">delete</span></button>
+                            <button onclick="window.location='/lokasi/{{ $item->id }}/edit'" class="text-gray-500 hover:text-[#363B58] transition-colors p-1"><span class="material-symbols-outlined">edit</span></button>
+                            <button onclick="window.location='/places/{{ $item->id }}'" class="text-[#FBB45E] hover:text-[#363B58] transition-colors p-1"><span class="material-symbols-outlined">visibility</span></button>
+                            <form action="/lokasi/{{ $item->id }}" method="POST" class="inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-red-400 hover:text-red-600 transition-colors p-1"><span class="material-symbols-outlined">delete</span></button>
+                            </form>
                         </div>
                     </td>
                 </tr>
-                <!-- Row 2 -->
-                <tr class="border-t border-[#F1F5F9] hover:bg-[#FAFAFA] transition-colors">
-                    <td class="px-4 py-4 align-middle">
-                        <img src="assets/img/180 Cafe - Bandung 1.png" class="w-[52px] h-[52px] rounded-xl object-fill" alt="">
-                    </td>
-                    <td class="px-4 py-4 align-middle font-semibold text-navy">Taman Hutan Raya Ir. H. Djuanda</td>
-                    <td class="px-4 py-4 align-middle">
-                        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-[#E8F5E9] text-green-700">Taman</span>
-                    </td>
-                    <td class="px-4 py-4 align-middle text-gray-400 text-sm hidden md:table-cell">Cimenyan, Kab. Bandung</td>
-                    <td class="px-4 py-4 align-middle">
-                        <div class="flex gap-3 items-center justify-center">
-                            <button class="text-gray-500 hover:text-navy transition-colors p-1"><span class="material-symbols-outlined">edit</span></button>
-                            <button class="text-[#FBB45E] hover:text-navy transition-colors p-1"><span class="material-symbols-outlined">visibility</span></button>
-                            <button class="text-red-400 hover:text-red-600 transition-colors p-1"><span class="material-symbols-outlined">delete</span></button>
-                        </div>
-                    </td>
-                </tr>
-                <!-- Row 3 -->
-                <tr class="border-t border-[#F1F5F9] hover:bg-[#FAFAFA] transition-colors">
-                    <td class="px-4 py-4 align-middle">
-                        <img src="assets/img/180 Cafe - Bandung 1.png" class="w-[52px] h-[52px] rounded-xl object-fill" alt="">
-                    </td>
-                    <td class="px-4 py-4 align-middle font-semibold text-navy">Warung Nasi Ampera</td>
-                    <td class="px-4 py-4 align-middle">
-                        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-[#E3F2FD] text-blue-600">Restoran</span>
-                    </td>
-                    <td class="px-4 py-4 align-middle text-gray-400 text-sm hidden md:table-cell">Lengkong, Kota Bandung</td>
-                    <td class="px-4 py-4 align-middle">
-                        <div class="flex gap-3 items-center justify-center">
-                            <button class="text-gray-500 hover:text-navy transition-colors p-1"><span class="material-symbols-outlined">edit</span></button>
-                            <button class="text-[#FBB45E] hover:text-navy transition-colors p-1"><span class="material-symbols-outlined">visibility</span></button>
-                            <button class="text-red-400 hover:text-red-600 transition-colors p-1"><span class="material-symbols-outlined">delete</span></button>
-                        </div>
-                    </td>
-                </tr>
-                <!-- Row 4 -->
-                <tr class="border-t border-[#F1F5F9] hover:bg-[#FAFAFA] transition-colors">
-                    <td class="px-4 py-4 align-middle">
-                        <img src="assets/img/180 Cafe - Bandung 1.png" class="w-[52px] h-[52px] rounded-xl object-fill" alt="">
-                    </td>
-                    <td class="px-4 py-4 align-middle font-semibold text-navy">Paris Van Java Mall</td>
-                    <td class="px-4 py-4 align-middle">
-                        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-[#FFF3E0] text-orange-600">Mall</span>
-                    </td>
-                    <td class="px-4 py-4 align-middle text-gray-400 text-sm hidden md:table-cell">Sukajadi, Kota Bandung</td>
-                    <td class="px-4 py-4 align-middle">
-                        <div class="flex gap-3 items-center justify-center">
-                            <button class="text-gray-500 hover:text-navy transition-colors p-1"><span class="material-symbols-outlined">edit</span></button>
-                            <button class="text-[#FBB45E] hover:text-navy transition-colors p-1"><span class="material-symbols-outlined">visibility</span></button>
-                            <button class="text-red-400 hover:text-red-600 transition-colors p-1"><span class="material-symbols-outlined">delete</span></button>
-                        </div>
-                    </td>
-                </tr>
-                <!-- Row 5 -->
-                <tr class="border-t border-[#F1F5F9] hover:bg-[#FAFAFA] transition-colors">
-                    <td class="px-4 py-4 align-middle">
-                        <img src="assets/img/180 Cafe - Bandung 1.png" class="w-[52px] h-[52px] rounded-xl object-fill" alt="">
-                    </td>
-                    <td class="px-4 py-4 align-middle font-semibold text-navy">Kopi Senja</td>
-                    <td class="px-4 py-4 align-middle">
-                        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-[#FEF4E7] text-[#c78332]">Cafe</span>
-                    </td>
-                    <td class="px-4 py-4 align-middle text-gray-400 text-sm hidden md:table-cell">Coblong, Kota Bandung</td>
-                    <td class="px-4 py-4 align-middle">
-                        <div class="flex gap-3 items-center justify-center">
-                            <button class="text-gray-500 hover:text-navy transition-colors p-1"><span class="material-symbols-outlined">edit</span></button>
-                            <button class="text-[#FBB45E] hover:text-navy transition-colors p-1"><span class="material-symbols-outlined">visibility</span></button>
-                            <button class="text-red-400 hover:text-red-600 transition-colors p-1"><span class="material-symbols-outlined">delete</span></button>
-                        </div>
-                    </td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
 
         <!-- Footer -->
         <div class="flex justify-between items-center mt-6 pt-4 border-t border-[#F1F5F9]">
-            <p class="text-gray-400 text-sm">Menampilkan 5 dari 42</p>
+            <p class="text-gray-400 text-sm">Menampilkan {{ $lokasi->count() }} dari {{ $lokasi->total() }}</p>
             <div class="flex items-center gap-1">
-                <button class="w-9 h-9 flex items-center justify-center rounded-lg border border-[#E2E8F0] hover:bg-[#FEF4E7] transition-colors">
+                <button onclick="window.location='{{ $lokasi->previousPageUrl() ?? '#' }}'" class="w-9 h-9 flex items-center justify-center rounded-lg border border-[#E2E8F0] hover:bg-[#FEF4E7] transition-colors">
                     <span class="material-symbols-outlined">chevron_backward</span>
                 </button>
-                <button class="w-9 h-9 flex items-center justify-center rounded-lg bg-[#FBB45E] text-[#363B58] font-bold text-sm">1</button>
-                <button class="w-9 h-9 flex items-center justify-center rounded-lg border border-[#E2E8F0] text-gray-400 text-sm hover:bg-[#FEF4E7] transition-colors">2</button>
-                <button class="w-9 h-9 flex items-center justify-center rounded-lg border border-[#E2E8F0] text-gray-400 text-sm hover:bg-[#FEF4E7] transition-colors">3</button>
-                <button class="w-9 h-9 flex items-center justify-center rounded-lg border border-[#E2E8F0] hover:bg-[#FEF4E7] transition-colors">
+                @for($i = 1; $i <= $lokasi->lastPage(); $i++)
+                <button onclick="window.location='{{ $lokasi->url($i) }}'"
+                    class="w-9 h-9 flex items-center justify-center rounded-lg text-sm transition-colors
+                    {{ $i == $lokasi->currentPage() ? 'bg-[#FBB45E] text-[#363B58] font-bold' : 'border border-[#E2E8F0] text-gray-400 hover:bg-[#FEF4E7]' }}">
+                    {{ $i }}
+                </button>
+                @endfor
+                <button onclick="window.location='{{ $lokasi->nextPageUrl() ?? '#' }}'" class="w-9 h-9 flex items-center justify-center rounded-lg border border-[#E2E8F0] hover:bg-[#FEF4E7] transition-colors">
                     <span class="material-symbols-outlined">chevron_forward</span>
                 </button>
             </div>

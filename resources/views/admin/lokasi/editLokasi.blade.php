@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Tambah Lokasi')
+@section('title', 'Edit Lokasi')
 
 @section('content')
 
@@ -9,9 +9,9 @@
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
         <div>
             <p class="text-slate-400 text-sm font-semibold">
-                Dashboard / Lokasi / <span class="text-[#FBB45E] font-bold">Tambah Lokasi</span>
+                Dashboard / Lokasi / <span class="text-[#FBB45E] font-bold">Edit Lokasi</span>
             </p>
-            <h1 class="text-2xl font-bold text-[#363B58]">Tambah Lokasi</h1>
+            <h1 class="text-2xl font-bold text-[#363B58]">Edit Lokasi</h1>
         </div>
         <div class="flex gap-3">
             <a href="/lokasi"
@@ -27,8 +27,9 @@
         </div>
     </div>
 
-    <form id="form-lokasi" class="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-5 items-start" action="{{ route('simpanTempat') }}" method="POST" enctype="multipart/form-data">
+    <form id="form-lokasi" class="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-5 items-start" action="{{ route('updateTempat', $place->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
+        @method('PUT')
 
         <div class="flex flex-col gap-5">
 
@@ -40,14 +41,14 @@
 
                 <div class="flex flex-col gap-1.5 mb-4">
                     <label class="text-sm font-semibold text-[#363B58]">Nama Tempat</label>
-                    <input type="text" name="nama" placeholder="Masukkan Nama Tempat Disini"
+                    <input type="text" name="nama" placeholder="Masukkan Nama Tempat Disini" value="{{ $place->nama_tempat }}"
                            class="border border-[#E2E8F0] rounded-xl px-4 py-3 text-sm outline-none focus:border-[#FBB45E] focus:ring-2 focus:ring-[#FBB45E]/20 transition-all bg-[#FAFAFA] placeholder-gray-300">
                 </div>
 
                 <div class="flex flex-col gap-1.5 mb-4">
                     <label class="text-sm font-semibold text-[#363B58]">Deskripsi Tempat</label>
                     <textarea name="deskripsi" rows="5" placeholder="Masukkan Deskripsi Tempat Disini&#10;(maks. 300 kata)"
-                              class="border border-[#E2E8F0] rounded-xl px-4 py-3 text-sm outline-none focus:border-[#FBB45E] focus:ring-2 focus:ring-[#FBB45E]/20 transition-all bg-[#FAFAFA] placeholder-gray-300 resize-none"></textarea>
+                              class="border border-[#E2E8F0] rounded-xl px-4 py-3 text-sm outline-none focus:border-[#FBB45E] focus:ring-2 focus:ring-[#FBB45E]/20 transition-all bg-[#FAFAFA] placeholder-gray-300 resize-none">{{ $place->deskripsi }}</textarea>
                 </div>
 
                 <div class="flex flex-col gap-1.5 mb-4">
@@ -89,7 +90,7 @@
                                 <div class="relative">
                                     <input type="checkbox" name="moods[]" value="{{ $m->id }}"
                                         class="peer w-[18px] h-[18px] rounded-md border border-[#DDD] appearance-none cursor-pointer
-                                                checked:bg-[#FBB45E] checked:border-transparent transition-all">
+                                                checked:bg-[#FBB45E] checked:border-transparent transition-all" {{ $place->moods->contains($m->id) ? 'checked' : '' }}>
                                     <span class="absolute inset-0 flex items-center justify-center text-white pointer-events-none opacity-0 peer-checked:opacity-100">
                                         <svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                                     </span>
@@ -106,12 +107,12 @@
                     <div class="flex gap-6">
                         <label class="flex items-center gap-2 cursor-pointer">
                             <input type="radio" name="tipe" value="indoor"
-                                   class="w-4 h-4 accent-[#FBB45E] cursor-pointer">
+                                   class="w-4 h-4 accent-[#FBB45E] cursor-pointer" {{ $place->tipe_tempat == 'indoor' ? 'checked' : '' }}>
                             <span class="text-sm text-[#363B58] font-medium">Indoor</span>
                         </label>
                         <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="radio" name="tipe" value="outdoor"
-                                   class="w-4 h-4 accent-[#FBB45E] cursor-pointer">
+                            <input type="radio" name="tipe" value="outdoor" 
+                                   class="w-4 h-4 accent-[#FBB45E] cursor-pointer" {{ $place->tipe_tempat == 'outdoor' ? 'checked' : '' }}>
                             <span class="text-sm text-[#363B58] font-medium">Outdoor</span>
                         </label>
                     </div>
@@ -119,7 +120,7 @@
 
                 <div class="flex flex-col gap-1.5">
                     <label class="text-sm font-semibold text-[#363B58]">Alamat Lengkap</label>
-                    <input type="text" name="alamat" id="alamat-input" placeholder="Masukkan Alamat Lengkap Disini"
+                    <input type="text" name="alamat" id="alamat-input" placeholder="Masukkan Alamat Lengkap Disini" value="{{ $place->alamat_lengkap }}"
                            class="border border-[#E2E8F0] rounded-xl px-4 py-3 text-sm outline-none focus:border-[#FBB45E] focus:ring-2 focus:ring-[#FBB45E]/20 transition-all bg-[#FAFAFA] placeholder-gray-300">
                 </div>
             </div>
@@ -141,7 +142,8 @@
                             <div class="relative">
                                 <input type="checkbox" name="fasilitas[]" value="{{ strtolower(str_replace(' ', '_', $f)) }}"
                                        class="peer w-[18px] h-[18px] rounded-md border border-[#DDD] appearance-none cursor-pointer
-                                              checked:bg-[#FBB45E] checked:border-transparent transition-all">
+                                              checked:bg-[#FBB45E] checked:border-transparent transition-all"
+                                              {{ $place->{strtolower(str_replace(' ', '_', $f))} ? 'checked' : '' }}>
                                 <span class="absolute inset-0 flex items-center justify-center text-white pointer-events-none opacity-0 peer-checked:opacity-100">
                                     <svg width="11" height="9" viewBox="0 0 11 9" fill="none"><path d="M1 4L4 7.5L10 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                                 </span>
@@ -177,9 +179,10 @@
                                 <div class="flex items-center border border-[#E2E8F0] rounded-xl overflow-hidden bg-white focus-within:border-[#FBB45E] transition-all">
                                     <span class="px-3 py-3 text-sm text-gray-400 bg-[#F1F5F9] border-r border-[#E2E8F0] font-medium">Rp</span>
                                     <input type="number" id="harga-min" name="harga_min"
-                                           placeholder="0" min="0"
-                                           oninput="updateHargaPreview()"
-                                           class="flex-1 px-3 py-3 text-sm outline-none bg-transparent">
+                                        value="{{ $place->harga_min }}"
+                                        placeholder="0" min="0"
+                                        oninput="updateHargaPreview()"
+                                        class="flex-1 px-3 py-3 text-sm outline-none bg-transparent">
                                 </div>
                             </div>
                             <div class="flex flex-col gap-1">
@@ -187,9 +190,10 @@
                                 <div class="flex items-center border border-[#E2E8F0] rounded-xl overflow-hidden bg-white focus-within:border-[#FBB45E] transition-all">
                                     <span class="px-3 py-3 text-sm text-gray-400 bg-[#F1F5F9] border-r border-[#E2E8F0] font-medium">Rp</span>
                                     <input type="number" id="harga-max" name="harga_max"
-                                           placeholder="0" min="0"
-                                           oninput="updateHargaPreview()"
-                                           class="flex-1 px-3 py-3 text-sm outline-none bg-transparent">
+                                        value="{{ $place->harga_max }}"
+                                        placeholder="0" min="0"
+                                        oninput="updateHargaPreview()"
+                                        class="flex-1 px-3 py-3 text-sm outline-none bg-transparent">
                                 </div>
                             </div>
                         </div>
@@ -211,44 +215,54 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     @php
                     $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
+                    $existingHours = $place->hour->keyBy('hari');
                     @endphp
                     @foreach($days as $day)
                     @php $key = strtolower($day); @endphp
                     <div class="flex items-center gap-3">
                         <label class="flex items-center gap-2 cursor-pointer w-20 flex-shrink-0">
                             <input type="checkbox" name="hari[]" value="{{ $key }}"
-                                   id="hari-{{ $key }}"
-                                   onchange="toggleDay('{{ $key }}')"
-                                   class="peer w-[18px] h-[18px] rounded-md border border-[#DDD] appearance-none cursor-pointer checked:bg-[#FBB45E] checked:border-transparent disabled:opacity-50 disabled:cursor-not-allowed transition-all">
+                                id="hari-{{ $key }}"
+                                onchange="toggleDay('{{ $key }}')"
+                                {{ isset($existingHours[$key]) ? 'checked' : '' }}
+                                class="peer w-[18px] h-[18px] rounded-md border border-[#DDD] appearance-none cursor-pointer checked:bg-[#FBB45E] checked:border-transparent disabled:opacity-50 disabled:cursor-not-allowed transition-all">
                             <span class="text-sm font-semibold text-[#363B58]">{{ $day }}</span>
                         </label>
                         <div class="flex items-center gap-1.5 flex-1 min-w-0">
                             <input type="time" id="buka-{{ $key }}" name="jam_buka_{{ $key }}"
-                                   class="flex-1 min-w-0 border border-[#E2E8F0] rounded-lg px-2 py-1.5 text-xs outline-none focus:border-[#FBB45E] bg-[#FAFAFA] disabled:bg-[#F1F5F9] disabled:text-gray-300 disabled:cursor-not-allowed transition-all"
-                                   disabled>
+                                value="{{ isset($existingHours[$key]) ? $existingHours[$key]->jam_buka : '' }}"
+                                class="flex-1 min-w-0 border border-[#E2E8F0] rounded-lg px-2 py-1.5 text-xs outline-none focus:border-[#FBB45E] bg-[#FAFAFA] disabled:bg-[#F1F5F9] disabled:text-gray-300 disabled:cursor-not-allowed transition-all"
+                                {{ isset($existingHours[$key]) ? '' : 'disabled' }}>
                             <span class="text-gray-300 text-xs flex-shrink-0">–</span>
                             <input type="time" id="tutup-{{ $key }}" name="jam_tutup_{{ $key }}"
-                                   class="flex-1 min-w-0 border border-[#E2E8F0] rounded-lg px-2 py-1.5 text-xs outline-none focus:border-[#FBB45E] bg-[#FAFAFA] disabled:bg-[#F1F5F9] disabled:text-gray-300 disabled:cursor-not-allowed transition-all"
-                                   disabled>
+                                value="{{ isset($existingHours[$key]) ? $existingHours[$key]->jam_tutup : '' }}"
+                                class="flex-1 min-w-0 border border-[#E2E8F0] rounded-lg px-2 py-1.5 text-xs outline-none focus:border-[#FBB45E] bg-[#FAFAFA] disabled:bg-[#F1F5F9] disabled:text-gray-300 disabled:cursor-not-allowed transition-all"
+                                {{ isset($existingHours[$key]) ? '' : 'disabled' }}>
                         </div>
                     </div>
                     @endforeach
                 </div>
 
                 <div class="mt-4 pt-4 border-t border-[#F1F5F9]">
+                    @php
+                    $is247 = $existingHours->count() == 7 && 
+                            $existingHours->every(fn($h) => $h->jam_buka == '00:00:00' && $h->jam_tutup == '23:59:00');
+                    @endphp
                     <button type="button" id="btn-247" onclick="toggle247()"
-                            class="w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-[#E2E8F0] bg-[#FAFAFA] hover:border-[#FBB45E] hover:bg-[#FEF4E7] transition-all">
+                            class="w-full flex items-center gap-3 px-4 py-3 rounded-xl border transition-all
+                                {{ $is247 ? 'border-[#363B58] bg-[#363B58]' : 'border-[#E2E8F0] bg-[#FAFAFA] hover:border-[#FBB45E] hover:bg-[#FEF4E7]' }}">
                         <div id="dot-247"
-                             class="w-[18px] h-[18px] rounded-md border border-[#DDD] bg-white flex items-center justify-center flex-shrink-0 transition-all">
-                            <svg id="check-247" class="hidden" width="10" height="8" viewBox="0 0 10 8" fill="none">
+                            class="w-[18px] h-[18px] rounded-md flex items-center justify-center flex-shrink-0 transition-all
+                                    {{ $is247 ? 'bg-[#FBB45E] border-[#FBB45E]' : 'bg-white border border-[#DDD]' }}">
+                            <svg id="check-247" class="{{ $is247 ? '' : 'hidden' }}" width="10" height="8" viewBox="0 0 10 8" fill="none">
                                 <path d="M1 4L3.5 6.5L9 1" stroke="#363B58" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </div>
                         <div class="flex flex-col items-start">
-                            <span id="label-247" class="text-sm font-bold text-[#363B58] transition-colors">Buka 24/7</span>
+                            <span id="label-247" class="text-sm font-bold transition-colors {{ $is247 ? 'text-[#FBB45E]' : 'text-[#363B58]' }}">Buka 24/7</span>
                             <span class="text-xs text-gray-400">Semua hari, sepanjang waktu</span>
                         </div>
-                        <span class="material-symbols-outlined text-[#FBB45E] ml-auto hidden" id="icon-247" style="font-size:20px; font-variation-settings:'FILL' 1;">clock_loader_40</span>
+                        <span class="material-symbols-outlined text-[#FBB45E] ml-auto {{ $is247 ? '' : 'hidden' }}" id="icon-247" style="font-size:20px; font-variation-settings:'FILL' 1;">clock_loader_40</span>
                     </button>
                 </div>
             </div>
@@ -264,15 +278,23 @@
                 </h2>
 
                 <div id="map-container" class="w-full h-[220px] rounded-xl overflow-hidden border border-[#E2E8F0] mb-4 relative bg-[#E8F4F8]">
-                    <iframe id="map-iframe" src="https://www.openstreetmap.org/export/embed.html?bbox=107.55,6.85,107.70,6.95&layer=mapnik&marker=6.9175,107.6191" class="w-full h-full border-0" loading="lazy" title="Peta Lokasi">
+                    <iframe id="map-iframe"
+                        src="@if($place->latitude && $place->longitude)
+                            https://www.openstreetmap.org/export/embed.html?bbox={{ $place->longitude - 0.015 }},{{ $place->latitude - 0.015 }},{{ $place->longitude + 0.015 }},{{ $place->latitude + 0.015 }}&layer=mapnik&marker={{ $place->latitude }},{{ $place->longitude }}
+                        @else
+                            https://www.openstreetmap.org/export/embed.html?bbox=107.55,6.85,107.70,6.95&layer=mapnik&marker=6.9175,107.6191
+                        @endif"
+                        class="w-full h-full border-0" loading="lazy" title="Peta Lokasi">
                     </iframe>
                     <div id="map-click-hint"
-                         class="absolute bottom-2 left-1/2 -translate-x-1/2 bg-[#363B58]/80 text-white text-xs font-medium px-3 py-1.5 rounded-full pointer-events-none backdrop-blur-sm">
-                        Isi alamat untuk memperbarui peta
+                        class="absolute bottom-2 left-1/2 -translate-x-1/2 bg-[#363B58]/80 text-white text-xs font-medium px-3 py-1.5 rounded-full pointer-events-none backdrop-blur-sm">
+                        {{ $place->latitude ? 'Lokasi tersimpan' : 'Isi alamat untuk memperbarui peta' }}
                     </div>
                 </div>
+
                 <div class="flex gap-2 mb-4">
-                    <input type="text" id="search-alamat" placeholder="Cari alamat di peta..." class="flex-1 border border-[#E2E8F0] rounded-xl px-3 py-2.5 text-sm outline-none focus:border-[#FBB45E] focus:ring-2 focus:ring-[#FBB45E]/20 transition-all bg-[#FAFAFA] placeholder-gray-300">
+                    <input type="text" id="search-alamat" placeholder="Cari alamat di peta..."
+                        class="flex-1 border border-[#E2E8F0] rounded-xl px-3 py-2.5 text-sm outline-none focus:border-[#FBB45E] focus:ring-2 focus:ring-[#FBB45E]/20 transition-all bg-[#FAFAFA] placeholder-gray-300">
                     <button type="button" onclick="cariLokasi()" class="flex items-center gap-1 bg-[#363B58] hover:bg-[#FBB45E] text-white hover:text-[#363B58] font-bold text-xs px-4 py-2.5 rounded-xl transition-colors flex-shrink-0">
                         <span class="material-symbols-outlined" style="font-size:16px;">search</span>
                         Cari
@@ -282,11 +304,17 @@
                 <div class="grid grid-cols-2 gap-3">
                     <div class="flex flex-col gap-1.5">
                         <label class="text-xs font-bold text-gray-400 tracking-wide">Latitude</label>
-                        <input type="text" id="latitude" name="latitude" placeholder="Latitude" readonly class="border border-[#E2E8F0] rounded-xl px-3 py-2.5 text-sm outline-none bg-[#F8FAFC] text-[#363B58] font-medium cursor-not-allowed">
+                        <input type="text" id="latitude" name="latitude"
+                            value="{{ $place->latitude }}"
+                            placeholder="Latitude" readonly
+                            class="border border-[#E2E8F0] rounded-xl px-3 py-2.5 text-sm outline-none bg-[#F8FAFC] text-[#363B58] font-medium cursor-not-allowed">
                     </div>
                     <div class="flex flex-col gap-1.5">
                         <label class="text-xs font-bold text-gray-400 tracking-wide">Longitude</label>
-                        <input type="text" id="longitude" name="longitude" placeholder="Longitude" readonly class="border border-[#E2E8F0] rounded-xl px-3 py-2.5 text-sm outline-none bg-[#F8FAFC] text-[#363B58] font-medium cursor-not-allowed">
+                        <input type="text" id="longitude" name="longitude"
+                            value="{{ $place->longitude }}"
+                            placeholder="Longitude" readonly
+                            class="border border-[#E2E8F0] rounded-xl px-3 py-2.5 text-sm outline-none bg-[#F8FAFC] text-[#363B58] font-medium cursor-not-allowed">
                     </div>
                 </div>
 
@@ -310,16 +338,23 @@
                 <div class="flex flex-col gap-1.5 mb-5">
                     <label class="text-sm font-semibold text-[#363B58]">Foto Cover</label>
                     <div class="border-2 border-dashed border-[#E2E8F0] rounded-xl p-6 flex flex-col items-center justify-center gap-2 hover:border-[#FBB45E] hover:bg-[#FEF4E7]/30 transition-all cursor-pointer group"
-                         onclick="document.getElementById('cover-input').click()">
-                        <span class="material-symbols-outlined text-gray-300 group-hover:text-[#FBB45E] transition-colors" style="font-size:40px; font-variation-settings:'FILL' 1;">add_a_photo</span>
-                        <p class="text-xs text-center text-gray-400 font-medium">Upload Foto<br><span class="text-gray-300">(maks. 5MB) Format: PNG, JPG</span></p>
-                        <div id="cover-preview" class="hidden w-full mt-2">
-                            <img id="cover-img" class="w-full h-32 object-cover rounded-lg" src="" alt="Preview">
+                        onclick="document.getElementById('cover-input').click()">
+                        @if($place->gambar_tempat)
+                            {{-- sudah ada foto, langsung tampilkan --}}
+                        @else
+                            <span class="material-symbols-outlined text-gray-300 group-hover:text-[#FBB45E] transition-colors" style="font-size:40px; font-variation-settings:'FILL' 1;">add_a_photo</span>
+                            <p class="text-xs text-center text-gray-400 font-medium">Upload Foto<br><span class="text-gray-300">(maks. 5MB) Format: PNG, JPG</span></p>
+                        @endif
+                        <div id="cover-preview" class="{{ $place->gambar_tempat ? '' : 'hidden' }} w-full mt-2">
+                            <img id="cover-img" class="w-full h-32 object-cover rounded-lg"
+                                src="{{ $place->gambar_tempat ? asset($place->gambar_tempat) : '' }}"
+                                alt="Preview">
                         </div>
                     </div>
                     <button type="button" onclick="document.getElementById('cover-input').click()"
                             class="flex items-center justify-center gap-1.5 border border-[#E2E8F0] rounded-xl py-2 text-xs font-semibold text-gray-500 hover:border-[#FBB45E] hover:text-[#FBB45E] transition-all">
-                        <span class="material-symbols-outlined" style="font-size:16px;">upload</span> Unggah File
+                        <span class="material-symbols-outlined" style="font-size:16px;">upload</span>
+                        {{ $place->gambar_tempat ? 'Ganti Foto' : 'Unggah File' }}
                     </button>
                     <input type="file" id="cover-input" name="foto_cover" accept="image/*" class="hidden" onchange="previewCover(this)">
                 </div>
@@ -327,13 +362,26 @@
                 <div class="flex flex-col gap-1.5 mb-5">
                     <label class="text-sm font-semibold text-[#363B58]">Galeri</label>
                     <div class="border-2 border-dashed border-[#E2E8F0] rounded-xl p-5 text-center hover:border-[#FBB45E] hover:bg-[#FEF4E7]/30 transition-all cursor-pointer"
-                         onclick="document.getElementById('galeri-input').click()">
-                        <p class="text-xs text-gray-400 font-medium">Unggah hingga 6 foto atau video<br><span class="text-gray-300">(maks. 5MB) Format: JPG, PNG, MP4, MOV</span></p>
+                        onclick="document.getElementById('galeri-input').click()">
+
+                        @php $galeri = $place->galleries->where('tipe', 'galeri'); @endphp
+                        @if($galeri->isNotEmpty())
+                            <div class="grid grid-cols-3 gap-2 mb-2">
+                                @foreach($galeri as $g)
+                                <img src="{{ asset($g->path_file) }}" class="w-full h-16 object-cover rounded-lg">
+                                @endforeach
+                            </div>
+                            <p class="text-xs text-gray-400">Klik untuk mengganti galeri</p>
+                        @else
+                            <p class="text-xs text-gray-400 font-medium">Unggah hingga 6 foto atau video<br><span class="text-gray-300">(maks. 5MB) Format: JPG, PNG, MP4, MOV</span></p>
+                        @endif
+
                         <div id="galeri-preview" class="grid grid-cols-3 gap-2 mt-3 hidden"></div>
                     </div>
                     <button type="button" onclick="document.getElementById('galeri-input').click()"
                             class="flex items-center justify-center gap-1.5 border border-[#E2E8F0] rounded-xl py-2 text-xs font-semibold text-gray-500 hover:border-[#FBB45E] hover:text-[#FBB45E] transition-all">
-                        <span class="material-symbols-outlined" style="font-size:16px;">upload</span> Unggah File
+                        <span class="material-symbols-outlined" style="font-size:16px;">upload</span>
+                        {{ $galeri->isNotEmpty() ? 'Ganti Galeri' : 'Unggah File' }}
                     </button>
                     <input type="file" id="galeri-input" name="galeri[]" accept="image/*,video/*" multiple class="hidden" onchange="previewGaleri(this)">
                 </div>
@@ -341,13 +389,27 @@
                 <div class="flex flex-col gap-1.5">
                     <label class="text-sm font-semibold text-[#363B58]">Foto Menu</label>
                     <div class="border-2 border-dashed border-[#E2E8F0] rounded-xl p-5 text-center hover:border-[#FBB45E] hover:bg-[#FEF4E7]/30 transition-all cursor-pointer"
-                         onclick="document.getElementById('menu-input').click()">
-                        <p class="text-xs text-gray-400 font-medium">Unggah hingga 6 foto atau video<br><span class="text-gray-300">(maks. 5MB) Format: JPG, PNG, MP4, MOV</span></p>
+                        onclick="document.getElementById('menu-input').click()">
+
+                        @php $menu = $place->galleries->where('tipe', 'menu'); @endphp
+                        @if($menu->isNotEmpty())
+                            <div class="grid grid-cols-3 gap-2 mb-2">
+                                @foreach($menu as $m)
+                                <img src="{{ asset($m->path_file) }}" class="w-full h-16 object-cover rounded-lg">
+                                @endforeach
+                            </div>
+                            <p class="text-xs text-gray-400">Klik untuk mengganti foto menu</p>
+                        @else
+                            <p class="text-xs text-gray-400 font-medium">Unggah hingga 6 foto atau video<br><span class="text-gray-300">(maks. 5MB) Format: JPG, PNG, MP4, MOV</span></p>
+                        @endif
+
                         <div id="menu-preview" class="grid grid-cols-3 gap-2 mt-3 hidden"></div>
                     </div>
+
                     <button type="button" onclick="document.getElementById('menu-input').click()"
                             class="flex items-center justify-center gap-1.5 border border-[#E2E8F0] rounded-xl py-2 text-xs font-semibold text-gray-500 hover:border-[#FBB45E] hover:text-[#FBB45E] transition-all">
-                        <span class="material-symbols-outlined" style="font-size:16px;">upload</span> Unggah File
+                        <span class="material-symbols-outlined" style="font-size:16px;">upload</span>
+                        {{ $menu->isNotEmpty() ? 'Ganti Foto Menu' : 'Unggah File' }}
                     </button>
                     <input type="file" id="menu-input" name="foto_menu[]" accept="image/*" multiple class="hidden" onchange="previewMenu(this)">
                 </div>
@@ -365,7 +427,9 @@
                             <p class="text-white/50 text-xs mt-0.5">Apakah tempat ini masih beroperasi</p>
                         </div>
                         <label class="relative inline-flex items-center cursor-pointer">
-                            <input type="checkbox" name="status_aktif" value="1" checked class="sr-only peer">
+                            <input type="checkbox" name="status_aktif" value="1" 
+                                {{ $place->status_aktif ? 'checked' : '' }} 
+                                class="sr-only peer">
                             <div class="w-11 h-6 bg-white/20 peer-focus:outline-none rounded-full peer
                                         peer-checked:after:translate-x-full peer-checked:after:border-white
                                         after:content-[''] after:absolute after:top-[2px] after:left-[2px]
@@ -380,7 +444,9 @@
                             <p class="text-white/50 text-xs mt-0.5">Ditampilkan di halaman utama</p>
                         </div>
                         <label class="relative inline-flex items-center cursor-pointer">
-                            <input type="checkbox" name="unggulan" value="1" class="sr-only peer">
+                            <input type="checkbox" name="unggulan" value="1" 
+                                {{ $place->tempat_unggulan ? 'checked' : '' }}
+                                class="sr-only peer">
                             <div class="w-11 h-6 bg-white/20 peer-focus:outline-none rounded-full peer
                                         peer-checked:after:translate-x-full peer-checked:after:border-white
                                         after:content-[''] after:absolute after:top-[2px] after:left-[2px]
@@ -388,6 +454,7 @@
                                         peer-checked:bg-[#FBB45E]"></div>
                         </label>
                     </div>
+
                 </div>
             </div>
 
@@ -408,8 +475,6 @@ function toggleKategori() {
 }
 
 function selectKategori(value, label, icon) {
-    console.log('value:', value); // cek ini dulu
-
     document.getElementById('kategori-value').value = value;
     document.getElementById('kategori-label').textContent = label;
     document.getElementById('kategori-label').classList.remove('text-gray-400');
@@ -424,6 +489,29 @@ document.addEventListener('click', function(e) {
         document.getElementById('kategori-dropdown').classList.add('hidden');
         document.getElementById('kategori-chevron').style.transform = 'rotate(0deg)';
     }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const kategoriMap = {
+        1: { label: 'Cafe',       icon: 'coffee' },
+        2: { label: 'Restaurant', icon: 'restaurant' },
+        3: { label: 'Bakery',     icon: 'cake' },
+        4: { label: 'Park',       icon: 'park' },
+        5: { label: 'Mall',       icon: 'local_mall' },
+    };
+
+    const currentKategori = {{ $place->kategori_id ?? 'null' }};
+    if (currentKategori && kategoriMap[currentKategori]) {
+        const { label, icon } = kategoriMap[currentKategori];
+        selectKategori(currentKategori, label, icon);
+    }
+
+    if (document.getElementById('harga-min').value || document.getElementById('harga-max').value) {
+        updateHargaPreview();
+        applyHarga();
+    }
+
+    _is247 = {{ $is247 ? 'true' : 'false' }};
 });
 
 /* ====== KISARAN HARGA TOGGLE ====== */
@@ -643,5 +731,6 @@ function previewMenu(input) {
         });
     }
 }
+
 </script>
 @endpush
