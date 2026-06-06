@@ -43,4 +43,13 @@ class Review extends Model
         }
         return false;
     }
+    public function likes()
+    {
+        return $this->hasMany(ReviewLike::class);
+    }
+
+    public function isLikedBy(int $userId): bool
+    {
+        return $this->likes()->where('user_id', $userId)->exists();
+    }
 }

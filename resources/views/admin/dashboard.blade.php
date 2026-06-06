@@ -15,23 +15,23 @@
         
             <div class="relative flex flex-col gap-3 bg-white p-7 border border-[#D9D9D9] rounded-[20px] flex-1 min-w-[200px] overflow-hidden">
                 <p class="font-bold text-[#FBB45E] z-10 text-sm tracking-wide">TOTAL LOKASI</p>
-                <h2 class="text-[2.5rem] font-bold text-[#363B58] z-10">42</h2>
-                <p class="text-gray-500 text-sm z-10">2 Lokasi baru Minggu Ini</p>
+                <h2 class="text-[2.5rem] font-bold text-[#363B58] z-10">{{ $totalLokasi }}</h2>
+                <p class="text-gray-500 text-sm z-10">{{ $lokasiBaruMingguIni }} Lokasi baru Minggu Ini</p>
                 <span class="material-symbols-outlined absolute bottom-[-40px] right-[-40px] text-[#F1F5F9] z-0"
                     style="font-size:200px;">explore</span>
             </div>
-        
+
             <div class="relative flex flex-col gap-3 bg-white p-7 border border-[#D9D9D9] rounded-[20px] flex-1 min-w-[200px] overflow-hidden">
                 <p class="font-bold text-[#FBB45E] z-10 text-sm tracking-wide">TOTAL ULASAN</p>
-                <h2 class="text-[2.5rem] font-bold text-[#363B58] z-10">1.8rb</h2>
-                <p class="text-gray-500 text-sm z-10">4.3/5 Rata-rata</p>
+                <h2 class="text-[2.5rem] font-bold text-[#363B58] z-10">{{ $totalUlasan }}</h2>
+                <p class="text-gray-500 text-sm z-10">{{ number_format($rataRating ?? 0, 1) }}/5 Rata-rata</p>
                 <span class="material-symbols-outlined absolute bottom-[-40px] right-[-40px] text-[#F1F5F9] z-0"
                     style="font-size:200px;">contract_edit</span>
             </div>
-        
+
             <div class="relative flex flex-col gap-3 bg-white p-7 border border-[#D9D9D9] rounded-[20px] flex-1 min-w-[200px] overflow-hidden">
                 <p class="font-bold text-[#FBB45E] z-10 text-sm tracking-wide">TINJAU ULASAN</p>
-                <h2 class="text-[2.5rem] font-bold text-[#363B58] z-10">2</h2>
+                <h2 class="text-[2.5rem] font-bold text-[#363B58] z-10">{{ $totalFlagged }}</h2>
                 <p class="text-gray-500 text-sm z-10">Perlu ditinjau</p>
                 <span class="material-symbols-outlined absolute bottom-[-40px] right-[-40px] text-[#F1F5F9] z-0"
                     style="font-size:200px;">rate_review</span>

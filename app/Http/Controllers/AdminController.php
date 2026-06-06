@@ -13,7 +13,13 @@ class AdminController extends Controller
     public function dashboard()
     {
         $user = Auth::user();
-        return view('admin/dashboard', compact('user'));
+        $totalLokasi = \App\Models\Places::count();
+        $lokasiBaruMingguIni = \App\Models\Places::where('created_at', '>=', now()->startOfWeek())->count();
+        $totalUlasan = \App\Models\Review::count();
+        $rataRating = \App\Models\Review::avg('rating');
+        $totalFlagged = \App\Models\Review::where('flagged', true)->count();
+
+        return view('admin/dashboard', compact('user', 'totalLokasi', 'lokasiBaruMingguIni', 'totalUlasan', 'rataRating', 'totalFlagged'));
     }
 
     public function lokasi()

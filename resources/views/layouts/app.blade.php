@@ -236,6 +236,7 @@
 
     @include('components.modal-logout')
     @include('components.modal-loginRequired')
+    @include('components.modal-delete')
     <script src="{{ asset('js/script.js') }}"></script>
 
     <script>

@@ -138,10 +138,22 @@
 
                 {{-- ACTIONS --}}
                 <div class="flex items-center gap-4 pt-3 border-t border-gray-100">
-                    <button class="flex items-center gap-1.5 text-gray-500 text-xs hover:text-[#FBB45E] transition">
-                        <span class="material-symbols-outlined text-sm">thumb_up</span>
-                        Membantu ({{ $review->helpful_count ?? 0 }})
+                    @auth
+                    <button
+                        id="like-btn-{{ $review->id }}"
+                        onclick="toggleLike({{ $review->id }}, this)"
+                        data-liked="{{ $review->likes->contains('user_id', Auth::id()) ? 'true' : 'false' }}"
+                        class="flex items-center gap-1.5 text-xs transition {{ $review->likes->contains('user_id', Auth::id()) ? 'text-[#FBB45E]' : 'text-gray-500 hover:text-[#FBB45E]' }}">
+                        <span class="material-symbols-outlined text-sm"
+                            style="font-variation-settings: '{{ $review->likes->contains('user_id', Auth::id()) ? 'FILL' : '' }}' {{ $review->likes->contains('user_id', Auth::id()) ? '1' : '0' }}">thumb_up</span>
+                        Membantu (<span id="like-count-{{ $review->id }}">{{ $review->helpful_count }}</span>)
                     </button>
+                    @else
+                    <span class="flex items-center gap-1.5 text-gray-400 text-xs">
+                        <span class="material-symbols-outlined text-sm">thumb_up</span>
+                        Membantu ({{ $review->helpful_count }})
+                    </span>
+                    @endauth
                     <span class="text-gray-200">|</span>
                     @auth
                     <button onclick="laporkanReview({{ $review->id }})"
@@ -249,6 +261,32 @@ function laporkanReview(reviewId) {
     .then(res => res.json())
     .then(data => alert(data.message))
     .catch(() => alert('Gagal mengirim laporan.'));
+}
+
+function toggleLike(reviewId, btn) {
+    fetch(`/reviews/${reviewId}/like`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+        const icon = btn.querySelector('.material-symbols-outlined');
+        const countEl = document.getElementById(`like-count-${reviewId}`);
+        countEl.textContent = data.helpful_count;
+        if (data.liked) {
+            btn.classList.add('text-[#FBB45E]');
+            btn.classList.remove('text-gray-500');
+            icon.style.fontVariationSettings = "'FILL' 1";
+        } else {
+            btn.classList.remove('text-[#FBB45E]');
+            btn.classList.add('text-gray-500');
+            icon.style.fontVariationSettings = "'FILL' 0";
+        }
+    })
+    .catch(() => alert('Gagal. Coba lagi.'));
 }
 </script>
 
