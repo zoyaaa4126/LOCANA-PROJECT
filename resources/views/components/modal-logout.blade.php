@@ -1,6 +1,6 @@
 {{-- ====== MODAL KONFIRMASI LOGOUT ====== --}}
 <div id="modal-logout"
-     class=" fixed inset-0 z-999 hidden items-center justify-center bg-black/40 backdrop-blur-sm">
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/40 backdrop-blur-sm">
     <div class="bg-white rounded-2xl shadow-xl p-8 w-full max-w-xs mx-4 relative text-center">
 
         {{-- Tombol Tutup --}}
@@ -39,10 +39,14 @@
 
 <script>
 function bukaModalLogout() {
-    document.getElementById('modal-logout').classList.remove('hidden');
+    const modal = document.getElementById('modal-logout');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
 }
 function tutupModalLogout() {
-    document.getElementById('modal-logout').classList.add('hidden');
+    const modal = document.getElementById('modal-logout');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
 }
 document.getElementById('modal-logout').addEventListener('click', function(e) {
     if (e.target === this) tutupModalLogout();
