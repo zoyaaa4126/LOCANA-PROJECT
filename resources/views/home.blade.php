@@ -164,7 +164,7 @@
                                     data-nama="{{ strtolower($place->nama_tempat) }}"
                                     data-kategori="{{ strtolower($place->kategori->nama ?? '') }}"
                                     data-kategori-id="{{ $place->kategori_id }}"
-                                    data-gambar="{{ $place->gambar ? asset('storage/' . $place->gambar) : asset('assets/img/180 Cafe - Bandung 1.png') }}"
+                                    data-gambar="{{ $place->gambar_tempat ? asset($place->gambar_tempat) : asset('assets/img/180 Cafe - Bandung 1.png') }}"
                                     data-rating="{{ $place->reviews->avg('rating') ?? 0 }}"
                                     data-review="{{ $place->reviews->count() ?? 0 }}"
                                     data-alamat="{{ $place->alamat_lengkap ?? 'Bandung' }}"
@@ -172,7 +172,7 @@
                                     data-hargamax="{{ $place->harga_max ?? 0 }}"
                                     data-link="{{ route('places.show', $place->id) }}">
                                     <div class="relative mb-3">
-                                        <img src="{{ $place->gambar ? asset('storage/' . $place->gambar) : asset('assets/img/180 Cafe - Bandung 1.png') }}"
+                                        <img src="{{ $place->gambar_tempat ? asset($place->gambar_tempat) : asset('assets/img/180 Cafe - Bandung 1.png') }}"
                                             class="w-full h-40 object-cover rounded-xl" alt="{{ $place->nama_tempat }}">
                                         <button
                                             data-id="{{ $place->id }}"
@@ -232,7 +232,7 @@
                                     data-nama="{{ strtolower($place->nama_tempat) }}"
                                     data-kategori="{{ strtolower($place->kategori->nama ?? '') }}"
                                     data-kategori-id="{{ $place->kategori_id }}"
-                                    data-gambar="{{ $place->gambar ? asset('storage/' . $place->gambar) : asset('assets/img/180 Cafe - Bandung 1.png') }}"
+                                    data-gambar="{{ $place->gambar_tempat ? asset($place->gambar_tempat) : asset('assets/img/180 Cafe - Bandung 1.png') }}"
                                     data-rating="{{ $place->reviews->avg('rating') ?? 0 }}"
                                     data-review="{{ $place->reviews->count() ?? 0 }}"
                                     data-alamat="{{ $place->alamat_lengkap ?? 'Bandung' }}"
@@ -240,7 +240,7 @@
                                     data-hargamax="{{ $place->harga_max ?? 0 }}"
                                     data-link="{{ route('places.show', $place->id) }}">
                                     <div class="relative mb-3">
-                                        <img src="{{ $place->gambar ? asset('storage/' . $place->gambar) : asset('assets/img/180 Cafe - Bandung 1.png') }}"
+                                        <img src="{{ $place->gambar_tempat ? asset($place->gambar_tempat) : asset('assets/img/180 Cafe - Bandung 1.png') }}"
                                             class="w-full h-40 object-cover rounded-xl" alt="{{ $place->nama_tempat }}">
                                         <button
                                             data-id="{{ $place->id }}"
@@ -294,7 +294,7 @@
                     data-nama="{{ strtolower($place->nama_tempat) }}"
                     data-kategori="{{ strtolower($place->kategori->nama ?? '') }}"
                     data-kategori-id="{{ $place->kategori_id }}"
-                    data-gambar="{{ $place->gambar ? asset('storage/' . $place->gambar) : asset('assets/img/180 Cafe - Bandung 1.png') }}"
+                    data-gambar="{{ $place->gambar_tempat ? asset($place->gambar_tempat) : asset('assets/img/180 Cafe - Bandung 1.png') }}"
                     data-rating="{{ $place->reviews->avg('rating') ?? 0 }}"
                     data-review="{{ $place->reviews->count() ?? 0 }}"
                     data-alamat="{{ $place->alamat_lengkap ?? 'Bandung' }}"
