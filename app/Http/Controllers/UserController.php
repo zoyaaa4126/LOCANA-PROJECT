@@ -169,7 +169,12 @@ class UserController extends Controller
     public function showPlace(int $id)
     {
         $places = \App\Models\Places::findOrFail($id);
-        return view('placeDetails.places', compact('places'));
+        $isWishlisted = auth()->check() 
+            ? \App\Models\Wishlist::where('user_id', auth()->id())
+                                ->where('place_id', $id)
+                                ->exists() 
+            : false;
+        return view('placeDetails.places', compact('places', 'isWishlisted'));
     }
 
     public function rekomendasi()

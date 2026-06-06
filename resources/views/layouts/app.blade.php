@@ -63,11 +63,6 @@
                             Masuk
                         </a>
                     @endauth
-
-                    <div class="relative bg-slate-100 border rounded-lg border-slate-200">
-                        <span class="material-symbols-outlined absolute left-3 top-2.5 text-[#363B58]">search</span>
-                        <input type="text" placeholder="Telusuri" class="pl-10 pr-4 py-2 w-64 placeholder-[#363B58] bg-transparent outline-none">
-                    </div>
                 </div>
             </div>
         </div>

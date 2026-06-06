@@ -45,7 +45,7 @@
                             {{ $item->kategori->nama ?? '-' }}
                         </span>
                     </td>
-                    <td class="px-4 py-4 align-middle text-gray-400 text-sm hidden md:table-cell">{{ $item->alamat_lengkap }}</td>
+                    <td class="px-4 py-4 align-middle text-gray-400 text-sm hidden md:table-cell max-w-xs truncate">{{ $item->alamat_lengkap }}</td>
                     <td class="px-4 py-4 align-middle">
                         <div class="flex gap-3 items-center justify-center">
                             <button onclick="window.location='/lokasi/{{ $item->id }}/edit'" class="text-gray-500 hover:text-[#363B58] transition-colors p-1">

@@ -18,10 +18,10 @@
                     </button>
                 </div>
 
-                <div class="absolute top-[3rem] right-8 flex gap-3 max-md:top-[16px] max-md:right-[10px] max-md:gap-[6px] max-md:scale-75 max-md:origin-top-right">
-                    <button class="flex items-center gap-1 bg-[#FBB45E] px-5 py-2 rounded-[1rem] font-bold">
+                <div class="absolute top-[3rem] right-8 flex gap-3 z-10 max-md:top-[16px] max-md:right-[10px] max-md:gap-[6px] max-md:scale-75 max-md:origin-top-right">
+                    <button class="flex items-center gap-1 bg-[#FBB45E] px-5 py-2 rounded-[1rem] font-bold hover:bg-[#E2A255] transition-colors" id="btnWishlist" data-place-id="{{ $places->id }}" data-saved="{{ auth()->check() && \App\Models\Wishlist::where('user_id', auth()->id())->where('place_id', $places->id)->exists() ? 'true' : 'false' }}">
                         <svg xmlns="http://www.w3.org/2000/svg" height="23px" viewBox="0 -960 960 960" width="23px" fill="#000000">
-                            <path d="M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z" />
+                            <path id="wishlistIcon" d="M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z" />
                         </svg>
                         <span class="text-sm max-md:hidden">Simpan</span>
                     </button>
@@ -241,7 +241,6 @@
         </section>
 
 <script>
-    const overlay = document.getElementById('overlay');
     const mapBtn = document.getElementById('btnMaps');
 
     mapBtn.addEventListener('click', () => {

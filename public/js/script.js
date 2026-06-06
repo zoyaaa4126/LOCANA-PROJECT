@@ -117,6 +117,52 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+//WISHLIST
+const btnWishlist = document.getElementById('btnWishlist');
+
+if (btnWishlist) {
+    if (btnWishlist.dataset.saved === 'true') setSaved(btnWishlist);
+
+    btnWishlist.addEventListener('click', () => {
+        const placeId = btnWishlist.dataset.placeId;
+        fetch('/wishlist/toggle', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+            },
+            body: JSON.stringify({ place_id: placeId })
+        })
+        .then(res => {
+            if (res.status === 401) { window.location.href = '/login'; return; }
+            return res.json();
+        })
+        .then(data => {
+            if (!data) return;
+            if (data.status === 'added') setSaved(btnWishlist);
+            else setUnsaved(btnWishlist);
+        });
+    });
+}
+
+function setSaved(btn) {
+    btn.style.backgroundColor = '#363B58';
+    btn.style.color = '#FBB45E';
+    btn.querySelector('#wishlistIcon').style.fill = '#FBB45E';
+    btn.querySelector('#wishlistIcon').setAttribute('d', 'M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Z');
+    btn.onmouseenter = () => btn.style.backgroundColor = '#4a5068';
+    btn.onmouseleave = () => btn.style.backgroundColor = '#363B58';
+}
+
+function setUnsaved(btn) {
+    btn.style.backgroundColor = '#FBB45E';
+    btn.style.color = '#000000';
+    btn.querySelector('#wishlistIcon').style.fill = '#000000';
+    btn.querySelector('#wishlistIcon').setAttribute('d', 'M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z');
+    btn.onmouseenter = () => btn.style.backgroundColor = '#E2A255';
+    btn.onmouseleave = () => btn.style.backgroundColor = '#FBB45E';
+}
+
 // CHATBOT
 document.addEventListener("DOMContentLoaded", function () {
     const chatOutput       = document.getElementById('chatOutput');
