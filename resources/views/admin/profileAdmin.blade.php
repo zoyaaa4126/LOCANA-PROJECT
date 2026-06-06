@@ -43,52 +43,50 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Row 1 -->
+                    @forelse($logs as $log)
                     <tr class="border-t border-[#F1F5F9] hover:bg-[#FAFAFA] transition-colors">
-                        <td class="px-4 py-4 align-middle font-semibold text-navy">Menambahkan Lokasi Alam Cafe</td>
-                        <td class="px-4 py-4 align-middle font-semibold text-navy">3 jam yang lalu.</td>
-                        </td>
+                        <td class="px-4 py-4 align-middle font-semibold text-navy">{{ $log->aktivitas }}</td>
+                        <td class="px-4 py-4 align-middle font-semibold text-navy">{{ $log->created_at->diffForHumans() }}</td>
                     </tr>
-                    <!-- Row 2 -->
-                    <tr class="border-t border-[#F1F5F9] hover:bg-[#FAFAFA] transition-colors">
-                        <td class="px-4 py-4 align-middle font-semibold text-navy">Menambahkan Lokasi Alam Cafe</td>
-                        <td class="px-4 py-4 align-middle font-semibold text-navy">3 jam yang lalu.</td>
-                        </td>
+                    @empty
+                    <tr>
+                        <td colspan="2" class="px-4 py-4 text-center text-gray-400 text-sm">Belum ada aktivitas.</td>
                     </tr>
-                    <!-- Row 3 -->
-                    <tr class="border-t border-[#F1F5F9] hover:bg-[#FAFAFA] transition-colors">
-                        <td class="px-4 py-4 align-middle font-semibold text-navy">Menambahkan Lokasi Alam Cafe</td>
-                        <td class="px-4 py-4 align-middle font-semibold text-navy">3 jam yang lalu.</td>
-                        </td>
-                    </tr>
-                    <!-- Row 4 -->
-                    <tr class="border-t border-[#F1F5F9] hover:bg-[#FAFAFA] transition-colors">
-                        <td class="px-4 py-4 align-middle font-semibold text-navy">Menambahkan Lokasi Alam Cafe</td>
-                        <td class="px-4 py-4 align-middle font-semibold text-navy">3 jam yang lalu.</td>
-                        </td>
-                    </tr>
-                    <!-- Row 5 -->
-                    <tr class="border-t border-[#F1F5F9] hover:bg-[#FAFAFA] transition-colors">
-                        <td class="px-4 py-4 align-middle font-semibold text-navy">Menambahkan Lokasi Alam Cafe</td>
-                        <td class="px-4 py-4 align-middle font-semibold text-navy">3 jam yang lalu.</td>
-                        </td>
-                    </tr>
+                    @endforelse
                 </tbody>
             </table>
 
             <!-- Footer -->
             <div class="flex justify-between items-center mt-6 pt-4 border-t border-[#F1F5F9]">
-                <p class="text-gray-400 text-sm">Menampilkan 5 dari 42</p>
+                <p class="text-gray-400 text-sm">Menampilkan {{ $logs->firstItem() }} - {{ $logs->lastItem() }} dari {{ $logs->total() }}</p>
                 <div class="flex items-center gap-1">
-                    <button class="w-9 h-9 flex items-center justify-center rounded-lg border border-[#E2E8F0] hover:bg-[#FEF4E7] transition-colors">
-                        <span class="material-symbols-outlined">chevron_backward</span>
-                    </button>
-                    <button class="w-9 h-9 flex items-center justify-center rounded-lg bg-[#FBB45E] text-[#363B58] font-bold text-sm">1</button>
-                    <button class="w-9 h-9 flex items-center justify-center rounded-lg border border-[#E2E8F0] text-gray-400 text-sm hover:bg-[#FEF4E7] transition-colors">2</button>
-                    <button class="w-9 h-9 flex items-center justify-center rounded-lg border border-[#E2E8F0] text-gray-400 text-sm hover:bg-[#FEF4E7] transition-colors">3</button>
-                    <button class="w-9 h-9 flex items-center justify-center rounded-lg border border-[#E2E8F0] hover:bg-[#FEF4E7] transition-colors">
-                        <span class="material-symbols-outlined">chevron_forward</span>
-                    </button>
+                    @if($logs->onFirstPage())
+                        <button disabled class="w-9 h-9 flex items-center justify-center rounded-lg border border-[#E2E8F0] opacity-40">
+                            <span class="material-symbols-outlined">chevron_backward</span>
+                        </button>
+                    @else
+                        <a href="{{ $logs->previousPageUrl() }}" class="w-9 h-9 flex items-center justify-center rounded-lg border border-[#E2E8F0] hover:bg-[#FEF4E7]">
+                            <span class="material-symbols-outlined">chevron_backward</span>
+                        </a>
+                    @endif
+
+                    @for($i = 1; $i <= $logs->lastPage(); $i++)
+                        @if($i == $logs->currentPage())
+                            <button class="w-9 h-9 flex items-center justify-center rounded-lg bg-[#FBB45E] text-[#363B58] font-bold text-sm">{{ $i }}</button>
+                        @else
+                            <a href="{{ $logs->url($i) }}" class="w-9 h-9 flex items-center justify-center rounded-lg border border-[#E2E8F0] text-gray-400 text-sm hover:bg-[#FEF4E7]">{{ $i }}</a>
+                        @endif
+                    @endfor
+
+                    @if($logs->hasMorePages())
+                        <a href="{{ $logs->nextPageUrl() }}" class="w-9 h-9 flex items-center justify-center rounded-lg border border-[#E2E8F0] hover:bg-[#FEF4E7]">
+                            <span class="material-symbols-outlined">chevron_forward</span>
+                        </a>
+                    @else
+                        <button disabled class="w-9 h-9 flex items-center justify-center rounded-lg border border-[#E2E8F0] opacity-40">
+                            <span class="material-symbols-outlined">chevron_forward</span>
+                        </button>
+                    @endif
                 </div>
             </div>
         </div>
