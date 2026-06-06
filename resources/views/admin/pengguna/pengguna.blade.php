@@ -10,7 +10,7 @@
                 <p class="text-slate-300 text-sm font-semibold">Dashboard / <span class="text-[#FBB45E] font-bold">Pengguna</span></p>
                 <h1 class="text-2xl font-bold text-[#363B58]">Pengguna</h1>
             </div>
-            <a href="/tambah-pengguna" class="flex gap-2 bg-[#FBB45E] text-[#363B58] font-bold text-md px-4 py-2 rounded-[10px] border-none cursor-pointer whitespace-nowrap hover:bg-[#E2A255] active:bg-[#FEE8CD] transition-colors duration-200">
+            <a href="/admin/tambah-pengguna" class="flex gap-2 bg-[#FBB45E] text-[#363B58] font-bold text-md px-4 py-2 rounded-[10px] border-none cursor-pointer whitespace-nowrap hover:bg-[#E2A255] active:bg-[#FEE8CD] transition-colors duration-200">
                 <span class="material-symbols-outlined">add</span>Tambah Pengguna
             </a>
         </div>
@@ -161,5 +161,20 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script>
+function confirmHapus(id, nama) {
+    document.getElementById('modal-nama').textContent = nama;
+    document.getElementById('form-hapus').action = '/admin/pengguna/' + id;
+    document.getElementById('modal-hapus').classList.remove('hidden');
+    document.getElementById('modal-hapus').classList.add('flex');
+}
+function tutupModal() {
+    document.getElementById('modal-hapus').classList.add('hidden');
+    document.getElementById('modal-hapus').classList.remove('flex');
+}
+</script>
+@endpush
 
 @endsection

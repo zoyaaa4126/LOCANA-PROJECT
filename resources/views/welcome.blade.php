@@ -246,7 +246,7 @@
                 </span>
                 <div class="flex items-center gap-1 text-sm">
                     <span class="material-symbols-outlined text-yellow-400" style="font-variation-settings: 'FILL' 1; font-size: 0.8rem">kid_star</span>
-                    <span class="text-[0.6rem] font-[Poppins]">{{ $tempat->rating ?? '4.5' }} ({{ $tempat->total_review ?? '20' }})</span>
+                    <span class="text-[0.6rem] font-[Poppins]">{{ number_format($tempat->reviews->avg('rating') ?? 0, 1) }} ({{ $tempat->reviews->count() }})</span>
                 </div>
             </div>
 
@@ -379,94 +379,32 @@
 
     <!-- Content Review -->
     <div class="flex gap-[0.4rem] overflow-x-auto md:gap-4">
-        <div
-            class="flex flex-col items-start w-[70vw] min-w-[70vw] bg-white rounded-[20px] p-5 border border-[#E2E8F0] shadow gap-6 md:min-w-[25vw] md:max-w-[25vw]">
+        @foreach($reviews as $review)
+        <div class="flex flex-col items-start w-[70vw] min-w-[70vw] bg-white rounded-[20px] p-5 border border-[#E2E8F0] shadow gap-6 md:min-w-[25vw] md:max-w-[25vw]">
             <div class="flex justify-between items-center gap-5 w-fit">
                 <div class="flex gap-2.5 w-fit">
-                    <img src="assets/img/kenma.jpeg" class="rounded-full w-[1.8rem] md:w-10" alt="userpict">
+                    <img src="{{ $review->user->fotoProfile ? asset('storage/' . $review->user->fotoProfile) : asset('assets/img/kenma.jpeg') }}"
+                        class="rounded-full w-[1.8rem] md:w-10" alt="userpict">
                     <div>
-                        <h4 class="text-[0.8rem] font-semibold leading-[120%] w-fit md:text-[1rem]">KenmaKozzz
+                        <h4 class="text-[0.8rem] font-semibold leading-[120%] w-fit md:text-[1rem]">
+                            {{ $review->user->nama ?? $review->user->username }}
                         </h4>
-                        <p class="text-[0.6rem] font-normal leading-[120%] w-fit md:text-[0.8rem]">15 Januari 2026
+                        <p class="text-[0.6rem] font-normal leading-[120%] w-fit md:text-[0.8rem]">
+                            {{ $review->created_at->translatedFormat('d F Y') }}
                         </p>
                     </div>
                 </div>
-                <span class="text-[0.75rem]">⭐⭐⭐⭐⭐</span>
+                <span class="text-[0.75rem]">
+                    @for($i = 0; $i < $review->rating; $i++)⭐@endfor
+                </span>
             </div>
-            <p class="italic text-[0.7rem]/[120%]">"Tempat ini sangat bagus saya suka sekali
-                tidak sabar untuk merekomendasikan kepada yang lainnya."
-            </p>
+            <p class="italic text-[0.7rem]/[120%]">"{{ $review->comment }}"</p>
             <div class="flex items-center gap-[5px] border-t w-full pt-2 border-gray-300">
                 <span class="material-symbols-outlined text-[#FBB45E]" style="font-size: 0.8rem;">location_on</span>
-                <p class="text-[0.6rem] md:text-[0.7rem]">Kopi Senja Cafe</p>
+                <p class="text-[0.6rem] md:text-[0.7rem]">{{ $review->place->nama_tempat }}</p>
             </div>
         </div>
-        <div
-            class="flex flex-col items-start w-[70vw] min-w-[70vw] bg-white rounded-[20px] p-5 border border-[#E2E8F0] shadow gap-6 md:min-w-[25vw] md:max-w-[25vw]">
-            <div class="flex justify-between items-center gap-5 w-fit">
-                <div class="flex gap-2.5 w-fit">
-                    <img src="assets/img/kenma.jpeg" class="rounded-full w-[1.8rem] md:w-10" alt="userpict">
-                    <div>
-                        <h4 class="text-[0.8rem] font-semibold leading-[120%] w-fit md:text-[1rem]">KenmaKozzz
-                        </h4>
-                        <p class="text-[0.6rem] font-normal leading-[120%] w-fit md:text-[0.8rem]">15 Januari 2026
-                        </p>
-                    </div>
-                </div>
-                <span class="text-[0.75rem]">⭐⭐⭐⭐⭐</span>
-            </div>
-            <p class="italic text-[0.7rem]/[120%]">"Tempat ini sangat bagus saya suka sekali
-                tidak sabar untuk merekomendasikan kepada yang lainnya."
-            </p>
-            <div class="flex items-center gap-[5px] border-t w-full pt-2 border-gray-300">
-                <span class="material-symbols-outlined text-[#FBB45E]" style="font-size: 0.8rem;">location_on</span>
-                <p class="text-[0.6rem] md:text-[0.7rem]">Kopi Senja Cafe</p>
-            </div>
-        </div>
-        <div
-            class="flex flex-col items-start w-[70vw] min-w-[70vw] bg-white rounded-[20px] p-5 border border-[#E2E8F0] shadow gap-6 md:min-w-[25vw] md:max-w-[25vw]">
-            <div class="flex justify-between items-center gap-5 w-fit">
-                <div class="flex gap-2.5 w-fit">
-                    <img src="assets/img/kenma.jpeg" class="rounded-full w-[1.8rem] md:w-10" alt="userpict">
-                    <div>
-                        <h4 class="text-[0.8rem] font-semibold leading-[120%] w-fit md:text-[1rem]">KenmaKozzz
-                        </h4>
-                        <p class="text-[0.6rem] font-normal leading-[120%] w-fit md:text-[0.8rem]">15 Januari 2026
-                        </p>
-                    </div>
-                </div>
-                <span class="text-[0.75rem]">⭐⭐⭐⭐⭐</span>
-            </div>
-            <p class="italic text-[0.7rem]/[120%]">"Tempat ini sangat bagus saya suka sekali
-                tidak sabar untuk merekomendasikan kepada yang lainnya."
-            </p>
-            <div class="flex items-center gap-[5px] border-t w-full pt-2 border-gray-300">
-                <span class="material-symbols-outlined text-[#FBB45E]" style="font-size: 0.8rem;">location_on</span>
-                <p class="text-[0.6rem] md:text-[0.7rem]">Kopi Senja Cafe</p>
-            </div>
-        </div>
-        <div
-            class="flex flex-col items-start w-[70vw] min-w-[70vw] bg-white rounded-[20px] p-5 border border-[#E2E8F0] shadow gap-6 md:min-w-[25vw] md:max-w-[25vw]">
-            <div class="flex justify-between items-center gap-5 w-fit">
-                <div class="flex gap-2.5 w-fit">
-                    <img src="assets/img/kenma.jpeg" class="rounded-full w-[1.8rem] md:w-10" alt="userpict">
-                    <div>
-                        <h4 class="text-[0.8rem] font-semibold leading-[120%] w-fit md:text-[1rem]">KenmaKozzz
-                        </h4>
-                        <p class="text-[0.6rem] font-normal leading-[120%] w-fit md:text-[0.8rem]">15 Januari 2026
-                        </p>
-                    </div>
-                </div>
-                <span class="text-[0.75rem]">⭐⭐⭐⭐⭐</span>
-            </div>
-            <p class="italic text-[0.7rem]/[120%]">"Tempat ini sangat bagus saya suka sekali
-                tidak sabar untuk merekomendasikan kepada yang lainnya."
-            </p>
-            <div class="flex items-center gap-[5px] border-t w-full pt-2 border-gray-300">
-                <span class="material-symbols-outlined text-[#FBB45E]" style="font-size: 0.8rem;">location_on</span>
-                <p class="text-[0.6rem] md:text-[0.7rem]">Kopi Senja Cafe</p>
-            </div>
-        </div>
+        @endforeach
     </div>
 </section>
 
