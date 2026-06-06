@@ -242,7 +242,7 @@ class AdminController extends Controller
             'harga_max'       => $request->harga_max,
             'status_aktif'    => $request->boolean('status_aktif'),
             'tempat_unggulan' => $request->boolean('unggulan'),
-            'created_by'      => auth()->id() ?? 1,
+            'created_by'      => auth()->id(),
             'gambar_tempat'   => $gambarTempat,
         ], $dataFasilitas));
 
