@@ -58,6 +58,8 @@ Route::middleware('guest')->group(function () {
 // ============================================================
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [UserController::class, 'profile'])->name('profile');
+    Route::get('/edit-profile', [UserController::class, 'editProfile'])->name('editProfile')->middleware('auth');
+    Route::post('/edit-profile', [UserController::class, 'updateProfile'])->middleware('auth');
     Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
     Route::post('/wishlist/toggle', [WishlistController::class, 'toggle'])->name('wishlist.toggle');
 
