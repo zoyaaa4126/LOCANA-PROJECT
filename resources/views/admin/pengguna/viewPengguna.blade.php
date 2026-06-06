@@ -6,7 +6,7 @@
 
 <div class="m-5 pb-10">
 
-    <form action="/detail-pengguna" method="POST">
+    
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
             <div>
                 <p class="text-slate-400 text-sm font-semibold">
@@ -14,7 +14,7 @@
                 </p>
                 <h1 class="text-2xl font-bold text-[#363B58]">Detail Pengguna</h1>
             </div>
-            <a href="/pengguna"
+            <a href="/admin/pengguna"
             class="flex items-center gap-2 bg-white border border-[#E2E8F0] text-[#363B58] font-bold text-sm px-5 py-2.5 rounded-[10px] hover:bg-[#F1F5F9] transition-colors duration-200">
                 <span class="material-symbols-outlined" style="font-size:18px;">arrow_back</span>
                 Kembali
@@ -32,28 +32,28 @@
                 <div class="flex flex-col gap-1.5 mb-4">
                     <label class="text-sm font-semibold text-[#363B58]">Nama</label>
                     <div class="border border-[#E2E8F0] rounded-xl px-4 py-3 text-sm bg-[#FAFAFA] text-[#363B58]">
-                        Nanami Kento
+                        {{ $user->nama ?? $user->username }}
                     </div>
                 </div>
 
                 <div class="flex flex-col gap-1.5 mb-4">
                     <label class="text-sm font-semibold text-[#363B58]">Username</label>
                     <div class="border border-[#E2E8F0] rounded-xl px-4 py-3 text-sm bg-[#FAFAFA] text-[#363B58]">
-                        nnmkentoo
+                        {{ $user->username }}
                     </div>
                 </div>
 
                 <div class="flex flex-col gap-1.5 mb-4">
                     <label class="text-sm font-semibold text-[#363B58]">Email</label>
                     <div class="border border-[#E2E8F0] rounded-xl px-4 py-3 text-sm bg-[#FAFAFA] text-[#363B58]">
-                        nanami@gmail.com
+                        {{ $user->email }}
                     </div>
                 </div>
 
                 <div class="flex flex-col gap-1.5 mb-4">
                     <label class="text-sm font-semibold text-[#363B58]">Role</label>
                     <div class="border border-[#E2E8F0] rounded-xl px-4 py-3 text-sm bg-[#FAFAFA] text-[#363B58] flex justify-between items-center">
-                        <span>User</span>
+                        <span>{{ ucfirst($user->role) }}</span>
                         <span class="material-symbols-outlined text-gray-400" style="font-size:20px;">expand_more</span>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                 <div class="flex flex-col gap-1.5">
                     <label class="text-sm font-semibold text-[#363B58]">Deskripsi</label>
                     <div class="border border-[#E2E8F0] rounded-xl px-4 py-3 text-sm bg-[#FAFAFA] text-[#363B58] min-h-[140px]">
-                        Exploring new spots, from cozy coffee corners to lively hangout places.
+                        {{ $user->deskripsi ?? '-' }}
                     </div>
                 </div>
             </div>
@@ -76,9 +76,13 @@
 
                     <label class="text-sm font-semibold text-[#363B58] mb-3 block">Foto Profil</label>
                     <div class="border-2 border-dashed border-[#E2E8F0] rounded-xl p-4 flex items-center justify-center bg-[#FAFAFA] min-h-[200px]">
-                        <img src="assets/img/nanamin.jpg"
-                            alt="Foto Profil"
-                            class="w-40 h-40 object-cover rounded-xl shadow-sm">
+                        @if($user->fotoProfile)
+                            <img src="{{ asset('storage/' . $user->fotoProfile) }}" 
+                                class="w-40 h-40 rounded-xl object-cover shadow-sm" alt="Foto Profil">
+                        @else
+                            <img src="https://ui-avatars.com/api/?name={{ urlencode($user->nama ?? $user->username) }}&background=FBB45E&color=363B58" 
+                                class="w-40 h-40 rounded-xl object-cover shadow-sm" alt="Foto Profil">
+                        @endif
                     </div>
                 </div>
 
@@ -89,12 +93,13 @@
                     </h2>
 
                     <div class="flex flex-col gap-3">
-                        <a href="" class="w-full flex items-center justify-center gap-2 bg-white hover:bg-[#F1F5F9] text-[#363B58] font-bold text-sm px-5 py-3 rounded-xl transition-colors duration-200"><span class="material-symbols-outlined" style="font-size:18px;">edit</span>
+                        <a href="/admin/pengguna/edit/{{ $user->id }}" class="w-full flex items-center justify-center gap-2 bg-white hover:bg-[#F1F5F9] text-[#363B58] font-bold text-sm px-5 py-3 rounded-xl transition-colors duration-200"><span class="material-symbols-outlined" style="font-size:18px;">edit</span>
                             Edit Pengguna
                         </a>
 
                         {{-- Hapus --}}
-                        <button type="button" onclick="confirmHapus()" class="w-full flex items-center justify-center gap-2 bg-red-500 hover:bg-red-600 active:bg-red-700 text-white font-bold text-sm px-5 py-3 rounded-xl transition-colors duration-200">
+                        <button onclick="confirmHapus()" 
+                            class="w-full flex items-center justify-center gap-2 bg-red-500 hover:bg-red-600 active:bg-red-700 text-white font-bold text-sm px-5 py-3 rounded-xl transition-colors duration-200">
                             <span class="material-symbols-outlined" style="font-size:18px;">delete</span>
                             Hapus Pengguna
                         </button>
@@ -112,23 +117,33 @@
                     <span class="material-symbols-outlined text-red-500" style="font-size:30px; font-variation-settings:'FILL' 1;">delete</span>
                 </div>
                 <h3 class="text-lg font-bold text-[#363B58]">Hapus Pengguna?</h3>
-                <p class="text-sm text-gray-500">Tindakan ini tidak dapat dibatalkan. Data pengguna <span class="font-semibold text-[#363B58]">Nanami Kento</span> akan dihapus secara permanen.</p>
+                <p class="text-sm text-gray-500">Tindakan ini tidak dapat dibatalkan. Data pengguna <span class="font-semibold text-[#363B58]">{{ $user->nama ?? $user->username }}</span> akan dihapus secara permanen.</p>
             </div>
             <div class="flex gap-3">
                 <button onclick="tutupModal()"
                         class="flex-1 border border-[#E2E8F0] text-[#363B58] font-bold text-sm py-2.5 rounded-xl hover:bg-[#F1F5F9] transition-colors">
                     Batalkan
                 </button>
-                <form action="" method="POST" class="flex-1">
-                    <!-- @csrf
-                    @method('DELETE') -->
+                <form action="{{ route('hapusPengguna', $user->id) }}" method="POST" class="flex-1">
+                    @csrf
+                    @method('DELETE')
                     <button type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white font-bold text-sm py-2.5 rounded-xl transition-colors">
                         Hapus
                     </button>
                 </form>
             </div>
         </div>
-    </form>
 </div>
+
+@push('scripts')
+<script>
+    function confirmHapus() {
+        document.getElementById('modal-hapus').classList.remove('hidden');
+    }
+    function tutupModal() {
+        document.getElementById('modal-hapus').classList.add('hidden');
+    }
+</script>
+@endpush
 
 @endsection
