@@ -32,7 +32,7 @@
         <div class="hidden md:flex items-center justify-between px-6 py-4">
             <!-- Logo -->
             <div class="flex items-center gap-2">
-                <img src="assets/img/Locana_Logo 1.png" alt="logo" class="w-8 h-8 object-contain">
+                <img src="{{ asset('assets/img/Locana_Logo 1.png') }}" alt="logo" class="w-8 h-8 object-contain">
                 <span class="font-semibold text-lg text-[#363B58]">LOCANA</span>
             </div>
 
@@ -125,6 +125,8 @@
     <main>
         @yield('content')
     </main>
+
+    <x-footer />
 
     <a href="/chatbot" class="fixed bottom-5 right-5 z-50 bg-[#FBB45E] text-[#363B58] w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition" style="font-variation-settings: 'FILL' 1;" title="Chatbot">
         <span class="material-symbols-outlined text-2xl">smart_toy</span>

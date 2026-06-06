@@ -19,7 +19,7 @@
 
             <!-- Logo -->
             <div class="flex items-center gap-2">
-                <img src="assets/img/Locana_Logo 1.png" class="h-10 max-md:h-7">
+                <img src="{{ asset('assets/img/Locana_Logo 1.png') }}" class="h-10 object-contain" alt="Logo">
                 <span class="font-bold text-xl max-md:text-sm text-gray-800">LOCANA Admin</span>
             </div>
 
@@ -28,13 +28,19 @@
 
                 <!-- PROFILE -->
                 <div class="flex items-center gap-2">
-                    <img src="assets/img/higuu.jpg"
-                        class="w-10 h-10 max-md:w-9 max-md:h-9 rounded-full object-cover">
-
+                    <a href="/admin/profile-admin" class="flex items-center gap-2">
+                    @if(Auth::user()->fotoProfile)
+                        <img src="{{ asset('storage/' . Auth::user()->fotoProfile) }}" 
+                            class=" w-10 h-10 max-md:w-9 max-md:h-9 rounded-full object-cover" alt="Profile">
+                    @else
+                        <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->nama) }}&background=FBB45E&color=363B58" 
+                            class=" w-10 h-10 max-md:w-9 max-md:h-9 rounded-full object-cover" alt="Profile">
+                    @endif
                     <div class="hidden md:flex flex-col leading-tight">
-                        <span class="text-sm font-semibold">Higuruma Hiromi</span>
-                        <span class="text-xs text-gray-500">Admin</span>
+                        <span class="text-sm font-semibold">{{ Auth::user()->nama }}</span>
+                        <span class="text-xs text-gray-500">{{ Auth::user()->username }}</span>
                     </div>
+                    </a>
                 </div>
 
                 <!-- HAMBURGER (MOBILE) -->
@@ -53,23 +59,23 @@
             <h1 class="font-bold text-xl text-[#363B58] mb-4">Admin Panel</h1>
 
             <div class="space-y-3 text-[#363B58]" style="font-variation-settings:'FILL' 1;">
-                <a href="/dashboard" class="flex items-center gap-3 px-2 py-3 rounded-lg font-bold
-                    {{ request()->is('dashboard') ? 'bg-[#FEF4E7] text-[#FBB45E]' : 'hover:bg-gray-50' }}">
+                <a href="/admin/dashboard" class="flex items-center gap-3 px-2 py-3 rounded-lg font-bold
+                    {{ request()->is('admin/dashboard') ? 'bg-[#FEF4E7] text-[#FBB45E]' : 'hover:bg-gray-50' }}">
                     <span class="material-symbols-outlined">grid_view</span> Dashboard
                 </a>
 
-                <a href="/lokasi" class="flex items-center gap-3 px-2 py-3 rounded-lg font-bold
-                    {{ request()->is('lokasi') ? 'bg-[#FEF4E7] text-[#FBB45E]' : 'hover:bg-gray-50' }}">
+                <a href="/admin/lokasi" class="flex items-center gap-3 px-2 py-3 rounded-lg font-bold
+                    {{ request()->is('admin/lokasi') ? 'bg-[#FEF4E7] text-[#FBB45E]' : 'hover:bg-gray-50' }}">
                     <span class="material-symbols-outlined">location_on</span> Lokasi
                 </a>
 
-                <a href="/ulasan" class="flex items-center gap-3 px-2 py-3 rounded-lg font-bold
-                    {{ request()->is('ulasan') ? 'bg-[#FEF4E7] text-[#FBB45E]' : 'hover:bg-gray-50' }}">
+                <a href="/admin/ulasan" class="flex items-center gap-3 px-2 py-3 rounded-lg font-bold
+                    {{ request()->is('admin/ulasan') ? 'bg-[#FEF4E7] text-[#FBB45E]' : 'hover:bg-gray-50' }}">
                     <span class="material-symbols-outlined">rate_review</span> Ulasan
                 </a>
 
-                <a href="/pengguna" class="flex items-center gap-3 px-2 py-3 rounded-lg font-bold
-                    {{ request()->is('pengguna') ? 'bg-[#FEF4E7] text-[#FBB45E]' : 'hover:bg-gray-50' }}">
+                <a href="/admin/pengguna" class="flex items-center gap-3 px-2 py-3 rounded-lg font-bold
+                    {{ request()->is('admin/pengguna') ? 'bg-[#FEF4E7] text-[#FBB45E]' : 'hover:bg-gray-50' }}">
                     <span class="material-symbols-outlined">person</span> Pengguna
                 </a>
             </div>
@@ -93,19 +99,19 @@
             </div>
 
             <div class="p-4 space-y-3">
-                <a href="/dashboard" class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50">
+                <a href="/admin/dashboard" class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50">
                     <span class="material-symbols-outlined">grid_view</span> Dashboard
                 </a>
 
-                <a href="/lokasi" class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50">
+                <a href="/admin/lokasi" class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50">
                     <span class="material-symbols-outlined">location_on</span> Lokasi
                 </a>
 
-                <a href="/ulasan" class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50">
+                <a href="/admin/ulasan" class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50">
                     <span class="material-symbols-outlined">rate_review</span> Ulasan
                 </a>
 
-                <a href="/pengguna" class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50">
+                <a href="/admin/pengguna" class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50">
                     <span class="material-symbols-outlined">person</span> Pengguna
                 </a>
 

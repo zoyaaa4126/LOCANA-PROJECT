@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-
 use App\Models\Kategoris;
 
 
@@ -26,12 +25,14 @@ class UserController extends Controller
     public function registerStep1(Request $request)
     {
         $request->validate([
-            'username' => 'required',
+            'username' => 'required|unique:users,username',
             'email'    => 'required|email|unique:users,email',
             'password' => 'required|min:6',
             'check'    => 'required',
-        ], ['email.unique'      => 'Email sudah terdaftar.',
+        ], [
+            'email.unique'      => 'Email sudah terdaftar.',
             'password.min'      => 'Password minimal 6 karakter.',
+            'username.unique'   => 'Username sudah digunakan'
         ]);
 
         session([
@@ -43,8 +44,21 @@ class UserController extends Controller
         return redirect('/register-nextStep');
     }
 
+    public function registerNext()
+    {
+        return view('registerNext');
+    }
+
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'nama' => 'required',
+            ],
+            [
+                'nama.required' => 'Nama wajib diisi.',
+            ]
+        );
 
         $path = null;
 
@@ -60,21 +74,28 @@ class UserController extends Controller
             'password' => bcrypt(session('password')),
             'fotoProfile' => $path,
         ]);
-        return redirect('/home');
+        return redirect('/login')->with('success', 'Registrasi berhasil! Silakan login.');
     }
 
     //CONTROLLER LOGIN
     public function login(Request $request)
     {
-         $request->validate([
+        $request->validate([
             'email'    => 'required|email',
             'password' => 'required|min:6',
         ]);
 
         $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials, $request->remember)) { //di cek apakah ada atau engga
-            $request->session()->regenerate();
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
+
+            $user = Auth::user();
+
+            // Cek role, redirect ke tempat yang sesuai
+            if ($user->role === 'admin') {
+                return redirect('/admin/dashboard'); // atau route dashboard admin kamu
+            }
+
             return redirect('/home');
         }
 
@@ -109,21 +130,38 @@ class UserController extends Controller
         return redirect('/users');
     }
 
-    public function home()
+    public function home(Request $request)
     {
+        $lat = $request->query('lat');
+        $lng = $request->query('lng');
+
         $kategoris = Kategoris::all();
         $moods = \App\Models\moods::all();
-        $places = \App\Models\Places::all();
         $popularPlaces = \App\Models\Places::where('status_aktif', true)
             ->where('tempat_unggulan', true)
             ->limit(10)
             ->get();
-        $recommendedPlaces = $places;
         $allPlaces = \App\Models\Places::with('kategori')->get();
-
         $wishlistIds = Auth::check()
             ? \App\Models\Wishlist::where('user_id', Auth::id())->pluck('place_id')->toArray()
             : [];
+
+        // Buat Rekomendasi
+        if ($lat && $lng) {
+            $recommendedPlaces = \App\Models\Places::selectRaw("
+            *,
+            (6371 * ACOS(
+                COS(RADIANS(?)) * COS(RADIANS(latitude)) *
+                COS(RADIANS(longitude) - RADIANS(?)) +
+                SIN(RADIANS(?)) * SIN(RADIANS(latitude))
+            )) AS distance
+        ", [$lat, $lng, $lat])
+                ->orderBy('distance')
+                ->limit(10)
+                ->get();
+        } else {
+            $recommendedPlaces = \App\Models\Places::limit(10)->get();
+        }
 
         return view('home', compact('kategoris', 'moods', 'popularPlaces', 'recommendedPlaces', 'wishlistIds', 'allPlaces'));
     }
@@ -147,11 +185,78 @@ class UserController extends Controller
     }
     public function profile()
     {
+        $user = User::findOrFail(Auth::id());
         $wishlists = \App\Models\Wishlist::with('place.kategori')
             ->where('user_id', Auth::id())
             ->latest()
             ->get();
 
-        return view('profile', compact('wishlists'));
+        $reviews = \App\Models\Review::with('place.kategori')
+            ->where('user_id', Auth::id())
+            ->latest()
+            ->get();
+
+        $wishlistCount = $wishlists->count();
+        $reviewCount = $reviews->count();
+
+        $activities = collect();
+
+        foreach ($wishlists as $item) {
+            $activities->push([
+                'type'       => 'wishlist',
+                'created_at' => $item->created_at,
+                'place'      => $item->place,
+            ]);
+        }
+
+        foreach ($reviews as $item) {
+            $activities->push([
+                'type'       => 'review',
+                'created_at' => $item->created_at,
+                'place'      => $item->place,
+                'rating'     => $item->rating,
+                'comment'    => $item->comment,
+            ]);
+        }
+
+        $activities = $activities->sortByDesc('created_at')->take(7)->values();
+
+        return view('profile', compact('user', 'wishlists', 'reviews', 'activities', 'wishlistCount', 'reviewCount'));
+    }
+
+    public function editProfile()
+    {
+        $user = Auth::user();
+        return view('editProfile', compact('user'));
+    }
+    public function updateProfile(Request $request)
+    {
+        $user = User::findOrFail(Auth::id());
+
+        $user->update([
+            'nama'      => $request->nama,
+            'username'  => $request->username,
+            'email'     => $request->email,
+            'deskripsi' => $request->deskripsi,
+        ]);
+
+        if ($request->password) {
+            $user->update([
+                'password' => bcrypt($request->password)
+            ]);
+        }
+        if ($request->hasFile('foto_profil')) {
+            $path = $request->file('foto_profil')->store('foto-profile', 'public');
+            $user->update(['fotoProfile' => $path]);
+        }
+
+        return redirect('/profile');
+    }
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/')->with('success', 'Berhasil keluar.');
     }
 }

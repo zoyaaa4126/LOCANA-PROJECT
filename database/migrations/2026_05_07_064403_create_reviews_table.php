@@ -20,9 +20,19 @@ return new class extends Migration
             $table->integer('rating');
             $table->text('title');
             $table->text('comment')->nullable();
-            $table->string('file_url')->nullable();
+            $table->text('file_url')->nullable();
+
+            $table->unsignedInteger('helpful_count')->default(0);
 
             $table->timestamps();
+        });
+
+        Schema::create('review_likes', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('review_id')->constrained('reviews')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->timestamps();
+            $table->unique(['review_id', 'user_id']);
         });
     }
 
@@ -31,6 +41,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('review_likes');
         Schema::dropIfExists('reviews');
     }
 };

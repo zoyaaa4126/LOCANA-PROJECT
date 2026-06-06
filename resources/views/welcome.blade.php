@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title')
+@section('title', 'Locana | Rekomendasi Tempat Hangout di Bandung')
 
 @section('content')
 
@@ -229,11 +229,12 @@
     </div>
 
     <div class="flex gap-[0.6rem] overflow-x-auto py-2">
+        <!-- <p>Jumlah: {{ $tempatPopuler->count() }}</p> -->
         @forelse($tempatPopuler as $tempat)
         <div class="bg-white rounded-xl shadow-md w-[43vw] shrink-0 border border-gray-100 p-4 hover:shadow-lg transition md:w-[280px]">
 
             <div style="position: relative; margin-bottom: 12px;">
-                <img src="{{ $tempat->gambar ? asset('storage/' . $tempat->gambar) : asset('assets/img/180 Cafe - Bandung 1.png') }}"
+                <img src="{{ $tempat->gambar_tempat ? asset($tempat->gambar_tempat) : asset('assets/img/180 Cafe - Bandung 1.png') }}"
                     alt="{{ $tempat->nama_tempat }}"
                     style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px;">
 
@@ -629,46 +630,6 @@
         </div>
     </div>
 </section>
-
-<!-- FOOTER BAWAH -->
-<footer
-    class="bg-[white] text-[#363b58] w-full py-6 h-fit mt-5 border-t-2 border-gray-300 content-center">
-    <div class="px-6 md:px-[30px] md:py-0 flex flex-col gap-2 items-center md:gap-4">
-        <!-- LOGO -->
-        <div class="flex text-[#363b58] items-center gap-1">
-            <img src="assets/img/Locana_Logo 1.png" alt="logloc"
-                class="h-5 w-5 object-contain leading-[120%] md:w-8 md:h-8 md:object-contain">
-            <span class="text-[0.75rem] font-bold md:font-semibold md:text-lg md:text-[#363B58]">LOCANA</span>
-        </div>
-
-        <p class="italic text-center max-w-[600px] text-[0.6rem]/[120%] md:text-base md:items-center text-gray-600">
-            "Setiap
-            momen punya tempatnya sendiri-kami bantu kamu menemukannya dengan lebih mudah dan personal."</p>
-
-        <div class="flex justify-center mt-2 items-start gap-[5px] md:gap-[5px]">
-            <button
-                class="flex px-[0.6rem] py-2 justify-center w-[75px] items-center gap-[5px] rounded-[10px] bg-[#FEF4E7] border-none cursor-pointer md:w-fit hover:bg-[#e3e1df] hover:text-[white]">
-                <span class="material-symbols-outlined" style="font-size: 0.8rem;">
-                    call
-                </span>
-                <span class="text-[0.6rem] md:text-[0.8rem]">Telepon</span>
-            </button>
-            <button
-                class="flex px-[0.6rem] py-2 justify-center w-[75px] items-center gap-[5px] rounded-[10px] bg-[#FEF4E7] border-none cursor-pointer md:w-fit hover:bg-[#e3e1df] hover:text-[white]">
-                <span class="material-symbols-outlined" style="font-size: 0.8rem;">
-                    mail
-                </span>
-                <span class="text-[0.6rem] md:text-[0.8rem]">Email</span>
-            </button>
-        </div>
-
-    </div>
-    <div class="w-full text-center text-[#363B58] bg-[white] mt-6">
-        <h2 class="text-[0.6rem] font-bold leading-[120%] md:text-[0.8rem]">&copy; 2026 Locana. All right
-            reserved.
-        </h2>
-    </div>
-</footer>
 
 <script>
     function goToSearch() {

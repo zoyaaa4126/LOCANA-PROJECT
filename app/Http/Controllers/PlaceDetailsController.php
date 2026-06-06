@@ -12,4 +12,9 @@ class PlaceDetailsController extends Controller
         $places = places::findOrFail($id);
         return view('placeDetails.places', compact('places'));
     }
+    public function reviews(int $id)
+    {
+        $places = places::findOrFail($id);
+        return view('reviews', compact('places'));
+    }
 }

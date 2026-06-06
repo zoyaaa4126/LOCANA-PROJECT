@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Homepage')
+@section('title', 'Wishlist')
 
 @section('content')
 
@@ -63,7 +63,7 @@
             <div class="flex flex-col bg-white rounded-[30px] p-5 border border-[#E2E8F0] w-60 h-106
                         max-md:w-40 max-md:h-87">
                 <div class="relative w-50 h-50 shrink-0 max-md:w-30 max-md:h-30">
-                    <img src="{{ $item->place->gambar ? asset('storage/' . $item->place->gambar) : asset('assets/img/180 Cafe - Bandung 1.png') }}"
+                    <img src="{{ $item->place->gambar_tempat ? asset($item->place->gambar_tempat) : asset('assets/img/180 Cafe - Bandung 1.png') }}"
                         class="w-full h-full object-cover rounded-xl" alt="{{ $item->place->nama_tempat }}">
                     <button
                         data-id="{{ $item->place->id }}"

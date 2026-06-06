@@ -8,13 +8,13 @@
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-5">
         <div>
             <p class="text-slate-300 text-sm font-semibold">Dashboard / <span class="text-[#FBB45E] font-bold">Lokasi</span></p>
-            <h1 class="text-2xl font-bold text-[#363B58]">Halo Admin <span class="text-yellow-400">Higuruma Hiromi!</span></h1>
+            <h1 class="text-2xl font-bold text-[#363B58]">Halo Admin <span class="text-yellow-400">{{ $user->nama }}</span></h1>
         </div>
         <a href="/tambah-lokasi" class="flex gap-2 bg-[#FBB45E] text-[#363B58] font-bold text-md px-4 py-2 rounded-[10px] border-none cursor-pointer whitespace-nowrap hover:bg-[#E2A255] active:bg-[#FEE8CD] transition-colors duration-200">
             <span class="material-symbols-outlined">add</span>Tambah Lokasi
         </a>
     </div>
-    
+
     <div class="w-full bg-white rounded-2xl p-6 shadow-sm overflow-x-auto">
         <table class="w-full border-collapse">
             <thead>
@@ -48,13 +48,15 @@
                     <td class="px-4 py-4 align-middle text-gray-400 text-sm hidden md:table-cell">{{ $item->alamat_lengkap }}</td>
                     <td class="px-4 py-4 align-middle">
                         <div class="flex gap-3 items-center justify-center">
-                            <button onclick="window.location='/lokasi/{{ $item->id }}/edit'" class="text-gray-500 hover:text-[#363B58] transition-colors p-1"><span class="material-symbols-outlined">edit</span></button>
-                            <button onclick="window.location='/places/{{ $item->id }}'" class="text-[#FBB45E] hover:text-[#363B58] transition-colors p-1"><span class="material-symbols-outlined">visibility</span></button>
-                            <form action="/lokasi/{{ $item->id }}" method="POST" class="inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="text-red-400 hover:text-red-600 transition-colors p-1"><span class="material-symbols-outlined">delete</span></button>
-                            </form>
+                            <button onclick="window.location='/lokasi/{{ $item->id }}/edit'" class="text-gray-500 hover:text-[#363B58] transition-colors p-1">
+                                <span class="material-symbols-outlined">edit</span>
+                            </button>
+                            <button onclick="window.location='/places/{{ $item->id }}'" class="text-[#FBB45E] hover:text-[#363B58] transition-colors p-1">
+                                <span class="material-symbols-outlined">visibility</span>
+                            </button>
+                            <button onclick="konfirmasiHapus({{ $item->id }})" class="text-red-400 hover:text-red-600 transition-colors p-1">
+                                <span class="material-symbols-outlined">delete</span>
+                            </button>
                         </div>
                     </td>
                 </tr>
@@ -62,7 +64,6 @@
             </tbody>
         </table>
 
-        <!-- Footer -->
         <div class="flex justify-between items-center mt-6 pt-4 border-t border-[#F1F5F9]">
             <p class="text-gray-400 text-sm">Menampilkan {{ $lokasi->count() }} dari {{ $lokasi->total() }}</p>
             <div class="flex items-center gap-1">
@@ -84,4 +85,48 @@
     </div>
 </div>
 
+{{-- Modal Hapus --}}
+<div id="modal-hapus" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+    <div class="bg-white rounded-2xl shadow-xl p-6 w-full max-w-sm mx-4">
+        <div class="flex flex-col items-center text-center gap-3">
+            <div class="w-14 h-14 rounded-full bg-red-100 flex items-center justify-center">
+                <span class="material-symbols-outlined text-red-500" style="font-size:28px; font-variation-settings:'FILL' 1;">delete</span>
+            </div>
+            <h3 class="text-lg font-bold text-[#363B58]">Hapus Lokasi?</h3>
+            <p class="text-sm text-gray-400">Tindakan ini tidak dapat dibatalkan. Lokasi akan dihapus permanen.</p>
+        </div>
+        <div class="flex gap-3 mt-6">
+            <button onclick="tutupModal()"
+                    class="flex-1 py-2 rounded-xl border border-[#E2E8F0] text-sm font-semibold text-[#363B58] hover:bg-[#F1F5F9] transition-colors">
+                Batal
+            </button>
+            <form id="form-hapus" method="POST" class="flex-1">
+                @csrf
+                @method('DELETE')
+                <button type="submit"
+                        class="w-full py-2.5 px-6 rounded-xl bg-red-500 hover:bg-red-600 text-white text-sm font-semibold transition-colors">
+                    Hapus
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
 @endsection
+
+@push('scripts')
+<script>
+function konfirmasiHapus(id) {
+    document.getElementById('form-hapus').action = '/lokasi/' + id;
+    document.getElementById('modal-hapus').classList.remove('hidden');
+}
+
+function tutupModal() {
+    document.getElementById('modal-hapus').classList.add('hidden');
+}
+
+document.getElementById('modal-hapus').addEventListener('click', function(e) {
+    if (e.target === this) tutupModal();
+});
+</script>
+@endpush

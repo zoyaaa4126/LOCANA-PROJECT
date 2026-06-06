@@ -1,37 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{ $places->nama_tempat }}</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
-        <script src="https://cdn.tailwindcss.com"></script>
-    </head>
-
-    <body>
-        <header class="bg-white border-b border-gray-300 sticky top-0 z-50 shadow-sm">
-            <div class="container mx-auto px-4 py-3 flex justify-between items-center max-sm:grid max-sm:grid-cols-[1fr_auto] max-sm:gap-3">
-                <div class="flex items-center gap-2">
-                    <img src="/assets/img/Locana_Logo 1.png" class="h-10 max-sm:h-6" alt="Logo">
-                    <span class="font-bold text-xl text-gray-800 max-sm:text-base">LOCANA</span>
-                </div>
-                <div class="flex flex-row-reverse gap-4 max-sm:contents">
-                    <div class="flex flex-row-reverse items-center gap-3">
-                        <a href="/profile" class="flex items-center gap-2">
-                            <img src="/assets/img/nanamin.jpg" class="w-10 h-10 max-sm:w-9 max-sm:h-9 rounded-full object-cover">
-                            <span class="font-medium max-sm:hidden">Nanami Kento</span>
-                        </a>
-                        <div class="hidden max-sm:flex gap-2">
-                            <span class="material-symbols-outlined bg-[#FEF4E7] text-[#FBB45E] p-2 rounded-full">smart_toy</span>
-                            <span class="material-symbols-outlined text-[#363B58] p-2 rounded-full">tune</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
+@extends('layouts.app')
+@section('title', 'Homepage')
+@section('content')
 
         <section>
             <div class="relative">
@@ -154,155 +123,169 @@
         <br>
 
         <section class="p-[20px]">
-            <div class="flex flex-row justify-start items-center w-full px-[50px] py-5 box-border">
-            <div class="font-bold">
-                <p class="text-4xl
-                max-md:text-2xl max-md:ml-[-50px]">Review</p>
-                <p class="text-md py-5
-                max-md:text-sm max-md:ml-[-50px]">⭐ 4.4 dari 524 ulasan</p>
+            <div class="flex flex-row justify-start items-center w-full px-[50px] py-5 box-border max-md:px-4">
+                <div class="font-bold">
+                    <p class="text-4xl max-md:text-2xl">Review</p>
+                    <p class="text-sm text-gray-500 mt-1">Cerita dan Penilaian Pengguna</p>
+                </div>
+
+                <a href="{{ route('reviews.create', $places->id) }}"
+                class="flex justify-center items-center bg-[#F4A64C] text-[#363b58] border-none py-[12px] px-[24px] rounded-xl text-base font-semibold cursor-pointer whitespace-nowrap ml-auto gap-2 hover:bg-[#E2A255] transition max-md:py-2 max-md:px-4 max-md:text-sm">
+                    + Tambah Review
+                </a>
             </div>
-            
-            <button class="bg-[#F4A64C] text-[#363b58] w-[400px] border-none py-[15px] px-[30px] rounded-xl text-lg font-semibold cursor-pointer whitespace-nowrap ml-auto
-            max-md:w-auto max-md:py-[5px] max-md:px-[16px] max-md:text-sm max-md:rounded-lg max-md:ml-auto max-md:mr-[-50px]" id="openModal">+ Kirim Ulasan</button>
 
-            <div class="fixed top-0 left-0 w-full h-full bg-black/50 hidden justify-center items-center z-[999]" id="overlay">
-                <div class="p-5 bg-[#FAFAFA] flex flex-col gap-[1.8rem] rounded-[10px] w-[540px] relative
-                max-md:w-[90%] max-md:gap-[1.2rem] max-md:p-4 max-md:max-h-[90vh] max-md:overflow-y-auto">
+            {{-- Review Cards Grid --}}
+            <div class="grid grid-cols-3 gap-5 px-[50px] max-md:grid-cols-1 max-md:px-4" id="review-container">
+                @forelse($places->reviews->take(3) as $review)
+                    <div class="border border-gray-200 rounded-2xl p-5 shadow-sm bg-white flex flex-col gap-3">
 
-                    <button class="absolute top-3 right-3 w-fit bg-transparent border-none text-base cursor-pointer
-                    max-md:top-5 max-md:right-5" id="closeModal">✖</button>
-
-                    <div class="flex bg-white rounded-[10px] justify-between py-4 px-[1.2rem] items-center gap-6 w-fit mt-[50px]">
-                        <img src="{{ asset($places->gambar_tempat) }}" alt="{{ asset($places->nama_tempat) }}" class="w-36 h-28 rounded-[10px]">
-                        <div class="flex flex-col justify-between gap-[25px]">
-                            <h3 class="font-[Poppins] text-xl font-semibold w-full h-full m-0
-                            max-md:text-lg max-md:pt-[1px]">{{ $places->nama_tempat }}</h3>
-                            <p class="text-[0.8rem] text-base font-medium mt-[-20px]
-                            max-md:text-xs max-md:mt-[-20px]">{{ $places->alamat_lengkap }}</p>
+                        {{-- Header: Avatar + Nama + Tanggal + Bintang --}}
+                        <div class="flex items-center gap-3">
+                            @if($review->user->fotoProfile)
+                                <img
+                                    src="{{ asset('storage/' . $review->user->fotoProfile) }}"
+                                    class="w-12 h-12 rounded-full object-cover"
+                                    alt="{{ $review->user->nama }}"
+                                >
+                            @else
+                                <img
+                                    src="https://ui-avatars.com/api/?name={{ urlencode($review->user->nama) }}&background=FBB45E&color=363B58"
+                                    class="w-12 h-12 rounded-full object-cover"
+                                    alt="{{ $review->user->nama }}"
+                                >
+                            @endif
+                            <div class="flex-1 min-w-0">
+                                <p class="font-bold text-[#363b58] truncate">{{ $review->user->nama }}</p>
+                                <p class="text-sm text-gray-400">{{ $review->created_at->format('d F Y') }}</p>
+                            </div>
+                            {{-- Bintang --}}
+                            <div class="flex gap-[2px] shrink-0">
+                                @for($i = 1; $i <= 5; $i++)
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                        fill="{{ $i <= $review->rating ? '#FBB45E' : '#D1D5DB' }}">
+                                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                    </svg>
+                                @endfor
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="flex justify-center gap-2">
-                        <span class="text-3xl text-[#F4A64C]
-                        max-md:text-2xl">★</span>
-                        <span class="text-3xl text-[#F4A64C]
-                        max-md:text-2xl">★</span>
-                        <span class="text-3xl text-[#F4A64C]
-                        max-md:text-2xl">★</span>
-                        <span class="text-3xl text-[#F4A64C]
-                        max-md:text-2xl">★</span>
-                        <span class="text-3xl text-gray-300
-                        max-md:text-2xl">★</span>
-                    </div>
+                        {{-- Judul --}}
+                        <p class="font-bold text-[#363b58] text-base leading-snug">{{ $review->title }}</p>
 
-                    <div class="flex flex-col gap-[5px]">
-                        <label for="judul" class="text-sm text-gray-600">Judul</label>
-                        <input type="text" id="judul" placeholder="Masukkan Judul Ulasan"
-                            class="border border-gray-200 rounded-lg px-3 py-2.5 text-sm outline-none focus:border-[#F4A64C]">
-                    </div>
+                        {{-- Komentar --}}
+                        <p class="text-gray-600 text-sm leading-relaxed line-clamp-3">"{{ $review->comment }}"</p>
 
-                    <div class="flex flex-col gap-[5px]">
-                        <label for="ulasan" class="text-sm text-gray-600">Ulasan</label>
-                        <textarea name="ulasan" id="ulasan" placeholder="Masukkan Ulasan"
-                            class="h-[120px] border border-gray-200 rounded-lg px-3 py-2.5 text-sm outline-none focus:border-[#F4A64C] resize-none
-                            max-md:h-[90px]"></textarea>
-                    </div>
+                        {{-- FOTO + VIDEO --}}
+                        @if($review->file_url)
+                        <div class="flex gap-2 flex-wrap mb-4">
+                            @foreach(json_decode($review->file_url) as $file)
+                                @php $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION)); @endphp
+                                @if(in_array($ext, ['mp4', 'webm', 'mov', 'ogg']))
+                                <div class="relative w-24 h-24 rounded-xl overflow-hidden cursor-pointer group"
+                                    onclick="bukaLightboxVideo('{{ asset('storage/' . $file) }}')">
+                                    <video src="{{ asset('storage/' . $file) }}#t=0.1"
+                                        class="w-full h-full object-cover"
+                                        preload="metadata"
+                                        muted
+                                        playsinline>
+                                    </video>
+                                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/55 transition">
+                                        <div class="w-9 h-9 bg-white/90 rounded-full flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-[#363B58] text-lg" style="font-variation-settings:'FILL' 1;">play_arrow</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @else
+                                <img src="{{ asset('storage/' . $file) }}"
+                                    class="w-24 h-24 rounded-xl object-cover cursor-pointer hover:opacity-90 transition"
+                                    onclick="bukaLightbox('{{ asset('storage/' . $file) }}')"
+                                    alt="Foto review">
+                                @endif
+                            @endforeach
+                        </div>
+                        @endif
 
-                    <div class="flex flex-col gap-2 border border-gray-200 rounded-xl p-4
-                    max-md:p-3">
-                        <p class="text-sm font-semibold text-gray-800 m-0">Tambahkan Foto atau Video</p>
-                        <p class="text-xs text-gray-400 m-0 leading-relaxed">Unggah hingga 6 foto atau video (maks. 5MB)<br>Format: JPG, PNG, MP4, MOV</p>
-                        <label class="inline-flex items-center gap-2 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-600 cursor-pointer hover:bg-gray-50 w-fit mt-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M12 12V4m0 0L8 8m4-4l4 4"/>
+                        {{-- Lokasi --}}
+                        <div class="flex items-center gap-1 text-[#F4A64C] text-sm font-medium mt-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#F4A64C">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                             </svg>
-                            Unggah File
-                            <input type="file" accept="image/*,video/*" multiple class="hidden">
-                        </label>
+                            {{ $places->nama_tempat }}
+                        </div>
+
                     </div>
-
-                    <form onsubmit="handleSubmit(event)">
-                        <button type="submit" class="w-full py-3 bg-[#F4A64C] rounded-xl font-semibold text-[#363b58] cursor-pointer border-none text-base
-                         max-md:py-2.5 max-md:text-sm">
-                            Kirim Ulasan
-                        </button>
-                    </form>
-
-                </div>
+                @empty
+                    <div class="col-span-3 text-center py-10 text-gray-400">
+                        <p>Belum ada review untuk tempat ini.</p>
+                    </div>
+                @endforelse
             </div>
-        </div>
 
-        <footer class="footer">
-            <div class="pt-[100px] pb-[50px] bg-white border-4 border-[#E2E8F0] flex flex-col justify-center items-center w-full max-md:pt-[50px]">
-                <div class="flex text-[#363b58] items-center gap-[10px]">
-                    <img src="/assets/img/Locana_Logo 1.png" alt="f-logloc" class="h-10 max-sm:h-6">
-                    <span class="font-bold text-xl text-gray-800 max-sm:text-base">LOCANA</span>
-                </div>
-                <div class="mt-[15px] max-w-[750px] text-center italic text-[30px] max-md:text-[15px]">
-                    <p>Setiap momen punya tempatnya sendiri—kami bantu kamu menemukannya dengan lebih mudah dan personal.</p>
-                </div>
-                <div class="copyright font-bold max-md:text-[10px] mt-10">
-                    <p>© Copyright by Biskuat. All Rights Reserved</p>
-                </div>
+            {{-- Tombol Tampilkan Semua --}}
+            @if($places->reviews->count() > 3)
+            <div class="flex justify-center mt-8 px-[50px] max-md:px-4">
+                <a href="{{ route('reviews.index', $places->id) }}"
+                class="bg-[#F4A64C] text-[#363b58] font-semibold py-4 px-20 rounded-xl text-base hover:bg-[#E2A255] transition max-md:w-full max-md:text-center">
+                    Tampilkan Semua Review
+                </a>
             </div>
-        </footer>
+            @endif
 
-        <script>
-            const overlay = document.getElementById('overlay');
-            const openBtn = document.getElementById('openModal');
-            const closeBtn = document.getElementById('closeModal');
-            const mapBtn = document.getElementById('btnMaps');
+            <div class="flex justify-center mt-4 px-[50px] max-md:px-4">
+                <a href="{{ route('reviews.index', $places->id) }}"
+                    class="bg-[#F4A64C] text-[#363b58] font-semibold py-[12px] px-[24px] rounded-xl text-base hover:bg-[#E2A255] transition max-md:py-2 max-md:px-4 max-md:text-sm">
+                    Lihat Semua Review
+                </a>
+            </div>
+        </section>
 
-            openBtn.addEventListener('click', () => {
-                overlay.style.display = 'flex';
-            });
+<script>
+    const overlay = document.getElementById('overlay');
+    const mapBtn = document.getElementById('btnMaps');
 
-            closeBtn.addEventListener('click', () => {
-                overlay.style.display = 'none';
-            });
+    mapBtn.addEventListener('click', () => {
+        window.location.href = "/place/{{ $places->id }}/map";
+    });
 
-            mapBtn.addEventListener('click', () => {
-                window.location.href = "/place/{{ $places->id }}/map";
-            });
+    function rangeCount(lat1, long1, lat2, long2) {
+        const R = 6371;
+        const dLat = (lat2 - lat1) * Math.PI / 180;
+        const dLong = (long2 - long1) * Math.PI / 180;
+        const a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(lat1 * Math.PI / 180)  * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLong / 2) * Math.sin(dLong / 2);
 
-            function rangeCount(lat1, long1, lat2, long2) {
-                const R = 6371;
-                const dLat = (lat2 - lat1) * Math.PI / 180;
-                const dLong = (long2 - long1) * Math.PI / 180;
-                const a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(lat1 * Math.PI / 180)  * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLong / 2) * Math.sin(dLong / 2);
+        return (R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))).toFixed(1);
+    }
 
-                return (R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))).toFixed(1);
+    navigator.geolocation.getCurrentPosition(pos => {
+        const range = rangeCount(
+            pos.coords.latitude, pos.coords.longitude, {{ $places->latitude }}, {{ $places->longitude }}
+        );
+        document.getElementById('jarak').innerText = range + ' km';
+    }, () => {
+        document.getElementById('jarak').innerText = 'Lokasi tidak tersedia.';
+    });
+
+
+    function gambarGaleri(tipe, btn) {
+
+        document.querySelectorAll('.galeri-btn').forEach(b => {
+            b.classList.remove('bg-[#FBB45E]', 'text-[#363B58]');
+            b.classList.add('bg-white', 'border', 'border-[#FBB45E]', 'text-[#FBB45E]');
+        });
+        
+        btn.classList.add('bg-[#FBB45E]', 'text-[#363B58]');
+        btn.classList.remove('bg-white', 'border', 'border-[#FBB45E]', 'text-[#FBB45E]');
+
+        document.querySelectorAll('.galeri-item').forEach(item => {
+            if (tipe === 'all' || item.dataset.tipe === tipe) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
             }
+        });
+    }
 
-            navigator.geolocation.getCurrentPosition(pos => {
-                const range = rangeCount(
-                    pos.coords.latitude, pos.coords.longitude, {{ $places->latitude }}, {{ $places->longitude }}
-                );
-                document.getElementById('jarak').innerText = range + ' km';
-            }, () => {
-                document.getElementById('jarak').innerText = 'Lokasi tidak tersedia.';
-            });
+</script>
 
-
-            function gambarGaleri(tipe, btn) {
-
-                document.querySelectorAll('.galeri-btn').forEach(b => {
-                    b.classList.remove('bg-[#FBB45E]', 'text-[#363B58]');
-                    b.classList.add('bg-white', 'border', 'border-[#FBB45E]', 'text-[#FBB45E]');
-                });
-                
-                btn.classList.add('bg-[#FBB45E]', 'text-[#363B58]');
-                btn.classList.remove('bg-white', 'border', 'border-[#FBB45E]', 'text-[#FBB45E]');
-
-                document.querySelectorAll('.galeri-item').forEach(item => {
-                    if (tipe === 'all' || item.dataset.tipe === tipe) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            }
-
-        </script>
-    </body>
-</html>
+@endsection

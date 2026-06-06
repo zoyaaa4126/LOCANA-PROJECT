@@ -1,27 +1,21 @@
 @extends('layouts.app')
-
-@section('title', 'Kirim Review - ' . $place->nama_tempat)
-
+@section('title', 'Edit Ulasan - ' . $place->nama_tempat)
 @section('content')
 
 <div class="min-h-screen bg-gray-50 pb-16">
     <div class="max-w-5xl mx-auto px-4 py-8">
 
-        {{-- BREADCRUMB + HEADER --}}
         <div class="flex items-center gap-4 mb-8">
-            <a href="{{ route('reviews.index', $place->id) }}"
+            <a href="{{ route('profile') }}"
                class="w-10 h-10 bg-[#FBB45E] rounded-xl flex items-center justify-center hover:bg-[#E2A255] transition">
                 <span class="material-symbols-outlined text-[#363B58]">arrow_back</span>
             </a>
             <div>
-                <p class="text-xs text-gray-400">
-                    Detail Lokasi / <span class="text-[#FBB45E] font-semibold">Kirim Review</span>
-                </p>
-                <h1 class="text-2xl font-extrabold text-[#363B58]">Kirim Review</h1>
+                <p class="text-xs text-gray-400">Profil / <span class="text-[#FBB45E] font-semibold">Edit Ulasan</span></p>
+                <h1 class="text-2xl font-extrabold text-[#363B58]">Edit Ulasan</h1>
             </div>
         </div>
 
-        {{-- ERROR MESSAGES --}}
         @if($errors->any())
         <div class="bg-red-50 border border-red-200 rounded-xl p-4 mb-6">
             <ul class="text-red-500 text-sm space-y-1">
@@ -34,9 +28,24 @@
         </div>
         @endif
 
-        <form action="{{ route('reviews.store') }}" method="POST" enctype="multipart/form-data">
+        {{-- Sisa waktu edit --}}
+        @php
+            $sisaMenit = (24 * 60) - $review->created_at->diffInMinutes(now());
+            $sisaJamBulat = floor($sisaMenit / 60);
+            $sisaMinutSisa = $sisaMenit % 60;
+        @endphp
+        <div class="bg-orange-50 border border-orange-200 rounded-xl p-3 mb-6 flex items-center gap-2 text-sm text-orange-600">
+            <span class="material-symbols-outlined text-base">schedule</span>
+            Ulasan dapat diedit selama
+            <strong class="ml-1">{{ $sisaJamBulat }} jam {{ $sisaMinutSisa }} menit lagi</strong>.
+        </div>
+
+        <form action="{{ route('reviews.update', $review->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <input type="hidden" name="place_id" value="{{ $place->id }}">
+            @method('PUT')
+
+            {{-- Track foto lama yang dihapus --}}
+            <div id="deletedFilesContainer"></div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
@@ -46,7 +55,7 @@
                     {{-- PLACE CARD --}}
                     <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 flex gap-4 items-start">
                         <img src="{{ $place->gambar ? asset('storage/' . $place->gambar) : asset('assets/img/180 Cafe - Bandung 1.png') }}"
-                             class="w-24 h-24 rounded-xl object-cover shrink-0" alt="{{ $place->nama_tempat }}">
+                             class="w-24 h-24 rounded-xl object-cover shrink-0">
                         <div>
                             <h2 class="font-bold text-lg text-[#363B58]">{{ $place->nama_tempat }}</h2>
                             <div class="flex items-center gap-2 mt-1">
@@ -66,18 +75,21 @@
                         <p class="font-bold text-[#363B58] mb-4">
                             Rating Lokasi <span class="text-red-500">*</span>
                         </p>
-                        <div class="flex gap-2 justify-center" id="starContainer">
+                        <div class="flex gap-2 justify-center">
                             @for ($i = 1; $i <= 5; $i++)
-                            <button type="button"
-                                    data-value="{{ $i }}"
-                                    class="star-btn material-symbols-outlined text-4xl text-gray-300 hover:text-[#FBB45E] transition cursor-pointer"
-                                    style="font-variation-settings:'FILL' 0;">
+                            <button type="button" data-value="{{ $i }}"
+                                    class="star-btn material-symbols-outlined text-4xl transition cursor-pointer"
+                                    style="color: {{ $i <= $review->rating ? '#FBB45E' : '#D1D5DB' }};
+                                           font-variation-settings: '{{ $i <= $review->rating ? 'FILL' : '' }}' {{ $i <= $review->rating ? '1' : '0' }}">
                                 star
                             </button>
                             @endfor
                         </div>
-                        <input type="hidden" name="rating" id="ratingInput" value="{{ old('rating') }}" required>
-                        <p class="text-center text-xs text-gray-400 mt-3" id="ratingLabel">Pilih rating</p>
+                        <input type="hidden" name="rating" id="ratingInput" value="{{ old('rating', $review->rating) }}">
+                        <p class="text-center text-xs mt-3" id="ratingLabel"
+                           style="color: #FBB45E">
+                            {{ ['','Buruk','Kurang','Cukup','Bagus','Sangat Bagus!'][$review->rating] }}
+                        </p>
                     </div>
 
                 </div>
@@ -90,9 +102,7 @@
                         <label class="block font-bold text-[#363B58] mb-3">
                             Judul <span class="text-red-500">*</span>
                         </label>
-                        <input type="text"
-                               name="title"
-                               value="{{ old('title') }}"
+                        <input type="text" name="title" value="{{ old('title', $review->title) }}"
                                placeholder="Masukkan Judul Ulasan"
                                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#FBB45E] placeholder-gray-300"
                                required>
@@ -101,15 +111,14 @@
                     {{-- ULASAN --}}
                     <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
                         <label class="block font-bold text-[#363B58] mb-3">Ulasan</label>
-                        <textarea name="comment"
-                                  rows="4"
+                        <textarea name="comment" rows="4"
                                   placeholder="Masukkan Ulasan"
-                                  class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#FBB45E] placeholder-gray-300 resize-none">{{ old('comment') }}</textarea>
+                                  class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#FBB45E] placeholder-gray-300 resize-none">{{ old('comment', $review->comment) }}</textarea>
                     </div>
 
-                    {{-- UPLOAD FOTO --}}
+                    {{-- FOTO & VIDEO --}}
                     <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-                        <p class="font-bold text-[#363B58] mb-1">Tambahkan Foto atau Video</p>
+                        <p class="font-bold text-[#363B58] mb-1">Foto atau Video</p>
                         <p class="text-gray-400 text-xs mb-1">Unggah hingga 6 foto atau video (maks. 5MB per file)</p>
                         <p class="text-gray-400 text-xs mb-4">Format: JPG, PNG, MP4, MOV</p>
 
@@ -118,37 +127,64 @@
                             <span class="material-symbols-outlined text-sm">upload</span>
                             Unggah File
                         </label>
-                        <input type="file" id="fileUpload" name="file_url[]"
+                        <input type="file" id="fileUpload" name="new_files[]"
                             accept=".jpg,.jpeg,.png,.mp4,.mov"
-                            class="hidden" multiple onchange="previewFiles(this)">
+                            class="hidden" multiple onchange="previewNewFiles(this)">
 
-                        {{-- Error --}}
                         <p id="fileError" class="text-red-500 text-xs mt-2 hidden"></p>
 
-                        {{-- Preview grid --}}
-                        <div id="filePreview" class="mt-3 flex flex-wrap gap-2"></div>
+                        {{-- Preview foto LAMA --}}
+                        <div class="mt-3 flex flex-row flex-wrap gap-2" id="allPreview">
+                            @if($review->file_url)
+                                @foreach(json_decode($review->file_url) as $file)
+                                @php $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION)); @endphp
+                                <div class="relative w-24 h-24 shrink-0" id="existing-{{ $loop->index }}">
+                                    @if(in_array($ext, ['mp4', 'webm', 'mov', 'ogg']))
+                                    <div class="w-24 h-24 rounded-xl bg-gray-100 flex flex-col items-center justify-center gap-1">
+                                        <span class="material-symbols-outlined text-gray-400 text-2xl">videocam</span>
+                                        <span class="text-[9px] text-gray-400 text-center px-1 line-clamp-2">{{ basename($file) }}</span>
+                                    </div>
+                                    @else
+                                    <img src="{{ asset('storage/' . $file) }}" class="w-24 h-24 rounded-xl object-cover">
+                                    @endif
+                                    <span class="absolute bottom-1 right-1 bg-black/50 text-white text-[9px] px-1 rounded">{{ strtoupper($ext) }}</span>
+                                    <button type="button"
+                                            onclick="hapusFotoLama('{{ $file }}', 'existing-{{ $loop->index }}')"
+                                            class="absolute top-1 left-1 z-10 bg-black/60 text-white rounded-full w-5 h-5 flex items-center justify-center hover:bg-red-500 transition">
+                                        <span class="material-symbols-outlined" style="font-size:12px">close</span>
+                                    </button>
+                                </div>
+                                @endforeach
+                            @endif
+                            <div id="newFilePreview" class="flex flex-row flex-wrap gap-2"></div>
+                        </div>
+
+                        {{-- Preview foto BARU --}}
+                        <div id="newFilePreview" class="mt-2 flex flex-wrap gap-2"></div>
                     </div>
 
                 </div>
             </div>
 
-            {{-- SUBMIT --}}
-            <div class="flex justify-end mt-6">
+            <div class="flex justify-end gap-3 mt-6">
+                <a href="{{ route('profile') }}"
+                   class="border border-gray-200 text-gray-500 px-6 py-3 rounded-xl text-sm font-medium hover:bg-gray-50 transition">
+                    Batal
+                </a>
                 <button type="submit"
                         class="bg-[#FBB45E] hover:bg-[#E2A255] text-[#363B58] font-bold px-8 py-3 rounded-xl transition text-sm">
-                    Kirim Review
+                    Simpan Perubahan
                 </button>
             </div>
-
         </form>
     </div>
 </div>
+
 <script>
 // STAR RATING
 const starBtns = document.querySelectorAll('.star-btn');
 const ratingInput = document.getElementById('ratingInput');
 const ratingLabel = document.getElementById('ratingLabel');
-
 const ratingLabels = { 1:'Buruk', 2:'Kurang', 3:'Cukup', 4:'Bagus', 5:'Sangat Bagus!' };
 
 function highlightStars(count) {
@@ -166,34 +202,37 @@ starBtns.forEach(btn => {
         const val = parseInt(btn.dataset.value);
         ratingInput.value = val;
         highlightStars(val);
-        if (ratingLabel) {
-            ratingLabel.textContent = ratingLabels[val];
-            ratingLabel.classList.add('text-[#FBB45E]');
-            ratingLabel.classList.remove('text-gray-400');
-        }
+        ratingLabel.textContent = ratingLabels[val];
+        ratingLabel.style.color = '#FBB45E';
     });
 });
 
+// HAPUS FOTO LAMA — tambahkan hidden input agar controller tahu file mana yang dihapus
+function hapusFotoLama(filePath, wrapperId) {
+    document.getElementById(wrapperId).remove();
+
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'deleted_files[]';
+    input.value = filePath;
+    document.getElementById('deletedFilesContainer').appendChild(input);
+}
+
+// UPLOAD FILE BARU
 let activeFiles = [];
 
-function previewFiles(input) {
-    const preview = document.getElementById('filePreview');
+function previewNewFiles(input) {
+    const preview = document.getElementById('newFilePreview');
     const errorEl = document.getElementById('fileError');
 
     errorEl.classList.add('hidden');
     errorEl.textContent = '';
 
-    const newFiles = Array.from(input.files);
-
-    // Gabungkan file lama dengan yang baru, hindari duplikat nama
-    newFiles.forEach(newFile => {
+    Array.from(input.files).forEach(newFile => {
         const isDuplicate = activeFiles.some(f => f.name === newFile.name && f.size === newFile.size);
-        if (!isDuplicate) {
-            activeFiles.push(newFile);
-        }
+        if (!isDuplicate) activeFiles.push(newFile);
     });
 
-    // Reset input value biar bisa pilih file yang sama lagi kalau perlu
     input.value = '';
 
     if (activeFiles.length > 6) {
@@ -202,15 +241,15 @@ function previewFiles(input) {
         activeFiles = activeFiles.slice(0, 6);
     }
 
-    for (const file of activeFiles) {
+    activeFiles = activeFiles.filter(file => {
         if (file.size > 5 * 1024 * 1024) {
             errorEl.textContent = `File "${file.name}" melebihi 5MB.`;
             errorEl.classList.remove('hidden');
-            activeFiles = activeFiles.filter(f => f !== file);
+            return false;
         }
-    }
+        return true;
+    });
 
-    // Sync ke input file
     function syncInput() {
         const dt = new DataTransfer();
         activeFiles.forEach(f => dt.items.add(f));
@@ -262,16 +301,4 @@ function previewFiles(input) {
 }
 </script>
 
-@if($loginRequired)
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        bukaModalLoginRequired();
-    });
-
-    history.pushState(null, null, location.href);
-    window.addEventListener('popstate', function() {
-        window.location.href = '/';
-    });
-</script>
-@endif
 @endsection

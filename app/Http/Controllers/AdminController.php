@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use App\Models\places;
 use App\Models\moods;
 
@@ -10,36 +12,197 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        return view('admin/dashboard');
+        $user = Auth::user();
+        $totalLokasi = \App\Models\Places::count();
+        $lokasiBaruMingguIni = \App\Models\Places::where('created_at', '>=', now()->startOfWeek())->count();
+        $totalUlasan = \App\Models\Review::count();
+        $rataRating = \App\Models\Review::avg('rating');
+        $totalFlagged = \App\Models\Review::where('flagged', true)->count();
+
+        return view('admin/dashboard', compact('user', 'totalLokasi', 'lokasiBaruMingguIni', 'totalUlasan', 'rataRating', 'totalFlagged'));
     }
+
     public function lokasi()
     {
         $lokasi = places::paginate(5);
-        return view('admin/lokasi/lokasi', compact('lokasi'));
+        $user = Auth::user();
+        return view('admin/lokasi/lokasi', compact('lokasi', 'user'));
     }
+
     public function tambahLokasi()
     {
+        $user = Auth::user();
+        $kategoriList = [
+            ['value' => 'cafe',       'label' => 'Cafe',       'icon' => 'coffee'],
+            ['value' => 'restaurant', 'label' => 'Restaurant', 'icon' => 'restaurant'],
+            ['value' => 'bakery',     'label' => 'Bakery',     'icon' => 'cake'],
+            ['value' => 'park',       'label' => 'Park',       'icon' => 'park'],
+            ['value' => 'mall',       'label' => 'Mall',       'icon' => 'local_mall'],
+        ];
+
         $moods = moods::all();
-        return view('admin/lokasi/tambahLokasi', compact('moods'));
-        // return view('admin/lokasi/tambahLokasi');
+        
+        return view('admin/lokasi/tambahLokasi', compact('user', 'kategoriList', 'moods'));
     }
+
     public function ulasan()
     {
-        return view('admin/ulasan');
+        $user = Auth::user();
+        $flaggedReviews = \App\Models\Review::with(['user', 'place'])
+            ->where('flagged', true)
+            ->orWhere(function($q) {
+                // Auto-flag keyword spam meski belum dilaporkan user
+                foreach (\App\Models\Review::SPAM_KEYWORDS as $kw) {
+                    $q->orWhere('comment', 'like', "%$kw%")
+                    ->orWhere('title', 'like', "%$kw%");
+                }
+            })
+            ->latest()
+            ->get();
+
+        $totalReviews = \App\Models\Review::count();
+
+        return view('admin/ulasan', compact('user', 'flaggedReviews', 'totalReviews'));
     }
     public function pengguna()
     {
-        return view('admin/pengguna/pengguna');
+        $user = Auth::user();
+        $users = User::paginate(5);
+        return view('admin/pengguna/pengguna', compact('user', 'users'));
+    }
+    public function editPengguna($id)
+    {
+        $authUser = Auth::user();
+        $user = User::findOrFail($id);
+        return view('admin/pengguna/editPengguna', compact('user', 'authUser'));
+    }
+    public function updatePengguna(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $request->validate([
+            'nama'        => 'required|string|max:255',
+            'username'    => 'required|string|max:255|unique:users,username,' . $id,
+            'email'       => 'required|email|unique:users,email,' . $id,
+            'password'    => 'nullable|min:6',
+            'role'        => 'required|in:user,admin',  
+            'deskripsi'   => 'nullable|string',
+            'foto_profil' => 'nullable|image|max:5120',
+        ], ['email.unique'      => 'Email sudah terdaftar.',
+            'password.min'      => 'Password minimal 6 karakter.',
+            'username.unique'   => 'Username sudah digunakan'
+        ]);
+
+        $user->update([
+            'nama'     => $request->nama,
+            'username' => $request->username,
+            'email'    => $request->email,
+            'role'      => $request->role,       
+            'deskripsi' => $request->deskripsi,
+        ]);
+
+        if ($request->filled('password')) {
+            $user->update(['password' => bcrypt($request->password)]);
+        }
+
+        if ($request->hasFile('foto_profil')) {
+            $path = $request->file('foto_profil')->store('foto-profile', 'public');
+            $user->update(['fotoProfile' => $path]);
+        }
+
+        return redirect('/admin/pengguna')->with('success', 'Pengguna berhasil diupdate.');
+    }
+     public function hapusPengguna($id)
+    {
+        User::findOrFail($id)->delete();
+        return redirect('/pengguna')->with('success', 'Pengguna berhasil dihapus.');
     }
     public function tambahPengguna()
     {
-        return view('admin/pengguna/tambahPengguna');
+        $user = Auth::user();
+        return view('admin/pengguna/tambahPengguna', compact('user'));
     }
-    public function viewPengguna()
+    public function storePengguna(Request $request)
     {
-        return view('admin/pengguna/viewPengguna');
-    }
+        $request->validate([
+            'nama'       => 'required|string|max:255',
+            'username'   => 'required|string|max:255|unique:users,username',
+            'email'      => 'required|email|unique:users,email',
+            'password'   => 'required|min:6',
+            'role'       => 'required|in:user,admin',
+            'deskripsi'  => 'nullable|string',
+            'foto_profil'=> 'nullable|image|max:5120',
+        ], ['email.unique'      => 'Email sudah terdaftar.',
+            'password.min'      => 'Password minimal 6 karakter.',
+            'username.unique'   => 'Username sudah digunakan'
+        ]);
 
+        $data = [
+            'nama'     => $request->nama,
+            'username' => $request->username,
+            'email'    => $request->email,
+            'password' => bcrypt($request->password),
+            'role'     => $request->role,
+            'deskripsi'=> $request->deskripsi,
+        ];
+
+        if ($request->hasFile('foto_profil')) {
+            $data['fotoProfile'] = $request->file('foto_profil')->store('foto-profile', 'public');
+        }
+
+        User::create($data);
+
+        return redirect('/pengguna')->with('success', 'Pengguna berhasil ditambahkan.');
+    }
+    public function viewPengguna($id)
+    {
+        $user = User::findOrFail($id);
+        return view('admin/pengguna/viewPengguna', compact('user'));
+    }
+    public function profileAdmin()
+    {
+        $user = Auth::user();
+        return view('admin/profileAdmin', compact('user'));
+    }
+    public function editProfileAdmin()
+    {
+        $user = Auth::user();
+        return view('admin/editProfileAdmin', compact('user'));
+    }
+    public function updateProfileAdmin(Request $request)
+    {
+        $user = User::findOrFail(Auth::id());
+
+        $request->validate([
+            'nama'     => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users,username,' . Auth::id(),
+            'email'    => 'required|email|unique:users,email,' . Auth::id(),
+            'password' => 'nullable|min:6',
+            'foto_profil' => 'nullable|image|max:2048',
+        ], ['email.unique'      => 'Email sudah terdaftar.',
+            'password.min'      => 'Password minimal 6 karakter.',
+            'username.unique'   => 'Username sudah digunakan'
+        ]);
+
+        $user->update([
+            'nama' => $request->nama,
+            'username' => $request->username,
+            'email' => $request->email,
+        ]);
+
+
+        if($request->password){
+            $user->update([
+                'password' => bcrypt($request->password)
+            ]);
+        }
+        if ($request->hasFile('foto_profil')) {
+            $path = $request->file('foto_profil')->store('foto-profile', 'public');
+            $user->update(['fotoProfile' => $path]);
+        }
+
+        return redirect('/admin/profile-admin');
+    }
     public function simpanTempat(Request $request)
     {
         $kategoriMap = [

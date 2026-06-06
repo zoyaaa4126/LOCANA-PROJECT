@@ -14,7 +14,7 @@
             <h1 class="text-2xl font-bold text-[#363B58]">Tambah Lokasi</h1>
         </div>
         <div class="flex gap-3">
-            <a href="/lokasi"
+            <a href="/admin/lokasi"
                class="flex items-center gap-2 bg-white border border-[#E2E8F0] text-[#363B58] font-bold text-sm px-5 py-2.5 rounded-[10px] cursor-pointer hover:bg-[#F1F5F9] transition-colors duration-200">
                 <span class="material-symbols-outlined" style="font-size:18px;">arrow_back</span>
                 Kembali
@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <form id="form-lokasi" class="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-5 items-start" action="{{ route('simpanTempat') }}" method="POST" enctype="multipart/form-data">
+    <form id="form-lokasi" class="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-5 items-start" action="{{ route('admin.simpanTempat') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="flex flex-col gap-5">
@@ -58,23 +58,19 @@
                             <span class="material-symbols-outlined text-gray-400 transition-transform duration-200" id="kategori-chevron" style="font-size:20px;">expand_more</span>
                         </button>
 
-                        <div id="kategori-dropdown" class="hidden absolute top-full left-0 right-0 mt-1 bg-white border border-[#E2E8F0] rounded-xl shadow-lg z-50 overflow-hidden">
-                            @php
-                            $kategoriList = [
-                                ['value' => 1, 'label' => 'Cafe',       'icon' => 'coffee'],
-                                ['value' => 2, 'label' => 'Restaurant', 'icon' => 'restaurant'],
-                                ['value' => 3, 'label' => 'Bakery',     'icon' => 'bakery_dining'],
-                                ['value' => 4, 'label' => 'Live Music',  'icon' => 'music_note'],
-                                ['value' => 5, 'label' => 'Indoor',      'icon' => 'home'],
-                                ['value' => 6, 'label' => 'Outdoor',     'icon' => 'landscape'],
-                                ['value' => 7, 'label' => 'Mall',       'icon' => 'local_mall'],
-                                ['value' => 4, 'label' => 'Park',       'icon' => 'park'],
-                            ];
-                            @endphp
+                        <div id="kategori-dropdown"
+                             class="hidden absolute top-full left-0 right-0 mt-1 bg-white border border-[#E2E8F0] rounded-xl shadow-lg z-50 overflow-hidden">
                             @foreach($kategoriList as $kat)
-                            <button type="button" onclick="selectKategori('{{ $kat['value'] }}', '{{ $kat['label'] }}', '{{ $kat['icon'] }}')" class="w-full flex items-center gap-3 px-4 py-3 text-sm text-[#363B58] font-medium hover:bg-[#FEF4E7] hover:text-[#FBB45E] transition-colors border-b border-[#F1F5F9] last:border-0">
-                                <span class="material-symbols-outlined text-gray-400" style="font-size:20px; font-variation-settings:'FILL' 1;">{{ $kat['icon'] }}</span>
-                                {{ $kat['label'] }}
+                            @php
+                                $katValue = $kat['value'];
+                                $katLabel = $kat['label'];
+                                $katIcon  = $kat['icon'];
+                            @endphp
+                            <button type="button"
+                                    onclick="selectKategori('{{ $katValue }}', '{{ $katLabel }}', '{{ $katIcon }}')"
+                                    class="w-full flex items-center gap-3 px-4 py-3 text-sm text-[#363B58] font-medium hover:bg-[#FEF4E7] hover:text-[#FBB45E] transition-colors border-b border-[#F1F5F9] last:border-0">
+                                <span class="material-symbols-outlined text-gray-400" style="font-size:20px; font-variation-settings:'FILL' 1;">{{ $katIcon }}</span>
+                                {{ $katLabel }}
                             </button>
                              @endforeach
                         </div>

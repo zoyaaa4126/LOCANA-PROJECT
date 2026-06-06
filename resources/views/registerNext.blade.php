@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Locana | Hampir Selesai</title>
+    <title>Register</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -89,6 +89,10 @@
                            accept="image/png,image/jpeg" class="hidden"
                            onchange="previewFoto(this)">
                 </div>
+
+                @error('nama')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
 
                 <!-- Submit -->
                 <button type="submit"
