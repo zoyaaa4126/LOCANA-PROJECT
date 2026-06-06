@@ -162,4 +162,19 @@
     </div>
 </div>
 
+@push('scripts')
+<script>
+function confirmHapus(id, nama) {
+    document.getElementById('modal-nama').textContent = nama;
+    document.getElementById('form-hapus').action = '/admin/pengguna/' + id;
+    document.getElementById('modal-hapus').classList.remove('hidden');
+    document.getElementById('modal-hapus').classList.add('flex');
+}
+function tutupModal() {
+    document.getElementById('modal-hapus').classList.add('hidden');
+    document.getElementById('modal-hapus').classList.remove('flex');
+}
+</script>
+@endpush
+
 @endsection
