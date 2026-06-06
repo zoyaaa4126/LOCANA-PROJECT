@@ -51,13 +51,25 @@
             <div class="mb-6">
                 <p class="text-gray-400 font-semibold text-sm mb-3 uppercase tracking-wide">MOODS</p>
                 <div class="space-y-1">
+                    @php
+                    $moodIcons = [
+                    'Chill' => 'coffee',
+                    'Romantis' => 'dine_heart',
+                    'Fancy' => 'local_bar',
+                    'Keluarga' => 'attractions',
+                    'Petualangan' => 'hiking',
+                    'Produktif' => 'laptop_windows',
+                    ];
+                    @endphp
                     @foreach ($moods as $mood)
                     <label class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer
                               has-checked:bg-orange-50 has-checked:text-[#FBB45E]">
                         <input type="checkbox" name="mood[]" value="{{ $mood->id }}"
                             class="sr-only"
                             {{ in_array($mood->id, request('mood', [])) ? 'checked' : '' }}>
-                        <span class="material-symbols-outlined">mood</span>
+                        <span class="material-symbols-outlined">
+                            {{ $moodIcons[$mood->nama] ?? 'mood' }}
+                        </span>
                         {{ $mood->nama }}
                     </label>
                     @endforeach
