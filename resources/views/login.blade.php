@@ -13,6 +13,30 @@
 </head>
 <body class="m-0 p-0 box-border font-['Poppins',sans-serif] text-[#363b58] scroll-smooth bg-[#fff8ef] min-h-screen flex justify-center items-center py-8">
 
+    <!-- ini buat pop out keterangan registrasi berhasil -->
+    @if(session('success'))
+    <div id="modal-success" class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+        <div class="bg-white rounded-2xl shadow-xl p-8 w-80 flex flex-col items-center gap-4 text-center">
+            <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center">
+                <span class="material-symbols-outlined text-green-500" style="font-size:36px; font-variation-settings:'FILL' 1;">check_circle</span>
+            </div>
+            <h2 class="font-bold text-xl text-[#363B58]">Registrasi Berhasil!</h2>
+            <p class="text-sm text-gray-400">Silakan masuk dengan akun kamu.</p>
+            <p class="text-xs text-gray-300">Menutup dalam <span id="countdown">3</span> detik...</p>
+        </div>
+    </div>
+    <script>
+        let count = 3;
+        const timer = setInterval(() => {
+            count--;
+            document.getElementById('countdown').textContent = count;
+            if (count <= 0) {
+                clearInterval(timer);
+                document.getElementById('modal-success').remove();
+            }
+        }, 1000);
+    </script>
+    @endif
     <div class="w-4/5 max-w-[1728px] flex rounded-[20px] overflow-hidden bg-white [box-shadow:0_10px_25px_rgba(0,0,0,0.2)]
                 max-lg:flex-col max-lg:w-11/12 max-lg:mx-auto">
 

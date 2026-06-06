@@ -74,7 +74,7 @@ class UserController extends Controller
             'password' => bcrypt(session('password')),
             'fotoProfile' => $path,
         ]);
-        return redirect('/home');
+        return redirect('/login')->with('success', 'Registrasi berhasil! Silakan login.');
     }
 
     //CONTROLLER LOGIN
