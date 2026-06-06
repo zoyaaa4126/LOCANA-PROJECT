@@ -229,11 +229,12 @@
     </div>
 
     <div class="flex gap-[0.6rem] overflow-x-auto py-2">
+        <!-- <p>Jumlah: {{ $tempatPopuler->count() }}</p> -->
         @forelse($tempatPopuler as $tempat)
         <div class="bg-white rounded-xl shadow-md w-[43vw] shrink-0 border border-gray-100 p-4 hover:shadow-lg transition md:w-[280px]">
 
             <div style="position: relative; margin-bottom: 12px;">
-                <img src="{{ $tempat->gambar ? asset('storage/' . $tempat->gambar) : asset('assets/img/180 Cafe - Bandung 1.png') }}"
+                <img src="{{ $tempat->gambar_tempat ? asset($tempat->gambar_tempat) : asset('assets/img/180 Cafe - Bandung 1.png') }}"
                     alt="{{ $tempat->nama_tempat }}"
                     style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px;">
 
