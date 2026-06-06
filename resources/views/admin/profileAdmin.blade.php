@@ -29,7 +29,7 @@
                             <h1 class="text-2xl font-bold text-gray-800">{{ $user->nama }}</h1>
                             <p class="text-gray-500">{{ $user->username }}</p>
                         </div>
-                        <a href="/edit-profile-admin">
+                        <a href="/admin/edit-profile-admin">
                             <button class="bg-[#FBB45E] text-[#363B58] px-5 py-2 rounded-lg text-sm font-bold cursor-pointer">Edit Profil</button>
                         </a>
                     </div>

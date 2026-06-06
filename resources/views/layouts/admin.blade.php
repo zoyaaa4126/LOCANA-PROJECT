@@ -28,7 +28,7 @@
 
                 <!-- PROFILE -->
                 <div class="flex items-center gap-2">
-                    <a href="/profile-admin" class="flex items-center gap-2">
+                    <a href="/admin/profile-admin" class="flex items-center gap-2">
                     @if(Auth::user()->fotoProfile)
                         <img src="{{ asset('storage/' . Auth::user()->fotoProfile) }}" 
                             class=" w-10 h-10 max-md:w-9 max-md:h-9 rounded-full object-cover" alt="Profile">

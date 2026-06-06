@@ -194,7 +194,7 @@ class AdminController extends Controller
             $user->update(['fotoProfile' => $path]);
         }
 
-        return redirect('/profile-admin');
+        return redirect('/admin/profile-admin');
     }
     public function simpanTempat(Request $request)
     {
