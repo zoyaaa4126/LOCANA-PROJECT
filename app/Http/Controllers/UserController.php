@@ -255,7 +255,7 @@ class UserController extends Controller
             ]);
         }
         if ($request->hasFile('foto_profil')) {
-            $path = cloudinary()->upload($request->file('foto_profil')->getRealPath())->getSecurePath();
+            $path = $request->file('foto_profil')->store('foto-profile', 'public');
             $user->update(['fotoProfile' => $path]);
         }
 

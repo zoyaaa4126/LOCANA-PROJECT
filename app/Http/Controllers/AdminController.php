@@ -291,10 +291,9 @@ class AdminController extends Controller
             foreach ($request->file('galeri') as $file) {
                 $filename = time() . '_' . $file->getClientOriginalName();
                 $file->move(public_path('assets/img/places_gallery'), $filename);
-                $cloudPath = cloudinary()->upload($file->getRealPath())->getSecurePath();
                 $places->galleries()->create([
-                    'path_file' => $cloudPath,'assets/img/places_gallery/' . $filename,
-                    'tipe'      => $cloudPath,'galeri',
+                    'path_file' => 'assets/img/places_gallery/' . $filename,
+                    'tipe'      => 'galeri',
                 ]);
             }
         }
