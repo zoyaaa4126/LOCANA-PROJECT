@@ -137,7 +137,9 @@ class UserController extends Controller
         $lat = $request->query('lat');
         $lng = $request->query('lng');
 
-        $kategoris = kategoris::all();
+
+        $kategoris = Kategoris::all();
+
         $moods = \App\Models\Moods::all();
         $popularPlaces = \App\Models\Places::where('status_aktif', true)
             ->where('tempat_unggulan', true)
