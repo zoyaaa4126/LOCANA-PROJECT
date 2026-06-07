@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Moods;
 
 class Places extends Model
 {
@@ -41,7 +42,7 @@ class Places extends Model
 
     public function Moods()
     {
-        return $this->belongsToMany(moods::class, 'place_moods', 'place_id', 'mood_id');
+        return $this->belongsToMany(Moods::class, 'place_moods', 'place_id', 'mood_id');
     }
 
     public function kategori()
