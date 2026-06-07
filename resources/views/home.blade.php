@@ -36,6 +36,8 @@
                             'live music' => 'music_note',
                             'indoor' => 'home',
                             'outdoor' => 'landscape',
+                            'mall' => 'local_mall',
+                            'park' => 'park',
                             default => 'category',
                             };
                             @endphp
