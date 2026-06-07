@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\kategoris;
 use App\Models\places;
+use App\Models\Moods;
 
 
 class UserController extends Controller
@@ -136,8 +137,10 @@ class UserController extends Controller
         $lat = $request->query('lat');
         $lng = $request->query('lng');
 
-        $kategoris = kategoris::all();
-        $moods = \App\Models\moods::all();
+
+        $kategoris = Kategoris::all();
+
+        $moods = \App\Models\Moods::all();
         $popularPlaces = \App\Models\Places::where('status_aktif', true)
             ->where('tempat_unggulan', true)
             ->limit(10)
