@@ -246,7 +246,7 @@
     @include('components.modal-logout')
     @include('components.modal-loginRequired')
     @include('components.modal-delete')
-    <script src="{{ asset('js/script.js') }}"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <script>
     function toggleWishlist(btn) {
