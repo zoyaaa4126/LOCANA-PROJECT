@@ -90,7 +90,7 @@
 
                                 {{-- Konten --}}
                                 <div class="flex gap-4 items-center">
-                                    <img src="{{ $activity['place']->gambar ? asset('storage/' . $activity['place']->gambar) : asset('assets/img/180 Cafe - Bandung 1.png') }}"
+                                    <img src="{{ asset($activity['place']->gambar_tempat) }}"
                                         class="w-20 h-20 rounded-xl object-cover shrink-0">
                                     <div class="flex flex-col">
                                         <h3 class="font-bold text-base">{{ $activity['place']->nama_tempat }}</h3>
@@ -132,7 +132,7 @@
                             @forelse ($wishlists as $item)
                             <div class="flex gap-4 bg-white rounded-xl border border-gray-100 p-4 h-fit w-[500px] shrink-0 shadow-sm">
                                 <div class="relative w-40 h-40 shrink-0">
-                                    <img src="{{ $item->place->gambar ? asset('storage/' . $item->place->gambar) : asset('assets/img/180 Cafe - Bandung 1.png') }}"
+                                    <img src="{{ $item->place->gambar_tempat ? asset($item->place->gambar_tempat) : asset('assets/img/180 Cafe - Bandung 1.png') }}"
                                         class="w-full h-full object-cover rounded-xl">
                                     <button
                                         data-id="{{ $item->place->id }}"

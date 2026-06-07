@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             MoodSeeder::class,
             UserSeeder::class,
             places::class,
+            ReviewSeeder::class
         ]);
     }
 }
