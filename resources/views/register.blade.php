@@ -116,11 +116,12 @@
                     </label>
 
                     <!-- Condition False -->
-                    @if ($errors->hasAny(['email', 'password']))
+                    @if ($errors->hasAny(['email', 'password', 'username']))
                         <p class="text-red-500 text-xs">
                             {{ implode(' dan ', array_filter([
                                 $errors->first('email'),
-                                $errors->first('password')
+                                $errors->first('password'),
+                                $errors->first('username')
                             ])) }}
                         </p>
                     @endif
