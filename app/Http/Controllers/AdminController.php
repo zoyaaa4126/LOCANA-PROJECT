@@ -34,11 +34,14 @@ class AdminController extends Controller
     {
         $user = Auth::user();
         $kategoriList = [
-            ['value' => 'cafe',       'label' => 'Cafe',       'icon' => 'coffee'],
-            ['value' => 'restaurant', 'label' => 'Restaurant', 'icon' => 'restaurant'],
-            ['value' => 'bakery',     'label' => 'Bakery',     'icon' => 'cake'],
-            ['value' => 'park',       'label' => 'Park',       'icon' => 'park'],
-            ['value' => 'mall',       'label' => 'Mall',       'icon' => 'local_mall'],
+            ['value' => 1, 'label' => 'Cafe',       'icon' => 'coffee'],
+            ['value' => 2, 'label' => 'Restaurant', 'icon' => 'restaurant'],
+            ['value' => 3, 'label' => 'Bakery',     'icon' => 'cake'],
+            ['value' => 4, 'label' => 'Live Music', 'icon' => 'music_note'],
+            ['value' => 5, 'label' => 'Indoor',     'icon' => 'home'],
+            ['value' => 6, 'label' => 'Outdoor',    'icon' => 'landscape'],
+            ['value' => 7, 'label' => 'Mall',       'icon' => 'local_mall'],
+            ['value' => 8, 'label' => 'Park',       'icon' => 'park'],
         ];
 
         $moods = moods::all();
@@ -230,9 +233,12 @@ class AdminController extends Controller
             '3' => 3,
             '4' => 4,
             '5' => 5,
+            '6' => 6,
+            '7' => 7,
+            '8' => 8,
         ];
 
-        $kategoriId = $kategoriMap[$request->kategori_tempat] ?? null;
+        $kategoriId = $request->kategori_tempat;
 
         $listFasilitas = ['wifi', 'ruang_ac', 'stopkontan', 'parkir_luas', 'area_merokok', 'toilet', 'photobooth', 'musholla', 'ruang_meeting', 'board_game'];
 
@@ -308,7 +314,7 @@ class AdminController extends Controller
         return redirect('/admin/lokasi');
     }
 
-        public function editTempat($id)
+    public function editTempat($id)
     {
         $place = places::findOrFail($id);
         $moods = moods::all();
