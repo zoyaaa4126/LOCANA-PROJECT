@@ -95,6 +95,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/lokasi', [AdminController::class, 'lokasi'])->name('admin.lokasi');
     Route::get('/tambah-lokasi', [AdminController::class, 'tambahLokasi'])->name('admin.tambahLokasi');
+    Route::get('/detail-lokasi/{id}', [AdminController::class, 'viewLokasi'])->name('viewLokasi')->middleware('auth');
     Route::post('/simpan-tempat', [AdminController::class, 'simpanTempat'])->name('admin.simpanTempat');
     Route::get('/ulasan', [AdminController::class, 'ulasan'])->name('admin.ulasan');
     Route::delete('/reviews/{id}', [ReviewReportController::class, 'destroy'])->name('admin.reviews.destroy');

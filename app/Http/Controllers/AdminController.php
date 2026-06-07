@@ -317,6 +317,12 @@ class AdminController extends Controller
         return redirect('/admin/lokasi');
     }
 
+    public function viewLokasi($id)
+    {
+        $places = places::findOrFail($id);
+        return view('admin.lokasi.viewLokasi', compact('places'));
+    }
+
     public function editTempat($id)
     {
         $place = places::findOrFail($id);
@@ -347,7 +353,7 @@ class AdminController extends Controller
             'nama_tempat'     => $request->nama,
             'deskripsi'       => $request->deskripsi,
             'kategori_id'     => $kategoriId,
-            'tipe_tempat'     => $request->tipe,
+            'tipe_tempat'     => $request->tipe ?? $place->tipe_tempat,
             'alamat_lengkap'  => $request->alamat,
             'latitude'        => $request->latitude,
             'longitude'       => $request->longitude,

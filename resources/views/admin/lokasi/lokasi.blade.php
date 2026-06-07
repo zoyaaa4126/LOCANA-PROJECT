@@ -51,7 +51,7 @@
                             <button onclick="window.location='/lokasi/{{ $item->id }}/edit'" class="text-gray-500 hover:text-[#363B58] transition-colors p-1">
                                 <span class="material-symbols-outlined">edit</span>
                             </button>
-                            <button onclick="window.location='/places/{{ $item->id }}'" class="text-[#FBB45E] hover:text-[#363B58] transition-colors p-1">
+                            <button onclick="window.location='/admin/detail-lokasi/{{ $item->id }}'" class="text-[#FBB45E] hover:text-[#363B58] transition-colors p-1">
                                 <span class="material-symbols-outlined">visibility</span>
                             </button>
                             <button onclick="konfirmasiHapus({{ $item->id }})" class="text-red-400 hover:text-red-600 transition-colors p-1">
