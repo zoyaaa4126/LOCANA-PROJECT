@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\places as ModelsPlaces;
+use App\Models\Places as ModelsPlaces;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
