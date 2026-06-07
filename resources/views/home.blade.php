@@ -528,7 +528,7 @@
         }
 
         window.terapkanFilter = function() {
-            // 1. Ambil semua value filter
+            // ambil value
             const checkedKategori = [...document.querySelectorAll('input[name="kategori[]"]:checked')].map(el => el.value);
             const checkedMood = [...document.querySelectorAll('input[name="mood[]"]:checked')].map(el => el.value);
             const checkedBudget = [...document.querySelectorAll('input[name="budget[]"]:checked')].map(el => el.value);
@@ -539,7 +539,7 @@
             const searchCards = document.getElementById('searchCards');
             const searchCount = document.getElementById('searchCount');
 
-            // Kembalikan ke default jika tidak ada filter/sorting yang dipilih
+            // kembali ke default
             if (!checkedKategori.length && !checkedMood.length && !checkedBudget.length && !rating) {
                 defaultContent.classList.remove('hidden');
                 searchResult.classList.add('hidden');
@@ -553,7 +553,7 @@
             const uniqueCards = [];
             const seenIds = new Set();
             allCards.forEach(card => {
-                // Kita pakai link atau nama sebagai identifier unik sementara
+                // pakai link atau nama buat identifier unik sementara
                 const identifier = card.dataset.link || card.dataset.nama;
                 if (identifier && !seenIds.has(identifier)) {
                     seenIds.has(identifier);
@@ -562,7 +562,7 @@
                 }
             });
 
-            // 2. JALANKAN PROSES FILTER DATA
+            // 2. PROSES FILTER DATA
             let filteredCards = uniqueCards.filter(card => {
                 const cardKategoriId = card.dataset.kategoriId;
                 const hargaMin = parseInt(card.dataset.hargamin) || 0;
@@ -571,7 +571,7 @@
                 // Cek filter Kategori
                 if (checkedKategori.length && !checkedKategori.includes(cardKategoriId)) return false;
 
-                // Cek filter Budget (Logika Beririsan)
+                // Cek filter Budget 
                 if (checkedBudget.length) {
                     const lolosBudget = checkedBudget.some(range => {
                         const [min, max] = range.split('-').map(Number);
@@ -583,14 +583,14 @@
                 return true;
             });
 
-            // 3. JALANKAN PROSES SORTING RATING (Ini dia kuncinya!)
+            // 3. JALANKAN PROSES SORTING RATING 
             if (rating === 'highest') {
                 filteredCards.sort((a, b) => parseFloat(b.dataset.rating || 0) - parseFloat(a.dataset.rating || 0));
             } else if (rating === 'lowest') {
                 filteredCards.sort((a, b) => parseFloat(a.dataset.rating || 0) - parseFloat(b.dataset.rating || 0));
             }
 
-            // 4. TAMPILKAN HASILNYA KE LAYAR
+            // 4. TAMPILKAN HASIL
             searchCards.innerHTML = '';
             defaultContent.classList.add('hidden');
             searchResult.classList.remove('hidden');

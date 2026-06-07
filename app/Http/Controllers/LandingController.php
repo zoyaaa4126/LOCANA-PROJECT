@@ -12,11 +12,11 @@ class LandingController extends Controller
 {
     public function index()
     {
-        // Ambil data yang dibutuhkan khusus untuk Landing Page (welcome.blade.php)
+        // Ambil data yang dibutuhkan 
         $kategoris = kategoris::all();
         $moods = Moods::all();
 
-        // Ambil data tempat populer/unggulan
+        
         $tempatPopuler = Places::where('status_aktif', true)
             ->where('tempat_unggulan', true)
             ->limit(5)
