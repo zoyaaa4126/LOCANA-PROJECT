@@ -205,13 +205,64 @@
                                             class="flex-1 bg-gray-800 text-[#FBB45E] py-2 rounded-full text-sm font-medium flex items-center justify-center gap-1 hover:bg-gray-700 transition">
                                             <span class="material-symbols-outlined text-sm">location_on</span> Lihat Lokasi
                                         </a>
-                                        <button class="share-btn bg-[#FBB45E] hover:bg-[#E2A255] text-[#363B58] w-10 h-10 flex items-center justify-center rounded-full transition">
+                                        <button onclick="bukaShareModal()" class="share-btn bg-[#FBB45E] hover:bg-[#E2A255] text-[#363B58] w-10 h-10 flex items-center justify-center rounded-full transition">
                                             <span class="material-symbols-outlined text-sm">share</span>
                                         </button>
                                     </div>
                                 </div>
                                 @endforeach
                             </div>
+
+                            <div class="shareModal hidden fixed inset-0 z-50 bg-black/50 flex items-center justify-center">
+                                <div class="bg-white rounded-2xl p-6 w-[90%] max-w-md">
+                                    <h5 class="font-bold text-[#363B58] text-lg mb-4">Berbagi dengan...</h5>
+                                    <div class="grid grid-cols-3 gap-4 text-center">
+                                        
+                                        <a id="shareWa" href="#" target="_blank" class="flex flex-col items-center gap-1 text-sm text-[#363B58] hover:text-green-500">
+                                            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#25D366">
+                                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                                                    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.564 4.14 1.544 5.877L.057 23.447a.75.75 0 0 0 .922.922l5.57-1.487A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.7-.513-5.243-1.406l-.374-.22-3.868 1.034 1.034-3.868-.22-.374A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+                                                </svg>
+                                            </div>
+                                            WhatsApp
+                                        </a>
+
+                                        <button onclick="copyLink()" class="flex flex-col items-center gap-1 text-sm text-[#363B58] hover:text-[#FBB45E]">
+                                            <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FBB45E">
+                                                    <path d="M440-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h160v80H280q-50 0-85 35t-35 85q0 50 35 85t85 35h160v80ZM320-440v-80h320v80H320Zm200 160v-80h160q50 0 85-35t35-85q0-50-35-85t-85-35H520v-80h160q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H520Z"/>
+                                                </svg>
+                                            </div>
+                                            Salin Link
+                                        </button>
+
+                                        <a id="shareX" href="#" target="_blank" class="flex flex-col items-center gap-1 text-sm text-[#363B58] hover:text-black">
+                                            <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#000000">
+                                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                                </svg>
+                                            </div>
+                                            X
+                                        </a>
+
+                                        <a id="shareFb" href="#" target="_blank" class="flex flex-col items-center gap-1 text-sm text-[#363B58] hover:text-black">
+                                            <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
+                                                <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#1877F2">
+                                                    <path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/>
+                                                </svg>
+                                            </div>
+                                            Facebook
+                                        </a>
+
+                                    </div>
+
+                                    <button onclick="tutupShareModal()" class="mt-5 w-full py-2 rounded-xl border border-gray-200 text-sm font-semibold text-[#363B58] hover:bg-gray-50">
+                                        Batal
+                                    </button>
+                                </div>
+                            </div>
+
                             <button class="scrollRight absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center z-20 bg-[#FBB45E] text-[#363B58] rounded-full shadow-md hover:scale-110 transition">
                                 <span class="material-symbols-outlined">chevron_right</span>
                             </button>
@@ -273,7 +324,7 @@
                                             class="flex-1 bg-gray-800 text-[#FBB45E] py-2 rounded-full text-sm font-medium flex items-center justify-center gap-1 hover:bg-gray-700 transition">
                                             <span class="material-symbols-outlined text-sm">location_on</span> Lihat Lokasi
                                         </a>
-                                        <button class="share-btn bg-[#FBB45E] hover:bg-[#E2A255] text-[#363B58] w-10 h-10 flex items-center justify-center rounded-full transition">
+                                        <button onclick="bukaShareModal()" class="share-btn bg-[#FBB45E] hover:bg-[#E2A255] text-[#363B58] w-10 h-10 flex items-center justify-center rounded-full transition">
                                             <span class="material-symbols-outlined text-sm">share</span>
                                         </button>
                                     </div>
@@ -477,7 +528,7 @@
         }
 
         window.terapkanFilter = function() {
-            // 1. Ambil semua value filter
+            // ambil value
             const checkedKategori = [...document.querySelectorAll('input[name="kategori[]"]:checked')].map(el => el.value);
             const checkedMood = [...document.querySelectorAll('input[name="mood[]"]:checked')].map(el => el.value);
             const checkedBudget = [...document.querySelectorAll('input[name="budget[]"]:checked')].map(el => el.value);
@@ -488,7 +539,7 @@
             const searchCards = document.getElementById('searchCards');
             const searchCount = document.getElementById('searchCount');
 
-            // Kembalikan ke default jika tidak ada filter/sorting yang dipilih
+            // kembali ke default
             if (!checkedKategori.length && !checkedMood.length && !checkedBudget.length && !rating) {
                 defaultContent.classList.remove('hidden');
                 searchResult.classList.add('hidden');
@@ -502,7 +553,7 @@
             const uniqueCards = [];
             const seenIds = new Set();
             allCards.forEach(card => {
-                // Kita pakai link atau nama sebagai identifier unik sementara
+                // pakai link atau nama buat identifier unik sementara
                 const identifier = card.dataset.link || card.dataset.nama;
                 if (identifier && !seenIds.has(identifier)) {
                     seenIds.has(identifier);
@@ -511,7 +562,7 @@
                 }
             });
 
-            // 2. JALANKAN PROSES FILTER DATA
+            // 2. PROSES FILTER DATA
             let filteredCards = uniqueCards.filter(card => {
                 const cardKategoriId = card.dataset.kategoriId;
                 const hargaMin = parseInt(card.dataset.hargamin) || 0;
@@ -520,7 +571,7 @@
                 // Cek filter Kategori
                 if (checkedKategori.length && !checkedKategori.includes(cardKategoriId)) return false;
 
-                // Cek filter Budget (Logika Beririsan)
+                // Cek filter Budget 
                 if (checkedBudget.length) {
                     const lolosBudget = checkedBudget.some(range => {
                         const [min, max] = range.split('-').map(Number);
@@ -532,14 +583,14 @@
                 return true;
             });
 
-            // 3. JALANKAN PROSES SORTING RATING (Ini dia kuncinya!)
+            // 3. JALANKAN PROSES SORTING RATING 
             if (rating === 'highest') {
                 filteredCards.sort((a, b) => parseFloat(b.dataset.rating || 0) - parseFloat(a.dataset.rating || 0));
             } else if (rating === 'lowest') {
                 filteredCards.sort((a, b) => parseFloat(a.dataset.rating || 0) - parseFloat(b.dataset.rating || 0));
             }
 
-            // 4. TAMPILKAN HASILNYA KE LAYAR
+            // 4. TAMPILKAN HASIL
             searchCards.innerHTML = '';
             defaultContent.classList.add('hidden');
             searchResult.classList.remove('hidden');
@@ -589,5 +640,23 @@
             }
         };
     });
+
+    function bukaShareModal() {
+        const url = window.location.href;
+        document.querySelector('.shareModal').classList.remove('hidden');
+        document.getElementById('shareWa').href = `https://wa.me/?text=${encodeURIComponent(url)}`;
+        document.getElementById('shareX').href = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}`;
+        document.getElementById('shareFb').href = 'https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}';
+    }
+
+    function tutupShareModal() {
+        document.querySelector('.shareModal').classList.add('hidden');
+    }
+
+    function copyLink() {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+            alert('Link berhasil disalin!');
+        });
+    }
 </script>
 @endsection
