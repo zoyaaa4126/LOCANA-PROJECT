@@ -232,7 +232,9 @@
         @yield('content')
     </main>
 
+    @if(!request()->is('*/map'))
     <x-footer />
+    @endif
 
     @if(!request()->is('*/map'))
     <a href="/chatbot" class="fixed bottom-5 right-5 z-50 bg-[#FBB45E] text-[#363B58] w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition"

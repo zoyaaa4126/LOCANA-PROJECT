@@ -34,8 +34,8 @@
         </div>
     </div>
 
-    <div class="absolute bottom-0 left-0 right-0 z-[1000] bg-white rounded-t-3xl shadow-2xl overflow-hidden md:hidden">
-        <div class="relative h-[140px]">
+    <div class="absolute bottom-0 left-0 right-0 z-[1000] bg-white rounded-t-3xl overflow-hidden md:hidden h-[200px]">
+        <div class="relative h-[130px]">
             <img src="{{ asset($places->gambar_tempat) }}" class="w-full h-full object-cover" alt="{{ $places->nama_tempat }}">
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
             <div class="absolute bottom-3 left-4 text-white">
