@@ -30,7 +30,7 @@ class ReviewController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'place_id' => 'required|exists:Places,id',
+            'place_id' => 'required|exists:places,id',
             'rating'   => 'required|integer|min:1|max:5',
             'title'    => 'required|string|max:255',
             'comment'  => 'nullable|string|max:1000',
