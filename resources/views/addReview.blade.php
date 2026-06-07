@@ -45,8 +45,8 @@
 
                     {{-- PLACE CARD --}}
                     <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 flex gap-4 items-start">
-                        <img src="{{ $place->gambar ? asset('storage/' . $place->gambar) : asset('assets/img/180 Cafe - Bandung 1.png') }}"
-                             class="w-24 h-24 rounded-xl object-cover shrink-0" alt="{{ $place->nama_tempat }}">
+                        <img src="{{ $place->gambar_tempat ? asset($place->gambar_tempat) : asset('assets/img/180 Cafe - Bandung 1.png') }}"
+                            class="w-24 h-24 rounded-xl object-cover shrink-0" alt="{{ $place->nama_tempat }}">
                         <div>
                             <h2 class="font-bold text-lg text-[#363B58]">{{ $place->nama_tempat }}</h2>
                             <div class="flex items-center gap-2 mt-1">

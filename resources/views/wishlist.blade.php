@@ -47,11 +47,6 @@
                         <p class="text-[#31354F] text-[1rem]
                                     max-md:text-[10px]">Tempat-Tempat Favorit yang Pengen Kamu Kunjungi</p>
                     </div>
-                    <div class="flex items-center bg-[#fbb45e] px-5 text-[#363B58] rounded-[10px] w-32 gap-2.5 text-[15px] font-semibold
-                                max-md:px-2 py-[5px] max-md:text-[10px] max-md:w-40">
-                        <span class="material-symbols-outlined " 
-                                    style="font-size:17px;">select_check_box</span>Select
-                    </div>
                 </div>    
 
                 <!-- CARD -->

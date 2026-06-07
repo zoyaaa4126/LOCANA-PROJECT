@@ -34,15 +34,18 @@ class AdminController extends Controller
     {
         $user = Auth::user();
         $kategoriList = [
-            ['value' => 'cafe',       'label' => 'Cafe',       'icon' => 'coffee'],
-            ['value' => 'restaurant', 'label' => 'Restaurant', 'icon' => 'restaurant'],
-            ['value' => 'bakery',     'label' => 'Bakery',     'icon' => 'cake'],
-            ['value' => 'park',       'label' => 'Park',       'icon' => 'park'],
-            ['value' => 'mall',       'label' => 'Mall',       'icon' => 'local_mall'],
+            ['value' => 1, 'label' => 'Cafe',       'icon' => 'coffee'],
+            ['value' => 2, 'label' => 'Restaurant', 'icon' => 'restaurant'],
+            ['value' => 3, 'label' => 'Bakery',     'icon' => 'cake'],
+            ['value' => 4, 'label' => 'Live Music', 'icon' => 'music_note'],
+            ['value' => 5, 'label' => 'Indoor',     'icon' => 'home'],
+            ['value' => 6, 'label' => 'Outdoor',    'icon' => 'landscape'],
+            ['value' => 7, 'label' => 'Mall',       'icon' => 'local_mall'],
+            ['value' => 8, 'label' => 'Park',       'icon' => 'park'],
         ];
 
         $moods = moods::all();
-        
+
         return view('admin/lokasi/tambahLokasi', compact('user', 'kategoriList', 'moods'));
     }
 
@@ -51,11 +54,11 @@ class AdminController extends Controller
         $user = Auth::user();
         $flaggedReviews = \App\Models\Review::with(['user', 'place'])
             ->where('flagged', true)
-            ->orWhere(function($q) {
+            ->orWhere(function ($q) {
                 // Auto-flag keyword spam meski belum dilaporkan user
                 foreach (\App\Models\Review::SPAM_KEYWORDS as $kw) {
                     $q->orWhere('comment', 'like', "%$kw%")
-                    ->orWhere('title', 'like', "%$kw%");
+                        ->orWhere('title', 'like', "%$kw%");
                 }
             })
             ->latest()
@@ -86,10 +89,11 @@ class AdminController extends Controller
             'username'    => 'required|string|max:255|unique:users,username,' . $id,
             'email'       => 'required|email|unique:users,email,' . $id,
             'password'    => 'nullable|min:6',
-            'role'        => 'required|in:user,admin',  
+            'role'        => 'required|in:user,admin',
             'deskripsi'   => 'nullable|string',
             'foto_profil' => 'nullable|image|max:5120',
-        ], ['email.unique'      => 'Email sudah terdaftar.',
+        ], [
+            'email.unique'      => 'Email sudah terdaftar.',
             'password.min'      => 'Password minimal 6 karakter.',
             'username.unique'   => 'Username sudah digunakan'
         ]);
@@ -98,7 +102,7 @@ class AdminController extends Controller
             'nama'     => $request->nama,
             'username' => $request->username,
             'email'    => $request->email,
-            'role'      => $request->role,       
+            'role'      => $request->role,
             'deskripsi' => $request->deskripsi,
         ]);
 
@@ -112,13 +116,13 @@ class AdminController extends Controller
         }
 
         ActivityLog::create([
-        'user_id'   => Auth::id(),
-        'aktivitas' => 'Mengupdate data pengguna ' . $user->username,
-    ]);
+            'user_id'   => Auth::id(),
+            'aktivitas' => 'Mengupdate data pengguna ' . $user->username,
+        ]);
 
         return redirect('/admin/pengguna')->with('success', 'Pengguna berhasil diupdate.');
     }
-     public function hapusPengguna($id)
+    public function hapusPengguna($id)
     {
         $targetUser = User::findOrFail($id);
         ActivityLog::create([
@@ -142,8 +146,9 @@ class AdminController extends Controller
             'password'   => 'required|min:6',
             'role'       => 'required|in:user,admin',
             'deskripsi'  => 'nullable|string',
-            'foto_profil'=> 'nullable|image|max:5120',
-        ], ['email.unique'      => 'Email sudah terdaftar.',
+            'foto_profil' => 'nullable|image|max:5120',
+        ], [
+            'email.unique'      => 'Email sudah terdaftar.',
             'password.min'      => 'Password minimal 6 karakter.',
             'username.unique'   => 'Username sudah digunakan'
         ]);
@@ -154,7 +159,7 @@ class AdminController extends Controller
             'email'    => $request->email,
             'password' => bcrypt($request->password),
             'role'     => $request->role,
-            'deskripsi'=> $request->deskripsi,
+            'deskripsi' => $request->deskripsi,
         ];
 
         if ($request->hasFile('foto_profil')) {
@@ -164,9 +169,9 @@ class AdminController extends Controller
         User::create($data);
 
         ActivityLog::create([
-        'user_id'   => Auth::id(),
-        'aktivitas' => 'Menambahkan pengguna baru ' . $request->username,
-    ]);
+            'user_id'   => Auth::id(),
+            'aktivitas' => 'Menambahkan pengguna baru ' . $request->username,
+        ]);
 
         return redirect('/admin/pengguna')->with('success', 'Pengguna berhasil ditambahkan.');
     }
@@ -179,8 +184,8 @@ class AdminController extends Controller
     {
         $user = Auth::user();
         $logs = \App\Models\ActivityLog::where('user_id', Auth::id())
-                    ->latest()
-                    ->paginate(5);
+            ->latest()
+            ->paginate(5);
         return view('admin/profileAdmin', compact('user', 'logs'));
     }
     public function editProfileAdmin()
@@ -198,7 +203,8 @@ class AdminController extends Controller
             'email'    => 'required|email|unique:users,email,' . Auth::id(),
             'password' => 'nullable|min:6',
             'foto_profil' => 'nullable|image|max:2048',
-        ], ['email.unique'      => 'Email sudah terdaftar.',
+        ], [
+            'email.unique'      => 'Email sudah terdaftar.',
             'password.min'      => 'Password minimal 6 karakter.',
             'username.unique'   => 'Username sudah digunakan'
         ]);
@@ -210,7 +216,7 @@ class AdminController extends Controller
         ]);
 
 
-        if($request->password){
+        if ($request->password) {
             $user->update([
                 'password' => bcrypt($request->password)
             ]);
@@ -230,9 +236,12 @@ class AdminController extends Controller
             '3' => 3,
             '4' => 4,
             '5' => 5,
+            '6' => 6,
+            '7' => 7,
+            '8' => 8,
         ];
 
-        $kategoriId = $kategoriMap[$request->kategori_tempat] ?? null;
+        $kategoriId = $request->kategori_tempat;
 
         $listFasilitas = ['wifi', 'ruang_ac', 'stopkontan', 'parkir_luas', 'area_merokok', 'toilet', 'photobooth', 'musholla', 'ruang_meeting', 'board_game'];
 
@@ -257,8 +266,8 @@ class AdminController extends Controller
             'alamat_lengkap'  => $request->alamat,
             'latitude'        => $request->latitude,
             'longitude'       => $request->longitude,
-            'harga_min'       => $request->harga_min,
-            'harga_max'       => $request->harga_max,
+            'harga_min'        => $request->harga_min ?? 0,
+            'harga_max'       => $request->harga_max ?? 0,
             'status_aktif'    => $request->boolean('status_aktif'),
             'tempat_unggulan' => $request->boolean('unggulan'),
             'created_by'      => auth()->id(),
@@ -272,12 +281,12 @@ class AdminController extends Controller
             if ($request->has('hari') && in_array($day, $request->hari)) {
                 $places->hour()->create([
                     'hari' => $day,
-                    'jam_buka'=> $request->input('jam_buka_' . $day),
+                    'jam_buka' => $request->input('jam_buka_' . $day),
                     'jam_tutup' => $request->input('jam_tutup_' . $day),
                 ]);
             }
         }
- 
+
         if ($request->hasFile('galeri')) {
             foreach ($request->file('galeri') as $file) {
                 $filename = time() . '_' . $file->getClientOriginalName();
@@ -301,14 +310,20 @@ class AdminController extends Controller
         }
 
         ActivityLog::create([
-        'user_id'   => Auth::id(),
-        'aktivitas' => 'Menambahkan lokasi ' . $request->nama,
-    ]);
+            'user_id'   => Auth::id(),
+            'aktivitas' => 'Menambahkan lokasi ' . $request->nama,
+        ]);
 
         return redirect('/admin/lokasi');
     }
 
-        public function editTempat($id)
+    public function viewLokasi($id)
+    {
+        $places = places::findOrFail($id);
+        return view('admin.lokasi.viewLokasi', compact('places'));
+    }
+
+    public function editTempat($id)
     {
         $place = places::findOrFail($id);
         $moods = moods::all();
@@ -338,7 +353,7 @@ class AdminController extends Controller
             'nama_tempat'     => $request->nama,
             'deskripsi'       => $request->deskripsi,
             'kategori_id'     => $kategoriId,
-            'tipe_tempat'     => $request->tipe,
+            'tipe_tempat'     => $request->tipe ?? $place->tipe_tempat,
             'alamat_lengkap'  => $request->alamat,
             'latitude'        => $request->latitude,
             'longitude'       => $request->longitude,

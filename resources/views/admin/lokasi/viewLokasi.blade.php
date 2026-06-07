@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Homepage')
+@section('title', 'view Lokasi')
 @section('content')
 
         <section>
@@ -10,7 +10,7 @@
                 </div>
 
                 <div class="absolute top-[3rem] left-8 flex gap-3 max-md:top-[16px] max-md:left-[10px] max-md:gap-[6px] max-md:scale-75 max-md:origin-top-left">
-                    <button onclick="window.location.href='{{ route('home') }}'" class="flex items-center gap-1 bg-[#FFFFFF] px-5 py-2 rounded-[1rem] text-[#FBB45E] font-bold">
+                    <button onclick="window.location='/admin/lokasi'" class="flex items-center gap-1 bg-[#FFFFFF] px-5 py-2 rounded-[1rem] text-[#FBB45E] font-bold">
                         <svg xmlns="http://www.w3.org/2000/svg" height="23px" viewBox="0 -960 960 960" width="23px" fill="#FBB45E">
                             <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/>
                         </svg>
