@@ -6,11 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Places;
-<<<<<<< HEAD
 use App\Models\Moods;
-=======
-use App\Models\moods;
->>>>>>> 18f03a848609226f01aa87696752110c71f17c0b
 use \App\Models\ActivityLog;
 
 class AdminController extends Controller
@@ -262,11 +258,7 @@ class AdminController extends Controller
             $gambarTempat = 'assets/img/places_img_hero/' . $filename;
         }
 
-<<<<<<< HEAD
         $places = Places::create(array_merge([
-=======
-        $Places = Places::create(array_merge([
->>>>>>> 18f03a848609226f01aa87696752110c71f17c0b
             'nama_tempat'     => $request->nama,
             'deskripsi'       => $request->deskripsi,
             'kategori_id'     => $kategoriId,
@@ -327,23 +319,14 @@ class AdminController extends Controller
 
     public function viewLokasi($id)
     {
-<<<<<<< HEAD
         $places = Places::findOrFail($id);
         return view('admin.lokasi.viewLokasi', compact('places'));
-=======
-        $Places = Places::findOrFail($id);
-        return view('admin.lokasi.viewLokasi', compact('Places'));
->>>>>>> 18f03a848609226f01aa87696752110c71f17c0b
     }
 
     public function editTempat($id)
     {
         $place = Places::findOrFail($id);
-<<<<<<< HEAD
         $moods = Moods::all();
-=======
-        $moods = moods::all();
->>>>>>> 18f03a848609226f01aa87696752110c71f17c0b
         return view('admin.lokasi.editLokasi', compact('place', 'moods'));
     }
 
