@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\kategoris;
-use App\Models\places;
+use App\Models\Places;
 use App\Models\Moods;
 
 
@@ -271,7 +271,7 @@ class UserController extends Controller
 
     public function showMap($id)
     {
-        $places = places::findOrFail($id);
+        $places = Places::findOrFail($id);
         return view('placeDetails.placeMap', compact('places'));
     }
 }
