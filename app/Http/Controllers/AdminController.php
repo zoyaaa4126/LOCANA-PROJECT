@@ -255,7 +255,7 @@ class AdminController extends Controller
             $file = $request->file('foto_cover');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('assets/img/places_img_hero'), $filename);
-            $gambarTempat = 'assets/img/places_img_hero/' . $filename;
+            $gambarTempat = cloudinary()->upload($file->getRealPath())->getSecurePath();
         }
 
         $places = Places::create(array_merge([
@@ -274,12 +274,12 @@ class AdminController extends Controller
             'gambar_tempat'   => $gambarTempat,
         ], $dataFasilitas));
 
-        $Places->moods()->sync($request->moods ?? []);
+        $places->moods()->sync($request->moods ?? []);
 
         $days = ['senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu', 'minggu'];
         foreach ($days as $day) {
             if ($request->has('hari') && in_array($day, $request->hari)) {
-                $Places->hour()->create([
+                $places->hour()->create([
                     'hari' => $day,
                     'jam_buka' => $request->input('jam_buka_' . $day),
                     'jam_tutup' => $request->input('jam_tutup_' . $day),
@@ -291,9 +291,10 @@ class AdminController extends Controller
             foreach ($request->file('galeri') as $file) {
                 $filename = time() . '_' . $file->getClientOriginalName();
                 $file->move(public_path('assets/img/places_gallery'), $filename);
-                $Places->galleries()->create([
-                    'path_file' => 'assets/img/places_gallery/' . $filename,
-                    'tipe'      => 'galeri',
+                $cloudPath = cloudinary()->upload($file->getRealPath())->getSecurePath();
+                $places->galleries()->create([
+                    'path_file' => $cloudPath,'assets/img/places_gallery/' . $filename,
+                    'tipe'      => $cloudPath,'galeri',
                 ]);
             }
         }

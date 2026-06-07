@@ -50,7 +50,7 @@ class ReviewController extends Controller
         if ($request->hasFile('file_url')) {
             $paths = [];
             foreach ($request->file('file_url') as $file) {
-                $paths[] = $file->store('reviews', 'public');
+                $paths[] = cloudinary()->upload($file->getRealPath())->getSecurePath();
             }
             $paths = json_encode($paths);
         }
