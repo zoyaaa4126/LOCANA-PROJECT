@@ -34,7 +34,7 @@
                     </button>
                 </div>
 
-                <div class="absolute inset-0 flex flex-col justify-end px-20 pb-[35rem] text-white gap-3 pointer-events-none
+                <div class="absolute inset-0 flex flex-col justify-end px-20 pb-10 text-white gap-3 pointer-events-none
                 max-md:px-4 max-md:pb-6">
                     <div class="text-6xl font-bold max-md:text-2xl max-md:leading-none">{{ $places->nama_tempat }}</div>
                     <div class="text-3xl font-semibold max-md:text-[14px] max-md:leading-none">
