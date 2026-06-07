@@ -96,6 +96,109 @@
 <script>
     window.chatbotFlow = @json($flow);
 </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const chatOutput = document.getElementById('chatOutput');
+    if (!chatOutput) return;
+
+    const mainMenu     = document.getElementById('mainMenu');
+    const followUpMenu = document.getElementById('followUpMenu');
+    const divider      = document.getElementById('divider');
+    const ratingCard   = document.getElementById('ratingCard');
+    const ratingThanks = document.getElementById('ratingThanks');
+    const flow         = window.chatbotFlow || {};
+
+    function addUserMessage(text) {
+        const el = document.createElement('div');
+        el.className = 'flex justify-end';
+        el.innerHTML = `<div class="bg-[#FBB45E] text-white px-4 py-3 rounded-2xl rounded-tr-none text-sm max-w-xs shadow-sm">${text}</div>`;
+        chatOutput.appendChild(el);
+        el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function addBotMessage(text) {
+        const el = document.createElement('div');
+        el.className = 'flex items-start gap-3';
+        el.innerHTML = `
+            <div class="bg-[#FBB45E] w-9 h-9 rounded-xl flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-white text-xl" style="font-variation-settings:'FILL' 1;">smart_toy</span>
+            </div>
+            <div>
+                <div class="text-sm font-semibold text-[#363B58] mb-1">Locana Assistant</div>
+                <div class="bg-white px-4 py-3 rounded-2xl rounded-tl-none text-sm text-[#363B58] shadow-sm whitespace-pre-line">${text}</div>
+            </div>`;
+        chatOutput.appendChild(el);
+        el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function renderOptions(options) {
+        followUpMenu.innerHTML = '';
+        mainMenu.classList.add('hidden');
+
+        if (!options || options.length === 0) {
+            divider.classList.add('hidden');
+            followUpMenu.classList.add('hidden');
+            if (ratingCard) ratingCard.classList.remove('hidden');
+            return;
+        }
+
+        options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'chat-option bg-white border border-slate-200 shadow-sm text-sm text-[#363B58] px-4 py-2 rounded-full hover:bg-[#FBB45E] hover:text-white hover:border-[#FBB45E] transition w-full text-left';
+            btn.textContent = opt.label;
+            btn.addEventListener('click', function() {
+                addUserMessage(opt.label);
+                followUpMenu.innerHTML = '';
+                if (opt.next === '__menu__') {
+                    mainMenu.classList.remove('hidden');
+                    followUpMenu.classList.add('hidden');
+                    return;
+                }
+                const step = flow[opt.next];
+                if (!step) return;
+                setTimeout(() => {
+                    addBotMessage(step.message);
+                    renderOptions(step.options);
+                }, 300);
+            });
+            followUpMenu.appendChild(btn);
+        });
+
+        followUpMenu.classList.remove('hidden');
+        divider.classList.remove('hidden');
+    }
+
+    document.querySelectorAll('.chat-option').forEach(card => {
+        card.addEventListener('click', function() {
+            const key = this.dataset.next;
+            const label = this.querySelector('.text-sm.font-bold').textContent.trim();
+            addUserMessage(label);
+            mainMenu.classList.add('hidden');
+            const step = flow[key];
+            if (!step) return;
+            setTimeout(() => {
+                addBotMessage(step.message);
+                renderOptions(step.options);
+            }, 300);
+        });
+    });
+
+    if (ratingCard) {
+        ratingCard.querySelectorAll('.star-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const val = parseInt(this.dataset.value);
+                ratingCard.querySelectorAll('.star-btn').forEach(b => {
+                    b.querySelector('.material-symbols-outlined').style.color =
+                        parseInt(b.dataset.value) <= val ? '#FBB45E' : '#D1D5DB';
+                });
+                if (ratingThanks) ratingThanks.classList.remove('hidden');
+                ratingCard.querySelectorAll('.star-btn').forEach(b => b.disabled = true);
+            });
+        });
+    }
+});
+</script>
 @endpush
 
 @endsection

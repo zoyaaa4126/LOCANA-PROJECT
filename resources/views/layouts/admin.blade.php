@@ -137,5 +137,76 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('scripts')
 
+    @push('scripts')
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        // TOGGLE PASSWORD
+        document.querySelectorAll(".toggle-password").forEach(function(toggle) {
+            toggle.addEventListener("click", function() {
+                const password = toggle.parentElement.querySelector(".password-input");
+                if (!password) return;
+                if (password.type === "password") {
+                    password.type = "text";
+                    toggle.textContent = "visibility_off";
+                } else {
+                    password.type = "password";
+                    toggle.textContent = "visibility";
+                }
+            });
+        });
+
+        // ADMIN TAMBAH PENGGUNA — ROLE DROPDOWN
+        const roleBtn = document.getElementById('role-btn');
+        const roleMenu = document.getElementById('role-menu');
+        const roleChev = document.getElementById('role-chevron');
+        const roleLabel = document.getElementById('role-label');
+        const roleVal = document.getElementById('role-value');
+
+        if (roleBtn && roleMenu) {
+            roleBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const open = roleMenu.style.display === 'block';
+                roleMenu.style.display = open ? 'none' : 'block';
+                if (roleChev) roleChev.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';
+            });
+            document.querySelectorAll('.role-opt').forEach(function(opt) {
+                opt.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (roleVal) roleVal.value = this.dataset.val;
+                    if (roleLabel) { roleLabel.textContent = this.dataset.label; roleLabel.style.color = '#363B58'; }
+                    roleMenu.style.display = 'none';
+                    if (roleChev) roleChev.style.transform = 'rotate(0deg)';
+                });
+            });
+            document.addEventListener('click', function(e) {
+                const roleWrapper = document.getElementById('role-wrapper');
+                if (roleWrapper && !roleWrapper.contains(e.target)) {
+                    roleMenu.style.display = 'none';
+                    if (roleChev) roleChev.style.transform = 'rotate(0deg)';
+                }
+            });
+        }
+
+        // PREVIEW FOTO PROFIL
+        const fotoInput = document.getElementById('foto-input');
+        if (fotoInput) {
+            fotoInput.addEventListener('change', function() {
+                const file = this.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById('foto-preview');
+                    const placeholder = document.getElementById('foto-placeholder');
+                    if (preview) { preview.src = e.target.result; preview.style.display = 'block'; }
+                    if (placeholder) placeholder.style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+    });
+    </script>
+    @endpush
     </body>
 </html>
