@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use App\Models\Kategoris;
+use App\Models\kategoris;
 use App\Models\places;
 
 
@@ -136,7 +136,7 @@ class UserController extends Controller
         $lat = $request->query('lat');
         $lng = $request->query('lng');
 
-        $kategoris = Kategoris::all();
+        $kategoris = kategoris::all();
         $moods = \App\Models\moods::all();
         $popularPlaces = \App\Models\Places::where('status_aktif', true)
             ->where('tempat_unggulan', true)
@@ -186,7 +186,7 @@ class UserController extends Controller
     public function placesByKategori(int $id)
     {
         $places = \App\Models\Places::where('kategori_id', $id)->get();
-        $kategori = Kategoris::findOrFail($id);
+        $kategori = kategoris::findOrFail($id);
         return view('places.kategori', compact('places', 'kategori'));
     }
     public function profile()
