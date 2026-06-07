@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class places extends Model
+class Places extends Model
 {
     //
     protected $fillable = [
@@ -39,7 +39,7 @@ class places extends Model
         return $this->belongsTo(User::class, 'created_by');
     }
 
-    public function moods()
+    public function Moods()
     {
         return $this->belongsToMany(moods::class, 'place_moods', 'place_id', 'mood_id');
     }
