@@ -16,7 +16,7 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         $kategoris = kategoris::all();
-        $moods = moods::all();
+        $moods = Moods::all();
         $places = Places::all(); // Tetap ambil semua data untuk bagian lain
 
         return view('home', compact('users', 'kategoris', 'moods', 'places'));

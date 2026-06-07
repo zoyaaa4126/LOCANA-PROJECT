@@ -15,7 +15,7 @@ class ReviewSeeder extends Seeder
     public function run(): void
     {
         $users = User::pluck('id')->toArray();
-        $places = places::pluck('id')->toArray();
+        $places = Places::pluck('id')->toArray();
 
         if (empty($users) || empty($places)) {
             $this->command->warn('User atau Place belum tersedia.');

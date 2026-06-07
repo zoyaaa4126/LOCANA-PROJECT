@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use App\Models\places;
-use App\Models\moods;
+use App\Models\Places;
+use App\Models\Moods;
 use \App\Models\ActivityLog;
 
 class AdminController extends Controller
@@ -25,7 +25,7 @@ class AdminController extends Controller
 
     public function lokasi()
     {
-        $lokasi = places::paginate(5);
+        $lokasi = Places::paginate(5);
         $user = Auth::user();
         return view('admin/lokasi/lokasi', compact('lokasi', 'user'));
     }
@@ -44,7 +44,7 @@ class AdminController extends Controller
             ['value' => 8, 'label' => 'Park',       'icon' => 'park'],
         ];
 
-        $moods = moods::all();
+        $moods = Moods::all();
 
         return view('admin/lokasi/tambahLokasi', compact('user', 'kategoriList', 'moods'));
     }
@@ -258,7 +258,7 @@ class AdminController extends Controller
             $gambarTempat = 'assets/img/places_img_hero/' . $filename;
         }
 
-        $places = places::create(array_merge([
+        $places = Places::create(array_merge([
             'nama_tempat'     => $request->nama,
             'deskripsi'       => $request->deskripsi,
             'kategori_id'     => $kategoriId,
@@ -319,14 +319,14 @@ class AdminController extends Controller
 
     public function viewLokasi($id)
     {
-        $places = places::findOrFail($id);
+        $places = Places::findOrFail($id);
         return view('admin.lokasi.viewLokasi', compact('places'));
     }
 
     public function editTempat($id)
     {
-        $place = places::findOrFail($id);
-        $moods = moods::all();
+        $place = Places::findOrFail($id);
+        $moods = Moods::all();
         return view('admin.lokasi.editLokasi', compact('place', 'moods'));
     }
 
@@ -334,7 +334,7 @@ class AdminController extends Controller
     {
         $kategoriId = (int) $request->kategori_tempat ?: null;
 
-        $place = places::findOrFail($id);
+        $place = Places::findOrFail($id);
 
         $listFasilitas = ['wifi', 'ruang_ac', 'stopkontan', 'parkir_luas', 'area_merokok', 'toilet', 'photobooth', 'musholla', 'ruang_meeting', 'board_game'];
         $dataFasilitas = [];
@@ -387,7 +387,7 @@ class AdminController extends Controller
 
     public function hapustempat($id)
     {
-        places::findOrFail($id)->delete();
+        Places::findOrFail($id)->delete();
         return redirect('/lokasi');
     }
 }
