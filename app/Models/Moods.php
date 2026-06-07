@@ -13,6 +13,6 @@ class Moods extends Model
     //
     public function places()
     {
-        return $this->belongsToMany(places::class, 'place_moods');
+       return $this->belongsToMany(Places::class, 'place_moods');
     }
 }

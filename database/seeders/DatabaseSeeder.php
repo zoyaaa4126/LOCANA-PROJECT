@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             KategoriSeeder::class,
             MoodSeeder::class,
             UserSeeder::class,
-            places::class,
+            Places::class,
             ReviewSeeder::class
         ]);
     }

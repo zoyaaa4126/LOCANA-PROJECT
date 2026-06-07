@@ -16,6 +16,6 @@ class Wishlist extends Model
 
     public function place()
     {
-        return $this->belongsTo(places::class);
+        return $this->belongsTo(Places::class);
     }
 }

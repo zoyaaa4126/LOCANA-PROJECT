@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use App\Models\places;
+use App\Models\Places;
 use App\Models\moods;
 use \App\Models\ActivityLog;
 
@@ -25,7 +25,7 @@ class AdminController extends Controller
 
     public function lokasi()
     {
-        $lokasi = places::paginate(5);
+        $lokasi = Places::paginate(5);
         $user = Auth::user();
         return view('admin/lokasi/lokasi', compact('lokasi', 'user'));
     }
@@ -258,7 +258,7 @@ class AdminController extends Controller
             $gambarTempat = 'assets/img/places_img_hero/' . $filename;
         }
 
-        $places = places::create(array_merge([
+        $Places = Places::create(array_merge([
             'nama_tempat'     => $request->nama,
             'deskripsi'       => $request->deskripsi,
             'kategori_id'     => $kategoriId,
@@ -274,12 +274,12 @@ class AdminController extends Controller
             'gambar_tempat'   => $gambarTempat,
         ], $dataFasilitas));
 
-        $places->moods()->sync($request->moods ?? []);
+        $Places->moods()->sync($request->moods ?? []);
 
         $days = ['senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu', 'minggu'];
         foreach ($days as $day) {
             if ($request->has('hari') && in_array($day, $request->hari)) {
-                $places->hour()->create([
+                $Places->hour()->create([
                     'hari' => $day,
                     'jam_buka' => $request->input('jam_buka_' . $day),
                     'jam_tutup' => $request->input('jam_tutup_' . $day),
@@ -291,7 +291,7 @@ class AdminController extends Controller
             foreach ($request->file('galeri') as $file) {
                 $filename = time() . '_' . $file->getClientOriginalName();
                 $file->move(public_path('assets/img/places_gallery'), $filename);
-                $places->galleries()->create([
+                $Places->galleries()->create([
                     'path_file' => 'assets/img/places_gallery/' . $filename,
                     'tipe'      => 'galeri',
                 ]);
@@ -302,7 +302,7 @@ class AdminController extends Controller
             foreach ($request->file('foto_menu') as $file) {
                 $filename = time() . '_' . $file->getClientOriginalName();
                 $file->move(public_path('assets/img/places_gallery'), $filename);
-                $places->galleries()->create([
+                $Places->galleries()->create([
                     'path_file' => 'assets/img/places_gallery/' . $filename,
                     'tipe'      => 'menu',
                 ]);
@@ -319,13 +319,13 @@ class AdminController extends Controller
 
     public function viewLokasi($id)
     {
-        $places = places::findOrFail($id);
-        return view('admin.lokasi.viewLokasi', compact('places'));
+        $Places = Places::findOrFail($id);
+        return view('admin.lokasi.viewLokasi', compact('Places'));
     }
 
     public function editTempat($id)
     {
-        $place = places::findOrFail($id);
+        $place = Places::findOrFail($id);
         $moods = moods::all();
         return view('admin.lokasi.editLokasi', compact('place', 'moods'));
     }
@@ -334,7 +334,7 @@ class AdminController extends Controller
     {
         $kategoriId = (int) $request->kategori_tempat ?: null;
 
-        $place = places::findOrFail($id);
+        $place = Places::findOrFail($id);
 
         $listFasilitas = ['wifi', 'ruang_ac', 'stopkontan', 'parkir_luas', 'area_merokok', 'toilet', 'photobooth', 'musholla', 'ruang_meeting', 'board_game'];
         $dataFasilitas = [];
@@ -387,7 +387,7 @@ class AdminController extends Controller
 
     public function hapustempat($id)
     {
-        places::findOrFail($id)->delete();
+        Places::findOrFail($id)->delete();
         return redirect('/lokasi');
     }
 }

@@ -271,7 +271,7 @@ class UserController extends Controller
 
     public function showMap($id)
     {
-        $places = places::findOrFail($id);
+        $places = Places::findOrFail($id);
         return view('placeDetails.placeMap', compact('places'));
     }
 }

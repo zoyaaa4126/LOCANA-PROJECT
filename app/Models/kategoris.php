@@ -18,6 +18,6 @@ class kategoris extends Model
     // relasi
     public function places()
     {
-        return $this->hasMany(places::class, 'kategori_id');
+        return $this->hasMany(Places::class, 'kategori_id');
     }
 }
