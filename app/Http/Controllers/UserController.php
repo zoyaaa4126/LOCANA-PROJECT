@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Kategoris;
+use App\Models\places;
 
 
 class UserController extends Controller
@@ -263,5 +264,11 @@ class UserController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/')->with('success', 'Berhasil keluar.');
+    }
+
+    public function showMap($id)
+    {
+        $places = places::findOrFail($id);
+        return view('placeDetails.placeMap', compact('places'));
     }
 }

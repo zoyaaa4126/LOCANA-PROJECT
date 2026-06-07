@@ -23,7 +23,7 @@
             </div>
             @auth
             <a href="{{ route('reviews.create', $place->id) }}"
-            class="flex items-center gap-2 bg-[#FBB45E] hover:bg-[#E2A255] text-[#363B58] font-bold px-5 py-2.5 rounded-xl transition">
+            class="flex items-center gap-2 bg-[#FBB45E] hover:bg-[#E2A255] text-[#363B58] font-bold px-5 py-2.5 rounded-xl transition max-md:text-sm max-md:px-2.5 max-md:py-1 max-md:gap-1">
                 <span class="material-symbols-outlined text-sm">add</span>
                 Tambah Review
             </a>

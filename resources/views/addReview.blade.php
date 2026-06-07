@@ -9,7 +9,7 @@
 
         {{-- BREADCRUMB + HEADER --}}
         <div class="flex items-center gap-4 mb-8">
-            <a href="{{ route('reviews.index', $place->id) }}"
+            <a href="{{ route('places.show', $place->id) }}"
                class="w-10 h-10 bg-[#FBB45E] rounded-xl flex items-center justify-center hover:bg-[#E2A255] transition">
                 <span class="material-symbols-outlined text-[#363B58]">arrow_back</span>
             </a>

@@ -63,6 +63,14 @@
                             Masuk
                         </a>
                     @endauth
+
+                    @if(!request()->is('*/map') && !request()->is('places/*'))
+                    <div class="relative bg-slate-100 border rounded-lg border-slate-200">
+                        <span class="material-symbols-outlined absolute left-3 top-2.5 text-[#363B58]">search</span>
+                        <input type="text" placeholder="Telusuri" class="pl-10 pr-4 py-2 w-64 placeholder-[#363B58] bg-transparent outline-none">
+                    </div>
+                    @endif
+
                 </div>
             </div>
         </div>
@@ -85,12 +93,14 @@
                     </button>
                 </div>
             </div>
+            @if(!request()->is('*/map') && !request()->is('places/*'))
             <div class="mt-3">
                 <div class="relative bg-slate-100 border rounded-lg border-slate-200 w-full">
                     <span class="material-symbols-outlined absolute left-3 top-2 text-[#363B58] text-base">search</span>
                     <input type="text" placeholder="Telusuri" class="pl-9 pr-4 py-2 w-full placeholder-[#363B58] text-sm rounded-lg bg-transparent outline-none">
                 </div>
             </div>
+            @endif
         </div>
     </header>
 
@@ -224,10 +234,12 @@
 
     <x-footer />
 
+    @if(!request()->is('*/map'))
     <a href="/chatbot" class="fixed bottom-5 right-5 z-50 bg-[#FBB45E] text-[#363B58] w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition"
-       style="font-variation-settings: 'FILL' 1;" title="Chatbot">
+       style="font-variation-settings: 'FILL' 1;" title="Chatbot" id="chatbotBtn">
         <span class="material-symbols-outlined text-2xl">smart_toy</span>
     </a>
+    @endif
 
     @include('components.modal-logout')
     @include('components.modal-loginRequired')

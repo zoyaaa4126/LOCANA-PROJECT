@@ -19,6 +19,7 @@ Route::get('/rekomendasi', [UserController::class, 'rekomendasi'])->name('rekome
 Route::get('/places/{id}', [UserController::class, 'showPlace'])->name('places.show');
 Route::get('/places/kategori/{id}', [UserController::class, 'placesByKategori'])->name('places.kategori');
 Route::get('/places/{id}/reviews', [ReviewController::class, 'index'])->name('reviews.index');
+Route::get('/place/{id}/map', [UserController::class, 'showMap'])->name('place.map');
 
 // ROUTE CRUD USER
 Route::get('/users', [UserController::class, 'index']);

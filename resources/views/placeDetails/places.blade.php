@@ -26,21 +26,21 @@
                         <span class="text-sm max-md:hidden">Simpan</span>
                     </button>
 
-                    <button class="flex items-center gap-1 bg-[#FBB45E] px-5 py-2 rounded-[1rem] font-bold" id="btnMaps">
+                    <button class="flex items-center gap-1 bg-[#FBB45E] px-5 py-2 rounded-[1rem] font-bold hover:bg-[#E2A255] transition-colors" id="btnMaps">
                         <svg xmlns="http://www.w3.org/2000/svg" height="23px" viewBox="0 -960 960 960" width="23" fill="#000000">
                             <path d="m600-120-240-84-186 72q-20 8-37-4.5T120-170v-560q0-13 7.5-23t20.5-15l212-72 240 84 186-72q20-8 37 4.5t17 33.5v560q0 13-7.5 23T812-192l-212 72Zm-40-98v-468l-160-56v468l160 56Zm80 0 120-40v-474l-120 46v468Zm-440-10 120-46v-468l-120 40v474Zm440-458v468-468Zm-320-56v468-468Z" />
                         </svg>
                         <span class="text-sm max-md:hidden">Lihat Map</span>
                     </button>
                 </div>
-            </div>
 
-            <div class="absolute inset-0 flex flex-col justify-end px-20 py-[35rem] text-white gap-3 pointer-events-none 
-            max-md:px-4 max-md:py-[20.5rem]">
-                <div class="text-6xl font-bold max-md:text-2xl max-md:leading-none">{{ $places->nama_tempat }}</div>
-                <div class="text-3xl font-semibold max-md:text-[14px] max-md:leading-none">
-                     ⭐⭐⭐⭐ • {{ $places->kategori->nama }} • Rp.{{ number_format($places->harga_min, 0, ',', '.') }}-{{ number_format($places->harga_max, 0, ',', '.') }} • 
-                    <span id="jarak">Menghitung jarak...</span>
+                <div class="absolute inset-0 flex flex-col justify-end px-20 pb-[35rem] text-white gap-3 pointer-events-none z-1000
+                max-md:px-4 max-md:pb-6">
+                    <div class="text-6xl font-bold max-md:text-2xl max-md:leading-none">{{ $places->nama_tempat }}</div>
+                    <div class="text-3xl font-semibold max-md:text-[14px] max-md:leading-none">
+                        ⭐⭐⭐⭐ • {{ $places->kategori->nama }} • Rp.{{ number_format($places->harga_min, 0, ',', '.') }}-{{ number_format($places->harga_max, 0, ',', '.') }} • 
+                        <span id="jarak">Menghitung jarak...</span>
+                    </div>
                 </div>
             </div>
 
