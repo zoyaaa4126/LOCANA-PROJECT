@@ -20,7 +20,7 @@
             <div class="bg-[#FBB45E] w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <span class="material-symbols-outlined text-white text-3xl" style="font-variation-settings:'FILL' 1;">smart_toy</span>
             </div>
-            <h1 class="text-2xl font-bold">Halo, <span class="text-[#FBB45E]">Nanami Kento</span>! 👋</h1>
+            <h1 class="text-2xl font-bold">Halo, <span class="text-[#FBB45E]">{{ auth()->user()->nama }}</span>! 👋</h1>
             <p class="text-gray-500 mt-1">Ada yang bisa aku bantu?</p>
         </div>
 
@@ -34,7 +34,7 @@
                 <div>
                     <div class="text-sm font-semibold text-[#363B58] mb-1">Locana Assistant</div>
                     <div class="bg-white px-4 py-3 rounded-2xl rounded-tl-none text-sm text-[#363B58] shadow-sm">
-                        Halo, Nanami! 👋 Aku asisten digital Locana.<br>Ada yang bisa aku bantu?
+                        Halo, {{ auth()->user()->nama }}! 👋 Aku asisten digital Locana.<br>Ada yang bisa aku bantu?
                     </div>
                 </div>
             </div>
@@ -91,5 +91,11 @@
 
     </div>
 </div>
+
+@push('scripts')
+<script>
+    window.chatbotFlow = @json($flow);
+</script>
+@endpush
 
 @endsection

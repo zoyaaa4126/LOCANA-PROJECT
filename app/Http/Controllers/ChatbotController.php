@@ -8,8 +8,10 @@ class ChatbotController extends Controller
 {
     public function index()
     {
-        $menu = config('chatbot.menu');
-        return view('chatbot', compact('menu'));
+        return view('chatbot', [
+            'menu' => config('chatbot.menu'),
+            'flow' => config('chatbot.flow'),
+        ]);
     }
 
     public function getStep($key)

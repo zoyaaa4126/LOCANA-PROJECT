@@ -30,6 +30,7 @@ Route::post('/users/{id}/delete', [UserController::class, 'destroy']);
 
 // CHATBOT
 Route::get('/chatbot', [ChatbotController::class, 'index']);
+Route::get('/chatbot/step/{key}', [ChatbotController::class, 'getStep']);
 Route::get('/syarat', fn() => view('syarat'));
 
 // ADMIN

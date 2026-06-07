@@ -65,6 +65,15 @@ const filterContent = document.getElementById('filterContent');
 const filterOverlay = document.getElementById('filterOverlay');
 const closeFilterBtn = document.getElementById('closeFilterBtn');
 
+function closeFilterSidebar() {
+    if (filterOverlay) filterOverlay.classList.remove('opacity-100');
+    if (filterContent) filterContent.classList.add('-translate-x-full');
+    setTimeout(() => {
+        if (filterSidebar) filterSidebar.classList.add('hidden');
+        document.body.style.overflow = '';
+    }, 300);
+}
+
 if (filterBtn && filterSidebar) {
     function openFilterSidebar() {
         filterSidebar.classList.remove('hidden');
@@ -75,15 +84,6 @@ if (filterBtn && filterSidebar) {
         document.body.style.overflow = 'hidden';
     }
 
-    function closeFilterSidebar() {
-        if (filterOverlay) filterOverlay.classList.remove('opacity-100');
-        if (filterContent) filterContent.classList.add('-translate-x-full');
-        setTimeout(() => {
-            if (filterSidebar) filterSidebar.classList.add('hidden');
-            document.body.style.overflow = '';
-        }, 300);
-    }
-
     filterBtn.addEventListener('click', openFilterSidebar);
     if (closeFilterBtn) closeFilterBtn.addEventListener('click', closeFilterSidebar);
     if (filterOverlay) filterOverlay.addEventListener('click', closeFilterSidebar);
@@ -91,12 +91,8 @@ if (filterBtn && filterSidebar) {
     const resetFiltersBtn = document.getElementById('resetFilters');
     if (resetFiltersBtn) {
         resetFiltersBtn.addEventListener('click', () => {
-            document.querySelectorAll('#filterSidebar input[type="checkbox"]').forEach(checkbox => {
-                checkbox.checked = false;
-            });
-            document.querySelectorAll('#filterSidebar input[type="radio"]').forEach(radio => {
-                radio.checked = false;
-            });
+            document.querySelectorAll('#filterSidebar input[type="checkbox"]').forEach(cb => cb.checked = false);
+            document.querySelectorAll('#filterSidebar input[type="radio"]').forEach(r => r.checked = false);
             document.querySelectorAll('#filterSidebar .bg-orange-50').forEach(el => {
                 el.classList.remove('bg-orange-50', 'text-[#FBB45E]');
                 el.classList.add('hover:bg-gray-50');
@@ -108,16 +104,12 @@ if (filterBtn && filterSidebar) {
 // ESC UNTUK TUTUP SIDEBAR
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-        if (menuSidebar && !menuSidebar.classList.contains('hidden')) {
-            closeMenuSidebar();
-        }
-        if (filterSidebar && filterSidebar.style && !filterSidebar.classList.contains('hidden')) {
-            if (typeof closeFilterSidebar === 'function') closeFilterSidebar();
-        }
+        if (menuSidebar && !menuSidebar.classList.contains('hidden')) closeMenuSidebar();
+        if (filterSidebar && !filterSidebar.classList.contains('hidden')) closeFilterSidebar();
     }
 });
 
-//WISHLIST
+// WISHLIST
 const btnWishlist = document.getElementById('btnWishlist');
 
 if (btnWishlist) {
@@ -163,306 +155,43 @@ function setUnsaved(btn) {
     btn.onmouseleave = () => btn.style.backgroundColor = '#FBB45E';
 }
 
-// CHATBOT
-document.addEventListener("DOMContentLoaded", function () {
-    const chatOutput       = document.getElementById('chatOutput');
-    const mainMenu         = document.getElementById('mainMenu');
-    const followUpMenu     = document.getElementById('followUpMenu');
-    const greeting         = document.getElementById('greeting');
-    const divider          = document.getElementById('divider');
-    const ratingCard       = document.getElementById('ratingCard');
-    const starButtons      = document.querySelectorAll('.star-btn');
-    const ratingThanks     = document.getElementById('ratingThanks');
-
-    let started      = false;
-    let ratingDone   = false;
-
-    // ── Render bubble bot ────────────────────────────────────────
-    function appendBot(message) {
-        const div = document.createElement('div');
-        div.className = 'flex items-start gap-3';
-        div.innerHTML = `
-            <div class="bg-[#FBB45E] w-9 h-9 rounded-xl flex items-center justify-center shrink-0">
-                <span class="material-symbols-outlined text-white text-xl" style="font-variation-settings:'FILL' 1;">smart_toy</span>
-            </div>
-            <div>
-                <div class="text-sm font-semibold text-[#363B58] mb-1">Locana Assistant</div>
-                <div class="bg-white px-4 py-3 rounded-2xl rounded-tl-none text-sm text-[#363B58] shadow-sm whitespace-pre-line max-w-xs">
-                    ${message}
-                </div>
-            </div>
-        `;
-        chatOutput.appendChild(div);
-    }
-
-    // ── Render bubble user ───────────────────────────────────────
-    function appendUser(label) {
-        const div = document.createElement('div');
-        div.className = 'w-full flex justify-end';
-        div.innerHTML = `
-            <div class="bg-[#FBB45E] text-white px-4 py-3 rounded-2xl rounded-tr-none text-sm shadow-sm max-w-xs">
-                ${label}
-            </div>
-        `;
-        chatOutput.appendChild(div);
-    }
-
-    // ── Tampilkan rating card ────────────────────────────────────
-    function showRatingCard() {
-        ratingCard.classList.remove('hidden');
-        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-    }
-
-    // ── Render follow-up pill buttons ────────────────────────────
-    function renderFollowUp(options, isEnd = false) {
-        followUpMenu.innerHTML = '';
-        mainMenu.classList.add('hidden');
-
-        if (options.length === 0) {
-            // Chat selesai — sembunyikan semua opsi, tampilkan rating
-            followUpMenu.classList.add('hidden');
-            divider.classList.add('hidden');
-            showRatingCard();
-            return;
-        }
-
-        options.forEach(opt => {
-            const btn = document.createElement('button');
-            btn.className = 'chat-option bg-white border border-slate-200 shadow-sm text-sm text-[#363B58] px-4 py-2 rounded-full hover:bg-[#FBB45E] hover:text-white hover:border-[#FBB45E] transition w-full text-left';
-            btn.textContent = opt.label;
-            btn.dataset.next = opt.next;
-            followUpMenu.appendChild(btn);
-        });
-
-        followUpMenu.classList.remove('hidden');
-        divider.classList.remove('hidden');
-        attachListeners(followUpMenu.querySelectorAll('.chat-option'));
-    }
-
-    // ── Render menu utama sebagai pill buttons ───────────────────
-    function renderMainMenuAsPills(options) {
-        followUpMenu.innerHTML = '';
-        mainMenu.classList.add('hidden');
-
-        options.forEach(opt => {
-            const btn = document.createElement('button');
-            btn.className = 'chat-option bg-white border border-slate-200 shadow-sm text-sm text-[#363B58] px-4 py-2 rounded-full hover:bg-[#FBB45E] hover:text-white hover:border-[#FBB45E] transition w-full text-left';
-            btn.textContent = opt.label;
-            btn.dataset.next = opt.next;
-            followUpMenu.appendChild(btn);
-        });
-
-        followUpMenu.classList.remove('hidden');
-        divider.classList.remove('hidden');
-        attachListeners(followUpMenu.querySelectorAll('.chat-option'));
-    }
-
-    // ── Fetch step dari server ───────────────────────────────────
-    async function handleStep(next, label) {
-        appendUser(label);
-
-        mainMenu.classList.add('hidden');
-        followUpMenu.classList.add('hidden');
-        divider.classList.add('hidden');
-
-        try {
-            const res  = await fetch(`/chatbot/step/${next}`);
-            const data = await res.json();
-
-            appendBot(data.message);
-
-            if (data.is_menu) {
-                renderMainMenuAsPills(data.options);
-            } else {
-                renderFollowUp(data.options);
-            }
-
-            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-
-        } catch (err) {
-            console.error(err);
-        }
-    }
-
-    // ── Attach listeners ─────────────────────────────────────────
-    function attachListeners(buttons) {
-        buttons.forEach(btn => {
-            btn.addEventListener('click', async () => {
-                const next  = btn.dataset.next;
-                const label = btn.textContent.trim();
-                if (!next) return;
-
-                if (!started) {
-                    greeting.remove();
-                    started = true;
-                }
-
-                await handleStep(next, label);
-            });
-        });
-    }
-
-    // ── Star rating ──────────────────────────────────────────────
-    starButtons.forEach(btn => {
-        // Hover: warnai bintang sampai yang di-hover
-        btn.addEventListener('mouseenter', () => {
-            if (ratingDone) return;
-            const val = parseInt(btn.dataset.value);
-            starButtons.forEach(b => {
-                const star = b.querySelector('span');
-                star.style.color = parseInt(b.dataset.value) <= val ? '#FBB45E' : '';
-            });
-        });
-
-        // Mouse leave: reset ke nilai terpilih (atau kosong)
-        btn.addEventListener('mouseleave', () => {
-            if (ratingDone) return;
-            resetStars(0);
-        });
-
-        // Klik: kunci pilihan
-        btn.addEventListener('click', () => {
-            if (ratingDone) return;
-            ratingDone = true;
-            const val = parseInt(btn.dataset.value);
-
-            starButtons.forEach(b => {
-                const star = b.querySelector('span');
-                star.style.color = parseInt(b.dataset.value) <= val ? '#FBB45E' : '#cbd5e1';
-                b.style.pointerEvents = 'none'; // nonaktifkan setelah klik
-            });
-
-            ratingThanks.classList.remove('hidden');
-        });
-    });
-
-    function resetStars(selected) {
-        starButtons.forEach(b => {
-            const star = b.querySelector('span');
-            star.style.color = parseInt(b.dataset.value) <= selected ? '#FBB45E' : '';
-        });
-    }
-
-    // ── Init ──────────────────────────────────────────────────────
-    attachListeners(mainMenu.querySelectorAll('.chat-option'));
-});
-
+// SCROLL CARDS
 document.querySelectorAll('.main-cards').forEach(cardSection => {
+    const scrollContainer = cardSection.querySelector('.scrollContainer');
+    const backBtn = cardSection.querySelector('.scrollLeft');
+    const nextBtn = cardSection.querySelector('.scrollRight');
 
-  let scrollContainer = cardSection.querySelector('.scrollContainer');
-  let backBtn = cardSection.querySelector('.scrollLeft');
-  let nextBtn = cardSection.querySelector('.scrollRight');
+    if (!scrollContainer || !backBtn || !nextBtn) return;
 
-  function updateButtons() {
-    if (scrollContainer.scrollLeft <= 0) {
-      backBtn.style.opacity = "0";
-      backBtn.style.pointerEvents = "none";
-    } else {
-      backBtn.style.opacity = "1";
-      backBtn.style.pointerEvents = "auto";
+    function updateButtons() {
+        backBtn.style.opacity = scrollContainer.scrollLeft <= 0 ? "0" : "1";
+        backBtn.style.pointerEvents = scrollContainer.scrollLeft <= 0 ? "none" : "auto";
+        const atEnd = scrollContainer.scrollLeft + scrollContainer.clientWidth >= scrollContainer.scrollWidth - 1;
+        nextBtn.style.opacity = atEnd ? "0" : "1";
+        nextBtn.style.pointerEvents = atEnd ? "none" : "auto";
     }
 
-    if (scrollContainer.scrollLeft + scrollContainer.clientWidth >= scrollContainer.scrollWidth - 1) {
-      nextBtn.style.opacity = "0";
-      nextBtn.style.pointerEvents = "none";
-    } else {
-      nextBtn.style.opacity = "1";
-      nextBtn.style.pointerEvents = "auto";
-    }
-  }
-
-  nextBtn.addEventListener("click", () => {
-    scrollContainer.scrollBy({ left: 900, behavior: "smooth" });
-  });
-
-  backBtn.addEventListener("click", () => {
-    scrollContainer.scrollBy({ left: -900, behavior: "smooth" });
-  });
-
-  scrollContainer.addEventListener("scroll", updateButtons);
-
-  updateButtons();
+    nextBtn.addEventListener("click", () => scrollContainer.scrollBy({ left: 900, behavior: "smooth" }));
+    backBtn.addEventListener("click", () => scrollContainer.scrollBy({ left: -900, behavior: "smooth" }));
+    scrollContainer.addEventListener("scroll", updateButtons);
+    updateButtons();
 });
 
-//ADMIN TAMBAH PENGGUNA
-document.addEventListener('DOMContentLoaded', function () {
-
-    /* ===== ROLE DROPDOWN ===== */
-    const roleBtn   = document.getElementById('role-btn');
-    const roleMenu  = document.getElementById('role-menu');
-    const roleChev  = document.getElementById('role-chevron');
-    const roleLabel = document.getElementById('role-label');
-    const roleVal   = document.getElementById('role-value');
-
-    roleBtn.addEventListener('click', function (e) {
-        e.stopPropagation();
-        const open = roleMenu.style.display === 'block';
-        roleMenu.style.display  = open ? 'none' : 'block';
-        roleChev.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';
+// POP UP
+function confirmHapus() {
+    const modal = document.getElementById('modal-hapus');
+    if (modal) modal.classList.remove('hidden');
+}
+function tutupModal() {
+    const modal = document.getElementById('modal-hapus');
+    if (modal) modal.classList.add('hidden');
+}
+const modalHapus = document.getElementById('modal-hapus');
+if (modalHapus) {
+    modalHapus.addEventListener('click', function(e) {
+        if (e.target === this) tutupModal();
     });
-
-    document.querySelectorAll('.role-opt').forEach(function (opt) {
-        opt.addEventListener('click', function (e) {
-            e.stopPropagation();
-            roleVal.value          = this.dataset.val;
-            roleLabel.textContent  = this.dataset.label;
-            roleLabel.style.color  = '#363B58';
-            roleMenu.style.display = 'none';
-            roleChev.style.transform = 'rotate(0deg)';
-        });
-    });
-
-    document.addEventListener('click', function (e) {
-        if (!document.getElementById('role-wrapper').contains(e.target)) {
-            roleMenu.style.display   = 'none';
-            roleChev.style.transform = 'rotate(0deg)';
-        }
-    });
-
-    /* ===== TOGGLE PASSWORD ===== */
- document.addEventListener("DOMContentLoaded", function () {
-
-  const toggles = document.querySelectorAll(".toggle-password");
-
-  toggles.forEach(function(toggle) {
-
-    toggle.addEventListener("click", function() {
-
-      const password =
-        toggle.parentElement.querySelector(".password-input");
-
-      if (password.type === "password") {
-        password.type = "text";
-        toggle.textContent = "visibility_off";
-      } else {
-        password.type = "password";
-        toggle.textContent = "visibility";
-      }
-
-    });
-
-  });
-
-});
-
-
-    /* ===== PREVIEW FOTO PROFIL ===== */
-    document.getElementById('foto-input').addEventListener('change', function () {
-        const file = this.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            const preview     = document.getElementById('foto-preview');
-            const placeholder = document.getEl
-            ementById('foto-placeholder');
-            preview.src           = e.target.result;
-            preview.style.display = 'block';
-            placeholder.style.display = 'none';
-        };
-        reader.readAsDataURL(file);
-    });
-
-});
+}
 
 // MOBILE MENU
 const menuBtn = document.getElementById('menuBtn');
@@ -471,112 +200,276 @@ const mobileSidebar = document.getElementById('mobileSidebar');
 const overlay = document.getElementById('overlay');
 
 if (menuBtn && closeBtn && mobileSidebar && overlay) {
-
     menuBtn.onclick = () => {
         mobileSidebar.classList.remove('translate-x-full');
         overlay.classList.remove('hidden');
     };
-
     closeBtn.onclick = overlay.onclick = () => {
         mobileSidebar.classList.add('translate-x-full');
         overlay.classList.add('hidden');
     };
 }
 
-
 // MOBILE FILTER
 const mobileToggle = document.getElementById("mobileFilterToggle");
 const mobileFilterSidebar = document.getElementById("desktopSidebar");
-
 if (mobileToggle && mobileFilterSidebar) {
-
     mobileToggle.addEventListener("click", () => {
         mobileFilterSidebar.classList.toggle("max-sm:hidden");
     });
-
 }
-
 
 // DESKTOP FILTER
 const desktopToggle = document.getElementById("desktopFilterToggle");
 const desktopSidebar = document.getElementById("desktopSidebar");
-
 if (desktopToggle && desktopSidebar) {
-
     desktopToggle.addEventListener("click", () => {
-
         desktopSidebar.classList.toggle("w-80");
         desktopSidebar.classList.toggle("w-0");
         desktopSidebar.classList.toggle("p-6");
         desktopSidebar.classList.toggle("overflow-hidden");
-
         if (desktopSidebar.classList.contains("w-0")) {
             desktopSidebar.classList.add("opacity-0");
         } else {
             desktopSidebar.classList.remove("opacity-0");
         }
-
         desktopToggle.classList.toggle("bg-gray-100");
     });
-
 }
-
-//POP UP
-function confirmHapus() {
-    document.getElementById('modal-hapus').classList.remove('hidden');
-}
-function tutupModal() {
-    document.getElementById('modal-hapus').classList.add('hidden');
-}
-// Tutup modal jika klik backdrop
-document.getElementById('modal-hapus').addEventListener('click', function(e) {
-    if (e.target === this) tutupModal();
-});
 
 document.addEventListener("DOMContentLoaded", function () {
 
-  // LOGIN
-  const loginForm = document.getElementById("loginForm");
-
-  if (loginForm) {
-
-    loginForm.addEventListener("submit", function(e){
-      e.preventDefault();
-
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-      const errorMsg = document.getElementById("error-msg");
-
-      if(email === "admin@locana.com" && password === "1234"){
-        window.location.href = "homepage.html";
-      } else {
-        errorMsg.textContent = "Username atau Password Salah!";
-      }
-
-    });
-
-  }
-
-  // TOGGLE PASSWORD
-  const toggles = document.querySelectorAll(".toggle-password");
-
-toggles.forEach(function(toggle) {
-
-  toggle.addEventListener("click", function() {
-
-    const password =
-      toggle.parentElement.querySelector(".password-input");
-
-    if (password.type === "password") {
-      password.type = "text";
-      toggle.textContent = "visibility_off";
-    } else {
-      password.type = "password";
-      toggle.textContent = "visibility";
+    // TOGGLE PASSWORD
+    const toggles = document.querySelectorAll(".toggle-password");
+    if (toggles.length) {
+        toggles.forEach(function(toggle) {
+            toggle.addEventListener("click", function() {
+                const password = toggle.parentElement.querySelector(".password-input");
+                if (!password) return;
+                if (password.type === "password") {
+                    password.type = "text";
+                    toggle.textContent = "visibility_off";
+                } else {
+                    password.type = "password";
+                    toggle.textContent = "visibility";
+                }
+            });
+        });
     }
 
-  });
+    // REVIEW PAGE - SORT DROPDOWN
+    const sortSelect = document.getElementById('sortSelect');
+    if (sortSelect) {
+        sortSelect.addEventListener('change', function () {
+            console.log('Sort by:', this.value);
+        });
+    }
 
-});
+    // CREATE REVIEW - STAR RATING
+    const starBtns = document.querySelectorAll('.star-btn');
+    const ratingInput = document.getElementById('ratingInput');
+    const ratingLabel = document.getElementById('ratingLabel');
+    const ratingLabels = { 1: 'Buruk', 2: 'Kurang', 3: 'Cukup', 4: 'Bagus', 5: 'Sangat Bagus!' };
+
+    if (starBtns.length && ratingInput) {
+        const initialRating = parseInt(ratingInput.value);
+        if (initialRating) highlightStars(initialRating);
+
+        starBtns.forEach(btn => {
+            btn.addEventListener('mouseenter', function () {
+                highlightStars(parseInt(this.dataset.value));
+            });
+            btn.addEventListener('mouseleave', function () {
+                const selected = parseInt(ratingInput.value);
+                selected ? highlightStars(selected) : resetStars();
+            });
+            btn.addEventListener('click', function () {
+                const val = parseInt(this.dataset.value);
+                ratingInput.value = val;
+                highlightStars(val);
+                if (ratingLabel) {
+                    ratingLabel.textContent = ratingLabels[val] || '';
+                    ratingLabel.classList.add('text-[#FBB45E]');
+                    ratingLabel.classList.remove('text-gray-400');
+                }
+            });
+        });
+    }
+
+    function highlightStars(count) {
+        document.querySelectorAll('.star-btn').forEach(btn => {
+            const val = parseInt(btn.dataset.value);
+            if (!btn.closest('#ratingCard')) {
+                btn.style.color = val <= count ? '#FBB45E' : '#D1D5DB';
+                btn.style.fontVariationSettings = val <= count ? "'FILL' 1" : "'FILL' 0";
+            }
+        });
+    }
+
+    function resetStars() {
+        document.querySelectorAll('.star-btn').forEach(btn => {
+            if (!btn.closest('#ratingCard')) {
+                btn.style.color = '#D1D5DB';
+                btn.style.fontVariationSettings = "'FILL' 0";
+            }
+        });
+    }
+
+    // ADMIN TAMBAH PENGGUNA
+    const roleBtn = document.getElementById('role-btn');
+    const roleMenu = document.getElementById('role-menu');
+    const roleChev = document.getElementById('role-chevron');
+    const roleLabel = document.getElementById('role-label');
+    const roleVal = document.getElementById('role-value');
+
+    if (roleBtn && roleMenu) {
+        roleBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const open = roleMenu.style.display === 'block';
+            roleMenu.style.display = open ? 'none' : 'block';
+            if (roleChev) roleChev.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';
+        });
+
+        document.querySelectorAll('.role-opt').forEach(function(opt) {
+            opt.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (roleVal) roleVal.value = this.dataset.val;
+                if (roleLabel) { roleLabel.textContent = this.dataset.label; roleLabel.style.color = '#363B58'; }
+                roleMenu.style.display = 'none';
+                if (roleChev) roleChev.style.transform = 'rotate(0deg)';
+            });
+        });
+
+        document.addEventListener('click', function(e) {
+            const roleWrapper = document.getElementById('role-wrapper');
+            if (roleWrapper && !roleWrapper.contains(e.target)) {
+                roleMenu.style.display = 'none';
+                if (roleChev) roleChev.style.transform = 'rotate(0deg)';
+            }
+        });
+    }
+
+    // PREVIEW FOTO PROFIL
+    const fotoInput = document.getElementById('foto-input');
+    if (fotoInput) {
+        fotoInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const preview = document.getElementById('foto-preview');
+                const placeholder = document.getElementById('foto-placeholder');
+                if (preview) { preview.src = e.target.result; preview.style.display = 'block'; }
+                if (placeholder) placeholder.style.display = 'none';
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+
+    // CHATBOT
+    const chatOutput = document.getElementById('chatOutput');
+    if (chatOutput) {
+        const mainMenu     = document.getElementById('mainMenu');
+        const followUpMenu = document.getElementById('followUpMenu');
+        const divider      = document.getElementById('divider');
+        const ratingCard   = document.getElementById('ratingCard');
+        const ratingThanks = document.getElementById('ratingThanks');
+        const flow         = window.chatbotFlow || {};
+
+        function addUserMessage(text) {
+            const el = document.createElement('div');
+            el.className = 'flex justify-end';
+            el.innerHTML = `<div class="bg-[#FBB45E] text-white px-4 py-3 rounded-2xl rounded-tr-none text-sm max-w-xs shadow-sm">${text}</div>`;
+            chatOutput.appendChild(el);
+            el.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function addBotMessage(text) {
+            const el = document.createElement('div');
+            el.className = 'flex items-start gap-3';
+            el.innerHTML = `
+                <div class="bg-[#FBB45E] w-9 h-9 rounded-xl flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-white text-xl" style="font-variation-settings:'FILL' 1;">smart_toy</span>
+                </div>
+                <div>
+                    <div class="text-sm font-semibold text-[#363B58] mb-1">Locana Assistant</div>
+                    <div class="bg-white px-4 py-3 rounded-2xl rounded-tl-none text-sm text-[#363B58] shadow-sm whitespace-pre-line">${text}</div>
+                </div>`;
+            chatOutput.appendChild(el);
+            el.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function renderOptions(options) {
+            followUpMenu.innerHTML = '';
+            mainMenu.classList.add('hidden');
+
+            if (!options || options.length === 0) {
+                divider.classList.add('hidden');
+                followUpMenu.classList.add('hidden');
+                if (ratingCard) ratingCard.classList.remove('hidden');
+                return;
+            }
+
+            options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'chat-option bg-white border border-slate-200 shadow-sm text-sm text-[#363B58] px-4 py-2 rounded-full hover:bg-[#FBB45E] hover:text-white hover:border-[#FBB45E] transition w-full text-left';
+                btn.textContent = opt.label;
+                btn.addEventListener('click', function() {
+                    addUserMessage(opt.label);
+                    followUpMenu.innerHTML = '';
+
+                    if (opt.next === '__menu__') {
+                        mainMenu.classList.remove('hidden');
+                        followUpMenu.classList.add('hidden');
+                        return;
+                    }
+
+                    const step = flow[opt.next];
+                    if (!step) return;
+
+                    setTimeout(() => {
+                        addBotMessage(step.message);
+                        renderOptions(step.options);
+                    }, 300);
+                });
+                followUpMenu.appendChild(btn);
+            });
+
+            followUpMenu.classList.remove('hidden');
+            divider.classList.remove('hidden');
+        }
+
+        document.querySelectorAll('.chat-option').forEach(card => {
+            card.addEventListener('click', function() {
+                const key = this.dataset.next;
+                const label = this.querySelector('.text-sm.font-bold').textContent.trim();
+
+                addUserMessage(label);
+                mainMenu.classList.add('hidden');
+
+                const step = flow[key];
+                if (!step) return;
+
+                setTimeout(() => {
+                    addBotMessage(step.message);
+                    renderOptions(step.options);
+                }, 300);
+            });
+        });
+
+        if (ratingCard) {
+            ratingCard.querySelectorAll('.star-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const val = parseInt(this.dataset.value);
+                    ratingCard.querySelectorAll('.star-btn').forEach(b => {
+                        b.querySelector('.material-symbols-outlined').style.color =
+                            parseInt(b.dataset.value) <= val ? '#FBB45E' : '#D1D5DB';
+                    });
+                    if (ratingThanks) ratingThanks.classList.remove('hidden');
+                    ratingCard.querySelectorAll('.star-btn').forEach(b => b.disabled = true);
+                });
+            });
+        }
+    }
 
 });
