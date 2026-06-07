@@ -205,7 +205,7 @@
                                             class="flex-1 bg-gray-800 text-[#FBB45E] py-2 rounded-full text-sm font-medium flex items-center justify-center gap-1 hover:bg-gray-700 transition">
                                             <span class="material-symbols-outlined text-sm">location_on</span> Lihat Lokasi
                                         </a>
-                                        <button onclick="bukaShareModal()" class="share-btn bg-[#FBB45E] hover:bg-[#E2A255] text-[#363B58] w-10 h-10 flex items-center justify-center rounded-full transition">
+                                        <button onclick="bukaShareModal({{ $place->id }})" class="share-btn bg-[#FBB45E] hover:bg-[#E2A255] text-[#363B58] w-10 h-10 flex items-center justify-center rounded-full transition">
                                             <span class="material-symbols-outlined text-sm">share</span>
                                         </button>
                                     </div>
@@ -228,7 +228,7 @@
                                             WhatsApp
                                         </a>
 
-                                        <button onclick="copyLink()" class="flex flex-col items-center gap-1 text-sm text-[#363B58] hover:text-[#FBB45E]">
+                                        <button id="btnCopyLink" class="flex flex-col items-center gap-1 text-sm text-[#363B58] hover:text-[#FBB45E]">
                                             <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FBB45E">
                                                     <path d="M440-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h160v80H280q-50 0-85 35t-35 85q0 50 35 85t85 35h160v80ZM320-440v-80h320v80H320Zm200 160v-80h160q50 0 85-35t35-85q0-50-35-85t-85-35H520v-80h160q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H520Z"/>
@@ -641,20 +641,22 @@
         };
     });
 
-    function bukaShareModal() {
-        const url = window.location.href;
+    function bukaShareModal(id) {
+        const url = `http://127.0.0.1:8000/places/${id}`;
         document.querySelector('.shareModal').classList.remove('hidden');
         document.getElementById('shareWa').href = `https://wa.me/?text=${encodeURIComponent(url)}`;
         document.getElementById('shareX').href = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}`;
-        document.getElementById('shareFb').href = 'https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}';
+        document.getElementById('shareFb').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+        document.getElementById('btnCopyLink').onclick = () => copyLink(id);
     }
 
     function tutupShareModal() {
         document.querySelector('.shareModal').classList.add('hidden');
     }
 
-    function copyLink() {
-        navigator.clipboard.writeText(window.location.href).then(() => {
+    function copyLink(id) {
+        const url = `http://127.0.0.1:8000/places/${id}`;
+        navigator.clipboard.writeText(url).then(() => {
             alert('Link berhasil disalin!');
         });
     }
