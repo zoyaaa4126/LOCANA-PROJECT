@@ -10,7 +10,7 @@
                 </div>
 
                 <div class="absolute top-[3rem] left-8 flex gap-3 max-md:top-[16px] max-md:left-[10px] max-md:gap-[6px] max-md:scale-75 max-md:origin-top-left">
-                    <button onclick="history.back()" class="flex items-center gap-1 bg-[#FFFFFF] px-5 py-2 rounded-[1rem] text-[#FBB45E] font-bold">
+                    <button onclick=onclick="window.location.href='{{ route('home') }}'" class="flex items-center gap-1 bg-[#FFFFFF] px-5 py-2 rounded-[1rem] text-[#FBB45E] font-bold">
                         <svg xmlns="http://www.w3.org/2000/svg" height="23px" viewBox="0 -960 960 960" width="23px" fill="#FBB45E">
                             <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/>
                         </svg>
@@ -34,7 +34,7 @@
                     </button>
                 </div>
 
-                <div class="absolute inset-0 flex flex-col justify-end px-20 pb-[35rem] text-white gap-3 pointer-events-none z-1000
+                <div class="absolute inset-0 flex flex-col justify-end px-20 pb-[35rem] text-white gap-3 pointer-events-none
                 max-md:px-4 max-md:pb-6">
                     <div class="text-6xl font-bold max-md:text-2xl max-md:leading-none">{{ $places->nama_tempat }}</div>
                     <div class="text-3xl font-semibold max-md:text-[14px] max-md:leading-none">
