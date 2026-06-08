@@ -255,7 +255,7 @@ class AdminController extends Controller
             $file = $request->file('foto_cover');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('assets/img/places_img_hero'), $filename);
-            $gambarTempat = cloudinary()->upload($file->getRealPath())->getSecurePath();
+            $gambarTempat = 'assets/img/places_img_hero/' . $filename;
         }
 
         $places = Places::create(array_merge([
