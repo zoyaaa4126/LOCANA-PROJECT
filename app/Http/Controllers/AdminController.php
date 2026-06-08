@@ -230,6 +230,17 @@ class AdminController extends Controller
     }
     public function simpanTempat(Request $request)
     {
+        $request->validate([
+            'harga_min' => 'nullable|integer|min:0|max:1000000000',
+            'harga_max' => 'nullable|integer|min:0|max:1000000000|gte:harga_min',
+        ], [
+            'harga_min.min'  => 'Harga tidak boleh minus.',
+            'harga_min.max'  => 'Harga maksimal Rp 1.000.000.000.',
+            'harga_max.min'  => 'Harga tidak boleh minus.',
+            'harga_max.max'  => 'Harga maksimal Rp 1.000.000.000.',
+            'harga_max.gte'  => 'Harga tertinggi tidak boleh kurang dari harga terendah.',
+        ]);
+
         $kategoriMap = [
             '1' => 1,
             '2' => 2,
@@ -332,6 +343,17 @@ class AdminController extends Controller
 
     public function updateTempat(Request $request, $id)
     {
+        $request->validate([
+            'harga_min' => 'nullable|integer|min:0|max:1000000000',
+            'harga_max' => 'nullable|integer|min:0|max:1000000000|gte:harga_min',
+        ], [
+            'harga_min.min'  => 'Harga tidak boleh minus.',
+            'harga_min.max'  => 'Harga maksimal Rp 1.000.000.000.',
+            'harga_max.min'  => 'Harga tidak boleh minus.',
+            'harga_max.max'  => 'Harga maksimal Rp 1.000.000.000.',
+            'harga_max.gte'  => 'Harga tertinggi tidak boleh kurang dari harga terendah.',
+        ]);
+        
         $kategoriId = (int) $request->kategori_tempat ?: null;
 
         $place = Places::findOrFail($id);

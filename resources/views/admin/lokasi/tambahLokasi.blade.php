@@ -126,6 +126,13 @@
                     Harga & Fasilitas
                 </h2>
 
+                @error('harga_min')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+                @error('harga_max')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+
                 <div class="flex flex-col gap-2 mb-6">
                     <label class="text-sm font-semibold text-[#363B58]">Fasilitas</label>
                     <div class="grid grid-cols-2 gap-x-8 gap-y-3">
