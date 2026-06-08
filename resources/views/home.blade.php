@@ -644,7 +644,7 @@
     });
 
     function bukaShareModal(id) {
-        const url = `http://127.0.0.1:8000/places/${id}`;
+        const url = `${window.location.origin}/places/${id}`;
         document.querySelector('.shareModal').classList.remove('hidden');
         document.getElementById('shareWa').href = `https://wa.me/?text=${encodeURIComponent(url)}`;
         document.getElementById('shareX').href = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}`;
@@ -657,7 +657,7 @@
     }
 
     function copyLink(id) {
-        const url = `http://127.0.0.1:8000/places/${id}`;
+        const url = `${window.location.origin}/places/${id}`;
         navigator.clipboard.writeText(url).then(() => {
             alert('Link berhasil disalin!');
         });
