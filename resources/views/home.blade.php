@@ -341,7 +341,7 @@
             </div>
 
             {{-- Hidden cards untuk search/filter --}}
-            <div class="hidden">
+            <div class="hidden" style="display:none">
                 @foreach ($allPlaces as $place)
                 <div class="place-card"
                     data-nama="{{ strtolower($place->nama_tempat) }}"
