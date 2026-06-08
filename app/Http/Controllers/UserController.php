@@ -27,14 +27,17 @@ class UserController extends Controller
     public function registerStep1(Request $request)
     {
         $request->validate([
-            'username' => 'required|unique:users,username',
+            'username' => 'required|min:8|max:64|unique:users,username',
             'email'    => 'required|email|unique:users,email',
-            'password' => 'required|min:6',
+            'password' => 'required|min:6|max:14',
             'check'    => 'required',
         ], [
             'email.unique'      => 'Email sudah terdaftar.',
             'password.min'      => 'Password minimal 6 karakter.',
-            'username.unique'   => 'Username sudah digunakan'
+            'password.max'      => 'Password maksimal 14 karakter.',
+            'username.unique'   => 'Username sudah digunakan',
+            'username.min'      => 'Username minimal 6 karakter',
+            'username.max'      => 'Username minimal 14  karakter',
         ]);
 
         session([
@@ -56,9 +59,12 @@ class UserController extends Controller
         $request->validate(
             [
                 'nama' => 'required',
+                'foto_profil' => 'image|max:1'
             ],
             [
                 'nama.required' => 'Nama wajib diisi.',
+                'foto_profil.image' => 'Foto profile harus merupakan file jpg, jpeg, png, bmp, gif, atau webp.',
+                'foto_profil.max' => 'Foto maksimal hanya satu.',
             ]
         );
 

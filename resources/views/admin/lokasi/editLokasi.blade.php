@@ -131,6 +131,12 @@
                     Harga & Fasilitas
                 </h2>
 
+                @error('harga_min')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+                @error('harga_max')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
                 <div class="flex flex-col gap-2 mb-6">
                     <label class="text-sm font-semibold text-[#363B58]">Fasilitas</label>
                     <div class="grid grid-cols-2 gap-x-8 gap-y-3">
@@ -180,7 +186,7 @@
                                     <span class="px-3 py-3 text-sm text-gray-400 bg-[#F1F5F9] border-r border-[#E2E8F0] font-medium">Rp</span>
                                     <input type="number" id="harga-min" name="harga_min"
                                         value="{{ $place->harga_min }}"
-                                        placeholder="0" min="0"
+                                        placeholder="0" min="0" max="1000000000"
                                         oninput="updateHargaPreview()"
                                         class="flex-1 px-3 py-3 text-sm outline-none bg-transparent">
                                 </div>
@@ -191,7 +197,7 @@
                                     <span class="px-3 py-3 text-sm text-gray-400 bg-[#F1F5F9] border-r border-[#E2E8F0] font-medium">Rp</span>
                                     <input type="number" id="harga-max" name="harga_max"
                                         value="{{ $place->harga_max }}"
-                                        placeholder="0" min="0"
+                                        placeholder="0" min="0" max="1000000000"
                                         oninput="updateHargaPreview()"
                                         class="flex-1 px-3 py-3 text-sm outline-none bg-transparent">
                                 </div>
@@ -545,14 +551,28 @@ function updateHargaPreview() {
 }
 
 function applyHarga() {
+    const min = parseInt(document.getElementById('harga-min').value) || 0;
+    const max = parseInt(document.getElementById('harga-max').value) || 0;
+
+    if (min < 0 || max < 0) {
+        alert('Harga tidak boleh minus.');
+        return;
+    }
+    if (min > 1000000000 || max > 1000000000) {
+        alert('Harga maksimal Rp 1.000.000.000.');
+        return;
+    }
+    if (max > 0 && min > max) {
+        alert('Harga terendah tidak boleh melebihi harga tertinggi.');
+        return;
+    }
+
     updateHargaPreview();
     const panel = document.getElementById('harga-panel');
     panel.classList.add('hidden');
     panel.classList.remove('flex');
     document.getElementById('harga-chevron').style.transform = 'rotate(0deg)';
 
-    const min = document.getElementById('harga-min').value;
-    const max = document.getElementById('harga-max').value;
     if (min || max) {
         document.getElementById('harga-toggle-label').textContent =
             (formatRupiah(min) || '0') + ' – ' + (formatRupiah(max) || '0');
