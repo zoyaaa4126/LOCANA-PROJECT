@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\places;
+use App\Models\Places;
 
 class kategoris extends Model
 {
@@ -18,6 +18,6 @@ class kategoris extends Model
     // relasi
     public function places()
     {
-        return $this->hasMany(places::class, 'kategori_id');
+        return $this->hasMany(Places::class, 'kategori_id');
     }
 }

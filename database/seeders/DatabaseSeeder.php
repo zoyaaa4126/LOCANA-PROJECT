@@ -7,7 +7,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Database\Seeders\KategoriSeeder;
 use Database\Seeders\MoodSeeder;
-use Database\Seeders\places;
+use Database\Seeders\Places;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             KategoriSeeder::class,
             MoodSeeder::class,
             UserSeeder::class,
-            places::class,
+            Places::class,
             ReviewSeeder::class
         ]);
     }

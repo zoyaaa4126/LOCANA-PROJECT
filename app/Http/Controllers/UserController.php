@@ -138,7 +138,7 @@ class UserController extends Controller
         $lng = $request->query('lng');
 
 
-        $kategoris = Kategoris::all();
+        $kategoris = kategoris::all();
 
         $moods = \App\Models\Moods::all();
         $popularPlaces = \App\Models\Places::where('status_aktif', true)

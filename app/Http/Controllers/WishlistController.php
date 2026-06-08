@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\wishlist;
+use App\Models\Wishlist;
 use Illuminate\Support\Facades\Auth;
 
 class WishlistController extends Controller

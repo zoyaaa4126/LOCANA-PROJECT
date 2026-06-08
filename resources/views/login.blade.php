@@ -190,30 +190,21 @@
 
     <script src="../../public/js/script.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-
-        const toggles = document.querySelectorAll(".toggle-password");
-
-        toggles.forEach(function(toggle) {
-
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".toggle-password").forEach(function(toggle) {
             toggle.addEventListener("click", function() {
-
-            const password =
-                toggle.parentElement.querySelector(".password-input");
-
-            if (password.type === "password") {
-                password.type = "text";
-                toggle.textContent = "visibility_off";
-            } else {
-                password.type = "password";
-                toggle.textContent = "visibility";
-            }
-
+                const password = toggle.parentElement.querySelector(".password-input");
+                if (!password) return;
+                if (password.type === "password") {
+                    password.type = "text";
+                    toggle.textContent = "visibility_off";
+                } else {
+                    password.type = "password";
+                    toggle.textContent = "visibility";
+                }
             });
-
         });
-
-        });
+    });
     </script>
 </body>
 </html>
