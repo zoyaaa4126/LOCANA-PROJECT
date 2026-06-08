@@ -446,7 +446,7 @@
                 searchResult.classList.remove('hidden');
                 searchCards.innerHTML = '';
 
-                const allCards = document.querySelectorAll('.place-card');
+                const allCards = document.querySelectorAll('.hidden .place-card');
                 let found = 0;
 
                 allCards.forEach(card => {
