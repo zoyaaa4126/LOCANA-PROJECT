@@ -177,7 +177,7 @@
                                         <img src="{{ $place->gambar_tempat ? asset($place->gambar_tempat) : asset('assets/img/180 Cafe - Bandung 1.png') }}"
                                             class="w-full h-40 object-cover rounded-xl" alt="{{ $place->nama_tempat }}">
                                         <button
-                                            data-id="{{ $place->id }}"
+                                            data-id="${card.dataset.id}"
                                             onclick="toggleWishlist(this)"
                                             class="wishlist-btn absolute top-2 right-2 rounded-full w-8 h-8 flex items-center justify-center shadow-md cursor-pointer transition-all duration-200"
                                             style="background: {{ in_array($place->id, $wishlistIds) ? '#FBB45E' : '#FFF8EF' }}; color: {{ in_array($place->id, $wishlistIds) ? '#363B58' : '#FBB45E' }}; font-variation-settings: 'FILL' 1;">
@@ -463,11 +463,10 @@
                         <div class="relative mb-3">
                             <img src="${card.dataset.gambar}" class="w-full h-40 object-cover rounded-xl" alt="${card.dataset.nama}">
                             <button
-                                data-id="{{ $place->id }}"
+                                data-id="${card.dataset.id}"
                                 onclick="toggleWishlist(this)"
                                 class="wishlist-btn absolute top-2 right-2 rounded-full w-8 h-8 flex items-center justify-center shadow-md cursor-pointer transition-all duration-200"
-                                style="background: {{ in_array($place->id, $wishlistIds) ? '#FBB45E' : '#FFF8EF' }}; color: {{ in_array($place->id, $wishlistIds) ? '#363B58' : '#FBB45E' }}; font-variation-settings: 'FILL' 1;">
-                                
+                                style="background: ${wishlistIds.includes(parseInt(card.dataset.id)) ? '#FBB45E' : '#FFF8EF'}; color: ${wishlistIds.includes(parseInt(card.dataset.id)) ? '#363B58' : '#FBB45E'}; font-variation-settings: 'FILL' 1;"> 
                                 <span class="material-symbols-outlined">bookmark</span>
                             </button>
                         </div>
