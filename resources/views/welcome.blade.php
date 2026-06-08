@@ -435,8 +435,11 @@
         <div class="flex flex-col items-start w-[70vw] min-w-[70vw] bg-white rounded-[20px] p-5 border border-[#E2E8F0] shadow gap-6 md:min-w-[25vw] md:max-w-[25vw]">
             <div class="flex justify-between items-center gap-5 w-fit">
                 <div class="flex gap-2.5 w-fit">
-                    <img src="{{ $review->user->fotoProfile ? asset('storage/' . $review->user->fotoProfile) : asset('assets/img/kenma.jpeg') }}"
-                        class="rounded-full w-[1.8rem] md:w-10" alt="userpict">
+                    <img src="{{ $review->user->fotoProfile 
+    ? asset('storage/' . $review->user->fotoProfile) 
+    : 'https://ui-avatars.com/api/?name=' . urlencode($review->user->nama ?? $review->user->username) . '&background=FBB45E&color=fff&rounded=true' }}"
+                        class="rounded-full w-[1.8rem] md:w-10 object-cover aspect-square"
+                        alt="userpict">
                     <div>
                         <h4 class="text-[0.8rem] font-semibold leading-[120%] w-fit md:text-[1rem]">
                             {{ $review->user->nama ?? $review->user->username }}
