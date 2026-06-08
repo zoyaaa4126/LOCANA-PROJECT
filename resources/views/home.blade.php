@@ -651,20 +651,22 @@
     });
 
     function bukaShareModal(slug) {
-        const url = `${window.location.origin}/places/${slug}`;
+        const url = `{{ url('/places') }}/${slug}`;
         document.querySelector('.shareModal').classList.remove('hidden');
         document.getElementById('shareWa').href = `https://wa.me/?text=${encodeURIComponent(url)}`;
         document.getElementById('shareX').href = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}`;
         document.getElementById('shareFb').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-        document.getElementById('btnCopyLink').onclick = () => copyLink(slug);
+        document.getElementById('btnCopyLink').onclick = () => {
+            navigator.clipboard.writeText(url).then(() => alert('Link berhasil disalin!'));
+        };
     }
 
     function copyLink(slug) {
-        const url = `${window.location.origin}/places/${slug}`;
-        navigator.clipboard.writeText(url).then(() => {
-            alert('Link berhasil disalin!');
-        });
-    }
+    const url = `{{ url('/places') }}/${slug}`;
+    navigator.clipboard.writeText(url).then(() => {
+        alert('Link berhasil disalin!');
+    });
+}
 
     function tutupShareModal() {
         document.querySelector('.shareModal').classList.add('hidden');
