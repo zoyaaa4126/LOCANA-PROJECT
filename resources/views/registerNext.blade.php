@@ -94,6 +94,10 @@
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
 
+                @error('foto_profil')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+
                 <!-- Submit -->
                 <button type="submit"
                         class="w-full h-11 bg-[#FBB45E] text-[#363b58] font-bold text-sm rounded-xl border-none cursor-pointer mt-1
