@@ -16,10 +16,14 @@ use App\Http\Controllers\ReviewReportController;
 Route::get('/', [LandingController::class, 'index'])->name('landing.index');
 Route::get('/home', [UserController::class, 'home'])->name('home');
 Route::get('/rekomendasi', [UserController::class, 'rekomendasi'])->name('rekomendasi');
-Route::get('/places/{slug}', [UserController::class, 'showPlace'])->name('places.show');
 Route::get('/places/kategori/{id}', [UserController::class, 'placesByKategori'])->name('places.kategori');
+Route::get('/places/{slug}', [UserController::class, 'showPlace'])->name('places.show');
 Route::get('/places/{id}/reviews', [ReviewController::class, 'index'])->name('reviews.index');
 Route::get('/place/{id}/map', [UserController::class, 'showMap'])->name('place.map');
+Route::post('/set-lokasi', function (\Illuminate\Http\Request $request) {
+    session(['lat' => $request->lat, 'lng' => $request->lng]);
+    return response()->json(['ok' => true]);
+});
 
 // ROUTE CRUD USER
 Route::get('/users', [UserController::class, 'index']);

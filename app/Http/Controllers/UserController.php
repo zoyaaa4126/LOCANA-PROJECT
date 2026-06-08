@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\kategoris;
 use App\Models\Places;
 use App\Models\Moods;
+use App\Models\Wishlist;
 
 
 class UserController extends Controller
@@ -140,8 +141,8 @@ class UserController extends Controller
 
     public function home(Request $request)
     {
-        $lat = $request->query('lat');
-        $lng = $request->query('lng');
+        $lat = $request->session()->get('lat') ?? $request->query('lat');
+        $lng = $request->session()->get('lng') ?? $request->query('lng');
 
 
         $kategoris = kategoris::all();
