@@ -341,7 +341,7 @@
             </div>
 
             {{-- Hidden cards untuk search/filter --}}
-            <div class=""search-data" style="display:none">
+            <div class="hidden">
                 @foreach ($allPlaces as $place)
                 <div class="place-card"
                     data-nama="{{ strtolower($place->nama_tempat) }}"
@@ -446,8 +446,9 @@
                 searchResult.classList.remove('hidden');
                 searchCards.innerHTML = '';
 
-                const allCards = document.querySelectorAll('.search-data" .place-card');
+                const allCards = document.querySelectorAll('.hidden .place-card');
                 let found = 0;
+
                 allCards.forEach(card => {
                     const nama = card.dataset.nama ?? '';
                     const kategori = card.dataset.kategori ?? '';
