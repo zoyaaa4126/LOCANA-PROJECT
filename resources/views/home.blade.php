@@ -172,7 +172,7 @@
                                     data-alamat="{{ $place->alamat_lengkap ?? 'Bandung' }}"
                                     data-hargamin="{{ $place->harga_min ?? 0 }}"
                                     data-hargamax="{{ $place->harga_max ?? 0 }}"
-                                    data-link="{{ route('places.show', $place->slug) }}" data-slug="{{ $place->slug }}">
+                                    data-link="{{ $place->slug ? route('places.show', $place->slug) : '#' }}" data-slug="{{ $place->slug }}">
                                     <div class="relative mb-3">
                                         <img src="{{ $place->gambar_tempat ? asset($place->gambar_tempat) : asset('assets/img/180 Cafe - Bandung 1.png') }}"
                                             class="w-full h-40 object-cover rounded-xl" alt="{{ $place->nama_tempat }}">
@@ -205,7 +205,7 @@
                                             class="flex-1 bg-gray-800 text-[#FBB45E] py-2 rounded-full text-sm font-medium flex items-center justify-center gap-1 hover:bg-gray-700 transition">
                                             <span class="material-symbols-outlined text-sm">location_on</span> Lihat Lokasi
                                         </a>
-                                        <button onclick="bukaShareModal('{{ $place->slug }}')" class="share-btn bg-[#FBB45E] hover:bg-[#E2A255] text-[#363B58] w-10 h-10 flex items-center justify-center rounded-full transition">
+                                        <button onclick="bukaShareModal('{{ $place->slug }}', '{{ addslashes($place->nama_tempat) }}')" class="share-btn bg-[#FBB45E] hover:bg-[#E2A255] text-[#363B58] w-10 h-10 flex items-center justify-center rounded-full transition">
                                             <span class="material-symbols-outlined text-sm">share</span>
                                         </button>
                                     </div>
@@ -650,24 +650,27 @@
         };
     });
 
-    function bukaShareModal(slug) {
-        const url = `${window.location.origin}/places/${slug}`;
+    function bukaShareModal(slug, nama) {
+        const baseUrl = `https://locana-project-production-c943.up.railway.app`;
+        const url = `${baseUrl}/places/${slug}`;
+        const text = `Cek tempat keren ini di Locana: ${nama}\n${url}`;
+
         document.querySelector('.shareModal').classList.remove('hidden');
-        document.getElementById('shareWa').href = `https://wa.me/?text=${encodeURIComponent(url)}`;
-        document.getElementById('shareX').href = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}`;
+        document.getElementById('shareWa').href = `https://wa.me/?text=${encodeURIComponent(text)}`;
+        document.getElementById('shareX').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
         document.getElementById('shareFb').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-        document.getElementById('btnCopyLink').onclick = () => copyLink(slug);
+        document.getElementById('btnCopyLink').onclick = () => copyLink(url);
     }
 
-    function copyLink(slug) {
-        const url = `${window.location.origin}/places/${slug}`;
+
+    function tutupShareModal() {
+    document.querySelector('.shareModal').classList.add('hidden');
+    }
+
+    function copyLink(url) {
         navigator.clipboard.writeText(url).then(() => {
             alert('Link berhasil disalin!');
         });
-    }
-
-    function tutupShareModal() {
-        document.querySelector('.shareModal').classList.add('hidden');
     }
 </script>
 @endsection

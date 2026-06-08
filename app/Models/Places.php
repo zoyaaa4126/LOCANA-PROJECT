@@ -41,7 +41,9 @@ class Places extends Model
     {
         parent::boot();
         static::creating(function ($place) {
-            $place->slug = Str::slug($place->nama_tempat);
+            if (empty($place->slug)) {
+                $place->slug = Str::slug($place->nama_tempat);
+            }
         });
     }
 
