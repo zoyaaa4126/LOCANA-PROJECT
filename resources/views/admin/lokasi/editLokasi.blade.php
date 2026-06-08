@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <form id="form-lokasi" class="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-5 items-start" action="{{ route('updateTempat', $place->id) }}" method="POST" enctype="multipart/form-data">
+    <form id="form-lokasi" class="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-5 items-start" action="{{ route('updateTempat', $place->slug) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 

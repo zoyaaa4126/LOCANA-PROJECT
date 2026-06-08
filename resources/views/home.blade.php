@@ -172,7 +172,7 @@
                                     data-alamat="{{ $place->alamat_lengkap ?? 'Bandung' }}"
                                     data-hargamin="{{ $place->harga_min ?? 0 }}"
                                     data-hargamax="{{ $place->harga_max ?? 0 }}"
-                                    data-link="{{ route('places.show', $place->id) }}">
+                                    data-link="{{ route('places.show', $place->slug) }}" data-slug="{{ $place->slug }}">
                                     <div class="relative mb-3">
                                         <img src="{{ $place->gambar_tempat ? asset($place->gambar_tempat) : asset('assets/img/180 Cafe - Bandung 1.png') }}"
                                             class="w-full h-40 object-cover rounded-xl" alt="{{ $place->nama_tempat }}">
@@ -201,11 +201,11 @@
                                         <span>Rp{{ number_format($place->harga_min, 0, ',', '.') }} - Rp{{ number_format($place->harga_max, 0, ',', '.') }}</span>
                                     </div>
                                     <div class="flex items-center gap-2 mt-4">
-                                        <a href="{{ route('places.show', $place->id) }}"
+                                        <a href="{{ route('places.show', $place->slug) }}"
                                             class="flex-1 bg-gray-800 text-[#FBB45E] py-2 rounded-full text-sm font-medium flex items-center justify-center gap-1 hover:bg-gray-700 transition">
                                             <span class="material-symbols-outlined text-sm">location_on</span> Lihat Lokasi
                                         </a>
-                                        <button onclick="bukaShareModal({{ $place->id }})" class="share-btn bg-[#FBB45E] hover:bg-[#E2A255] text-[#363B58] w-10 h-10 flex items-center justify-center rounded-full transition">
+                                        <button onclick="bukaShareModal('{{ $place->slug }}')" class="share-btn bg-[#FBB45E] hover:bg-[#E2A255] text-[#363B58] w-10 h-10 flex items-center justify-center rounded-full transition">
                                             <span class="material-symbols-outlined text-sm">share</span>
                                         </button>
                                     </div>
@@ -217,12 +217,12 @@
                                 <div class="bg-white rounded-2xl p-6 w-[90%] max-w-md">
                                     <h5 class="font-bold text-[#363B58] text-lg mb-4">Berbagi dengan...</h5>
                                     <div class="grid grid-cols-3 gap-4 text-center">
-                                        
+
                                         <a id="shareWa" href="#" target="_blank" class="flex flex-col items-center gap-1 text-sm text-[#363B58] hover:text-green-500">
                                             <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#25D366">
-                                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-                                                    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.564 4.14 1.544 5.877L.057 23.447a.75.75 0 0 0 .922.922l5.57-1.487A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.7-.513-5.243-1.406l-.374-.22-3.868 1.034 1.034-3.868-.22-.374A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+                                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                                                    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.564 4.14 1.544 5.877L.057 23.447a.75.75 0 0 0 .922.922l5.57-1.487A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.7-.513-5.243-1.406l-.374-.22-3.868 1.034 1.034-3.868-.22-.374A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
                                                 </svg>
                                             </div>
                                             WhatsApp
@@ -231,7 +231,7 @@
                                         <button id="btnCopyLink" class="flex flex-col items-center gap-1 text-sm text-[#363B58] hover:text-[#FBB45E]">
                                             <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FBB45E">
-                                                    <path d="M440-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h160v80H280q-50 0-85 35t-35 85q0 50 35 85t85 35h160v80ZM320-440v-80h320v80H320Zm200 160v-80h160q50 0 85-35t35-85q0-50-35-85t-85-35H520v-80h160q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H520Z"/>
+                                                    <path d="M440-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h160v80H280q-50 0-85 35t-35 85q0 50 35 85t85 35h160v80ZM320-440v-80h320v80H320Zm200 160v-80h160q50 0 85-35t35-85q0-50-35-85t-85-35H520v-80h160q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H520Z" />
                                                 </svg>
                                             </div>
                                             Salin Link
@@ -240,7 +240,7 @@
                                         <a id="shareX" href="#" target="_blank" class="flex flex-col items-center gap-1 text-sm text-[#363B58] hover:text-black">
                                             <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#000000">
-                                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                                                 </svg>
                                             </div>
                                             X
@@ -249,7 +249,7 @@
                                         <a id="shareFb" href="#" target="_blank" class="flex flex-col items-center gap-1 text-sm text-[#363B58] hover:text-black">
                                             <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
                                                 <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#1877F2">
-                                                    <path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/>
+                                                    <path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z" />
                                                 </svg>
                                             </div>
                                             Facebook
@@ -291,7 +291,7 @@
                                     data-alamat="{{ $place->alamat_lengkap ?? 'Bandung' }}"
                                     data-hargamin="{{ $place->harga_min ?? 0 }}"
                                     data-hargamax="{{ $place->harga_max ?? 0 }}"
-                                    data-link="{{ route('places.show', $place->id) }}">
+                                    data-link="{{ route('places.show', $place->slug) }}" data-slug="{{ $place->slug }}">
                                     <div class="relative mb-3">
                                         <img src="{{ $place->gambar_tempat ? asset($place->gambar_tempat) : asset('assets/img/180 Cafe - Bandung 1.png') }}"
                                             class="w-full h-40 object-cover rounded-xl" alt="{{ $place->nama_tempat }}">
@@ -320,11 +320,11 @@
                                         <span>Rp{{ number_format($place->harga_min, 0, ',', '.') }} - Rp{{ number_format($place->harga_max, 0, ',', '.') }}</span>
                                     </div>
                                     <div class="flex items-center gap-2 mt-4">
-                                        <a href="{{ route('places.show', $place->id) }}"
+                                        <a href="{{ route('places.show', $place->slug) }}"
                                             class="flex-1 bg-gray-800 text-[#FBB45E] py-2 rounded-full text-sm font-medium flex items-center justify-center gap-1 hover:bg-gray-700 transition">
                                             <span class="material-symbols-outlined text-sm">location_on</span> Lihat Lokasi
                                         </a>
-                                        <button onclick="bukaShareModal()" class="share-btn bg-[#FBB45E] hover:bg-[#E2A255] text-[#363B58] w-10 h-10 flex items-center justify-center rounded-full transition">
+                                        <button onclick="bukaShareModal('{{ $place->slug }}')" class="share-btn bg-[#FBB45E] hover:bg-[#E2A255] text-[#363B58] w-10 h-10 flex items-center justify-center rounded-full transition">
                                             <span class="material-symbols-outlined text-sm">share</span>
                                         </button>
                                     </div>
@@ -353,7 +353,7 @@
                     data-alamat="{{ $place->alamat_lengkap ?? 'Bandung' }}"
                     data-hargamin="{{ $place->harga_min ?? 0 }}"
                     data-hargamax="{{ $place->harga_max ?? 0 }}"
-                    data-link="{{ route('places.show', $place->id) }}">
+                    data-link="{{ route('places.show', $place->slug) }}" data-slug="{{ $place->slug }}">
                 </div>
                 @endforeach
             </div>
@@ -375,19 +375,28 @@
     document.addEventListener('DOMContentLoaded', function() {
 
         //Kebutuhan Rekomendasi (Pengambilan Lokasi)
+        @if(!session('lat'))
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
                 const lat = position.coords.latitude;
                 const lng = position.coords.longitude;
-                const url = new URL(window.location.href);
 
-                if (!url.searchParams.get('lat')) {
-                    url.searchParams.set('lat', lat);
-                    url.searchParams.set('lng', lng);
-                    window.location.href = url.toString();
-                }
+                fetch('/set-lokasi', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    },
+                    body: JSON.stringify({
+                        lat,
+                        lng
+                    })
+                }).then(() => {
+                    location.reload();
+                });
             });
         }
+        @endif
         // Toggle sidebar desktop
         const sidebar = document.getElementById('desktopSidebar');
         document.getElementById('desktopFilterToggle')?.addEventListener('click', () => {
@@ -641,24 +650,24 @@
         };
     });
 
-    function bukaShareModal(id) {
-        const url = `http://127.0.0.1:8000/places/${id}`;
+    function bukaShareModal(slug) {
+        const url = `${window.location.origin}/places/${slug}`;
         document.querySelector('.shareModal').classList.remove('hidden');
         document.getElementById('shareWa').href = `https://wa.me/?text=${encodeURIComponent(url)}`;
         document.getElementById('shareX').href = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}`;
         document.getElementById('shareFb').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-        document.getElementById('btnCopyLink').onclick = () => copyLink(id);
+        document.getElementById('btnCopyLink').onclick = () => copyLink(slug);
+    }
+
+    function copyLink(slug) {
+        const url = `${window.location.origin}/places/${slug}`;
+        navigator.clipboard.writeText(url).then(() => {
+            alert('Link berhasil disalin!');
+        });
     }
 
     function tutupShareModal() {
         document.querySelector('.shareModal').classList.add('hidden');
-    }
-
-    function copyLink(id) {
-        const url = `http://127.0.0.1:8000/places/${id}`;
-        navigator.clipboard.writeText(url).then(() => {
-            alert('Link berhasil disalin!');
-        });
     }
 </script>
 @endsection

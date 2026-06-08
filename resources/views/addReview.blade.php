@@ -9,7 +9,7 @@
 
         {{-- BREADCRUMB + HEADER --}}
         <div class="flex items-center gap-4 mb-8">
-            <a href="{{ route('places.show', $place->id) }}"
+            <a href="{{ route('places.show', $place->slug) }}"
                class="w-10 h-10 bg-[#FBB45E] rounded-xl flex items-center justify-center hover:bg-[#E2A255] transition">
                 <span class="material-symbols-outlined text-[#363B58]">arrow_back</span>
             </a>
@@ -36,7 +36,7 @@
 
         <form action="{{ route('reviews.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <input type="hidden" name="place_id" value="{{ $place->id }}">
+            <input type="hidden" name="place_id" value="{{ $place->slug }}">
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 

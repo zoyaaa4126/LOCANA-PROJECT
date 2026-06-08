@@ -170,13 +170,13 @@ class UserController extends Controller
         return view('home', compact('kategoris', 'moods', 'popularPlaces', 'recommendedPlaces', 'wishlistIds', 'allPlaces'));
     }
 
-    public function showPlace(int $id)
+    public function showPlace(string $slug)
     {
-        $places = \App\Models\Places::findOrFail($id);
-        $isWishlisted = auth()->check() 
+        $places = \App\Models\Places::where('slug', $slug)->firstOrFail();
+        $isWishlisted = auth()->check()
             ? \App\Models\Wishlist::where('user_id', auth()->id())
-                                ->where('place_id', $id)
-                                ->exists() 
+            ->where('place_id', $places->id)
+            ->exists()
             : false;
         return view('placeDetails.places', compact('places', 'isWishlisted'));
     }

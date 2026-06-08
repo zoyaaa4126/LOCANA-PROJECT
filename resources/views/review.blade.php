@@ -10,7 +10,7 @@
         {{-- BREADCRUMB + HEADER --}}
         <div class="flex items-center justify-between mb-6">
             <div class="flex items-center gap-4">
-                <a href="{{ route('places.show', $place->id) }}"
+                <a href="{{ route('places.show', $place->slug) }}"
                    class="w-10 h-10 bg-[#FBB45E] rounded-xl flex items-center justify-center hover:bg-[#E2A255] transition">
                     <span class="material-symbols-outlined text-[#363B58]">arrow_back</span>
                 </a>
@@ -22,7 +22,7 @@
                 </div>
             </div>
             @auth
-            <a href="{{ route('reviews.create', $place->id) }}"
+            <a href="{{ route('reviews.create', $place->slug) }}"
             class="flex items-center gap-2 bg-[#FBB45E] hover:bg-[#E2A255] text-[#363B58] font-bold px-5 py-2.5 rounded-xl transition max-md:text-sm max-md:px-2.5 max-md:py-1 max-md:gap-1">
                 <span class="material-symbols-outlined text-sm">add</span>
                 Tambah Review

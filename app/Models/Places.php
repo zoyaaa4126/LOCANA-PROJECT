@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Moods;
+use Illuminate\Support\Str;
 
 class Places extends Model
 {
@@ -13,6 +14,7 @@ class Places extends Model
         'nama_tempat',
         'gambar_tempat',
         'deskripsi',
+        'slug',  
         'tipe_tempat',
         'alamat_lengkap',
         'latitude',
@@ -34,6 +36,14 @@ class Places extends Model
         'ruang_meeting',
         'board_game',
     ];
+
+     protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($place) {
+            $place->slug = Str::slug($place->nama_tempat);
+        });
+    }
 
     public function user()
     {
