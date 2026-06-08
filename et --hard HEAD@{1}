@@ -1,0 +1,60 @@
+[33ma8ff4f8[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mnajwa[m[33m, [m[1;31morigin/najwa[m[33m)[m HEAD@{0}: checkout: moving from zoyaa to najwa
+[33meedc93a[m[33m ([m[1;31morigin/zoyaa[m[33m, [m[1;32mzoyaa[m[33m)[m HEAD@{1}: pull: Fast-forward
+[33mf2e3a77[m HEAD@{2}: checkout: moving from laravel to zoyaa
+[33m2730988[m[33m ([m[1;32mlaravel[m[33m)[m HEAD@{3}: checkout: moving from zoyaa to laravel
+[33mf2e3a77[m HEAD@{4}: checkout: moving from laravel to zoyaa
+[33m2730988[m[33m ([m[1;32mlaravel[m[33m)[m HEAD@{5}: checkout: moving from zoyaa to laravel
+[33mf2e3a77[m HEAD@{6}: checkout: moving from najwa to zoyaa
+[33ma8ff4f8[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mnajwa[m[33m, [m[1;31morigin/najwa[m[33m)[m HEAD@{7}: pull: Fast-forward
+[33meef4ddf[m HEAD@{8}: checkout: moving from natasya to najwa
+[33mf8fbfdd[m[33m ([m[1;32mnatasya[m[33m)[m HEAD@{9}: checkout: moving from alya to natasya
+[33mce16a0c[m[33m ([m[1;32malya[m[33m)[m HEAD@{10}: checkout: moving from zoyaa to alya
+[33mf2e3a77[m HEAD@{11}: pull: Fast-forward
+[33m521233e[m HEAD@{12}: checkout: moving from laravel to zoyaa
+[33m2730988[m[33m ([m[1;32mlaravel[m[33m)[m HEAD@{13}: checkout: moving from natasya to laravel
+[33mf8fbfdd[m[33m ([m[1;32mnatasya[m[33m)[m HEAD@{14}: checkout: moving from laravel to natasya
+[33m2730988[m[33m ([m[1;32mlaravel[m[33m)[m HEAD@{15}: commit: update db
+[33m3522a53[m HEAD@{16}: pull origin laravel: Fast-forward
+[33m498484f[m HEAD@{17}: checkout: moving from najwa to laravel
+[33meef4ddf[m HEAD@{18}: checkout: moving from laravel to najwa
+[33m498484f[m HEAD@{19}: reset: moving to origin/laravel
+[33m1ba0c41[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{20}: checkout: moving from laravel to laravel
+[33m1ba0c41[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{21}: checkout: moving from najwa to laravel
+[33meef4ddf[m HEAD@{22}: pull: Fast-forward
+[33mcae6919[m HEAD@{23}: checkout: moving from laravel to najwa
+[33m1ba0c41[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{24}: checkout: moving from najwa to laravel
+[33mcae6919[m HEAD@{25}: checkout: moving from laravel to najwa
+[33m1ba0c41[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{26}: checkout: moving from master to laravel
+[33m1ba0c41[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{27}: pull: Fast-forward
+[33m440edc5[m HEAD@{28}: checkout: moving from testing-merge to master
+[33m9720c3a[m[33m ([m[1;31morigin/testing-merge[m[33m, [m[1;32mtesting-merge[m[33m)[m HEAD@{29}: checkout: moving from alya to testing-merge
+[33mce16a0c[m[33m ([m[1;32malya[m[33m)[m HEAD@{30}: commit: nambahin dikit di overlay
+[33m7814fdc[m HEAD@{31}: pull: Fast-forward
+[33m1454ef5[m HEAD@{32}: checkout: moving from master to alya
+[33m440edc5[m HEAD@{33}: pull: Fast-forward
+[33m9d3b038[m HEAD@{34}: checkout: moving from natasya to master
+[33mf8fbfdd[m[33m ([m[1;32mnatasya[m[33m)[m HEAD@{35}: pull: Fast-forward
+[33m4d5d352[m HEAD@{36}: checkout: moving from master to natasya
+[33m9d3b038[m HEAD@{37}: checkout: moving from alya to master
+[33m1454ef5[m HEAD@{38}: commit: nambahin review card
+[33m259f9cd[m HEAD@{39}: pull: Fast-forward
+[33md9de2ce[m HEAD@{40}: checkout: moving from master to alya
+[33m9d3b038[m HEAD@{41}: checkout: moving from natasya to master
+[33m4d5d352[m HEAD@{42}: checkout: moving from najwa to natasya
+[33mcae6919[m HEAD@{43}: commit: hapus dulu
+[33ma416da8[m HEAD@{44}: checkout: moving from natasya to najwa
+[33m4d5d352[m HEAD@{45}: checkout: moving from zoyaa to natasya
+[33m521233e[m HEAD@{46}: checkout: moving from natasya to zoyaa
+[33m4d5d352[m HEAD@{47}: pull: Fast-forward
+[33me561f92[m HEAD@{48}: checkout: moving from master to natasya
+[33m9d3b038[m HEAD@{49}: commit: hapus mentahan
+[33m823d024[m HEAD@{50}: pull: Fast-forward
+[33ma69cd3c[m HEAD@{51}: checkout: moving from najwa to master
+[33ma416da8[m HEAD@{52}: commit: hapus isi js
+[33mb09cd2b[m HEAD@{53}: pull: Fast-forward
+[33me3e50c8[m HEAD@{54}: checkout: moving from master to najwa
+[33ma69cd3c[m HEAD@{55}: pull: Fast-forward
+[33me3e50c8[m HEAD@{56}: checkout: moving from main to master
+[33m7e073ed[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m HEAD@{57}: checkout: moving from master to main
+[33me3e50c8[m HEAD@{58}: commit: testaja
+[33m7e7a4da[m HEAD@{59}: clone: from https://github.com/zoyaaa4126/LOCANA-PROJECT.git

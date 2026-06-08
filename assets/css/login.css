@@ -42,18 +42,16 @@ body {
 }
 
 .logo-gambar {
-    width: 40px;
+    width: 3rem;
     height: auto;
-    margin-top: 40px;
 }
 
 .logo h2{
     font-weight: 700;
     color:#363b58;
     margin: 0;
-    font-size: 20px;
+    font-size: 1rem;
     line-height: 1.2;
-    margin-top: 40px; 
 }
 
 .btn-login{
@@ -63,9 +61,8 @@ body {
     margin: 20px auto;
     background: #E1E2E6;
     border-radius: 5px;
-    padding: 4px;
-    width: 250px;
-    height: 40px;
+    padding: 0.1rem;
+    width: 13rem;
     margin-bottom: 20px;
 }
 
@@ -74,10 +71,10 @@ body {
     width: 100%;
     border: none;
     background: transparent;
-    padding: 4px;
+    padding: 0.1rem;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 0.8rem;
     font-weight: 500;
     color: #939393;
 }
@@ -86,13 +83,16 @@ body {
     background: white;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     color: black;
+    padding: 0.3rem;
 }
 
 #masuk:hover{
     background: #C1C2CB;
+    padding: 0.3rem;
 }
 #daftar:hover{
     background: #C1C2CB;
+    padding: 0.3rem;
 }
 .login-box {
     height: 971px;
@@ -104,8 +104,8 @@ body {
 }
 
 .login-box h1 {
-    margin: 10px 20px;
-    font-size: 27px;
+    margin: 0.3rem 1rem;
+    font-size: 1.7rem;
 }
 
 .highlight{
@@ -113,9 +113,11 @@ body {
 }
 
 .login-box p{
-    font-size: 12px;
-    font-weight:600;
-    margin: 10px 40px 20px 40px;
+  width: 70%;
+  font-size: 0.7rem;
+  font-weight:600;
+  margin: 0.1rem 4rem;
+  line-height: 120%;
 }
 
 .input-group {
@@ -134,7 +136,7 @@ body {
 
 .input-group input {
     width: 100%;
-    height: 45px;
+    height: 2rem;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 6px;
@@ -142,20 +144,20 @@ body {
 }
 
 .input-group label {
-    margin-top: 20px;
+    margin-top: 10px;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 0.8rem;
     margin-bottom: 5px;
 }
 
 .input-group :placeholder-shown{
-    font-size: 16px;
+    font-size: 0.8rem;
 }
 
 .input-group .material-symbols-outlined {
     position: absolute;
     right: 20px;     /* masuk ke dalam */
-    top: 69%;
+    top: 66%;
     cursor: pointer;
 }
 
@@ -165,7 +167,7 @@ body {
 
 button {
     border: none;
-    font-size: 16px;
+    font-size: 1rem;
     border-radius: 5px;
     cursor: pointer;
 }
@@ -181,9 +183,9 @@ button {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 16px;
+    font-size: 0.8rem;
     margin-left: 60px;
-    margin-top: 20px;
+    margin-top: 0.8rem;
     font-weight: 600;
     background: #FCFCFC;
 }
@@ -202,14 +204,15 @@ button {
 }
 
 .btn-submit {
-    width: 73%;
+    width: 77%;
+    height: 2.5rem;
     padding: 8px;
     background: #fbb45e;
     border: none;
     margin-left: 60px;
     margin-right: 80px;
-    margin-top: 20px;
-    font-size: 16px;
+    margin-top: 10px;
+    font-size: 0.9rem;
     color: #363b58;
     font-weight: 600;
 }
