@@ -32,10 +32,21 @@ class ReviewController extends Controller
         $request->validate([
             'place_id' => 'required|exists:places,id',
             'rating'   => 'required|integer|min:1|max:5',
-            'title'    => 'required|string|max:255',
+            'title'    => 'required|string|min:5|max:255',
             'comment'  => 'nullable|string|max:1000',
             'file_url'   => 'nullable|array|max:6',
             'file_url.*' => 'file|mimes:jpg,jpeg,png,mp4,mov|max:5120',
+        ], [
+            'rating.required'    => 'Rating wajib dipilih.',
+            'rating.min'         => 'Rating minimal 1 bintang.',
+            'rating.max'         => 'Rating maksimal 5 bintang.',
+            'title.required'     => 'Judul wajib diisi.',
+            'title.min'          => 'Judul minimal 5 karakter.',
+            'title.max'          => 'Judul maksimal 255 karakter.',
+            'comment.max'        => 'Ulasan maksimal 1000 karakter.',
+            'file_url.max'       => 'Maksimal 6 file yang bisa diunggah.',
+            'file_url.*.mimes'   => 'Format file harus JPG, PNG, MP4, atau MOV.',
+            'file_url.*.max'     => 'Ukuran tiap file maksimal 5MB.',
         ]);
     
         $existing = \App\Models\Review::where('user_id', Auth::id()) 

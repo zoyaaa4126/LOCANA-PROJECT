@@ -21,19 +21,6 @@
             </div>
         </div>
 
-        {{-- ERROR MESSAGES --}}
-        @if($errors->any())
-        <div class="bg-red-50 border border-red-200 rounded-xl p-4 mb-6">
-            <ul class="text-red-500 text-sm space-y-1">
-                @foreach($errors->all() as $error)
-                <li class="flex items-center gap-2">
-                    <span class="material-symbols-outlined text-sm">error</span> {{ $error }}
-                </li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
-
         <form action="{{ route('reviews.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="place_id" value="{{ $place->id }}">
@@ -77,7 +64,15 @@
                             @endfor
                         </div>
                         <input type="hidden" name="rating" id="ratingInput" value="{{ old('rating') }}" required>
-                        <p class="text-center text-xs text-gray-400 mt-3" id="ratingLabel">Pilih rating</p>
+                        <p class="text-center text-xs text-gray-400 mt-3" id="ratingLabel">
+                            Pilih rating
+
+                            @error('rating')
+                            <p class="text-red-500 text-xs mt-2 flex items-center justify-center gap-1">
+                                <span class="material-symbols-outlined text-sm">error</span>
+                                {{ $message }}
+                            </p>
+                            @enderror</p>
                     </div>
 
                 </div>
@@ -96,6 +91,13 @@
                                placeholder="Masukkan Judul Ulasan"
                                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#FBB45E] placeholder-gray-300"
                                required>
+
+                               @error('title')
+                                <p class="text-red-500 text-xs mt-2 flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-sm">error</span>
+                                    {{ $message }}
+                                </p>
+                                @enderror
                     </div>
 
                     {{-- ULASAN --}}
@@ -104,7 +106,21 @@
                         <textarea name="comment"
                                   rows="4"
                                   placeholder="Masukkan Ulasan"
-                                  class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#FBB45E] placeholder-gray-300 resize-none">{{ old('comment') }}</textarea>
+                                  class="w-full border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#FBB45E] placeholder-gray-300 resize-none
+                                         {{ $errors->has('comment') ? 'border-red-400 bg-red-50' : 'border-gray-200' }}">{{ old('comment') }}</textarea>
+
+                        <div class="flex items-center justify-between mt-1">
+
+                        @error('comment')
+                        <p class="text-red-500 text-xs flex items-center gap-1">
+                            <span class="material-symbols-outlined text-sm">error</span>
+                            {{ $message }}
+                        </p>
+                        @enderror
+                        <p class="text-xs text-gray-400 ml-auto" id="commentCounter">
+                            {{ strlen(old('comment') ?? '') }} / 1000
+                        </p>
+</div>
                     </div>
 
                     {{-- UPLOAD FOTO --}}
@@ -124,6 +140,18 @@
 
                         {{-- Error --}}
                         <p id="fileError" class="text-red-500 text-xs mt-2 hidden"></p>
+                        @error('file_url')
+                        <p class="text-red-500 text-xs mt-1 flex items-center gap-1">
+                            <span class="material-symbols-outlined text-sm">error</span>
+                            {{ $message }}
+                        </p>
+                        @enderror
+                        @error('file_url.*')
+                        <p class="text-red-500 text-xs mt-1 flex items-center gap-1">
+                            <span class="material-symbols-outlined text-sm">error</span>
+                            {{ $message }}
+                        </p>
+                        @enderror
 
                         {{-- Preview grid --}}
                         <div id="filePreview" class="mt-3 flex flex-wrap gap-2"></div>
@@ -272,6 +300,17 @@ function previewFiles(input) {
     window.addEventListener('popstate', function() {
         window.location.href = '/';
     });
+
+    const commentTA = document.querySelector('textarea[name="comment"]');
+    const commentCounter = document.getElementById('commentCounter');
+    if (commentTA && commentCounter) {
+        commentTA.addEventListener('input', () => {
+            const len = commentTA.value.length;
+            commentCounter.textContent = `${len} / 1000`;
+            commentCounter.classList.toggle('text-red-500', len > 1000);
+            commentCounter.classList.toggle('text-gray-400', len <= 1000);
+        });
+    }
 </script>
 @endif
 @endsection
